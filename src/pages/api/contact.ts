@@ -8,7 +8,6 @@ export const POST: APIRoute = async ({ request }) => {
   // Honeypot check
   const honeypot = formData.get('website');
   if (honeypot) {
-    // Bot detected — return success silently
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   }
 
@@ -20,7 +19,6 @@ export const POST: APIRoute = async ({ request }) => {
   const message = formData.get('message')?.toString().trim() || '';
   const gdpr = formData.get('gdpr');
 
-  // Validation
   if (!name || !email || !gdpr) {
     return new Response(
       JSON.stringify({ error: 'Namn, e-post och GDPR-samtycke krävs.' }),
@@ -28,20 +26,61 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  // TODO: Integrate with an email service (Resend, SendGrid, etc.)
-  // For now, log the submission and return success.
-  // Replace this with your preferred email provider:
-  //
-  // import { Resend } from 'resend';
-  // const resend = new Resend(import.meta.env.RESEND_API_KEY);
-  // await resend.emails.send({
-  //   from: 'Verit Kontaktformulär <noreply@verit.se>',
-  //   to: 'kontakt@verit.se',
-  //   subject: `Kontaktförfrågan från ${name}`,
-  //   text: `Namn: ${name}\nOrganisation: ${company}\nE-post: ${email}\nTelefon: ${phone}\nIntresseområde: ${service}\n\nMeddelande:\n${message}`,
-  // });
+  const relayUrl = import.meta.env.MAIL_RELAY_URL;
+  const relayKey = import.meta.env.MAIL_RELAY_KEY;
+  const relaySender = import.meta.env.MAIL_RELAY_SENDER;
 
-  console.log('Contact form submission:', { name, email, company, phone, service, message });
+  if (!relayUrl || !relayKey) {
+    console.error('Mail Relay is not configured (MAIL_RELAY_URL / MAIL_RELAY_KEY)');
+    return new Response(
+      JSON.stringify({ error: 'E-posttjänsten är inte konfigurerad.' }),
+      { status: 500 },
+    );
+  }
+
+  const mailBody = [
+    `Namn: ${name}`,
+    company && `Organisation: ${company}`,
+    `E-post: ${email}`,
+    phone && `Telefon: ${phone}`,
+    service && `Intresseområde: ${service}`,
+    '',
+    message && `Meddelande:\n${message}`,
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+  try {
+    const response = await fetch(relayUrl, {
+      method: 'POST',
+      headers: {
+        'X-API-Key': relayKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: relaySender || 'api@securapilot.com',
+        to: 'info@verit.se',
+        subject: `Ny kontaktförfrågan från ${name}`,
+        body: mailBody,
+        isHtml: false,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error('Mail Relay error:', response.status, errorBody);
+      return new Response(
+        JSON.stringify({ error: 'Kunde inte skicka meddelandet. Försök igen senare.' }),
+        { status: 500 },
+      );
+    }
+  } catch (err) {
+    console.error('Mail Relay request failed:', err);
+    return new Response(
+      JSON.stringify({ error: 'Kunde inte skicka meddelandet. Försök igen senare.' }),
+      { status: 500 },
+    );
+  }
 
   return new Response(JSON.stringify({ success: true }), { status: 200 });
 };

@@ -19,13 +19,21 @@ const textClass = isDark ? 'text-white' : 'text-navy';
 >
   <div class="container flex items-center justify-between h-20">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 relative z-50" aria-label="Verit - Startsida">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect width="32" height="32" rx="4" fill="var(--color-navy)"/>
-        <path d="M16 6L8 10v6c0 5.5 3.4 10.6 8 12 4.6-1.4 8-6.5 8-12v-6l-8-4z" fill="var(--color-accent)" opacity="0.9"/>
-        <path d="M14.5 17.5l-2-2 1.4-1.4 0.6 0.6 3.6-3.6 1.4 1.4-5 5z" fill="#121212"/>
-      </svg>
-      <span class:list={["text-xl font-semibold transition-colors", textClass]} data-header-text>Verit</span>
+    <a href="/" class="flex items-center relative z-50" aria-label="Verit - Startsida">
+      <img
+        src="/images/logos/logo_verit_dark.png"
+        alt="Verit"
+        style="height: 46px; width: auto;"
+        class:list={["transition-opacity duration-300", isDark ? "opacity-100" : "opacity-0 absolute"]}
+        data-logo-dark
+      />
+      <img
+        src="/images/logos/logo_verit_light.png"
+        alt="Verit"
+        style="height: 46px; width: auto;"
+        class:list={["transition-opacity duration-300", isDark ? "opacity-0 absolute" : "opacity-100"]}
+        data-logo-light
+      />
     </a>
 
     <!-- Desktop Navigation -->
@@ -141,6 +149,8 @@ const textClass = isDark ? 'text-white' : 'text-navy';
 
     const isDark = header.dataset.theme === 'dark';
     const textEls = header.querySelectorAll('[data-header-text]');
+    const logoDark = header.querySelector('[data-logo-dark]') as HTMLElement | null;
+    const logoLight = header.querySelector('[data-logo-light]') as HTMLElement | null;
     const outsideClickHandlers: Array<(e: MouseEvent) => void> = [];
 
     function setTextColor(color: 'white' | 'navy') {
@@ -150,13 +160,30 @@ const textClass = isDark ? 'text-white' : 'text-navy';
       });
     }
 
+    function setLogo(variant: 'dark' | 'light') {
+      if (!logoDark || !logoLight) return;
+      if (variant === 'dark') {
+        logoDark.classList.remove('opacity-0', 'absolute');
+        logoDark.classList.add('opacity-100');
+        logoLight.classList.remove('opacity-100');
+        logoLight.classList.add('opacity-0', 'absolute');
+      } else {
+        logoLight.classList.remove('opacity-0', 'absolute');
+        logoLight.classList.add('opacity-100');
+        logoDark.classList.remove('opacity-100');
+        logoDark.classList.add('opacity-0', 'absolute');
+      }
+    }
+
     function onScroll() {
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
         setTextColor('navy');
+        setLogo('light');
       } else {
         header.classList.remove('scrolled');
         setTextColor(isDark ? 'white' : 'navy');
+        setLogo(isDark ? 'dark' : 'light');
       }
     }
 

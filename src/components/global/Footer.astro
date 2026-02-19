@@ -9,13 +9,8 @@ import { site } from '@data/site';
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
       <!-- Brand column -->
       <div class="lg:col-span-1">
-        <a href="/" class="flex items-center gap-2 mb-4">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="32" height="32" rx="4" fill="#ffffff" fill-opacity="0.1"/>
-            <path d="M16 6L8 10v6c0 5.5 3.4 10.6 8 12 4.6-1.4 8-6.5 8-12v-6l-8-4z" fill="var(--color-accent)" opacity="0.9"/>
-            <path d="M14.5 17.5l-2-2 1.4-1.4 0.6 0.6 3.6-3.6 1.4 1.4-5 5z" fill="#121212"/>
-          </svg>
-          <span class="text-xl font-semibold text-white">{site.name}</span>
+        <a href="/" class="inline-block mb-4">
+          <img src="/images/logos/logo_verit_dark.png" alt={site.name} style="height: 46px; width: auto;" />
         </a>
         <p class="text-sm leading-relaxed mb-6 text-white/60">
           {site.tagline}. Vi hjälper samhällsviktiga verksamheter att skydda sin information och uppfylla regulatoriska krav.
@@ -63,7 +58,7 @@ import { site } from '@data/site';
     <!-- Bottom bar -->
     <div class="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
       <p class="text-sm text-white/60">
-        &copy; {new Date().getFullYear()} {site.name}. Alla rättigheter förbehållna.
+        &copy; {new Date().getFullYear()} VER &amp; IT AB. Alla rättigheter förbehållna.
       </p>
       <div class="flex gap-6 text-sm text-white/60">
         <a href="/integritetspolicy" class="underline underline-offset-2 decoration-white/30 hover:text-white hover:decoration-white/60 transition-colors">Integritetspolicy</a>
