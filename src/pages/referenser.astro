@@ -1,0 +1,58 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+
+const locale = 'sv';
+
+const clients = [
+  { name: 'MEXL.', logo: '/images/referenser/mexl_180.png' },
+  { name: 'Smartbojen Utbildning', logo: '/images/referenser/220-smartbojen.png' },
+  { name: 'Fronteria', logo: '/images/referenser/220-fronteria.png' },
+  { name: 'Demontageteknik', logo: '/images/referenser/220-demontageteknik.png' },
+  { name: 'Almö Kvarterskrog', logo: '/images/referenser/220-almo-kvaterskrog.png' },
+  { name: 'Almö Interiör', logo: '/images/referenser/220-almoinredning.png' },
+  { name: 'Elma Group', logo: '/images/referenser/220-elmagruppen.png' },
+  { name: 'ICA Almö Livs', logo: '/images/referenser/220-ica-almo.png' },
+  { name: 'PT Boxen', logo: '/images/referenser/220-ptboxen.png' },
+  { name: 'Salt & Sill', logo: '/images/referenser/220-salt-o-sill.png' },
+  { name: 'Restaurang Vänerparken', logo: '/images/referenser/220-vanerparken.png' },
+  { name: 'Byggimporten', logo: '/images/referenser/byggimport_180.png' },
+];
+---
+
+<PageLayout title="Referenser" description="Organisationer som litar på Verit för IT-konsulting, säkerhet och digitala lösningar." locale={locale}>
+  <HeroSimple
+    title="Referenser"
+    description="Vi är stolta över att samarbeta med organisationer i olika branscher. Här är ett urval av de kunder vi har haft förmånen att arbeta med."
+    breadcrumbs={[{ label: 'Referenser' }]}
+    locale={locale}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+        {clients.map((client, i) => (
+          <div
+            class="aspect-square flex items-center justify-center bg-white rounded-none border border-border p-8 md:p-10 hover:shadow-md hover:border-accent/30 transition-all duration-300"
+            data-reveal
+            data-delay={String((i % 4) + 1)}
+          >
+            <img
+              src={client.logo}
+              alt={client.name}
+              class="max-h-40 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Vill du bli nästa referens?"
+    description="Kontakta oss för att diskutera hur vi kan hjälpa er organisation."
+    locale={locale}
+  />
+</PageLayout>

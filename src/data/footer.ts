@@ -22,6 +22,7 @@ const footerData: Record<Locale, FooterColumn[]> = {
       title: 'Företaget',
       links: [
         { label: 'Om oss', href: '/om-oss' },
+        { label: 'Referenser', href: '/referenser' },
         { label: 'Securapilot', href: '/securapilot' },
         { label: 'Insikter', href: '/insikter' },
         { label: 'Kontakt', href: '/kontakt' },
@@ -45,6 +46,7 @@ const footerData: Record<Locale, FooterColumn[]> = {
       title: 'Company',
       links: [
         { label: 'About us', href: '/en/about-us' },
+        { label: 'References', href: '/en/references' },
         { label: 'Securapilot', href: '/en/securapilot' },
         { label: 'Insights', href: '/en/insights' },
         { label: 'Contact', href: '/en/contact' },

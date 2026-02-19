@@ -9,6 +9,7 @@ const routeMap: Record<string, string> = {
   '/insikter': '/en/insights',
   '/securapilot': '/en/securapilot',
   '/integritetspolicy': '/en/privacy-policy',
+  '/referenser': '/en/references',
 };
 
 const reverseRouteMap: Record<string, string> = Object.fromEntries(
@@ -126,4 +127,11 @@ export function getSecurapilotPath(locale: Locale): string {
  */
 export function getAboutPath(locale: Locale): string {
   return locale === 'sv' ? '/om-oss' : '/en/about-us';
+}
+
+/**
+ * Get the references page path for a locale.
+ */
+export function getReferencesPath(locale: Locale): string {
+  return locale === 'sv' ? '/referenser' : '/en/references';
 }

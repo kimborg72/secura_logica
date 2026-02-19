@@ -1,0 +1,58 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+
+const locale = 'en';
+
+const clients = [
+  { name: 'MEXL.', logo: '/images/referenser/mexl_180.png' },
+  { name: 'Smartbojen Utbildning', logo: '/images/referenser/220-smartbojen.png' },
+  { name: 'Fronteria', logo: '/images/referenser/220-fronteria.png' },
+  { name: 'Demontageteknik', logo: '/images/referenser/220-demontageteknik.png' },
+  { name: 'Almö Kvarterskrog', logo: '/images/referenser/220-almo-kvaterskrog.png' },
+  { name: 'Almö Interiör', logo: '/images/referenser/220-almoinredning.png' },
+  { name: 'Elma Group', logo: '/images/referenser/220-elmagruppen.png' },
+  { name: 'ICA Almö Livs', logo: '/images/referenser/220-ica-almo.png' },
+  { name: 'PT Boxen', logo: '/images/referenser/220-ptboxen.png' },
+  { name: 'Salt & Sill', logo: '/images/referenser/220-salt-o-sill.png' },
+  { name: 'Restaurang Vänerparken', logo: '/images/referenser/220-vanerparken.png' },
+  { name: 'Byggimporten', logo: '/images/referenser/byggimport_180.png' },
+];
+---
+
+<PageLayout title="References" description="Organisations that trust Verit for IT consulting, security and digital solutions." locale={locale}>
+  <HeroSimple
+    title="References"
+    description="We are proud to collaborate with organisations across industries. Here is a selection of the clients we have had the privilege of working with."
+    breadcrumbs={[{ label: 'References' }]}
+    locale={locale}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+        {clients.map((client, i) => (
+          <div
+            class="aspect-square flex items-center justify-center bg-white rounded-none border border-border p-8 md:p-10 hover:shadow-md hover:border-accent/30 transition-all duration-300"
+            data-reveal
+            data-delay={String((i % 4) + 1)}
+          >
+            <img
+              src={client.logo}
+              alt={client.name}
+              class="max-h-40 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Want to become our next reference?"
+    description="Get in touch to discuss how we can help your organisation."
+    locale={locale}
+  />
+</PageLayout>
