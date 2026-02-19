@@ -2,41 +2,122 @@ title: "GDPR & Dataskydd"
 shortTitle: "GDPR"
 slug: "gdpr"
 metaTitle: "GDPR & Dataskydd — Praktisk rådgivning | Verit"
-metaDescription: "Praktisk rådgivning för att uppfylla dataskyddsförordningens krav i er verksamhet."
+metaDescription: "Praktisk rådgivning för att uppfylla dataskyddsförordningens krav. Gap-analys, registerförteckning, DPIA och DPO-tjänst."
 excerpt: "Praktisk rådgivning för att uppfylla dataskyddsförordningens krav i er verksamhet."
+introLead: >
+  Med ökad tillsyn från IMY och allt högre sanktionsavgifter är GDPR-efterlevnad
+  inte längre valfritt. Praktisk implementering är det som skyddar er
+  organisation — inte policyer i en pärm.
 introduction: |
-  GDPR ställer höga krav på hur personuppgifter hanteras. Kraven gäller alla organisationer, men är särskilt utmanande för verksamheter inom offentlig sektor, vård och e-hälsa där personuppgiftsbehandlingen är komplex.
+  Dataskyddsförordningen (GDPR) ställer omfattande krav på hur organisationer hanterar personuppgifter. Kraven gäller allt från hur ni samlar in och lagrar data till hur ni hanterar individers rättigheter och rapporterar personuppgiftsincidenter.
 
-  Vi hjälper er att förstå och uppfylla kraven på ett sätt som fungerar i praktiken — inte bara på pappret.
+  Många organisationer har kommit en bit på vägen men saknar fortfarande systematik i sitt dataskyddsarbete. Registerförteckningar är ofullständiga, konsekvensbedömningar genomförs inte när de borde, och rutiner för rättighetshantering och incidentrapportering är otydliga.
+
+  Verit hjälper er att bygga ett dataskyddsarbete som fungerar i praktiken. Vi kombinerar juridisk förståelse med teknisk kompetens och erbjuder allt från gap-analyser och registerförteckningar till löpande DPO-tjänst för organisationer som behöver det.
+targetAudience:
+  heading: "Behöver ni stöd med dataskydd?"
+  description: >
+    Alla organisationer som behandlar personuppgifter omfattas av GDPR.
+    Behovet av stöd är särskilt stort i verksamheter som hanterar
+    känsliga personuppgifter eller stora volymer av data.
+  segments:
+    - "Offentlig sektor och kommuner"
+    - "Sjukvård och e-hälsa"
+    - "E-handel och digitala tjänster"
+    - "HR-avdelningar med komplex personalhantering"
+    - "Forskningsorganisationer"
+    - "Utbildningssektorn"
 benefits:
   - title: "Praktisk efterlevnad"
-    description: "Vi fokuserar på åtgärder som gör verklig skillnad, inte byråkratisk pappersexercis."
+    description: >
+      Vi fokuserar på att bygga processer som fungerar i vardagen,
+      inte bara på pappret. Era medarbetare ska veta hur de hanterar
+      personuppgifter korrekt utan att behöva ringa juristen
+      för varje beslut.
   - title: "Integrerad approach"
-    description: "GDPR-arbetet integreras med ert övriga informationssäkerhetsarbete."
+    description: >
+      GDPR-arbetet bör inte vara isolerat. Vi integrerar dataskydd
+      med ert övriga informationssäkerhetsarbete — samma riskmetodik,
+      samma processer, samma plattform. Det sparar tid och ger
+      bättre resultat.
   - title: "Riskmedveten prioritering"
-    description: "Vi hjälper er att fokusera resurser där de personuppgiftsrelaterade riskerna är störst."
+    description: >
+      Inte alla personuppgiftsbehandlingar innebär samma risk.
+      Vi hjälper er fokusera insatserna där riskerna är störst —
+      känsliga uppgifter, storskalig behandling och tredjelandsöverföringar
+      — så att ni använder era resurser effektivt.
 process:
   - step: 1
     title: "Nulägesanalys"
-    description: "Kartläggning av personuppgiftsbehandlingar, rättslig grund och befintliga skyddsåtgärder."
+    description: >
+      Vi kartlägger hur ni idag hanterar personuppgifter —
+      vilka behandlingar som sker, vilka lagliga grunder ni
+      stödjer er på och hur era rutiner ser ut.
+    duration: "1–2 veckor"
   - step: 2
     title: "Gap-analys"
-    description: "Identifiering av brister mot GDPR:s krav med prioriterad åtgärdsplan."
+    description: >
+      Systematisk jämförelse av ert nuläge mot GDPR:s krav.
+      Vi identifierar brister i registerförteckning,
+      samtyckehantering, informationsplikt och tekniska skyddsåtgärder.
+    duration: "1–2 veckor"
   - step: 3
     title: "Implementering"
-    description: "Stöd vid upprättande av register, konsekvensbedömningar och tekniska skyddsåtgärder."
+    description: >
+      Vi hjälper er att åtgärda identifierade gap — från
+      uppdaterade integritetspolicyer och registerförteckningar
+      till konsekvensbedömningar och rutiner för rättighetshantering.
+    duration: "2–4 veckor"
   - step: 4
     title: "Löpande stöd"
-    description: "Dataskyddsombud (DPO) som tjänst, incidenthantering och rådgivning vid nya behandlingar."
+    description: >
+      Vi erbjuder löpande rådgivning och vid behov DPO-tjänst
+      (dataskyddsombud) för organisationer som behöver extern
+      expertis kontinuerligt.
+    duration: "Löpande"
 deliverables:
   - "GDPR nuläges- och gap-analysrapport"
-  - "Registerförteckning"
-  - "Konsekvensbedömningar (DPIA)"
+  - "Registerförteckning (artikel 30)"
+  - "Konsekvensbedömningar (DPIA) vid behov"
   - "Dataskyddspolicyer och rutiner"
+  - "Rutiner för rättighetshantering och incidentrapportering"
   - "DPO-tjänst vid behov"
+faq:
+  - question: "Behöver vi ett dataskyddsombud (DPO)?"
+    answer: >
+      DPO krävs för myndigheter och offentliga organ, samt
+      för organisationer vars kärnverksamhet innebär storskalig
+      behandling av känsliga personuppgifter eller systematisk
+      övervakning. Vi hjälper er bedöma om kravet gäller er
+      och kan vid behov agera som extern DPO.
+  - question: "Vad är en DPIA och när krävs det?"
+    answer: >
+      En konsekvensbedömning avseende dataskydd (DPIA) krävs
+      när en behandling sannolikt medför hög risk för de
+      registrerades fri- och rättigheter. Typiska exempel är
+      storskalig behandling av känsliga uppgifter, systematisk
+      övervakning och ny teknik.
+  - question: "Hur hanterar vi tredjelandsöverföring?"
+    answer: >
+      Överföring av personuppgifter utanför EU/EES kräver
+      särskilda skyddsåtgärder. Vi hjälper er kartlägga vilka
+      överföringar som sker och implementera rätt mekanismer —
+      standardavtalsklausuler, adekvata länder eller undantag.
+securapilotConnection:
+  heading: "Dataskydd i Securapilot"
+  description: >
+    Securapilot ger er ett centralt ställe att hantera ert
+    dataskyddsarbete — registerförteckning, konsekvensbedömningar
+    och incidentrapportering enligt GDPR:s 72-timmarsregel.
+  features:
+    - "Digital registerförteckning enligt artikel 30"
+    - "DPIA-arbetsflöde med mallstöd"
+    - "Incidentrapportering anpassad efter GDPR:s tidsramar"
+    - "Dokumenthantering för policyer och rutiner"
 relatedServices:
   - "nis2"
   - "riskhantering"
   - "utbildning"
 ctaText: "Boka en GDPR-genomgång"
+ctaDescription: "Vi kartlägger ert dataskyddsarbete och ger konkreta förbättringsförslag."
 order: 6

@@ -7,8 +7,6 @@ category: "NIS2"
 draft: false
 ---
 
-# NIS2 och cybersäkerhetslagen — vad gäller nu?
-
 Den 1 januari 2025 trädde den svenska cybersäkerhetslagen i kraft som en implementering av EU:s NIS2-direktiv. Lagen innebär skärpta krav på cybersäkerhet för organisationer som bedriver samhällsviktig verksamhet.
 
 ## Vilka omfattas?
@@ -28,6 +26,6 @@ Cybersäkerhetslagen omfattar väsentliga och viktiga entiteter inom sektorer so
 2. **Genomför en gap-analys** mot de nya kraven
 3. **Ta fram en handlingsplan** med prioriterade åtgärder
 4. **Implementera** nödvändiga tekniska och organisatoriska åtgärder
-5. **Följ upp** kontinuerligt med hjälp av verktyg som SecuraPilot
+5. **Följ upp** kontinuerligt med hjälp av verktyg som Securapilot
 
 Behöver ni hjälp att komma igång? [Kontakta oss](/kontakt) för en kostnadsfri genomgång.

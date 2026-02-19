@@ -1,55 +1,316 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import HeroSimple from '@components/sections/HeroSimple.astro';
+
+const sections = [
+  { id: 'ansvarig', label: 'Personuppgiftsansvarig' },
+  { id: 'roller', label: 'Roller' },
+  { id: 'uppgifter', label: 'Personuppgifter' },
+  { id: 'andamal', label: 'Ändamål & grund' },
+  { id: 'mottagare', label: 'Mottagare' },
+  { id: 'lagring', label: 'Datalagring' },
+  { id: 'cookies', label: 'Cookies & analys' },
+  { id: 'rattigheter', label: 'Dina rättigheter' },
+  { id: 'sakerhet', label: 'Säkerhet' },
+  { id: 'klagomal', label: 'Klagomål' },
+  { id: 'andringar', label: 'Ändringar' },
+];
 ---
 
-<PageLayout title="Integritetspolicy" description="Verits integritetspolicy — hur vi hanterar dina personuppgifter.">
+<PageLayout title="Integritetspolicy" description="VER&IT:s integritetspolicy — hur vi hanterar dina personuppgifter i enlighet med GDPR.">
   <HeroSimple
     title="Integritetspolicy"
+    description="Senast uppdaterad: 19 februari 2026"
     breadcrumbs={[{ label: 'Integritetspolicy' }]}
   />
 
   <section class="section">
     <div class="container">
-      <div class="max-w-3xl prose prose-lg">
-        <h2>1. Personuppgiftsansvarig</h2>
-        <p>
-          Verit AB (org.nr: XXX XXX-XXXX) är personuppgiftsansvarig för behandlingen av
-          dina personuppgifter på denna webbplats.
-        </p>
+      <div class="grid lg:grid-cols-[220px_1fr] gap-12 lg:gap-16">
 
-        <h2>2. Vilka personuppgifter samlar vi in?</h2>
-        <p>Vi kan komma att behandla följande personuppgifter:</p>
-        <ul>
-          <li>Namn, e-postadress, telefonnummer och organisation som du anger i kontaktformulär</li>
-          <li>Teknisk data som IP-adress och webbläsarinformation via cookies</li>
-        </ul>
+        <!-- Sticky side nav (desktop) -->
+        <nav class="hidden lg:block" aria-label="Sidnavigation">
+          <div class="sticky top-28">
+            <ul class="space-y-1.5 text-sm">
+              {sections.map((s) => (
+                <li>
+                  <a
+                    href={`#${s.id}`}
+                    class="block py-1 text-gray hover:text-accent-dark transition-colors"
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
 
-        <h2>3. Ändamål och rättslig grund</h2>
-        <p>
-          Vi behandlar dina personuppgifter för att besvara förfrågningar och administrera
-          kundrelationer. Den rättsliga grunden är berättigat intresse och, där tillämpligt,
-          ditt samtycke.
-        </p>
+        <!-- Content -->
+        <div class="max-w-3xl policy-content">
 
-        <h2>4. Lagringstid</h2>
-        <p>
-          Personuppgifter lagras så länge det är nödvändigt för ändamålet med behandlingen,
-          eller så länge vi har en rättslig skyldighet att göra det.
-        </p>
+          <!-- 1. Personuppgiftsansvarig -->
+          <section id="ansvarig" class="policy-section">
+            <h2>1. Personuppgiftsansvarig</h2>
+            <div class="bg-surface rounded-xl p-6 border border-border not-prose">
+              <p class="font-semibold text-navy">VER&amp;IT AB</p>
+              <p class="text-sm text-gray mt-1">Org.nr: 556985-1206</p>
+              <p class="text-sm text-gray mt-1">Nygatan 71, 462 32 Vänersborg</p>
+              <p class="text-sm text-gray mt-3">
+                Dataskyddskontakt:
+                <a href="mailto:info@verit.se" class="text-accent-dark hover:underline">info@verit.se</a>
+              </p>
+            </div>
+          </section>
 
-        <h2>5. Dina rättigheter</h2>
-        <p>
-          Du har rätt att begära tillgång till, rättelse av och radering av dina personuppgifter.
-          Du har också rätt att invända mot behandlingen och begära dataportabilitet.
-        </p>
+          <!-- 2. Roller -->
+          <section id="roller" class="policy-section">
+            <h2>2. Personuppgiftsansvarig och personuppgiftsbiträde</h2>
+            <p>VER&amp;IT agerar i två olika roller beroende på sammanhanget:</p>
+            <ul>
+              <li>
+                <strong>Personuppgiftsansvarig</strong> — för personuppgifter som samlas in via verit.se
+                (kontaktformulär, webbplatsbesök) och i direkta kundrelationer.
+              </li>
+              <li>
+                <strong>Personuppgiftsbiträde</strong> — när kunder använder vår plattform Securapilot
+                för att hantera personuppgifter inom sin egen organisation. Detta regleras genom ett
+                separat personuppgiftsbiträdesavtal (PUB-avtal).
+              </li>
+            </ul>
+            <p>Denna policy beskriver vår behandling i rollen som personuppgiftsansvarig.</p>
+          </section>
 
-        <h2>6. Kontakt</h2>
-        <p>
-          Har du frågor om vår hantering av personuppgifter? Kontakta oss på
-          <a href="mailto:gdpr@verit.se">gdpr@verit.se</a>.
-        </p>
+          <!-- 3. Personuppgifter -->
+          <section id="uppgifter" class="policy-section">
+            <h2>3. Vilka personuppgifter samlar vi in?</h2>
+
+            <h3>Kontaktformulär</h3>
+            <p>Namn, e-postadress, telefonnummer, organisation och meddelande som du anger när du kontaktar oss.</p>
+
+            <h3>Kundrelationer</h3>
+            <p>Kontaktpersoner, organisationsuppgifter och avtalsinformation i samband med uppdrag och tjänster.</p>
+
+            <h3>Webbplatsbesök</h3>
+            <p>Besöksstatistik, sidvisningar och IP-adresser. IP-adresser anonymiseras innan lagring.</p>
+
+            <h3>Kommunikation</h3>
+            <p>E-postinnehåll och supportärenden som uppstår i kontakt med oss.</p>
+          </section>
+
+          <!-- 4. Ändamål -->
+          <section id="andamal" class="policy-section">
+            <h2>4. Ändamål, rättslig grund och lagringstid</h2>
+            <div class="overflow-x-auto not-prose">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="text-left py-3 pr-4 font-semibold text-navy">Ändamål</th>
+                    <th class="text-left py-3 pr-4 font-semibold text-navy">Rättslig grund</th>
+                    <th class="text-left py-3 font-semibold text-navy">Lagringstid</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray">
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Besvara förfrågningar</td>
+                    <td class="py-3 pr-4">Berättigat intresse</td>
+                    <td class="py-3">12 månader</td>
+                  </tr>
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Kundrelationer och uppdrag</td>
+                    <td class="py-3 pr-4">Avtal</td>
+                    <td class="py-3">Avtalstid + 12 mån</td>
+                  </tr>
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Nyhetsbrev och marknadsföring</td>
+                    <td class="py-3 pr-4">Samtycke</td>
+                    <td class="py-3">Tills samtycke återkallas</td>
+                  </tr>
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Bokföring och fakturering</td>
+                    <td class="py-3 pr-4">Rättslig förpliktelse</td>
+                    <td class="py-3">7 år</td>
+                  </tr>
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Webbanalys och förbättring</td>
+                    <td class="py-3 pr-4">Berättigat intresse</td>
+                    <td class="py-3">Löpande anonymisering</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 pr-4">Säkerhet och missbruksskydd</td>
+                    <td class="py-3 pr-4">Berättigat intresse</td>
+                    <td class="py-3">12 månader</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 5. Mottagare -->
+          <section id="mottagare" class="policy-section">
+            <h2>5. Mottagare av personuppgifter</h2>
+            <p>Vi kan komma att dela personuppgifter med följande kategorier av mottagare:</p>
+            <ul>
+              <li><strong>Hosting- och tjänsteleverantörer</strong> som behandlar data på vårt uppdrag</li>
+              <li><strong>Myndigheter</strong> när vi har en rättslig skyldighet att lämna ut information</li>
+              <li><strong>Revisorer och juridiska rådgivare</strong> i samband med granskning eller tvist</li>
+            </ul>
+            <p><strong>Vi säljer aldrig personuppgifter till tredje part.</strong></p>
+          </section>
+
+          <!-- 6. Datalagring -->
+          <section id="lagring" class="policy-section">
+            <h2>6. Datalagring och överföring</h2>
+            <p>
+              Personuppgifter lagras primärt i Sverige och inom EU/EES. I de fall personuppgifter
+              överförs till land utanför EU/EES säkerställer vi skyddet genom EU:s
+              standardavtalsklausuler eller beslut om adekvat skyddsnivå i enlighet med GDPR.
+            </p>
+          </section>
+
+          <!-- 7. Cookies -->
+          <section id="cookies" class="policy-section">
+            <h2>7. Cookies och analys</h2>
+
+            <h3>Matomo Analytics</h3>
+            <p>
+              Vi använder Matomo för anonym besöksstatistik. Vår implementation är konfigurerad
+              att fungera helt utan cookies. IP-adresser anonymiseras och Do Not Track-signalen
+              respekteras. Ingen persondata lagras — detta innebär att inget samtycke krävs för
+              denna anonymiserade spårning.
+            </p>
+
+            <h3>Lokal lagring</h3>
+            <p>
+              Temaval, språkinställningar och eventuella opt-out-val sparas lokalt i din webbläsare
+              och överförs aldrig till våra servrar.
+            </p>
+          </section>
+
+          <!-- 8. Rättigheter -->
+          <section id="rattigheter" class="policy-section">
+            <h2>8. Dina rättigheter</h2>
+            <p>Enligt GDPR har du följande rättigheter:</p>
+            <ol>
+              <li><strong>Tillgång</strong> — rätt att få bekräftelse på om vi behandlar dina personuppgifter och i så fall få en kopia</li>
+              <li><strong>Rättelse</strong> — rätt att få felaktiga eller ofullständiga uppgifter korrigerade</li>
+              <li><strong>Radering</strong> — rätt att få dina uppgifter raderade under vissa förutsättningar ("rätten att bli glömd")</li>
+              <li><strong>Begränsning</strong> — rätt att begränsa behandlingen i specifika situationer</li>
+              <li><strong>Dataportabilitet</strong> — rätt att ta emot dina uppgifter i ett strukturerat, maskinläsbart format</li>
+              <li><strong>Invändning</strong> — rätt att invända mot behandling som grundas på berättigat intresse</li>
+              <li><strong>Återkalla samtycke</strong> — rätt att när som helst återkalla ett lämnat samtycke, utan att det påverkar lagligheten av tidigare behandling</li>
+            </ol>
+            <p>
+              Kontakta oss på <a href="mailto:info@verit.se">info@verit.se</a> för att utöva
+              dina rättigheter. Vi besvarar din begäran inom 30 dagar.
+            </p>
+          </section>
+
+          <!-- 9. Säkerhet -->
+          <section id="sakerhet" class="policy-section">
+            <h2>9. Säkerhetsåtgärder</h2>
+            <p>Vi vidtar lämpliga tekniska och organisatoriska åtgärder för att skydda dina personuppgifter:</p>
+            <ul>
+              <li>TLS-kryptering för data under överföring och lagring</li>
+              <li>Rollbaserad åtkomstkontroll</li>
+              <li>Löpande övervakning och loggning</li>
+              <li>Regelbundna säkerhetsgranskningar</li>
+            </ul>
+          </section>
+
+          <!-- 10. Klagomål -->
+          <section id="klagomal" class="policy-section">
+            <h2>10. Klagomål</h2>
+            <p>
+              Om du anser att vår behandling av dina personuppgifter strider mot GDPR har du
+              rätt att lämna klagomål till tillsynsmyndigheten:
+            </p>
+            <div class="bg-surface rounded-xl p-6 border border-border not-prose">
+              <p class="font-semibold text-navy">Integritetsskyddsmyndigheten (IMY)</p>
+              <p class="text-sm text-gray mt-1">Box 8114, 104 20 Stockholm</p>
+              <p class="text-sm text-gray mt-1">Telefon: 08-657 61 00</p>
+              <p class="text-sm text-gray mt-1">
+                E-post: <a href="mailto:imy@imy.se" class="text-accent-dark hover:underline">imy@imy.se</a>
+              </p>
+              <p class="text-sm text-gray mt-1">
+                Webb: <a href="https://www.imy.se" class="text-accent-dark hover:underline" target="_blank" rel="noopener">www.imy.se</a>
+              </p>
+            </div>
+          </section>
+
+          <!-- 11. Ändringar -->
+          <section id="andringar" class="policy-section">
+            <h2>11. Ändringar i denna policy</h2>
+            <p>
+              Vi kan komma att uppdatera denna integritetspolicy vid behov. Vid väsentliga
+              ändringar meddelar vi detta på webbplatsen. Den aktuella versionen finns alltid
+              tillgänglig på denna sida med angivet uppdateringsdatum.
+            </p>
+          </section>
+
+        </div>
       </div>
     </div>
   </section>
 </PageLayout>
+
+<style>
+  .policy-section {
+    scroll-margin-top: 7rem;
+  }
+
+  .policy-section + .policy-section {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .policy-content h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: 1rem;
+  }
+
+  .policy-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-content p {
+    color: var(--color-gray);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+
+  .policy-content ul,
+  .policy-content ol {
+    color: var(--color-gray);
+    line-height: 1.75;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .policy-content ul {
+    list-style-type: disc;
+  }
+
+  .policy-content ol {
+    list-style-type: decimal;
+  }
+
+  .policy-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-content a:not(.not-prose a) {
+    color: var(--color-accent-dark);
+  }
+
+  .policy-content a:not(.not-prose a):hover {
+    text-decoration: underline;
+  }
+</style>

@@ -4,10 +4,13 @@ import HeroSimple from '@components/sections/HeroSimple.astro';
 import Badge from '@components/ui/Badge.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import { getCollection } from 'astro:content';
+import { getReadingTime, formatReadingTime } from '@utils/reading-time';
 
 const insights = (await getCollection('insights'))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const [featured, ...rest] = insights;
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('sv-SE', {
@@ -28,27 +31,70 @@ function formatDate(date: Date) {
   <section class="section">
     <div class="container">
       {insights.length > 0 ? (
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {insights.map((post, i) => (
-            <article class="group" data-reveal data-delay={String((i % 3) + 1)}>
-              <a href={`/insikter/${post.id}`} class="block">
-                <div class="aspect-[16/10] rounded-xl bg-surface mb-5 overflow-hidden">
-                  <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
+        <>
+          {/* Featured article */}
+          {featured && (
+            <article class="grid lg:grid-cols-5 gap-8 lg:gap-12 mb-16" data-reveal>
+              <a href={`/insikter/${featured.id}`} class="lg:col-span-3 block group">
+                <div class="aspect-[16/10] rounded-xl bg-surface overflow-hidden">
+                  {featured.data.image ? (
+                    <img src={featured.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  ) : (
+                    <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/10 group-hover:scale-105 transition-transform duration-500"></div>
+                  )}
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                  <Badge text={post.data.category} variant="copper" />
-                  <time class="text-xs text-gray" datetime={post.data.date.toISOString()}>
-                    {formatDate(post.data.date)}
-                  </time>
-                </div>
-                <h3 class="text-lg font-semibold text-navy group-hover:text-accent-dark transition-colors mb-2">
-                  {post.data.title}
-                </h3>
-                <p class="text-sm text-gray leading-relaxed">{post.data.description}</p>
               </a>
+              <div class="lg:col-span-2 flex flex-col justify-center">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4">
+                  <Badge text={featured.data.category} variant="copper" />
+                  <time class="text-xs text-gray" datetime={featured.data.date.toISOString()}>
+                    {formatDate(featured.data.date)}
+                  </time>
+                  <span class="text-xs text-gray">· {formatReadingTime(getReadingTime(featured.body || ''))}</span>
+                </div>
+                <h2 class="text-2xl font-bold text-navy mb-3">
+                  <a href={`/insikter/${featured.id}`} class="hover:text-accent-dark transition-colors">
+                    {featured.data.title}
+                  </a>
+                </h2>
+                <p class="text-gray leading-relaxed mb-5">{featured.data.description}</p>
+                <a href={`/insikter/${featured.id}`} class="text-sm font-medium text-accent-dark hover:underline underline-offset-2">
+                  Läs artikeln &rarr;
+                </a>
+              </div>
             </article>
-          ))}
-        </div>
+          )}
+
+          {/* Remaining articles */}
+          {rest.length > 0 && (
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {rest.map((post, i) => (
+                <article class="group" data-reveal data-delay={String((i % 3) + 1)}>
+                  <a href={`/insikter/${post.id}`} class="block">
+                    <div class="aspect-[16/10] rounded-xl bg-surface mb-5 overflow-hidden">
+                      {post.data.image ? (
+                        <img src={post.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                      ) : (
+                        <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
+                      )}
+                    </div>
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3">
+                      <Badge text={post.data.category} variant="copper" />
+                      <time class="text-xs text-gray" datetime={post.data.date.toISOString()}>
+                        {formatDate(post.data.date)}
+                      </time>
+                      <span class="text-xs text-gray">· {formatReadingTime(getReadingTime(post.body || ''))}</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-navy group-hover:text-accent-dark transition-colors mb-2">
+                      {post.data.title}
+                    </h3>
+                    <p class="text-sm text-gray leading-relaxed">{post.data.description}</p>
+                  </a>
+                </article>
+              ))}
+            </div>
+          )}
+        </>
       ) : (
         <p class="text-center text-gray">Inga insikter publicerade ännu.</p>
       )}

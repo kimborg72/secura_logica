@@ -38,11 +38,11 @@ const features = [
 ];
 ---
 
-<PageLayout title="SecuraPilot" description="SecuraPilot — compliance-plattformen som gör ert informationssäkerhetsarbete körbart.">
+<PageLayout title="Securapilot" description="Securapilot — compliance-plattformen som gör ert informationssäkerhetsarbete körbart.">
   <HeroSimple
-    title="SecuraPilot"
+    title="Securapilot"
     description="Compliance-plattformen som gör ert informationssäkerhetsarbete körbart. Från gap-analys till löpande uppföljning — allt på ett ställe."
-    breadcrumbs={[{ label: 'SecuraPilot' }]}
+    breadcrumbs={[{ label: 'Securapilot' }]}
   />
 
   <!-- Product Overview -->
@@ -56,7 +56,7 @@ const features = [
               <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
               <div class="w-3 h-3 rounded-full bg-yellow-400/80"></div>
               <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
-              <span class="ml-2 text-xs text-white/40 font-mono">securapilot.verit.se</span>
+              <span class="ml-2 text-xs text-white/60 font-mono">app.securapilot.com</span>
             </div>
             <div class="space-y-3">
               <div class="bg-white/5 rounded-lg p-4">
@@ -88,13 +88,13 @@ const features = [
           <p class="overline mb-3">Plattformen</p>
           <h2 class="mb-6">Sluta jaga dokument. Börja styra compliance.</h2>
           <p class="text-lg text-slate leading-relaxed mb-4">
-            SecuraPilot samlar ert hela informationssäkerhetsarbete på ett ställe. Gap-analyser,
+            Securapilot samlar ert hela informationssäkerhetsarbete på ett ställe. Gap-analyser,
             riskregister, policyer, incidenter och compliance-status — allt uppdaterat i realtid.
           </p>
           <p class="text-gray leading-relaxed mb-8">
-            Plattformen är framtagen av oss som arbetar med informationssäkerhet varje dag.
-            Den är byggd för att vara praktisk, inte bara snygg — för vi vet att compliance
-            som inte används i vardagen inte är värt någonting.
+            Plattformen är byggd med filosofin "metod först, verktyg sedan". Vi förstår att bättre verktyg
+            ensamt inte löser säkerhetsstyrning — därför prioriterar Securapilot processförståelse
+            före kontrollkonfiguration. AI-funktioner förstärker, aldrig ersätter, era beslut.
           </p>
           <Button href="/kontakt" variant="primary" size="lg">
             Boka en demo
@@ -113,12 +113,10 @@ const features = [
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature, i) => (
-          <div class="bg-white rounded-xl p-6 border border-border" data-reveal data-delay={String((i % 3) + 1)}>
-            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-accent/15 text-accent-dark mb-4">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d={feature.icon} />
-              </svg>
-            </div>
+          <div class="bg-white rounded-xl p-6 border border-border relative" data-reveal data-delay={String((i % 3) + 1)}>
+            <svg aria-hidden="true" class="w-5 h-5 absolute top-6 right-6 text-accent-dark" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d={feature.icon} />
+            </svg>
             <h3 class="text-lg font-semibold text-navy mb-2">{feature.title}</h3>
             <p class="text-sm text-gray leading-relaxed">{feature.description}</p>
           </div>
@@ -128,7 +126,7 @@ const features = [
   </section>
 
   <CTABanner
-    title="Vill du se SecuraPilot i aktion?"
+    title="Vill du se Securapilot i aktion?"
     description="Boka en personlig demo så visar vi hur plattformen kan stödja ert säkerhetsarbete."
     buttonText="Boka demo"
   />

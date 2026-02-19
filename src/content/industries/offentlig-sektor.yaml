@@ -1,0 +1,17 @@
+id: offentlig-sektor
+name: Offentlig sektor
+slug: offentlig-sektor
+description: "Myndigheter, kommuner och regioner med krav på NIS2, säkerhetsskydd och informationsklassificering."
+displayTitle: "Myndigheter, kommuner & regioner"
+longDescription: "Offentlig sektor står inför skärpta krav genom NIS2, säkerhetsskyddslagen och den nya cybersäkerhetslagen. Vi hjälper myndigheter, kommuner och regioner att bygga systematiskt informationssäkerhetsarbete som uppfyller kraven och skyddar samhällsviktiga funktioner."
+applicableServices:
+  - nis2
+  - iso27001
+  - ciso-as-a-service
+  - riskhantering
+challenges:
+  - NIS2 / Cybersäkerhetslagen
+  - Säkerhetsskydd
+  - Informationsklassificering
+  - GDPR i offentlig verksamhet
+order: 1

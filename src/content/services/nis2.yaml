@@ -2,40 +2,120 @@ title: "NIS2 / Cybersäkerhetslagen"
 shortTitle: "NIS2"
 slug: "nis2"
 metaTitle: "NIS2 Compliance & Cybersäkerhetslagen | Verit"
-metaDescription: "Gap-analys och implementeringsstöd för NIS2-direktivet och den svenska cybersäkerhetslagen."
+metaDescription: "Gap-analys, implementeringsstöd och löpande uppföljning för NIS2-direktivet och den svenska cybersäkerhetslagen."
 excerpt: "Gap-analys och implementeringsstöd för NIS2-direktivet och den svenska cybersäkerhetslagen."
+introLead: >
+  NIS2-direktivet och den svenska cybersäkerhetslagen innebär de mest genomgripande
+  förändringarna inom cybersäkerhet för svenska organisationer på över ett decennium.
+  Vi hjälper er navigera kraven och bygga verklig motståndskraft.
 introduction: |
-  NIS2-direktivet ställer nya och skärpta krav på cybersäkerhet för samhällsviktiga verksamheter i hela EU. Den svenska implementeringen genom cybersäkerhetslagen innebär konkreta skyldigheter för organisationer inom kritisk infrastruktur.
+  NIS2-direktivet ställer nya och skärpta krav på cybersäkerhet för samhällsviktiga och viktiga verksamheter i hela EU. Den svenska implementeringen genom cybersäkerhetslagen innebär konkreta skyldigheter kring riskhantering, incidentrapportering, leverantörssäkerhet och ledningsansvar.
 
-  Verit hjälper er att förstå kraven, identifiera gap och implementera nödvändiga åtgärder — med en kombination av expertrådgivning och vår plattform SecuraPilot.
+  Många organisationer vet att de omfattas av kraven men saknar en tydlig bild av vad som faktiskt behöver göras. Kraven spänner över tekniska, organisatoriska och juridiska dimensioner — och sanktionsmöjligheterna är kännbara.
+
+  Verit hjälper er att förstå exakt vilka krav som gäller er verksamhet, identifiera gap mot nuläget och bygga en realistisk plan för att nå efterlevnad. Vi kombinerar djup regelverkskunskap med praktisk erfarenhet av implementering och vår plattform Securapilot för löpande uppföljning.
+targetAudience:
+  heading: "Omfattas ni av NIS2?"
+  description: >
+    NIS2-direktivet gäller väsentliga och viktiga entiteter inom 18 sektorer.
+    Om er organisation tillhandahåller samhällsviktiga tjänster eller
+    är del av en kritisk leveranskedja, behöver ni agera.
+  segments:
+    - "Energi och kraftförsörjning"
+    - "Transport och logistik"
+    - "Hälso- och sjukvård"
+    - "Dricksvatten och avlopp"
+    - "Digital infrastruktur"
+    - "Offentlig förvaltning"
+    - "Tillverkningsindustri"
+    - "Post- och budtjänster"
+    - "Avfallshantering"
 benefits:
   - title: "Tydlig bild av ert nuläge"
-    description: "Vår gap-analys kartlägger exakt var ni står i förhållande till NIS2-kraven."
+    description: >
+      Vår gap-analys kartlägger exakt var ni står i förhållande till NIS2-kraven.
+      Ni får en detaljerad rapport som visar efterlevnadsgrad per kravområde,
+      identifierade brister och rekommenderade åtgärder — allt prioriterat
+      efter risk och verksamhetsnytta.
   - title: "Pragmatisk implementering"
-    description: "Vi prioriterar åtgärder baserat på risk och verksamhetsnytta."
+    description: >
+      Vi prioriterar åtgärder baserat på faktisk riskexponering och er
+      organisations förutsättningar. Ingen one-size-fits-all — vi anpassar
+      insatsen efter er storlek, mognad och bransch så att ni investerar
+      resurser där de gör störst skillnad.
   - title: "Löpande compliance"
-    description: "Med SecuraPilot har ni kontinuerlig kontroll på er efterlevnad."
+    description: >
+      Med Securapilot har ni kontinuerlig kontroll på er efterlevnad.
+      Dashboards visar compliance-status i realtid, automatiska påminnelser
+      säkerställer att åtgärder genomförs, och rapporter genereras direkt
+      för ledning och tillsynsmyndigheter.
 process:
   - step: 1
     title: "Kartläggning"
-    description: "Vi analyserar era nuvarande processer, tekniska åtgärder och organisatoriska förutsättningar."
+    description: >
+      Vi analyserar era nuvarande processer, tekniska åtgärder och
+      organisatoriska förutsättningar genom dokumentgranskning och
+      intervjuer med nyckelpersoner.
+    duration: "1–2 veckor"
   - step: 2
     title: "Gap-analys"
-    description: "Systematisk jämförelse mot NIS2-kraven med tydlig prioritering."
+    description: >
+      Systematisk jämförelse mot NIS2-kraven med tydlig prioritering.
+      Vi bedömer varje kravområde och klassificerar gap efter allvarlighetsgrad.
+    duration: "1–2 veckor"
   - step: 3
     title: "Handlingsplan"
-    description: "Konkret åtgärdsplan med tidsramar, ansvariga och budget."
+    description: >
+      Konkret åtgärdsplan med tidsramar, ansvariga och budgetuppskattningar.
+      Vi hjälper er prioritera rätt och bygga en realistisk tidplan.
+    duration: "1 vecka"
   - step: 4
     title: "Implementering"
-    description: "Vi stöttar er genom hela implementeringen av tekniska och organisatoriska åtgärder."
+    description: >
+      Vi stöttar er genom implementeringen av tekniska och organisatoriska
+      åtgärder — från policyer och processer till incidenthantering
+      och leverantörshantering.
+    duration: "Löpande"
 deliverables:
-  - "NIS2 gap-analysrapport"
-  - "Prioriterad handlingsplan"
+  - "NIS2 gap-analysrapport med prioriterade åtgärder"
+  - "Handlingsplan med tidsramar och ansvariga"
   - "Styrande dokument och policyer"
-  - "SecuraPilot-konfiguration för löpande uppföljning"
+  - "Securapilot-konfiguration för löpande uppföljning"
+  - "Ledningspresentation med nuläge och rekommendationer"
+faq:
+  - question: "Hur vet vi om vår organisation omfattas av NIS2?"
+    answer: >
+      NIS2 omfattar väsentliga och viktiga entiteter inom 18 sektorer.
+      Avgörande faktorer är er sektortillhörighet, organisationens storlek
+      och om ni tillhandahåller samhällsviktiga tjänster. Vi hjälper er
+      med en snabb bedömning i ett kostnadsfritt inledande samtal.
+  - question: "Vad skiljer NIS2 från det ursprungliga NIS-direktivet?"
+    answer: >
+      NIS2 utökar antalet omfattade sektorer markant, inför striktare
+      säkerhetskrav, skärpta rapporteringsskyldigheter (24 timmar för
+      initial anmälan) och ger tillsynsmyndigheter utökade sanktionsmöjligheter.
+      Ledningsansvar förtydligas också — ledningen kan hållas personligt ansvarig.
+  - question: "Hur lång tid tar det att bli NIS2-compliant?"
+    answer: >
+      Det beror på er organisations nuvarande mognadsnivå. En typisk
+      implementering tar 3–6 månader från gap-analys till grundläggande
+      efterlevnad. Med Securapilot kan ni sedan upprätthålla och förbättra
+      ert säkerhetsarbete löpande.
+securapilotConnection:
+  heading: "Uppfyll NIS2 med Securapilot"
+  description: >
+    Securapilot är byggt med NIS2-kraven som utgångspunkt.
+    Plattformen ger er realtidsöverblick över er efterlevnad
+    och automatiserar det löpande compliance-arbetet.
+  features:
+    - "NIS2-specifik compliance-dashboard med kravmappning"
+    - "Automatisk incidentrapportering enligt NIS2:s tidsramar"
+    - "Riskregister kopplat till NIS2:s kravområden"
+    - "Dokumenthantering för policyer och styrande dokument"
 relatedServices:
   - "iso27001"
   - "riskhantering"
   - "ciso-as-a-service"
 ctaText: "Boka en kostnadsfri NIS2-genomgång"
+ctaDescription: "Vi analyserar ert nuläge och ger konkreta rekommendationer — helt utan kostnad."
 order: 1

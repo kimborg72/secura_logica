@@ -1,0 +1,16 @@
+id: industri
+name: Industri
+slug: industri
+description: "Tillverkande industri och automotive med krav på supply chain security och ISO 27001-certifiering."
+displayTitle: "Tillverkande industri & automotive"
+longDescription: "Tillverkande industri möter nya krav genom NIS2 och leverantörskedjans säkerhetskrav. Vi hjälper industriföretag att integrera informationssäkerhet i befintliga ledningssystem och säkerställa compliance genom hela värdekedjan."
+applicableServices:
+  - iso27001
+  - nis2
+  - riskhantering
+challenges:
+  - Supply chain security
+  - ISO 27001-certifiering
+  - NIS2 för tillverkning
+  - Integrationssäkerhet
+order: 3

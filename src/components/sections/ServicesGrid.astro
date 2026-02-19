@@ -1,38 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import ServiceCard from '@components/ui/ServiceCard.astro';
 
-const services = [
-  {
-    title: 'NIS2 / Cybersäkerhetslagen',
-    description: 'Gap-analys och implementeringsstöd för NIS2-direktivet och den svenska cybersäkerhetslagen.',
-    href: '/tjanster/nis2',
-  },
-  {
-    title: 'ISO 27001 / LIS',
-    description: 'Uppbyggnad och certifieringsstöd för ledningssystem för informationssäkerhet.',
-    href: '/tjanster/iso27001',
-  },
-  {
-    title: 'CISO-as-a-Service',
-    description: 'Interim säkerhetsansvarig som ger er strategisk styrning utan fast anställning.',
-    href: '/tjanster/ciso-as-a-service',
-  },
-  {
-    title: 'Riskhantering & Klassificering',
-    description: 'Systematisk riskanalys och informationsklassificering anpassad efter er verksamhet.',
-    href: '/tjanster/riskhantering',
-  },
-  {
-    title: 'Utbildning & Awareness',
-    description: 'Skräddarsydda utbildningar som höjer säkerhetsmedvetandet i hela organisationen.',
-    href: '/tjanster/utbildning',
-  },
-  {
-    title: 'GDPR & Dataskydd',
-    description: 'Praktisk rådgivning för att uppfylla dataskyddsförordningens krav i er verksamhet.',
-    href: '/tjanster/gdpr',
-  },
-];
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="section">
@@ -49,9 +19,9 @@ const services = [
       {services.map((service, i) => (
         <div data-reveal data-delay={String((i % 3) + 1)}>
           <ServiceCard
-            title={service.title}
-            description={service.description}
-            href={service.href}
+            title={service.data.title}
+            description={service.data.excerpt}
+            href={`/tjanster/${service.data.slug}`}
           />
         </div>
       ))}

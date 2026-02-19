@@ -1,0 +1,17 @@
+id: e-halsa
+name: E-hälsa
+slug: e-halsa
+description: "Vårdgivare och e-hälsobolag med känsliga personuppgifter och höga regulatoriska krav."
+displayTitle: "Vård, omsorg & e-hälsa"
+longDescription: "Hälso- och sjukvården hanterar bland de mest känsliga personuppgifterna som finns. Digitaliseringen skapar nya möjligheter men också nya sårbarheter. Vi stödjer vårdgivare och e-hälsobolag med säkerhet som skyddar patienter utan att bromsa innovation."
+applicableServices:
+  - gdpr
+  - nis2
+  - riskhantering
+  - iso27001
+challenges:
+  - Patientdatasäkerhet
+  - GDPR för vården
+  - NIS2 för hälsosektorn
+  - Medicintekniska regelverk
+order: 4

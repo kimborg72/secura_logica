@@ -1,0 +1,16 @@
+id: energi
+name: Energi
+slug: energi
+description: "Energiproducenter och nätoperatörer med höga krav på cybersäkerhet och incidentrapportering."
+displayTitle: "Energiproduktion & distribution"
+longDescription: "Energisektorn är en av de mest reglerade branscherna under NIS2. Från kraftproducenter till nätoperatörer — kraven på cybersäkerhet och incidentrapportering är höga. Vi har erfarenhet av att arbeta med energibolag som behöver balansera driftsäkerhet med regulatorisk efterlevnad."
+applicableServices:
+  - nis2
+  - riskhantering
+  - iso27001
+challenges:
+  - NIS2 för energisektorn
+  - OT/IT-säkerhet
+  - Incidentrapportering
+  - Risk- och sårbarhetsanalys
+order: 2

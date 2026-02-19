@@ -6,3 +6,6 @@ dist/
 .env
 .env.*
 .claude/skills/
+
+# TinaCMS
+tina/__generated__/

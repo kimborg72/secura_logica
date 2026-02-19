@@ -13,7 +13,7 @@ const badges = [
     <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
       {badges.map((badge) => (
         <div class="flex items-center gap-2 text-gray-light hover:text-navy transition-colors duration-300 group">
-          <svg class="w-6 h-6 group-hover:text-accent-dark transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg aria-hidden="true" class="w-6 h-6 group-hover:text-accent-dark transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
           </svg>
           <span class="text-sm font-semibold tracking-wide uppercase">{badge.label}</span>

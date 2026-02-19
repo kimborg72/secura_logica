@@ -2,22 +2,30 @@
 import { mainNav } from '@data/navigation';
 import MegaMenu from './MegaMenu.astro';
 import MobileNav from './MobileNav.astro';
+
+interface Props {
+  theme?: 'light' | 'dark';
+}
+
+const { theme = 'light' } = Astro.props;
+const isDark = theme === 'dark';
+const textClass = isDark ? 'text-white' : 'text-navy';
 ---
 
 <header
   id="site-header"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-  transition:persist
+  data-theme={theme}
 >
   <div class="container flex items-center justify-between h-20">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2 relative z-50" aria-label="Verit - Startsida">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="32" height="32" rx="4" fill="var(--color-navy)"/>
         <path d="M16 6L8 10v6c0 5.5 3.4 10.6 8 12 4.6-1.4 8-6.5 8-12v-6l-8-4z" fill="var(--color-accent)" opacity="0.9"/>
         <path d="M14.5 17.5l-2-2 1.4-1.4 0.6 0.6 3.6-3.6 1.4 1.4-5 5z" fill="#121212"/>
       </svg>
-      <span class="text-xl font-semibold header-logo-text">Verit</span>
+      <span class:list={["text-xl font-semibold transition-colors", textClass]} data-header-text>Verit</span>
     </a>
 
     <!-- Desktop Navigation -->
@@ -26,20 +34,21 @@ import MobileNav from './MobileNav.astro';
         item.children ? (
           <div class="relative group">
             <button
-              class="header-nav-link flex items-center gap-1 text-sm font-medium transition-colors"
+              class:list={["flex items-center gap-1 text-sm font-medium transition-colors", textClass]}
               aria-expanded="false"
               aria-haspopup="true"
               data-mega-trigger
+              data-header-text
             >
               {item.label}
-              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             <MegaMenu services={item.children} featured={item.featured} />
           </div>
         ) : (
-          <a href={item.href} class="header-nav-link text-sm font-medium transition-colors">
+          <a href={item.href} class:list={["text-sm font-medium transition-colors", textClass]} data-header-text>
             {item.label}
           </a>
         )
@@ -50,7 +59,7 @@ import MobileNav from './MobileNav.astro';
     <div class="flex items-center gap-4">
       <a
         href="/kontakt"
-        class="hidden lg:inline-flex items-center px-5 py-2.5 bg-accent text-dark text-sm font-semibold rounded-lg hover:bg-accent-dark transition-colors"
+        class="hidden lg:inline-flex items-center px-5 py-2.5 bg-accent text-dark text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors"
       >
         Kontakta oss
       </a>
@@ -75,7 +84,7 @@ import MobileNav from './MobileNav.astro';
 <!-- Spacer for fixed header -->
 <div class="h-20"></div>
 
-<style>
+<style is:global>
   /* Default: transparent header for hero pages */
   #site-header {
     background: transparent;
@@ -85,26 +94,6 @@ import MobileNav from './MobileNav.astro';
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  }
-
-  /* Nav link colors */
-  .header-nav-link {
-    color: var(--color-navy);
-  }
-
-  .header-logo-text {
-    color: var(--color-navy);
-  }
-
-  /* On dark hero backgrounds, start with white text */
-  :global([data-header-theme="dark"]) .header-nav-link,
-  :global([data-header-theme="dark"]) .header-logo-text {
-    color: #ffffff;
-  }
-
-  :global([data-header-theme="dark"]) #site-header.scrolled .header-nav-link,
-  :global([data-header-theme="dark"]) #site-header.scrolled .header-logo-text {
-    color: var(--color-navy);
   }
 
   /* Hamburger */
@@ -128,34 +117,109 @@ import MobileNav from './MobileNav.astro';
   .hamburger-icon span:nth-child(2) { top: 8px; }
   .hamburger-icon span:nth-child(3) { top: 16px; }
 
-  :global(.mobile-open) .hamburger-icon span:nth-child(1) {
+  .mobile-open .hamburger-icon span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
 
-  :global(.mobile-open) .hamburger-icon span:nth-child(2) {
+  .mobile-open .hamburger-icon span:nth-child(2) {
     opacity: 0;
   }
 
-  :global(.mobile-open) .hamburger-icon span:nth-child(3) {
+  .mobile-open .hamburger-icon span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
 </style>
 
 <script>
+  let headerCleanup: (() => void) | null = null;
+
   function initHeader() {
+    if (headerCleanup) headerCleanup();
+
     const header = document.getElementById('site-header');
     if (!header) return;
+
+    const isDark = header.dataset.theme === 'dark';
+    const textEls = header.querySelectorAll('[data-header-text]');
+    const outsideClickHandlers: Array<(e: MouseEvent) => void> = [];
+
+    function setTextColor(color: 'white' | 'navy') {
+      textEls.forEach((el) => {
+        el.classList.remove('text-white', 'text-navy');
+        el.classList.add(color === 'white' ? 'text-white' : 'text-navy');
+      });
+    }
 
     function onScroll() {
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
+        setTextColor('navy');
       } else {
         header.classList.remove('scrolled');
+        setTextColor(isDark ? 'white' : 'navy');
       }
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // Mega menu keyboard support
+    header.querySelectorAll('[data-mega-trigger]').forEach((trigger) => {
+      const parent = trigger.closest('.group') as HTMLElement;
+      if (!parent) return;
+      const menu = parent.querySelector('.mega-menu') as HTMLElement;
+      if (!menu) return;
+
+      function openMenu() {
+        menu.classList.add('!opacity-100', '!visible');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeMenu() {
+        menu.classList.remove('!opacity-100', '!visible');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeMenu() : openMenu();
+      });
+
+      trigger.addEventListener('keydown', (e) => {
+        const key = (e as KeyboardEvent).key;
+        if (key === 'Enter' || key === ' ') {
+          e.preventDefault();
+          const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+          isOpen ? closeMenu() : openMenu();
+        }
+        if (key === 'Escape') {
+          closeMenu();
+          (trigger as HTMLElement).focus();
+        }
+      });
+
+      menu.addEventListener('keydown', (e) => {
+        if ((e as KeyboardEvent).key === 'Escape') {
+          closeMenu();
+          (trigger as HTMLElement).focus();
+        }
+      });
+
+      // Close when clicking outside
+      const outsideHandler = (e: MouseEvent) => {
+        if (!parent.contains(e.target as Node)) {
+          closeMenu();
+        }
+      };
+      outsideClickHandlers.push(outsideHandler);
+      document.addEventListener('click', outsideHandler);
+    });
+
+    headerCleanup = () => {
+      window.removeEventListener('scroll', onScroll);
+      outsideClickHandlers.forEach((h) => document.removeEventListener('click', h));
+    };
   }
 
   initHeader();

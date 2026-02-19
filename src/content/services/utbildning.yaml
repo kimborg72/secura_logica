@@ -2,39 +2,119 @@ title: "Utbildning & Awareness"
 shortTitle: "Utbildning"
 slug: "utbildning"
 metaTitle: "Utbildning & Awareness inom informationssäkerhet | Verit"
-metaDescription: "Skräddarsydda utbildningar som höjer säkerhetsmedvetandet i hela organisationen."
+metaDescription: "Skräddarsydda utbildningar och awareness-program som höjer säkerhetsmedvetandet i hela organisationen."
 excerpt: "Skräddarsydda utbildningar som höjer säkerhetsmedvetandet i hela organisationen."
+introLead: >
+  Den mänskliga faktorn ligger bakom majoriteten av säkerhetsincidenter.
+  Rätt utbildning är den mest kostnadseffektiva säkerhetsinvesteringen
+  ni kan göra.
 introduction: |
-  Teknik och processer räcker inte om medarbetarna inte förstår sin roll i säkerhetsarbetet. Mänskliga misstag är fortfarande den vanligaste orsaken till säkerhetsincidenter.
+  Tekniska skyddsåtgärder är nödvändiga men inte tillräckliga. Det räcker med att en enda medarbetare klickar på fel länk, delar känslig information på fel sätt eller missar att rapportera en incident — för att hela säkerhetsarbetet ska fallera.
 
-  Våra utbildningar är praktiska, relevanta och anpassade efter er verksamhet. Vi ger era medarbetare kunskap och verktyg att bidra till organisationens säkerhet i sin vardag.
+  Utbildning och awareness handlar inte om att skrämma medarbetare eller genomföra plikttrogna e-learnings. Det handlar om att bygga en säkerhetskultur där varje person förstår sin roll i att skydda organisationens information och känner sig trygg med att agera rätt.
+
+  Våra utbildningar är anpassade efter er verksamhet och era risker. Vi designar innehållet utifrån verkliga scenarier som är relevanta för just era medarbetare — från ledningsgrupp till nyanställda.
+targetAudience:
+  heading: "Vilka behöver utbildning?"
+  description: >
+    Kort svar: alla. Men innehåll och format bör anpassas efter
+    målgrupp och ansvarsnivå. Vi skräddarsyr utbildningar för
+    olika roller i er organisation.
+  segments:
+    - "Alla medarbetare — allmän awareness"
+    - "Ledningsgrupper och styrelser"
+    - "IT-avdelningar och utvecklare"
+    - "Dataägare och systemägare"
+    - "Nyanställda — onboarding"
+    - "Personal som hanterar känslig information"
 benefits:
   - title: "Minskad mänsklig risk"
-    description: "Medvetna medarbetare gör färre misstag och upptäcker hot snabbare."
+    description: >
+      Medarbetare som förstår riskerna och vet hur de ska agera
+      minskar sannolikheten för phishing-attacker, dataläckor
+      och andra incidenter markant. Regelbunden utbildning
+      kan reducera klickfrekvensen på phishing med över 80%.
   - title: "Regulatoriskt krav"
-    description: "NIS2 och ISO 27001 kräver regelbunden utbildning och medvetandehöjning."
+    description: >
+      Både NIS2 och ISO 27001 ställer explicita krav på
+      säkerhetsutbildning och awareness-program. Vår utbildning
+      uppfyller dessa krav och ger er dokumentation som
+      håller vid revision.
   - title: "Anpassade upplägg"
-    description: "Från styrelseutbildning till teknikerworkshops — vi anpassar nivå och innehåll."
+    description: >
+      Vi erbjuder allt från korta workshops och lunch-and-learn
+      till omfattande program med e-learning, simulerade phishing-tester
+      och regelbundna uppföljningar. Alltid anpassat efter er
+      verksamhet och era specifika risker.
 process:
   - step: 1
     title: "Behovsanalys"
-    description: "Vi kartlägger kunskapsluckor och utbildningsbehov per målgrupp."
+    description: >
+      Vi kartlägger era specifika risker, målgrupper och befintliga
+      kunskapsnivåer. Resultatet styr vilka utbildningsinsatser
+      som ger störst effekt.
+    duration: "1 vecka"
   - step: 2
     title: "Utbildningsdesign"
-    description: "Skräddarsytt innehåll med praktiska exempel från er bransch."
+    description: >
+      Vi designar utbildningsmaterial och upplägg anpassat efter
+      era behov. Verkliga scenarier från er bransch gör
+      innehållet relevant och engagerande.
+    duration: "1–2 veckor"
   - step: 3
     title: "Genomförande"
-    description: "Workshops, e-learning eller kombinationsformat — fysiskt eller digitalt."
+    description: >
+      Utbildningarna genomförs i det format som passar er bäst —
+      på plats, digitalt eller i kombination. Vi engagerar
+      deltagarna genom interaktiva övningar och diskussioner.
+    duration: "Enligt plan"
   - step: 4
     title: "Uppföljning"
-    description: "Kunskapstester och regelbunden repetition för att säkerställa varaktig effekt."
+    description: >
+      Vi mäter effekten genom kunskapstester, simulerade
+      phishing-tester och uppföljningsenkäter. Resultaten
+      används för att förbättra kommande insatser.
+    duration: "Löpande"
 deliverables:
+  - "Behovsanalys med målgruppsanpassade rekommendationer"
   - "Utbildningsmaterial anpassat efter er verksamhet"
   - "Genomförda workshops och utbildningstillfällen"
   - "Kunskapstester och resultatrapportering"
   - "Årsplan för löpande awareness-aktiviteter"
+faq:
+  - question: "Vilka format erbjuder ni?"
+    answer: >
+      Vi erbjuder fysiska workshops, digitala utbildningar,
+      lunch-and-learn-sessioner, simulerade phishing-kampanjer,
+      e-learning-moduler och ledningspresentationer. Vi
+      anpassar formatet efter era preferenser och målgrupper.
+  - question: "Hur mäter ni effekten av utbildningen?"
+    answer: >
+      Vi använder en kombination av kunskapstester före och efter
+      utbildning, simulerade phishing-tester för att mäta
+      beteendeförändring, och uppföljningsenkäter. Resultaten
+      sammanställs i rapporter som visar utvecklingen över tid.
+  - question: "Hur ofta bör utbildning genomföras?"
+    answer: >
+      Vi rekommenderar minst årliga utbildningsinsatser för alla
+      medarbetare, med kvartalsvis awareness-aktiviteter och
+      riktade insatser vid behov. Nyanställda bör utbildas
+      som en del av onboarding-processen.
+securapilotConnection:
+  heading: "Följ upp awareness i Securapilot"
+  description: >
+    Med Securapilot kan ni följa utbildningsdeltagande,
+    testresultat och awareness-aktiviteter över tid — och
+    visa tillsynsmyndigheter att ni uppfyller utbildningskraven.
+  features:
+    - "Utbildningsregister med deltagarstatus"
+    - "Resultat från kunskapstester och phishing-simuleringar"
+    - "Automatiska påminnelser för återkommande utbildning"
+    - "Rapporter för ledning och revision"
 relatedServices:
   - "iso27001"
   - "ciso-as-a-service"
   - "nis2"
+ctaText: "Diskutera utbildningsbehov"
+ctaDescription: "Vi hjälper er bygga ett awareness-program som faktiskt gör skillnad."
 order: 5

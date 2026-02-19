@@ -7,8 +7,6 @@ category: "ISO 27001"
 draft: false
 ---
 
-# ISO 27001:2022 — de viktigaste förändringarna
-
 ISO 27001:2022 är den senaste versionen av den internationella standarden för ledningssystem för informationssäkerhet. Uppdateringen medför viktiga förändringar som påverkar både nya implementeringar och befintliga certifierade organisationer.
 
 ## Ny kontrollstruktur

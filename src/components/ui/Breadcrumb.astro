@@ -1,9 +1,30 @@
 ---
+import { site } from '@data/site';
+
 interface Props {
   items: Array<{ label: string; href?: string }>;
 }
 
 const { items } = Astro.props;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Hem',
+      item: site.url,
+    },
+    ...items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: item.label,
+      ...(item.href ? { item: `${site.url}${item.href}` } : {}),
+    })),
+  ],
+};
 ---
 
 <nav aria-label="Brödsmulor">
@@ -13,7 +34,7 @@ const { items } = Astro.props;
     </li>
     {items.map((item, i) => (
       <li class="flex items-center gap-1.5">
-        <svg class="w-4 h-4 text-gray-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-gray-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
         {item.href && i < items.length - 1 ? (
@@ -25,3 +46,4 @@ const { items } = Astro.props;
     ))}
   </ol>
 </nav>
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

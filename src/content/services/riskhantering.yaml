@@ -2,39 +2,119 @@ title: "Riskhantering & Informationsklassificering"
 shortTitle: "Riskhantering"
 slug: "riskhantering"
 metaTitle: "Riskhantering & Informationsklassificering | Verit"
-metaDescription: "Systematisk riskanalys och informationsklassificering anpassad efter er verksamhet."
+metaDescription: "Systematisk riskanalys och informationsklassificering anpassad efter er verksamhet. Grund för NIS2 och ISO 27001."
 excerpt: "Systematisk riskanalys och informationsklassificering anpassad efter er verksamhet."
+introLead: >
+  Effektiv informationssäkerhet börjar med att förstå sina risker. Utan
+  systematisk riskhantering fattas beslut i blindo — resurser fördelas
+  fel och de verkliga hoten förblir oadresserade.
 introduction: |
-  Effektiv informationssäkerhet börjar med att förstå sina risker. Utan en systematisk riskhanteringsprocess fattas beslut i blindo — resurser fördelas fel och de verkliga hoten förblir oadresserade.
+  Riskhantering är grunden i allt informationssäkerhetsarbete. Det är genom riskanalyser ni identifierar vilka hot som är relevanta för just er verksamhet, bedömer sannolikhet och konsekvens, och fattar välgrundade beslut om vilka åtgärder som behövs.
 
-  Vi hjälper er att etablera en riskhanteringsprocess som ger ledningen beslutsunderlag och organisationen en tydlig riktning för sitt säkerhetsarbete.
+  Informationsklassificering kompletterar riskhanteringen genom att ge er en tydlig bild av vilken information som är mest skyddsvärd. När ni vet vad som är kritiskt kan ni rikta resurser rätt och undvika att lägga lika mycket skydd på allt.
+
+  Vi hjälper er att etablera en riskhanteringsprocess som ger ledningen beslutsunderlag och organisationen en tydlig riktning för sitt säkerhetsarbete. Våra riskanalyser är inte akademiska övningar — de resulterar i konkreta åtgärder med tydliga ansvar och tidsramar.
+targetAudience:
+  heading: "Behöver ni systematisk riskhantering?"
+  description: >
+    Riskhantering är ett krav i NIS2, ISO 27001 och GDPR — men
+    framför allt är det ett verktyg för att fatta bättre beslut
+    om var ni ska investera i säkerhet.
+  segments:
+    - "Organisationer som implementerar NIS2"
+    - "Företag på väg mot ISO 27001"
+    - "Verksamheter med hög informationskänslighet"
+    - "Organisationer som genomgått incidenter"
+    - "Offentliga verksamheter"
+    - "Företag som vill prioritera säkerhetsinvesteringar"
 benefits:
   - title: "Riskbaserade beslut"
-    description: "Prioritera säkerhetsinsatser baserat på faktisk riskexponering, inte magkänsla."
+    description: >
+      Prioritera säkerhetsinsatser baserat på faktisk riskexponering,
+      inte magkänsla. Ni får ett tydligt beslutsunderlag som visar
+      var riskerna finns, hur allvarliga de är och vilka åtgärder
+      som ger störst effekt.
   - title: "Regulatorisk efterlevnad"
-    description: "Riskhantering är en grundpelare i NIS2, ISO 27001 och GDPR."
+    description: >
+      Riskhantering är en grundpelare i NIS2, ISO 27001 och GDPR.
+      Vår metodik uppfyller de krav som ställs i alla tre ramverken
+      och ger er dokumentation som håller vid revision och tillsyn.
   - title: "Resursoptimering"
-    description: "Investera i säkerhetsåtgärder där de gör störst nytta."
+    description: >
+      Investera i säkerhetsåtgärder där de gör störst nytta.
+      Genom systematisk riskbedömning undviker ni att
+      överdimensionera skyddet på fel ställen och underdimensionera
+      det där det verkligen behövs.
 process:
   - step: 1
     title: "Riskidentifiering"
-    description: "Vi identifierar hot, sårbarheter och informationstillgångar genom workshops och intervjuer."
+    description: >
+      Vi identifierar hot, sårbarheter och informationstillgångar
+      genom workshops och intervjuer med nyckelpersoner
+      från verksamhet och IT.
+    duration: "1–2 veckor"
   - step: 2
     title: "Riskanalys & bedömning"
-    description: "Systematisk värdering av sannolikhet och konsekvens enligt vedertagen metodik."
+    description: >
+      Systematisk värdering av sannolikhet och konsekvens enligt
+      vedertagen metodik. Vi bedömer varje risk och presenterar
+      resultatet i en riskmatris.
+    duration: "1–2 veckor"
   - step: 3
     title: "Riskbehandling"
-    description: "Vi tar fram åtgärdsförslag med tydliga ansvar, tidsramar och uppföljningspunkter."
+    description: >
+      Vi tar fram åtgärdsförslag med tydliga ansvar, tidsramar
+      och uppföljningspunkter. Varje risk får en behandlingsplan
+      som ni kan börja arbeta med direkt.
+    duration: "1 vecka"
   - step: 4
     title: "Löpande uppföljning"
-    description: "Implementering i SecuraPilot för kontinuerlig riskmonitorering och rapportering."
+    description: >
+      Implementering i Securapilot för kontinuerlig riskmonitorering
+      och rapportering. Risker omvärderas regelbundet och
+      behandlingsplaner följs upp automatiskt.
+    duration: "Löpande"
 deliverables:
-  - "Riskanalysrapport"
+  - "Riskanalysrapport med bedömda risker och riskmatris"
   - "Riskregister med behandlingsplan"
   - "Informationsklassificeringsmodell"
   - "Klassificeringsguide för medarbetare"
+  - "Ledningspresentation med riskbild och rekommendationer"
+faq:
+  - question: "Vilken metodik använder ni för riskanalys?"
+    answer: >
+      Vi använder en metodik baserad på ISO 27005 och ISO 31000,
+      anpassad för informationssäkerhet. Metodiken är tillräckligt
+      rigorös för att uppfylla regulatoriska krav men tillräckligt
+      pragmatisk för att ge praktiska resultat.
+  - question: "Hur ofta bör man uppdatera sin riskanalys?"
+    answer: >
+      Riskanalysen bör omvärderas minst årligen, men även vid
+      större förändringar i verksamheten, IT-miljön eller
+      hotlandskapet. Med Securapilot kan ni göra löpande
+      uppdateringar istället för stora punktinsatser.
+  - question: "Vad är informationsklassificering?"
+    answer: >
+      Informationsklassificering innebär att ni kategoriserar er
+      information efter hur skyddsvärd den är. Vanliga nivåer
+      är öppen, intern, konfidentiell och strikt konfidentiell.
+      Klassificeringen styr vilka skyddsåtgärder som krävs
+      för varje informationstyp.
+securapilotConnection:
+  heading: "Levande riskhantering med Securapilot"
+  description: >
+    Securapilot gör ert riskregister till ett levande verktyg
+    istället för ett dammigt dokument. Risker, åtgärder och
+    uppföljning — allt uppdaterat i realtid.
+  features:
+    - "Digitalt riskregister med automatisk uppföljning"
+    - "Riskmatris och värmekarta för visuell överblick"
+    - "Behandlingsplaner med ansvar och deadlines"
+    - "Automatiska påminnelser vid omvärdering"
 relatedServices:
   - "nis2"
   - "iso27001"
   - "ciso-as-a-service"
+ctaText: "Boka en riskhanteringsgenomgång"
+ctaDescription: "Vi diskuterar era utmaningar och föreslår ett upplägg som passar er."
 order: 4

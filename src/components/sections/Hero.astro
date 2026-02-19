@@ -2,21 +2,37 @@
 import Button from '@components/ui/Button.astro';
 ---
 
-<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-navy-dark" data-parallax>
+<section class="relative min-h-[90vh] -mt-20 pt-20 flex items-center overflow-hidden bg-navy-dark" data-parallax>
+  <!-- Background video -->
+  <video
+    class="hero-video"
+    data-hero-video
+    data-src-desktop="/video/hero-bg.mp4"
+    data-src-mobile="/video/hero-bg-mobile.mp4"
+    data-src-webm="/video/hero-bg.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster="/video/hero-poster.jpg"
+    aria-hidden="true"
+  ></video>
+
   <!-- Parallax background -->
-  <div class="absolute inset-0" data-parallax-bg>
+  <div class="absolute inset-0 z-[1]" data-parallax-bg>
     <!-- Animated grid pattern -->
     <div class="absolute inset-0 hero-grid opacity-20"></div>
     <!-- Gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy-dark/95 to-navy/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-dark/90 via-navy-dark/85 to-navy/70"></div>
   </div>
 
   <!-- Floating orbs -->
-  <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-accent/8 rounded-full blur-3xl animate-float"></div>
-  <div class="absolute bottom-1/3 left-1/6 w-48 h-48 bg-teal/8 rounded-full blur-3xl animate-float-delayed"></div>
+  <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-accent/8 rounded-full blur-3xl animate-float z-[2]"></div>
+  <div class="absolute bottom-1/3 left-1/6 w-48 h-48 bg-teal/8 rounded-full blur-3xl animate-float-delayed z-[2]"></div>
 
   <!-- Content -->
-  <div class="container relative z-10 py-20">
+  <div class="container relative z-10 pt-20 pb-10">
     <div class="max-w-3xl">
       <p class="overline text-accent mb-6" data-reveal data-delay="1">
         Cybersäkerhet & Compliance
@@ -26,7 +42,7 @@ import Button from '@components/ui/Button.astro';
       </h1>
       <p class="lead text-white/70 max-w-2xl mb-10" data-reveal data-delay="3">
         Vi hjälper samhällsviktiga verksamheter att navigera NIS2, ISO 27001 och cybersäkerhetslagen
-        — med en kombination av specialistrådgivning och vår plattform SecuraPilot.
+        — med en kombination av specialistrådgivning och vår plattform Securapilot.
       </p>
       <div class="flex flex-wrap gap-4" data-reveal data-delay="4">
         <Button href="/kontakt" variant="primary" size="lg">
@@ -53,15 +69,15 @@ import Button from '@components/ui/Button.astro';
         <p class="text-sm text-white/50 mt-1">As-a-Service</p>
       </div>
       <div>
-        <p class="text-3xl font-bold text-accent">SecuraPilot</p>
+        <p class="text-3xl font-bold text-accent">Securapilot</p>
         <p class="text-sm text-white/50 mt-1">Compliance-plattform</p>
       </div>
     </div>
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce motion-reduce:animate-none" aria-hidden="true">
+    <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
     </svg>
   </div>
@@ -69,9 +85,25 @@ import Button from '@components/ui/Button.astro';
 
 <script>
   import '../../scripts/parallax.ts';
+  import '../../scripts/hero-video.ts';
 </script>
 
 <style>
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video {
+      display: none;
+    }
+  }
+
   .hero-grid {
     background-image:
       linear-gradient(rgba(243, 255, 175, 0.12) 1px, transparent 1px),

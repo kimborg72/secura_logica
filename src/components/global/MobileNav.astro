@@ -17,7 +17,7 @@ import { offices } from '@data/offices';
               <details class="group">
                 <summary class="flex items-center justify-between py-3 text-lg font-medium text-navy cursor-pointer">
                   {item.label}
-                  <svg class="w-5 h-5 text-gray transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-gray transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
@@ -51,7 +51,7 @@ import { offices } from '@data/offices';
     <div class="mt-8 pt-6 border-t border-border">
       <a
         href="/kontakt"
-        class="block w-full text-center px-6 py-3 bg-accent text-dark font-semibold rounded-lg hover:bg-accent-dark transition-colors"
+        class="block w-full text-center px-6 py-3 bg-accent text-dark font-semibold rounded-lg hover:bg-accent-hover transition-colors"
       >
         Kontakta oss
       </a>
@@ -81,6 +81,8 @@ import { offices } from '@data/offices';
     function open() {
       nav!.classList.remove('translate-x-full');
       nav!.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-label', 'Stäng meny');
+      toggle.setAttribute('aria-expanded', 'true');
       document.body.classList.add('mobile-open');
       document.body.style.overflow = 'hidden';
     }
@@ -88,6 +90,8 @@ import { offices } from '@data/offices';
     function close() {
       nav!.classList.add('translate-x-full');
       nav!.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-label', 'Öppna meny');
+      toggle.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('mobile-open');
       document.body.style.overflow = '';
     }

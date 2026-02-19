@@ -1,0 +1,63 @@
+<div
+  id="cookie-consent"
+  class="fixed bottom-0 inset-x-0 z-40 translate-y-full transition-transform duration-500 ease-out motion-reduce:transition-none"
+  role="dialog"
+  aria-label="Cookie-inställningar"
+  aria-hidden="true"
+>
+  <div class="bg-navy-dark border-t border-white/10 shadow-2xl">
+    <div class="container py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <p class="text-sm text-white/70 flex-1">
+        Vi använder anonymiserad statistik (Matomo) för att förbättra webbplatsen. Inga cookies lagras.
+        <a href="/integritetspolicy#cookies" class="text-accent hover:underline underline-offset-2 ml-1">Läs mer</a>
+      </p>
+      <div class="flex gap-3 shrink-0">
+        <button
+          data-consent="necessary"
+          class="px-4 py-2 text-sm font-medium text-white/80 border border-white/20 rounded-lg hover:border-white/40 hover:text-white transition-colors"
+        >
+          Endast nödvändiga
+        </button>
+        <button
+          data-consent="all"
+          class="px-4 py-2 text-sm font-medium bg-accent text-dark rounded-lg hover:bg-accent-light transition-colors"
+        >
+          Acceptera
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCookieConsent() {
+    const banner = document.getElementById('cookie-consent');
+    if (!banner) return;
+
+    if (localStorage.getItem('cookie-consent')) {
+      banner.remove();
+      return;
+    }
+
+    // Show banner after short delay
+    setTimeout(() => {
+      banner.classList.remove('translate-y-full');
+      banner.setAttribute('aria-hidden', 'false');
+    }, 1000);
+
+    banner.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const consent = target.closest<HTMLElement>('[data-consent]');
+      if (!consent) return;
+
+      localStorage.setItem('cookie-consent', consent.dataset.consent!);
+      banner.classList.add('translate-y-full');
+      banner.setAttribute('aria-hidden', 'true');
+
+      setTimeout(() => banner.remove(), 500);
+    });
+  }
+
+  initCookieConsent();
+  document.addEventListener('astro:after-swap', initCookieConsent);
+</script>

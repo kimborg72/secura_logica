@@ -23,9 +23,10 @@ const values = [
 ];
 
 const milestones = [
-  { year: '2018', title: 'Verit grundas', description: 'Med visionen att göra informationssäkerhet tillgängligt för alla organisationer.' },
-  { year: '2023', title: 'SecuraPilot lanseras', description: 'Vår SaaS-plattform för compliance-hantering tar form och testkörs med första kunderna.' },
-  { year: '2025', title: 'NIS2-fokus', description: 'Med cybersäkerhetslagen på plats ompositionerar vi mot samhällsviktig verksamhet.' },
+  { year: '2014', title: 'VER&IT grundas', description: 'Kim Borg startar VER&IT AB i Vänersborg med fokus på IT-konsulting, systemutveckling och säkerhetsfokuserade digitala tjänster.' },
+  { year: '2020', title: 'Informationssäkerhet i fokus', description: 'Med över 25 års erfarenhet som IT-ledare och Group CIO fördjupas inriktningen mot informationssäkerhet, compliance och riskhantering.' },
+  { year: '2024', title: 'NIS2 & cybersäkerhetslagen', description: 'Ompositionering mot samhällsviktiga verksamheter. Specialistrådgivning inom NIS2, ISO 27001 och cybersäkerhetslagen.' },
+  { year: '2026', title: 'Securapilot lanseras', description: 'GRC-plattformen Securapilot lanseras — compliance blir körbart med strukturerade beslutsflöden, riskhantering och realtidsuppföljning.' },
 ];
 ---
 
@@ -42,19 +43,21 @@ const milestones = [
       <div class="grid lg:grid-cols-2 gap-12 items-start">
         <div data-reveal>
           <p class="overline mb-4">Vår historia</p>
-          <h2 class="mb-6">Från CIO-erfarenhet till specialistrådgivning</h2>
+          <h2 class="mb-6">Från IT-ledarskap till specialistrådgivning</h2>
           <p class="text-lg text-slate leading-relaxed mb-4">
-            Verit grundades med övertygelsen att informationssäkerhet inte bara handlar om teknik —
-            det handlar om att skapa förutsättningar för verksamheter att fungera tryggt i en digital värld.
+            VER&IT grundades 2014 av Kim Borg i Vänersborg, med över 25 års erfarenhet
+            som systemutvecklare, Scrum Master, IT-direktör och Group CIO inom både offentlig
+            och privat sektor.
           </p>
           <p class="text-gray leading-relaxed mb-4">
-            Med mångårig erfarenhet som Group CIO och djup kompetens inom ISO 27001, NIS2 och
-            informationssäkerhetsstyrning har vi sett utmaningarna inifrån. Vi vet vad som krävs
-            för att gå från regelverkskrav till fungerande säkerhetsarbete.
+            Vi har sett utmaningarna inifrån — från styrelsebeslut till operativ implementering.
+            Den erfarenheten har format vår övertygelse: compliance är inte en sköld att gömma sig bakom,
+            utan en lins som visar om riskbesluten håller.
           </p>
           <p class="text-gray leading-relaxed">
-            Med SecuraPilot som egen plattform erbjuder vi något unikt: en kombination av
-            hands-on rådgivning och ett verktyg som gör compliance körbart i vardagen.
+            Med Securapilot som egen GRC-plattform erbjuder vi något unikt: en kombination av
+            hands-on rådgivning och ett verktyg som omvandlar fragmenterat säkerhetsarbete till
+            strukturerade, spårbara och försvarliga beslutsflöden.
           </p>
         </div>
 
@@ -89,7 +92,7 @@ const milestones = [
         {values.map((value, i) => (
           <div class="text-center" data-reveal data-delay={String(i + 1)}>
             <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-accent/15 text-accent-dark mx-auto mb-5">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <svg aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d={value.icon} />
               </svg>
             </div>

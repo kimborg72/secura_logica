@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { glob, file } from 'astro/loaders';
+import { glob } from 'astro/loaders';
 
 const services = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/services' }),
@@ -10,7 +10,13 @@ const services = defineCollection({
     metaTitle: z.string(),
     metaDescription: z.string(),
     excerpt: z.string(),
+    introLead: z.string().optional(),
     introduction: z.string(),
+    targetAudience: z.object({
+      heading: z.string(),
+      description: z.string(),
+      segments: z.array(z.string()),
+    }).optional(),
     benefits: z.array(
       z.object({
         title: z.string(),
@@ -22,22 +28,30 @@ const services = defineCollection({
         step: z.number(),
         title: z.string(),
         description: z.string(),
+        duration: z.string().optional(),
       }),
     ),
     deliverables: z.array(z.string()),
+    faq: z.array(
+      z.object({
+        question: z.string(),
+        answer: z.string(),
+      }),
+    ).optional(),
+    securapilotConnection: z.object({
+      heading: z.string(),
+      description: z.string(),
+      features: z.array(z.string()),
+    }).optional(),
     relatedServices: z.array(z.string()),
     ctaText: z.string().optional(),
+    ctaDescription: z.string().optional(),
     order: z.number(),
   }),
 });
 
 const team = defineCollection({
-  loader: file('./src/content/team/members.yaml', {
-    parser: (text) => {
-      const yaml = import('js-yaml');
-      return yaml.then((m) => m.default.load(text) as any[]);
-    },
-  }),
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/team' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
@@ -57,21 +71,20 @@ const insights = defineCollection({
     author: z.string(),
     category: z.string(),
     draft: z.boolean().default(false),
+    image: z.string().optional(),
+    tags: z.array(z.string()).optional(),
   }),
 });
 
 const industries = defineCollection({
-  loader: file('./src/content/industries/industries.yaml', {
-    parser: (text) => {
-      const yaml = import('js-yaml');
-      return yaml.then((m) => m.default.load(text) as any[]);
-    },
-  }),
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/industries' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
     slug: z.string(),
     description: z.string(),
+    displayTitle: z.string(),
+    longDescription: z.string(),
     applicableServices: z.array(z.string()),
     challenges: z.array(z.string()),
     order: z.number(),

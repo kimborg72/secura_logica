@@ -21,6 +21,7 @@ const { tabs, class: className } = Astro.props;
         aria-selected={i === 0 ? 'true' : 'false'}
         aria-controls={`panel-${tab.id}`}
         id={`tab-${tab.id}`}
+        tabindex={i === 0 ? 0 : -1}
         class:list={[
           'px-5 py-3 text-sm font-medium transition-colors relative',
           'text-gray hover:text-navy',
@@ -41,32 +42,69 @@ const { tabs, class: className } = Astro.props;
 <script>
   function initTabs() {
     document.querySelectorAll('[data-tabs]').forEach((container) => {
-      const buttons = container.querySelectorAll('[data-tab]');
+      const buttons = Array.from(container.querySelectorAll('[data-tab]')) as HTMLElement[];
       const panels = container.querySelectorAll('[data-panel]');
 
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const tabId = (btn as HTMLElement).dataset.tab;
+      function activateTab(btn: HTMLElement) {
+        const tabId = btn.dataset.tab;
 
-          buttons.forEach((b) => {
-            b.setAttribute('aria-selected', 'false');
-            b.classList.remove('text-navy', 'after:scale-x-100');
-            b.classList.add('text-gray');
-          });
-
-          btn.setAttribute('aria-selected', 'true');
-          btn.classList.add('text-navy', 'after:scale-x-100');
-          btn.classList.remove('text-gray');
-
-          panels.forEach((panel) => {
-            const panelEl = panel as HTMLElement;
-            if (panelEl.dataset.panel === tabId) {
-              panelEl.removeAttribute('hidden');
-            } else {
-              panelEl.setAttribute('hidden', '');
-            }
-          });
+        buttons.forEach((b) => {
+          b.setAttribute('aria-selected', 'false');
+          b.setAttribute('tabindex', '-1');
+          b.classList.remove('text-navy', 'after:scale-x-100');
+          b.classList.add('text-gray');
         });
+
+        btn.setAttribute('aria-selected', 'true');
+        btn.setAttribute('tabindex', '0');
+        btn.classList.add('text-navy', 'after:scale-x-100');
+        btn.classList.remove('text-gray');
+        btn.focus();
+
+        panels.forEach((panel) => {
+          const panelEl = panel as HTMLElement;
+          if (panelEl.dataset.panel === tabId) {
+            panelEl.removeAttribute('hidden');
+            panelEl.setAttribute('role', 'tabpanel');
+            panelEl.setAttribute('aria-labelledby', `tab-${tabId}`);
+            panelEl.setAttribute('id', `panel-${tabId}`);
+          } else {
+            panelEl.setAttribute('hidden', '');
+          }
+        });
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => activateTab(btn));
+
+        btn.addEventListener('keydown', (e) => {
+          const idx = buttons.indexOf(btn);
+          let nextIdx: number | null = null;
+
+          if (e.key === 'ArrowRight') {
+            nextIdx = (idx + 1) % buttons.length;
+          } else if (e.key === 'ArrowLeft') {
+            nextIdx = (idx - 1 + buttons.length) % buttons.length;
+          } else if (e.key === 'Home') {
+            nextIdx = 0;
+          } else if (e.key === 'End') {
+            nextIdx = buttons.length - 1;
+          }
+
+          if (nextIdx !== null) {
+            e.preventDefault();
+            activateTab(buttons[nextIdx]);
+          }
+        });
+      });
+
+      // Set initial ARIA on panels
+      panels.forEach((panel) => {
+        const panelEl = panel as HTMLElement;
+        const tabId = panelEl.dataset.panel;
+        panelEl.setAttribute('role', 'tabpanel');
+        panelEl.setAttribute('aria-labelledby', `tab-${tabId}`);
+        panelEl.setAttribute('id', `panel-${tabId}`);
       });
     });
   }

@@ -1,11 +1,38 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import HeroSimple from '@components/sections/HeroSimple.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
 import { offices } from '@data/offices';
+import { site, organizationSchema } from '@data/site';
 import Button from '@components/ui/Button.astro';
+
+const localBusinessSchemas = offices.map((office) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: `${organizationSchema.name} ${office.city}`,
+  url: site.url,
+  telephone: office.phone,
+  email: office.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: office.address,
+    addressLocality: office.city,
+    postalCode: office.postalCode.split(' ').slice(0, 2).join(' '),
+    addressCountry: 'SE',
+  },
+  parentOrganization: {
+    '@type': 'Organization',
+    name: organizationSchema.name,
+    url: organizationSchema.url,
+  },
+}));
 ---
 
 <PageLayout title="Kontakt" description="Kontakta Verit för en kostnadsfri genomgång av er cybersäkerhet och compliance.">
+  {localBusinessSchemas.map((schema) => (
+    <JsonLd schema={schema} />
+  ))}
+
   <HeroSimple
     title="Kontakta oss"
     description="Vi berättar gärna mer om hur vi kan hjälpa er organisation. Boka ett kostnadsfritt möte eller hör av er direkt."
@@ -17,10 +44,16 @@ import Button from '@components/ui/Button.astro';
       <div class="grid lg:grid-cols-2 gap-16">
         <!-- Contact Form -->
         <div data-reveal>
-          <h2 class="mb-2">Skicka ett meddelande</h2>
+          <h2 class="mb-2" id="kontaktformular">Skicka ett meddelande</h2>
           <p class="text-gray mb-8">Fyll i formuläret så återkommer vi inom 24 timmar.</p>
 
-          <form class="space-y-5" action="#" method="POST">
+          <form id="contact-form" class="space-y-5" action="/api/contact" method="POST">
+            <!-- Honeypot -->
+            <div class="hidden" aria-hidden="true">
+              <label for="website">Lämna detta fält tomt</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
                 <label for="name" class="block text-sm font-medium text-navy mb-1.5">Namn</label>
@@ -82,7 +115,7 @@ import Button from '@components/ui/Button.astro';
                 <option value="riskhantering">Riskhantering</option>
                 <option value="utbildning">Utbildning & Awareness</option>
                 <option value="gdpr">GDPR & Dataskydd</option>
-                <option value="securapilot">SecuraPilot</option>
+                <option value="securapilot">Securapilot</option>
                 <option value="annat">Annat</option>
               </select>
             </div>
@@ -98,16 +131,44 @@ import Button from '@components/ui/Button.astro';
               ></textarea>
             </div>
 
+            <div class="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="gdpr"
+                name="gdpr"
+                required
+                class="mt-1 h-4 w-4 rounded border-border text-accent-dark focus:ring-accent-dark/20"
+              />
+              <label for="gdpr" class="text-sm text-gray leading-relaxed">
+                Jag samtycker till att Verit behandlar mina personuppgifter enligt
+                <a href="/integritetspolicy" class="text-accent-dark hover:underline">integritetspolicyn</a>.
+              </label>
+            </div>
+
             <Button variant="primary" size="lg">
               Skicka meddelande
             </Button>
           </form>
+
+          <!-- Form status messages -->
+          <div id="form-success" class="hidden mt-8 p-6 bg-teal/10 border border-teal/20 rounded-xl text-center">
+            <svg class="w-12 h-12 text-teal mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h3 class="text-lg font-semibold text-navy mb-1">Tack för ditt meddelande!</h3>
+            <p class="text-sm text-gray">Vi återkommer till dig inom 24 timmar.</p>
+          </div>
+
+          <div id="form-error" class="hidden mt-8 p-6 bg-red-50 border border-red-200 rounded-xl text-center">
+            <h3 class="text-lg font-semibold text-navy mb-1">Något gick fel</h3>
+            <p class="text-sm text-gray">Försök igen eller kontakta oss direkt via e-post.</p>
+          </div>
         </div>
 
         <!-- Offices -->
         <div data-reveal="right">
-          <h2 class="mb-2">Våra kontor</h2>
-          <p class="text-gray mb-8">Vi finns i tre städer och arbetar med kunder i hela Sverige.</p>
+          <h2 class="mb-2">Kontaktuppgifter</h2>
+          <p class="text-gray mb-8">Vi finns i Vänersborg och arbetar med kunder i hela Sverige.</p>
 
           <div class="space-y-6">
             {offices.map((office) => (
@@ -115,20 +176,20 @@ import Button from '@components/ui/Button.astro';
                 <h3 class="text-xl font-semibold text-navy mb-3">{office.city}</h3>
                 <div class="space-y-2 text-sm text-gray">
                   <p class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" class="w-4 h-4 text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                     </svg>
                     {office.address}, {office.postalCode}
                   </p>
                   <p class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" class="w-4 h-4 text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                     </svg>
                     {office.phone}
                   </p>
                   <p class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" class="w-4 h-4 text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                     </svg>
                     <a href={`mailto:${office.email}`} class="text-accent-dark hover:text-accent-dark transition-colors">
@@ -145,7 +206,7 @@ import Button from '@components/ui/Button.astro';
             <p class="text-sm text-white/60 mb-4">
               Föredrar du att prata direkt? Boka en 30-minuters kostnadsfri genomgång.
             </p>
-            <Button href="#" variant="primary">
+            <Button href="#kontaktformular" variant="primary">
               Boka tid
             </Button>
           </div>
@@ -154,3 +215,49 @@ import Button from '@components/ui/Button.astro';
     </div>
   </section>
 </PageLayout>
+
+<script>
+  function initContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    const successEl = document.getElementById('form-success');
+    const errorEl = document.getElementById('form-error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      successEl?.classList.add('hidden');
+      errorEl?.classList.add('hidden');
+
+      const submitBtn = form.querySelector('button[type="submit"], .btn') as HTMLButtonElement | null;
+      const originalText = submitBtn?.textContent ?? '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Skickar...';
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+        });
+
+        if (response.ok) {
+          form.classList.add('hidden');
+          successEl?.classList.remove('hidden');
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch {
+        errorEl?.classList.remove('hidden');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      }
+    });
+  }
+
+  initContactForm();
+  document.addEventListener('astro:after-swap', initContactForm);
+</script>

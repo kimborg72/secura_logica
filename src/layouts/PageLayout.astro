@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '@components/global/Header.astro';
 import Footer from '@components/global/Footer.astro';
+import CookieConsent from '@components/global/CookieConsent.astro';
 
 interface Props {
   title: string;
@@ -14,12 +15,16 @@ const { title, description, ogImage, headerTheme = 'light' } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} ogImage={ogImage}>
-  <div data-header-theme={headerTheme}>
-    <Header />
+  <div>
+    <a href="#main-content" class="skip-link sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-dark focus:rounded-lg focus:font-semibold focus:text-sm">
+      Hoppa till huvudinnehåll
+    </a>
+    <Header theme={headerTheme} />
     <main id="main-content">
       <slot />
     </main>
     <Footer />
+    <CookieConsent />
   </div>
   <script>
     import '../scripts/scroll-observer.ts';

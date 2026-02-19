@@ -14,7 +14,7 @@ export const footerColumns = [
     title: 'Företaget',
     links: [
       { label: 'Om oss', href: '/om-oss' },
-      { label: 'SecuraPilot', href: '/securapilot' },
+      { label: 'Securapilot', href: '/securapilot' },
       { label: 'Insikter', href: '/insikter' },
       { label: 'Kontakt', href: '/kontakt' },
       { label: 'Integritetspolicy', href: '/integritetspolicy' },
