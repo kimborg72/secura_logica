@@ -28,10 +28,10 @@ const features = [
             <div class="bg-white/5 rounded-lg p-4">
               <div class="flex justify-between items-center mb-2">
                 <span class="text-sm text-white/60">Compliance Score</span>
-                <span class="text-2xl font-bold text-copper">78%</span>
+                <span class="text-2xl font-bold text-accent">78%</span>
               </div>
               <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-copper to-copper-light rounded-full w-[78%] transition-all duration-1000"></div>
+                <div class="h-full bg-gradient-to-r from-accent to-accent rounded-full w-[78%] transition-all duration-1000"></div>
               </div>
             </div>
             <!-- Mini stats -->
@@ -41,7 +41,7 @@ const features = [
                 <p class="text-xs text-white/40">Kontroller OK</p>
               </div>
               <div class="bg-white/5 rounded-lg p-3 text-center">
-                <p class="text-lg font-bold text-copper-light">8</p>
+                <p class="text-lg font-bold text-accent">8</p>
                 <p class="text-xs text-white/40">Pågående</p>
               </div>
               <div class="bg-white/5 rounded-lg p-3 text-center">
@@ -70,7 +70,7 @@ const features = [
           </div>
         </div>
         <!-- Glow effect -->
-        <div class="absolute -inset-4 bg-copper/5 rounded-2xl -z-10 blur-2xl"></div>
+        <div class="absolute -inset-4 bg-accent/5 rounded-2xl -z-10 blur-2xl"></div>
       </div>
 
       <!-- Content -->
@@ -84,7 +84,7 @@ const features = [
         <ul class="space-y-3 mb-10">
           {features.map((feature) => (
             <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-copper shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-accent-dark shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span class="text-slate">{feature}</span>

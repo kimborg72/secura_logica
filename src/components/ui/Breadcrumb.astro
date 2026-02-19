@@ -9,7 +9,7 @@ const { items } = Astro.props;
 <nav aria-label="Brödsmulor">
   <ol class="flex flex-wrap items-center gap-1.5 text-sm text-gray">
     <li>
-      <a href="/" class="hover:text-copper transition-colors">Hem</a>
+      <a href="/" class="hover:text-accent-dark transition-colors">Hem</a>
     </li>
     {items.map((item, i) => (
       <li class="flex items-center gap-1.5">
@@ -17,7 +17,7 @@ const { items } = Astro.props;
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
         {item.href && i < items.length - 1 ? (
-          <a href={item.href} class="hover:text-copper transition-colors">{item.label}</a>
+          <a href={item.href} class="hover:text-accent-dark transition-colors">{item.label}</a>
         ) : (
           <span class="text-navy font-medium">{item.label}</span>
         )}

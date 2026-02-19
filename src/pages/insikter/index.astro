@@ -33,7 +33,7 @@ function formatDate(date: Date) {
             <article class="group" data-reveal data-delay={String((i % 3) + 1)}>
               <a href={`/insikter/${post.id}`} class="block">
                 <div class="aspect-[16/10] rounded-xl bg-surface mb-5 overflow-hidden">
-                  <div class="w-full h-full bg-gradient-to-br from-navy/5 to-copper/5 group-hover:scale-105 transition-transform duration-500"></div>
+                  <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
                 </div>
                 <div class="flex items-center gap-3 mb-3">
                   <Badge text={post.data.category} variant="copper" />
@@ -41,7 +41,7 @@ function formatDate(date: Date) {
                     {formatDate(post.data.date)}
                   </time>
                 </div>
-                <h3 class="text-lg font-semibold text-navy group-hover:text-copper transition-colors mb-2">
+                <h3 class="text-lg font-semibold text-navy group-hover:text-accent-dark transition-colors mb-2">
                   {post.data.title}
                 </h3>
                 <p class="text-sm text-gray leading-relaxed">{post.data.description}</p>

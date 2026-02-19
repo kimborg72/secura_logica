@@ -3,14 +3,15 @@ import { cn } from '@utils/cn';
 
 interface Props {
   text: string;
-  variant?: 'copper' | 'teal' | 'navy' | 'neutral';
+  variant?: 'copper' | 'accent-dark' | 'teal' | 'navy' | 'neutral';
   class?: string;
 }
 
 const { text, variant = 'copper', class: className } = Astro.props;
 
 const variants = {
-  copper: 'bg-copper/10 text-copper',
+  copper: 'bg-accent/15 text-accent-dark',
+  'accent-dark': 'bg-accent/15 text-accent-dark',
   teal: 'bg-teal/10 text-teal',
   navy: 'bg-navy/10 text-navy',
   neutral: 'bg-gray-light/20 text-gray',

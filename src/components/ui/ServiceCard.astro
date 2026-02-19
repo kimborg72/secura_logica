@@ -11,20 +11,20 @@ const { title, description, href } = Astro.props;
 
 <a
   href={href}
-  class="group block p-6 bg-white rounded-xl border border-border hover:border-copper/30 hover:shadow-lg transition-all duration-300"
+  class="group block p-6 bg-white rounded-xl border border-border hover:border-accent-dark/30 hover:shadow-lg transition-all duration-300"
 >
   <div class="flex items-start gap-4">
-    <div class="shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-copper/10 text-copper">
+    <div class="shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-accent/15 text-accent-dark">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
       </svg>
     </div>
     <div class="flex-1 min-w-0">
-      <h3 class="text-lg font-semibold text-navy mb-1.5 group-hover:text-copper transition-colors">
+      <h3 class="text-lg font-semibold text-navy mb-1.5 group-hover:text-accent-dark transition-colors">
         {title}
       </h3>
       <p class="text-sm text-gray leading-relaxed">{description}</p>
-      <span class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-copper opacity-0 translate-x-[-8px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+      <span class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-accent-dark opacity-0 translate-x-[-8px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
         Läs mer
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />

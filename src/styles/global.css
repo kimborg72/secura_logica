@@ -3,30 +3,38 @@
 @import "./animations.css";
 
 @theme {
-  /* Brand Colors */
-  --color-copper: #c97a35;
-  --color-copper-light: #e0a96d;
-  --color-copper-dark: #a35e1f;
+  /* Brand Colors — AFRY-inspired: dark base + lime accent */
+  --color-accent: #F3FFAF;
+  --color-accent-light: #f8ffcf;
+  --color-accent-dark: #d4e080;
 
-  --color-teal: #1a6b5a;
-  --color-teal-light: #2a8f7a;
-  --color-teal-dark: #0f4d3f;
+  --color-teal: #4ecdc4;
+  --color-teal-light: #7eddd6;
+  --color-teal-dark: #36b5ad;
 
-  --color-navy: #1b2a4a;
-  --color-navy-light: #2d4470;
-  --color-navy-dark: #0f1a2e;
+  --color-dark: #121212;
+  --color-dark-light: #1e1e1e;
+  --color-dark-lighter: #2a2a2a;
+
+  /* Semantic aliases (copper/navy used in Tailwind classes throughout) */
+  --color-copper: #F3FFAF;
+  --color-copper-light: #f8ffcf;
+  --color-copper-dark: #d4e080;
+
+  --color-navy: #121212;
+  --color-navy-light: #1e1e1e;
+  --color-navy-dark: #0a0a0a;
 
   /* Neutrals */
-  --color-slate: #3d4f5f;
-  --color-gray: #6b7b8d;
-  --color-gray-light: #a3b1bf;
-  --color-border: #e2e8ed;
-  --color-surface: #f7f5f2;
-  --color-surface-alt: #efeae4;
+  --color-slate: #2d2d2d;
+  --color-gray: #737373;
+  --color-gray-light: #a3a3a3;
+  --color-border: #e6e4df;
+  --color-surface: #f5f4f0;
+  --color-surface-alt: #e6e4df;
 
-  /* Typography */
-  --font-serif: 'Instrument Serif', 'Georgia', serif;
-  --font-sans: 'DM Sans', 'system-ui', sans-serif;
+  /* Typography — single geometric sans-serif like AFRY's Campton */
+  --font-sans: 'Space Grotesk', 'system-ui', sans-serif;
 
   /* Spacing */
   --spacing-section: clamp(4rem, 8vw, 8rem);
@@ -51,8 +59,8 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-copper);
-  color: #ffffff;
+  background-color: var(--color-accent);
+  color: var(--color-dark);
 }
 
 img {
@@ -78,6 +86,6 @@ img {
 
 /* Focus styles */
 :focus-visible {
-  outline: 2px solid var(--color-copper);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }

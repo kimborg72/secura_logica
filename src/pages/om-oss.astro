@@ -63,7 +63,7 @@ const milestones = [
           {milestones.map((milestone) => (
             <div class="flex gap-6">
               <div class="shrink-0">
-                <span class="inline-block px-3 py-1 bg-copper/10 text-copper text-sm font-bold rounded-lg">
+                <span class="inline-block px-3 py-1 bg-accent/15 text-accent-dark text-sm font-bold rounded-lg">
                   {milestone.year}
                 </span>
               </div>
@@ -88,7 +88,7 @@ const milestones = [
       <div class="grid md:grid-cols-3 gap-8">
         {values.map((value, i) => (
           <div class="text-center" data-reveal data-delay={String(i + 1)}>
-            <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-copper/10 text-copper mx-auto mb-5">
+            <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-accent/15 text-accent-dark mx-auto mb-5">
               <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d={value.icon} />
               </svg>

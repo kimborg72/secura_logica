@@ -30,7 +30,7 @@ const { services, featured } = Astro.props;
                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate hover:bg-surface hover:text-navy transition-colors"
                 role="menuitem"
               >
-                <svg class="w-5 h-5 text-copper shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-accent-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
                 <span>{service.label}</span>
@@ -52,7 +52,7 @@ const { services, featured } = Astro.props;
             >
               <p class="font-semibold text-navy mb-1">{featured.title}</p>
               <p class="text-sm text-gray">{featured.description}</p>
-              <span class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-copper">
+              <span class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-accent-dark">
                 Läs mer
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -62,7 +62,7 @@ const { services, featured } = Astro.props;
           </div>
           <a
             href="/tjanster"
-            class="mt-4 text-sm font-medium text-copper hover:text-copper-dark transition-colors"
+            class="mt-4 text-sm font-medium text-accent-dark hover:text-accent-dark transition-colors"
             role="menuitem"
           >
             Alla tjänster &rarr;
