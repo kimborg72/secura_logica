@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@components/global/Header.astro';
+import Footer from '@components/global/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  headerTheme?: 'light' | 'dark';
+}
+
+const { title, description, ogImage, headerTheme = 'light' } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} ogImage={ogImage}>
+  <div data-header-theme={headerTheme}>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </div>
+  <script>
+    import '../scripts/scroll-observer.ts';
+  </script>
+</BaseLayout>

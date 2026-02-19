@@ -1,0 +1,71 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import Badge from '@components/ui/Badge.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const insights = await getCollection('insights');
+  return insights.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('sv-SE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<PageLayout title={post.data.title} description={post.data.description}>
+  <HeroSimple
+    title={post.data.title}
+    breadcrumbs={[
+      { label: 'Insikter', href: '/insikter' },
+      { label: post.data.title },
+    ]}
+  />
+
+  <article class="section">
+    <div class="container">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-4 mb-10" data-reveal>
+          <Badge text={post.data.category} variant="copper" />
+          <time class="text-sm text-gray" datetime={post.data.date.toISOString()}>
+            {formatDate(post.data.date)}
+          </time>
+          <span class="text-sm text-gray">av {post.data.author}</span>
+        </div>
+
+        <div class="prose prose-lg max-w-none" data-reveal>
+          <Content />
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <CTABanner />
+</PageLayout>
+
+<style is:global>
+  .prose h1, .prose h2, .prose h3 {
+    font-family: var(--font-serif);
+    color: var(--color-navy);
+  }
+  .prose h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
+  .prose h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
+  .prose p { color: var(--color-slate); line-height: 1.8; margin-bottom: 1.25rem; }
+  .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .prose li { color: var(--color-slate); margin-bottom: 0.5rem; }
+  .prose strong { color: var(--color-navy); font-weight: 600; }
+  .prose a { color: var(--color-copper); text-decoration: underline; text-underline-offset: 2px; }
+  .prose a:hover { color: var(--color-copper-dark); }
+</style>

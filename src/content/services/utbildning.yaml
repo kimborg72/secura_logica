@@ -1,0 +1,40 @@
+title: "Utbildning & Awareness"
+shortTitle: "Utbildning"
+slug: "utbildning"
+metaTitle: "Utbildning & Awareness inom informationssäkerhet | Verit"
+metaDescription: "Skräddarsydda utbildningar som höjer säkerhetsmedvetandet i hela organisationen."
+excerpt: "Skräddarsydda utbildningar som höjer säkerhetsmedvetandet i hela organisationen."
+introduction: |
+  Teknik och processer räcker inte om medarbetarna inte förstår sin roll i säkerhetsarbetet. Mänskliga misstag är fortfarande den vanligaste orsaken till säkerhetsincidenter.
+
+  Våra utbildningar är praktiska, relevanta och anpassade efter er verksamhet. Vi ger era medarbetare kunskap och verktyg att bidra till organisationens säkerhet i sin vardag.
+benefits:
+  - title: "Minskad mänsklig risk"
+    description: "Medvetna medarbetare gör färre misstag och upptäcker hot snabbare."
+  - title: "Regulatoriskt krav"
+    description: "NIS2 och ISO 27001 kräver regelbunden utbildning och medvetandehöjning."
+  - title: "Anpassade upplägg"
+    description: "Från styrelseutbildning till teknikerworkshops — vi anpassar nivå och innehåll."
+process:
+  - step: 1
+    title: "Behovsanalys"
+    description: "Vi kartlägger kunskapsluckor och utbildningsbehov per målgrupp."
+  - step: 2
+    title: "Utbildningsdesign"
+    description: "Skräddarsytt innehåll med praktiska exempel från er bransch."
+  - step: 3
+    title: "Genomförande"
+    description: "Workshops, e-learning eller kombinationsformat — fysiskt eller digitalt."
+  - step: 4
+    title: "Uppföljning"
+    description: "Kunskapstester och regelbunden repetition för att säkerställa varaktig effekt."
+deliverables:
+  - "Utbildningsmaterial anpassat efter er verksamhet"
+  - "Genomförda workshops och utbildningstillfällen"
+  - "Kunskapstester och resultatrapportering"
+  - "Årsplan för löpande awareness-aktiviteter"
+relatedServices:
+  - "iso27001"
+  - "ciso-as-a-service"
+  - "nis2"
+order: 5

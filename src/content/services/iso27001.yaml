@@ -1,0 +1,41 @@
+title: "ISO 27001 / LIS"
+shortTitle: "ISO 27001"
+slug: "iso27001"
+metaTitle: "ISO 27001 Certifiering & LIS | Verit"
+metaDescription: "Uppbyggnad och certifieringsstöd för ledningssystem för informationssäkerhet enligt ISO 27001."
+excerpt: "Uppbyggnad och certifieringsstöd för ledningssystem för informationssäkerhet."
+introduction: |
+  ISO 27001 är den internationella standarden för ledningssystem för informationssäkerhet (LIS). En certifiering visar att er organisation tar informationssäkerhet på allvar och har systematiska processer för att hantera risker.
+
+  Verit guidar er genom hela resan — från initial bedömning och gap-analys till certifieringsrevision och löpande förbättring.
+benefits:
+  - title: "Strukturerat säkerhetsarbete"
+    description: "Ett LIS ger er organisation en tydlig struktur för att hantera informationssäkerhetsrisker."
+  - title: "Konkurrensfördelar"
+    description: "ISO 27001-certifiering blir allt oftare ett krav i upphandlingar och leverantörsbedömningar."
+  - title: "Regulatorisk grund"
+    description: "Ett LIS enligt ISO 27001 ger en stark grund för att uppfylla NIS2, GDPR och andra regelverk."
+process:
+  - step: 1
+    title: "Nulägesanalys"
+    description: "Vi utvärderar ert befintliga säkerhetsarbete mot ISO 27001:2022-kraven."
+  - step: 2
+    title: "Design & planering"
+    description: "Vi designar ert LIS med policyer, processer och kontroller anpassade efter er verksamhet."
+  - step: 3
+    title: "Implementering"
+    description: "Stöd vid införande av processer, utbildning av medarbetare och teknisk implementation."
+  - step: 4
+    title: "Internrevision & certifiering"
+    description: "Vi genomför internrevision och förbereder er för extern certifieringsrevision."
+deliverables:
+  - "Gap-analysrapport mot ISO 27001:2022"
+  - "LIS-dokumentation (policyer, riktlinjer, rutiner)"
+  - "Riskbedömning och riskbehandlingsplan"
+  - "Statement of Applicability (SoA)"
+  - "Internrevisionsrapport"
+relatedServices:
+  - "nis2"
+  - "riskhantering"
+  - "utbildning"
+order: 2

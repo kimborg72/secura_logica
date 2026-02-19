@@ -1,0 +1,21 @@
+---
+import Breadcrumb from '@components/ui/Breadcrumb.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  breadcrumbs?: Array<{ label: string; href?: string }>;
+}
+
+const { title, description, breadcrumbs } = Astro.props;
+---
+
+<section class="bg-surface pt-12 pb-16">
+  <div class="container">
+    {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
+    <div class="max-w-3xl mt-6" data-reveal>
+      <h1>{title}</h1>
+      {description && <p class="lead mt-4">{description}</p>}
+    </div>
+  </div>
+</section>

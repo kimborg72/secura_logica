@@ -1,0 +1,50 @@
+---
+const values = [
+  {
+    overline: 'Rådgivning',
+    title: 'Specialistkompetens',
+    description: 'Erfarna konsulter inom informationssäkerhet, compliance och riskhantering. Vi guidar er från gap-analys till full implementering.',
+    icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
+  },
+  {
+    overline: 'Plattform',
+    title: 'SecuraPilot',
+    description: 'Vår SaaS-plattform gör compliance körbart. Automatiserad uppföljning, dokumenthantering och realtids-dashboards.',
+    icon: 'M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25',
+  },
+  {
+    overline: 'Kombinationen',
+    title: 'Rådgivning + Verktyg',
+    description: 'Unik kombination av hands-on konsulting och egen teknikplattform. Ni får inte bara en plan — ni får verktyget att genomföra den.',
+    icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  },
+];
+---
+
+<section class="section bg-surface">
+  <div class="container">
+    <div class="text-center max-w-2xl mx-auto mb-16" data-reveal>
+      <p class="overline mb-3">Varför Verit</p>
+      <h2>Kompetens som gör skillnad</h2>
+      <p class="lead mt-4">
+        Vi kombinerar djup specialistkunskap med en egen teknikplattform —
+        för compliance som faktiskt fungerar i praktiken.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {values.map((item, i) => (
+        <div class="bg-white rounded-xl p-8 border border-border" data-reveal data-delay={String(i + 1)}>
+          <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-copper/10 text-copper mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+            </svg>
+          </div>
+          <p class="overline mb-2">{item.overline}</p>
+          <h3 class="text-xl font-semibold text-navy mb-3">{item.title}</h3>
+          <p class="text-gray text-sm leading-relaxed">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

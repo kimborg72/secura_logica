@@ -1,0 +1,41 @@
+title: "NIS2 / Cybersäkerhetslagen"
+shortTitle: "NIS2"
+slug: "nis2"
+metaTitle: "NIS2 Compliance & Cybersäkerhetslagen | Verit"
+metaDescription: "Gap-analys och implementeringsstöd för NIS2-direktivet och den svenska cybersäkerhetslagen."
+excerpt: "Gap-analys och implementeringsstöd för NIS2-direktivet och den svenska cybersäkerhetslagen."
+introduction: |
+  NIS2-direktivet ställer nya och skärpta krav på cybersäkerhet för samhällsviktiga verksamheter i hela EU. Den svenska implementeringen genom cybersäkerhetslagen innebär konkreta skyldigheter för organisationer inom kritisk infrastruktur.
+
+  Verit hjälper er att förstå kraven, identifiera gap och implementera nödvändiga åtgärder — med en kombination av expertrådgivning och vår plattform SecuraPilot.
+benefits:
+  - title: "Tydlig bild av ert nuläge"
+    description: "Vår gap-analys kartlägger exakt var ni står i förhållande till NIS2-kraven."
+  - title: "Pragmatisk implementering"
+    description: "Vi prioriterar åtgärder baserat på risk och verksamhetsnytta."
+  - title: "Löpande compliance"
+    description: "Med SecuraPilot har ni kontinuerlig kontroll på er efterlevnad."
+process:
+  - step: 1
+    title: "Kartläggning"
+    description: "Vi analyserar era nuvarande processer, tekniska åtgärder och organisatoriska förutsättningar."
+  - step: 2
+    title: "Gap-analys"
+    description: "Systematisk jämförelse mot NIS2-kraven med tydlig prioritering."
+  - step: 3
+    title: "Handlingsplan"
+    description: "Konkret åtgärdsplan med tidsramar, ansvariga och budget."
+  - step: 4
+    title: "Implementering"
+    description: "Vi stöttar er genom hela implementeringen av tekniska och organisatoriska åtgärder."
+deliverables:
+  - "NIS2 gap-analysrapport"
+  - "Prioriterad handlingsplan"
+  - "Styrande dokument och policyer"
+  - "SecuraPilot-konfiguration för löpande uppföljning"
+relatedServices:
+  - "iso27001"
+  - "riskhantering"
+  - "ciso-as-a-service"
+ctaText: "Boka en kostnadsfri NIS2-genomgång"
+order: 1

@@ -1,0 +1,22 @@
+---
+import { cn } from '@utils/cn';
+
+interface Props {
+  text: string;
+  variant?: 'copper' | 'teal' | 'navy' | 'neutral';
+  class?: string;
+}
+
+const { text, variant = 'copper', class: className } = Astro.props;
+
+const variants = {
+  copper: 'bg-copper/10 text-copper',
+  teal: 'bg-teal/10 text-teal',
+  navy: 'bg-navy/10 text-navy',
+  neutral: 'bg-gray-light/20 text-gray',
+};
+---
+
+<span class={cn('inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full', variants[variant], className)}>
+  {text}
+</span>

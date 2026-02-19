@@ -1,0 +1,108 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import Button from '@components/ui/Button.astro';
+
+const values = [
+  {
+    title: 'Integritet',
+    description: 'Vi arbetar med känslig information och komplexa frågor. Förtroende är grunden i allt vi gör.',
+    icon: 'M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z',
+  },
+  {
+    title: 'Pragmatism',
+    description: 'Compliance ska fungera i praktiken, inte bara på pappret. Vi levererar åtgärder som gör verklig skillnad.',
+    icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  },
+  {
+    title: 'Långsiktighet',
+    description: 'Vi bygger relationer och lösningar som håller över tid. Ert säkerhetsarbete ska bli bättre för varje år.',
+    icon: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+];
+
+const milestones = [
+  { year: '2018', title: 'Verit grundas', description: 'Med visionen att göra informationssäkerhet tillgängligt för alla organisationer.' },
+  { year: '2023', title: 'SecuraPilot lanseras', description: 'Vår SaaS-plattform för compliance-hantering tar form och testkörs med första kunderna.' },
+  { year: '2025', title: 'NIS2-fokus', description: 'Med cybersäkerhetslagen på plats ompositionerar vi mot samhällsviktig verksamhet.' },
+];
+---
+
+<PageLayout title="Om oss" description="Verit är specialister inom cybersäkerhet och compliance för samhällsviktiga verksamheter.">
+  <HeroSimple
+    title="Om Verit"
+    description="Vi finns till för att samhällsviktiga verksamheter ska kunna skydda sin information och uppfylla regulatoriska krav — på riktigt."
+    breadcrumbs={[{ label: 'Om oss' }]}
+  />
+
+  <!-- Story -->
+  <section class="section">
+    <div class="container">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div data-reveal>
+          <p class="overline mb-4">Vår historia</p>
+          <h2 class="mb-6">Från CIO-erfarenhet till specialistrådgivning</h2>
+          <p class="text-lg text-slate leading-relaxed mb-4">
+            Verit grundades med övertygelsen att informationssäkerhet inte bara handlar om teknik —
+            det handlar om att skapa förutsättningar för verksamheter att fungera tryggt i en digital värld.
+          </p>
+          <p class="text-gray leading-relaxed mb-4">
+            Med mångårig erfarenhet som Group CIO och djup kompetens inom ISO 27001, NIS2 och
+            informationssäkerhetsstyrning har vi sett utmaningarna inifrån. Vi vet vad som krävs
+            för att gå från regelverkskrav till fungerande säkerhetsarbete.
+          </p>
+          <p class="text-gray leading-relaxed">
+            Med SecuraPilot som egen plattform erbjuder vi något unikt: en kombination av
+            hands-on rådgivning och ett verktyg som gör compliance körbart i vardagen.
+          </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="space-y-8" data-reveal="right">
+          {milestones.map((milestone) => (
+            <div class="flex gap-6">
+              <div class="shrink-0">
+                <span class="inline-block px-3 py-1 bg-copper/10 text-copper text-sm font-bold rounded-lg">
+                  {milestone.year}
+                </span>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-navy mb-1">{milestone.title}</h3>
+                <p class="text-gray text-sm">{milestone.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section bg-surface">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-16" data-reveal>
+        <p class="overline mb-3">Värderingar</p>
+        <h2>Vad vi står för</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {values.map((value, i) => (
+          <div class="text-center" data-reveal data-delay={String(i + 1)}>
+            <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-copper/10 text-copper mx-auto mb-5">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d={value.icon} />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-navy mb-3">{value.title}</h3>
+            <p class="text-gray leading-relaxed">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Vill du veta mer?"
+    description="Vi berättar gärna mer om hur vi kan hjälpa er organisation."
+  />
+</PageLayout>

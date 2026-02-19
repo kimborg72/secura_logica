@@ -1,0 +1,42 @@
+title: "GDPR & Dataskydd"
+shortTitle: "GDPR"
+slug: "gdpr"
+metaTitle: "GDPR & Dataskydd — Praktisk rådgivning | Verit"
+metaDescription: "Praktisk rådgivning för att uppfylla dataskyddsförordningens krav i er verksamhet."
+excerpt: "Praktisk rådgivning för att uppfylla dataskyddsförordningens krav i er verksamhet."
+introduction: |
+  GDPR ställer höga krav på hur personuppgifter hanteras. Kraven gäller alla organisationer, men är särskilt utmanande för verksamheter inom offentlig sektor, vård och e-hälsa där personuppgiftsbehandlingen är komplex.
+
+  Vi hjälper er att förstå och uppfylla kraven på ett sätt som fungerar i praktiken — inte bara på pappret.
+benefits:
+  - title: "Praktisk efterlevnad"
+    description: "Vi fokuserar på åtgärder som gör verklig skillnad, inte byråkratisk pappersexercis."
+  - title: "Integrerad approach"
+    description: "GDPR-arbetet integreras med ert övriga informationssäkerhetsarbete."
+  - title: "Riskmedveten prioritering"
+    description: "Vi hjälper er att fokusera resurser där de personuppgiftsrelaterade riskerna är störst."
+process:
+  - step: 1
+    title: "Nulägesanalys"
+    description: "Kartläggning av personuppgiftsbehandlingar, rättslig grund och befintliga skyddsåtgärder."
+  - step: 2
+    title: "Gap-analys"
+    description: "Identifiering av brister mot GDPR:s krav med prioriterad åtgärdsplan."
+  - step: 3
+    title: "Implementering"
+    description: "Stöd vid upprättande av register, konsekvensbedömningar och tekniska skyddsåtgärder."
+  - step: 4
+    title: "Löpande stöd"
+    description: "Dataskyddsombud (DPO) som tjänst, incidenthantering och rådgivning vid nya behandlingar."
+deliverables:
+  - "GDPR nuläges- och gap-analysrapport"
+  - "Registerförteckning"
+  - "Konsekvensbedömningar (DPIA)"
+  - "Dataskyddspolicyer och rutiner"
+  - "DPO-tjänst vid behov"
+relatedServices:
+  - "nis2"
+  - "riskhantering"
+  - "utbildning"
+ctaText: "Boka en GDPR-genomgång"
+order: 6

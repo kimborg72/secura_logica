@@ -1,0 +1,135 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import Button from '@components/ui/Button.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+
+const features = [
+  {
+    title: 'Compliance Dashboard',
+    description: 'Realtidsöverblick över er efterlevnadsstatus mot NIS2, ISO 27001 och GDPR. Se direkt var ni står.',
+    icon: 'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z',
+  },
+  {
+    title: 'Gap-analys',
+    description: 'Automatiserad gap-analys som identifierar brister och prioriterar åtgärder baserat på risk.',
+    icon: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z',
+  },
+  {
+    title: 'Dokumenthantering',
+    description: 'Versionshantering av policyer, riktlinjer och styrande dokument med godkännandeflöden.',
+    icon: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z',
+  },
+  {
+    title: 'Riskregister',
+    description: 'Systematisk riskhantering med automatiska påminnelser och uppföljning av behandlingsplaner.',
+    icon: 'M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z',
+  },
+  {
+    title: 'Incidenthantering',
+    description: 'Strukturerad incidentrapportering och uppföljning som uppfyller NIS2:s rapporteringskrav.',
+    icon: 'M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0',
+  },
+  {
+    title: 'Audit Trail',
+    description: 'Fullständig spårbarhet av alla förändringar och beslut. Rollbaserad åtkomst med detaljerad logg.',
+    icon: 'M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z',
+  },
+];
+---
+
+<PageLayout title="SecuraPilot" description="SecuraPilot — compliance-plattformen som gör ert informationssäkerhetsarbete körbart.">
+  <HeroSimple
+    title="SecuraPilot"
+    description="Compliance-plattformen som gör ert informationssäkerhetsarbete körbart. Från gap-analys till löpande uppföljning — allt på ett ställe."
+    breadcrumbs={[{ label: 'SecuraPilot' }]}
+  />
+
+  <!-- Product Overview -->
+  <section class="section">
+    <div class="container">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Dashboard mockup -->
+        <div data-reveal>
+          <div class="bg-navy-dark rounded-xl p-6 shadow-2xl">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-400/80"></div>
+              <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
+              <span class="ml-2 text-xs text-white/40 font-mono">securapilot.verit.se</span>
+            </div>
+            <div class="space-y-3">
+              <div class="bg-white/5 rounded-lg p-4">
+                <div class="flex justify-between mb-3">
+                  <span class="text-sm text-white/60">NIS2 Compliance</span>
+                  <span class="text-xl font-bold text-copper">78%</span>
+                </div>
+                <div class="w-full h-2 bg-white/10 rounded-full"><div class="h-full bg-copper rounded-full w-[78%]"></div></div>
+              </div>
+              <div class="bg-white/5 rounded-lg p-4">
+                <div class="flex justify-between mb-3">
+                  <span class="text-sm text-white/60">ISO 27001</span>
+                  <span class="text-xl font-bold text-teal-light">85%</span>
+                </div>
+                <div class="w-full h-2 bg-white/10 rounded-full"><div class="h-full bg-teal rounded-full w-[85%]"></div></div>
+              </div>
+              <div class="bg-white/5 rounded-lg p-4">
+                <div class="flex justify-between mb-3">
+                  <span class="text-sm text-white/60">GDPR</span>
+                  <span class="text-xl font-bold text-white/80">92%</span>
+                </div>
+                <div class="w-full h-2 bg-white/10 rounded-full"><div class="h-full bg-white/60 rounded-full w-[92%]"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal="right">
+          <p class="overline mb-3">Plattformen</p>
+          <h2 class="mb-6">Sluta jaga dokument. Börja styra compliance.</h2>
+          <p class="text-lg text-slate leading-relaxed mb-4">
+            SecuraPilot samlar ert hela informationssäkerhetsarbete på ett ställe. Gap-analyser,
+            riskregister, policyer, incidenter och compliance-status — allt uppdaterat i realtid.
+          </p>
+          <p class="text-gray leading-relaxed mb-8">
+            Plattformen är framtagen av oss som arbetar med informationssäkerhet varje dag.
+            Den är byggd för att vara praktisk, inte bara snygg — för vi vet att compliance
+            som inte används i vardagen inte är värt någonting.
+          </p>
+          <Button href="/kontakt" variant="primary" size="lg">
+            Boka en demo
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="section bg-surface">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-16" data-reveal>
+        <p class="overline mb-3">Funktioner</p>
+        <h2>Allt ni behöver för ert säkerhetsarbete</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature, i) => (
+          <div class="bg-white rounded-xl p-6 border border-border" data-reveal data-delay={String((i % 3) + 1)}>
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-copper/10 text-copper mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d={feature.icon} />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-navy mb-2">{feature.title}</h3>
+            <p class="text-sm text-gray leading-relaxed">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Vill du se SecuraPilot i aktion?"
+    description="Boka en personlig demo så visar vi hur plattformen kan stödja ert säkerhetsarbete."
+    buttonText="Boka demo"
+  />
+</PageLayout>

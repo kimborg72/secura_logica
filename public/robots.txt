@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://verit.se/sitemap-index.xml

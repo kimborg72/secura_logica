@@ -1,0 +1,42 @@
+title: "CISO-as-a-Service"
+shortTitle: "CISO"
+slug: "ciso-as-a-service"
+metaTitle: "CISO-as-a-Service — Interim säkerhetsansvarig | Verit"
+metaDescription: "Erfaren CISO på deltid som ger er strategisk styrning utan fast anställning."
+excerpt: "Interim säkerhetsansvarig som ger er strategisk styrning utan fast anställning."
+introduction: |
+  Inte alla organisationer har behov av — eller budget för — en heltidsanställd CISO. Men alla organisationer som omfattas av NIS2 eller hanterar känslig information behöver strategisk säkerhetsstyrning.
+
+  Med CISO-as-a-Service får ni tillgång till en erfaren informationssäkerhetsansvarig som arbetar med er på deltid och anpassar insatsen efter era behov.
+benefits:
+  - title: "Omedelbar kompetens"
+    description: "Erfaren CISO med direkt verkan — ingen lång rekryteringsprocess."
+  - title: "Flexibel insats"
+    description: "Anpassa nivån efter era behov, från ett par dagar i månaden till halvtid."
+  - title: "Strategisk och operativ"
+    description: "Från styrelserum till implementering — vi täcker hela spannet."
+process:
+  - step: 1
+    title: "Behovsinventering"
+    description: "Vi kartlägger er organisations mognad, utmaningar och ambitionsnivå."
+  - step: 2
+    title: "Onboarding"
+    description: "CISO:n sätter sig in i verksamheten, befintligt säkerhetsarbete och nyckelrelationer."
+  - step: 3
+    title: "Löpande leverans"
+    description: "Strategisk rådgivning, riskhantering, incidentstöd och ledningsrapportering."
+  - step: 4
+    title: "Kunskapsöverföring"
+    description: "Vi bygger intern kapacitet och säkerställer att kunskapen stannar i organisationen."
+deliverables:
+  - "Informationssäkerhetsstrategi"
+  - "Regelbunden ledningsrapportering"
+  - "Riskbedömningar och incidentstöd"
+  - "Policyer och styrande dokument"
+  - "Kunskapsöverföring till intern personal"
+relatedServices:
+  - "nis2"
+  - "iso27001"
+  - "riskhantering"
+ctaText: "Diskutera CISO-as-a-Service"
+order: 3

@@ -1,0 +1,76 @@
+---
+interface Tab {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  tabs: Tab[];
+  class?: string;
+}
+
+const { tabs, class: className } = Astro.props;
+---
+
+<div class={className} data-tabs>
+  <!-- Tab buttons -->
+  <div class="flex gap-1 border-b border-border mb-8" role="tablist">
+    {tabs.map((tab, i) => (
+      <button
+        role="tab"
+        aria-selected={i === 0 ? 'true' : 'false'}
+        aria-controls={`panel-${tab.id}`}
+        id={`tab-${tab.id}`}
+        class:list={[
+          'px-5 py-3 text-sm font-medium transition-colors relative',
+          'text-gray hover:text-navy',
+          'after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-copper after:scale-x-0 after:transition-transform',
+          i === 0 && 'text-navy after:scale-x-100',
+        ]}
+        data-tab={tab.id}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </div>
+
+  <!-- Tab panels -->
+  <slot />
+</div>
+
+<script>
+  function initTabs() {
+    document.querySelectorAll('[data-tabs]').forEach((container) => {
+      const buttons = container.querySelectorAll('[data-tab]');
+      const panels = container.querySelectorAll('[data-panel]');
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const tabId = (btn as HTMLElement).dataset.tab;
+
+          buttons.forEach((b) => {
+            b.setAttribute('aria-selected', 'false');
+            b.classList.remove('text-navy', 'after:scale-x-100');
+            b.classList.add('text-gray');
+          });
+
+          btn.setAttribute('aria-selected', 'true');
+          btn.classList.add('text-navy', 'after:scale-x-100');
+          btn.classList.remove('text-gray');
+
+          panels.forEach((panel) => {
+            const panelEl = panel as HTMLElement;
+            if (panelEl.dataset.panel === tabId) {
+              panelEl.removeAttribute('hidden');
+            } else {
+              panelEl.setAttribute('hidden', '');
+            }
+          });
+        });
+      });
+    });
+  }
+
+  initTabs();
+  document.addEventListener('astro:after-swap', initTabs);
+</script>

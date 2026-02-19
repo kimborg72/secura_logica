@@ -1,0 +1,163 @@
+---
+import { mainNav } from '@data/navigation';
+import MegaMenu from './MegaMenu.astro';
+import MobileNav from './MobileNav.astro';
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  transition:persist
+>
+  <div class="container flex items-center justify-between h-20">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 relative z-50" aria-label="Verit - Startsida">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="4" fill="var(--color-navy)"/>
+        <path d="M16 6L8 10v6c0 5.5 3.4 10.6 8 12 4.6-1.4 8-6.5 8-12v-6l-8-4z" fill="var(--color-copper)" opacity="0.9"/>
+        <path d="M14.5 17.5l-2-2 1.4-1.4 0.6 0.6 3.6-3.6 1.4 1.4-5 5z" fill="#ffffff"/>
+      </svg>
+      <span class="text-xl font-semibold header-logo-text">Verit</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-8" aria-label="Huvudnavigation">
+      {mainNav.map((item) => (
+        item.children ? (
+          <div class="relative group">
+            <button
+              class="header-nav-link flex items-center gap-1 text-sm font-medium transition-colors"
+              aria-expanded="false"
+              aria-haspopup="true"
+              data-mega-trigger
+            >
+              {item.label}
+              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <MegaMenu services={item.children} featured={item.featured} />
+          </div>
+        ) : (
+          <a href={item.href} class="header-nav-link text-sm font-medium transition-colors">
+            {item.label}
+          </a>
+        )
+      ))}
+    </nav>
+
+    <!-- CTA + Mobile Toggle -->
+    <div class="flex items-center gap-4">
+      <a
+        href="/kontakt"
+        class="hidden lg:inline-flex items-center px-5 py-2.5 bg-copper text-white text-sm font-medium rounded-lg hover:bg-copper-dark transition-colors"
+      >
+        Kontakta oss
+      </a>
+      <button
+        class="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center"
+        aria-label="Öppna meny"
+        data-mobile-toggle
+      >
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <MobileNav />
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-20"></div>
+
+<style>
+  /* Default: transparent header for hero pages */
+  #site-header {
+    background: transparent;
+  }
+
+  #site-header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Nav link colors */
+  .header-nav-link {
+    color: var(--color-navy);
+  }
+
+  .header-logo-text {
+    color: var(--color-navy);
+  }
+
+  /* On dark hero backgrounds, start with white text */
+  :global([data-header-theme="dark"]) .header-nav-link,
+  :global([data-header-theme="dark"]) .header-logo-text {
+    color: #ffffff;
+  }
+
+  :global([data-header-theme="dark"]) #site-header.scrolled .header-nav-link,
+  :global([data-header-theme="dark"]) #site-header.scrolled .header-logo-text {
+    color: var(--color-navy);
+  }
+
+  /* Hamburger */
+  .hamburger-icon {
+    width: 24px;
+    height: 18px;
+    position: relative;
+  }
+
+  .hamburger-icon span {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .hamburger-icon span:nth-child(1) { top: 0; }
+  .hamburger-icon span:nth-child(2) { top: 8px; }
+  .hamburger-icon span:nth-child(3) { top: 16px; }
+
+  :global(.mobile-open) .hamburger-icon span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  :global(.mobile-open) .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+  }
+
+  :global(.mobile-open) .hamburger-icon span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+</style>
+
+<script>
+  function initHeader() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+
+    function onScroll() {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  initHeader();
+  document.addEventListener('astro:after-swap', initHeader);
+</script>

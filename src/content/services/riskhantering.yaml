@@ -1,0 +1,40 @@
+title: "Riskhantering & Informationsklassificering"
+shortTitle: "Riskhantering"
+slug: "riskhantering"
+metaTitle: "Riskhantering & Informationsklassificering | Verit"
+metaDescription: "Systematisk riskanalys och informationsklassificering anpassad efter er verksamhet."
+excerpt: "Systematisk riskanalys och informationsklassificering anpassad efter er verksamhet."
+introduction: |
+  Effektiv informationssäkerhet börjar med att förstå sina risker. Utan en systematisk riskhanteringsprocess fattas beslut i blindo — resurser fördelas fel och de verkliga hoten förblir oadresserade.
+
+  Vi hjälper er att etablera en riskhanteringsprocess som ger ledningen beslutsunderlag och organisationen en tydlig riktning för sitt säkerhetsarbete.
+benefits:
+  - title: "Riskbaserade beslut"
+    description: "Prioritera säkerhetsinsatser baserat på faktisk riskexponering, inte magkänsla."
+  - title: "Regulatorisk efterlevnad"
+    description: "Riskhantering är en grundpelare i NIS2, ISO 27001 och GDPR."
+  - title: "Resursoptimering"
+    description: "Investera i säkerhetsåtgärder där de gör störst nytta."
+process:
+  - step: 1
+    title: "Riskidentifiering"
+    description: "Vi identifierar hot, sårbarheter och informationstillgångar genom workshops och intervjuer."
+  - step: 2
+    title: "Riskanalys & bedömning"
+    description: "Systematisk värdering av sannolikhet och konsekvens enligt vedertagen metodik."
+  - step: 3
+    title: "Riskbehandling"
+    description: "Vi tar fram åtgärdsförslag med tydliga ansvar, tidsramar och uppföljningspunkter."
+  - step: 4
+    title: "Löpande uppföljning"
+    description: "Implementering i SecuraPilot för kontinuerlig riskmonitorering och rapportering."
+deliverables:
+  - "Riskanalysrapport"
+  - "Riskregister med behandlingsplan"
+  - "Informationsklassificeringsmodell"
+  - "Klassificeringsguide för medarbetare"
+relatedServices:
+  - "nis2"
+  - "iso27001"
+  - "ciso-as-a-service"
+order: 4

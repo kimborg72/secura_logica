@@ -1,0 +1,59 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import Badge from '@components/ui/Badge.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import { getCollection } from 'astro:content';
+
+const insights = (await getCollection('insights'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('sv-SE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<PageLayout title="Insikter" description="Artiklar och analyser om cybersäkerhet, compliance och informationssäkerhet.">
+  <HeroSimple
+    title="Insikter"
+    description="Artiklar, analyser och praktiska råd inom cybersäkerhet, compliance och informationssäkerhet."
+    breadcrumbs={[{ label: 'Insikter' }]}
+  />
+
+  <section class="section">
+    <div class="container">
+      {insights.length > 0 ? (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {insights.map((post, i) => (
+            <article class="group" data-reveal data-delay={String((i % 3) + 1)}>
+              <a href={`/insikter/${post.id}`} class="block">
+                <div class="aspect-[16/10] rounded-xl bg-surface mb-5 overflow-hidden">
+                  <div class="w-full h-full bg-gradient-to-br from-navy/5 to-copper/5 group-hover:scale-105 transition-transform duration-500"></div>
+                </div>
+                <div class="flex items-center gap-3 mb-3">
+                  <Badge text={post.data.category} variant="copper" />
+                  <time class="text-xs text-gray" datetime={post.data.date.toISOString()}>
+                    {formatDate(post.data.date)}
+                  </time>
+                </div>
+                <h3 class="text-lg font-semibold text-navy group-hover:text-copper transition-colors mb-2">
+                  {post.data.title}
+                </h3>
+                <p class="text-sm text-gray leading-relaxed">{post.data.description}</p>
+              </a>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="text-center text-gray">Inga insikter publicerade ännu.</p>
+      )}
+    </div>
+  </section>
+
+  <CTABanner />
+</PageLayout>

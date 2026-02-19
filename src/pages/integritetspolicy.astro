@@ -1,0 +1,55 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+---
+
+<PageLayout title="Integritetspolicy" description="Verits integritetspolicy — hur vi hanterar dina personuppgifter.">
+  <HeroSimple
+    title="Integritetspolicy"
+    breadcrumbs={[{ label: 'Integritetspolicy' }]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="max-w-3xl prose prose-lg">
+        <h2>1. Personuppgiftsansvarig</h2>
+        <p>
+          Verit AB (org.nr: XXX XXX-XXXX) är personuppgiftsansvarig för behandlingen av
+          dina personuppgifter på denna webbplats.
+        </p>
+
+        <h2>2. Vilka personuppgifter samlar vi in?</h2>
+        <p>Vi kan komma att behandla följande personuppgifter:</p>
+        <ul>
+          <li>Namn, e-postadress, telefonnummer och organisation som du anger i kontaktformulär</li>
+          <li>Teknisk data som IP-adress och webbläsarinformation via cookies</li>
+        </ul>
+
+        <h2>3. Ändamål och rättslig grund</h2>
+        <p>
+          Vi behandlar dina personuppgifter för att besvara förfrågningar och administrera
+          kundrelationer. Den rättsliga grunden är berättigat intresse och, där tillämpligt,
+          ditt samtycke.
+        </p>
+
+        <h2>4. Lagringstid</h2>
+        <p>
+          Personuppgifter lagras så länge det är nödvändigt för ändamålet med behandlingen,
+          eller så länge vi har en rättslig skyldighet att göra det.
+        </p>
+
+        <h2>5. Dina rättigheter</h2>
+        <p>
+          Du har rätt att begära tillgång till, rättelse av och radering av dina personuppgifter.
+          Du har också rätt att invända mot behandlingen och begära dataportabilitet.
+        </p>
+
+        <h2>6. Kontakt</h2>
+        <p>
+          Har du frågor om vår hantering av personuppgifter? Kontakta oss på
+          <a href="mailto:gdpr@verit.se">gdpr@verit.se</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,35 @@
+---
+import { cn } from '@utils/cn';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'white';
+  href?: string;
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  [key: string]: any;
+}
+
+const { variant = 'primary', href, size = 'md', class: className, ...rest } = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200';
+
+const variants = {
+  primary: 'bg-copper text-white hover:bg-copper-dark active:bg-copper-dark',
+  secondary: 'border-2 border-navy text-navy hover:bg-navy hover:text-white',
+  ghost: 'text-copper hover:text-copper-dark underline underline-offset-4 decoration-copper/30 hover:decoration-copper',
+  white: 'bg-white text-navy hover:bg-white/90',
+};
+
+const sizes = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-sm',
+  lg: 'px-8 py-4 text-base',
+};
+
+const classes = cn(baseClasses, variants[variant], sizes[size], className);
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag href={href} class={classes} {...rest}>
+  <slot />
+</Tag>

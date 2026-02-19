@@ -1,0 +1,17 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Button from '@components/ui/Button.astro';
+---
+
+<PageLayout title="Sidan hittades inte">
+  <section class="section">
+    <div class="container text-center">
+      <p class="text-8xl font-bold text-copper/20 mb-4">404</p>
+      <h1 class="mb-4">Sidan hittades inte</h1>
+      <p class="lead max-w-lg mx-auto mb-8">
+        Sidan du letar efter finns inte eller har flyttats.
+      </p>
+      <Button href="/" variant="primary">Tillbaka till startsidan</Button>
+    </div>
+  </section>
+</PageLayout>
