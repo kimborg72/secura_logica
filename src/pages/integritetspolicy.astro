@@ -2,6 +2,8 @@
 import PageLayout from '@layouts/PageLayout.astro';
 import HeroSimple from '@components/sections/HeroSimple.astro';
 
+const locale = 'sv';
+
 const sections = [
   { id: 'ansvarig', label: 'Personuppgiftsansvarig' },
   { id: 'roller', label: 'Roller' },
@@ -17,11 +19,12 @@ const sections = [
 ];
 ---
 
-<PageLayout title="Integritetspolicy" description="VER&IT:s integritetspolicy — hur vi hanterar dina personuppgifter i enlighet med GDPR.">
+<PageLayout title="Integritetspolicy" description="VER&IT:s integritetspolicy — hur vi hanterar dina personuppgifter i enlighet med GDPR." locale={locale}>
   <HeroSimple
     title="Integritetspolicy"
     description="Senast uppdaterad: 19 februari 2026"
     breadcrumbs={[{ label: 'Integritetspolicy' }]}
+    locale={locale}
   />
 
   <section class="section">

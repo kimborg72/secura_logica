@@ -1,21 +1,30 @@
 ---
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'sv' } = Astro.props;
+
 const values = [
   {
-    overline: 'Rådgivning',
-    title: 'Specialistkompetens',
-    description: 'Erfarna konsulter inom informationssäkerhet, compliance och riskhantering. Vi guidar er från gap-analys till full implementering.',
+    overline: t(locale, 'value.item1.overline'),
+    title: t(locale, 'value.item1.title'),
+    description: t(locale, 'value.item1.description'),
     icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
   },
   {
-    overline: 'Plattform',
-    title: 'Securapilot',
-    description: 'Vår SaaS-plattform gör compliance körbart. Automatiserad uppföljning, dokumenthantering och realtids-dashboards.',
+    overline: t(locale, 'value.item2.overline'),
+    title: t(locale, 'value.item2.title'),
+    description: t(locale, 'value.item2.description'),
     icon: 'M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25',
   },
   {
-    overline: 'Kombinationen',
-    title: 'Rådgivning + Verktyg',
-    description: 'Unik kombination av hands-on konsulting och egen teknikplattform. Ni får inte bara en plan — ni får verktyget att genomföra den.',
+    overline: t(locale, 'value.item3.overline'),
+    title: t(locale, 'value.item3.title'),
+    description: t(locale, 'value.item3.description'),
     icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
   },
 ];
@@ -24,11 +33,10 @@ const values = [
 <section class="section bg-surface">
   <div class="container">
     <div class="text-center max-w-2xl mx-auto mb-16" data-reveal>
-      <p class="overline mb-3">Varför Verit</p>
-      <h2>Kompetens som gör skillnad</h2>
+      <p class="overline mb-3">{t(locale, 'value.overline')}</p>
+      <h2>{t(locale, 'value.title')}</h2>
       <p class="lead mt-4">
-        Vi kombinerar djup specialistkunskap med en egen teknikplattform —
-        för compliance som faktiskt fungerar i praktiken.
+        {t(locale, 'value.description')}
       </p>
     </div>
 

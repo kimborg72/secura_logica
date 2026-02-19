@@ -5,14 +5,20 @@ import Badge from '@components/ui/Badge.astro';
 import AuthorCard from '@components/ui/AuthorCard.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import JsonLd from '@components/seo/JsonLd.astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import { site, organizationSchema } from '@data/site';
 import { getReadingTime, formatReadingTime } from '@utils/reading-time';
+import { getInsightsByLocale } from '@i18n/content';
+import { getInsightPath, getInsightsPath } from '@i18n/routes';
+import { formatDate, t } from '@i18n/index';
+import { getTeamByLocale } from '@i18n/content';
+
+const locale = 'sv';
 
 export async function getStaticPaths() {
-  const insights = await getCollection('insights');
+  const insights = await getInsightsByLocale('sv');
   return insights.map((post) => ({
-    params: { slug: post.id },
+    params: { slug: post.id.replace('sv/', '') },
     props: { post },
   }));
 }
@@ -20,25 +26,16 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString('sv-SE', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
 const readingMinutes = getReadingTime(post.body || '');
-const readingTimeText = formatReadingTime(readingMinutes);
+const readingTimeText = formatReadingTime(readingMinutes, locale);
 
 // Author data from team collection
-const team = await getCollection('team');
+const team = await getTeamByLocale(locale);
 const authorData = team.find((member) => member.data.name === post.data.author);
 
 // Related articles (exclude current, max 2)
-const allInsights = (await getCollection('insights'))
-  .filter((p) => !p.data.draft && p.id !== post.id)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const allInsights = (await getInsightsByLocale(locale))
+  .filter((p) => p.id !== post.id)
   .slice(0, 2);
 
 const wordCount = (post.body || '').trim().split(/\s+/).length;
@@ -61,11 +58,11 @@ const articleSchema = {
     url: organizationSchema.url,
     logo: { '@type': 'ImageObject', url: organizationSchema.logo },
   },
-  url: `${site.url}/insikter/${post.id}`,
+  url: `${site.url}${getInsightPath(locale, post.id.replace(`${locale}/`, ''))}`,
 };
 ---
 
-<PageLayout title={post.data.title} description={post.data.description}>
+<PageLayout title={post.data.title} description={post.data.description} locale={locale}>
   <JsonLd schema={articleSchema} />
 
   <!-- Reading progress bar -->
@@ -79,9 +76,10 @@ const articleSchema = {
   <HeroSimple
     title={post.data.title}
     breadcrumbs={[
-      { label: 'Insikter', href: '/insikter' },
+      { label: t(locale, 'insights.overline'), href: getInsightsPath(locale) },
       { label: post.data.title },
     ]}
+    locale={locale}
   />
 
   <article class="section" id="article-content">
@@ -90,11 +88,11 @@ const articleSchema = {
         <!-- Metadata -->
         <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-10" data-reveal>
           <Badge text={post.data.category} variant="copper" />
-          <span class="text-gray-light text-sm">·</span>
+          <span class="text-gray-light text-sm">&middot;</span>
           <time class="text-sm text-gray" datetime={post.data.date.toISOString()}>
-            {formatDate(post.data.date)}
+            {formatDate(post.data.date, locale)}
           </time>
-          <span class="text-gray-light text-sm">·</span>
+          <span class="text-gray-light text-sm">&middot;</span>
           <span class="text-sm text-gray">{readingTimeText}</span>
         </div>
 
@@ -106,12 +104,13 @@ const articleSchema = {
         <!-- Author -->
         {authorData && (
           <div class="border-t border-border mt-12 pt-8" data-reveal>
-            <p class="overline mb-4">Författare</p>
+            <p class="overline mb-4">{t(locale, 'insightDetail.author')}</p>
             <AuthorCard
               name={authorData.data.name}
               role={authorData.data.role}
               bio={authorData.data.bio}
               linkedin={authorData.data.linkedin}
+              locale={locale}
             />
           </div>
         )}
@@ -125,14 +124,14 @@ const articleSchema = {
           <div class="grid sm:grid-cols-2 gap-8">
             {allInsights.map((item) => (
               <article class="group">
-                <a href={`/insikter/${item.id}`} class="block">
+                <a href={getInsightPath(locale, item.id.replace(`${locale}/`, ''))} class="block">
                   <div class="aspect-[16/10] rounded-xl bg-surface mb-4 overflow-hidden">
                     <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
                   </div>
                   <div class="flex items-center gap-3 mb-2">
                     <Badge text={item.data.category} variant="copper" />
                     <time class="text-xs text-gray" datetime={item.data.date.toISOString()}>
-                      {formatDate(item.data.date)}
+                      {formatDate(item.data.date, locale)}
                     </time>
                   </div>
                   <h3 class="text-lg font-semibold text-navy group-hover:text-accent-dark transition-colors mb-1">
@@ -148,7 +147,7 @@ const articleSchema = {
     </div>
   </article>
 
-  <CTABanner />
+  <CTABanner locale={locale} />
 </PageLayout>
 
 <style is:global>

@@ -1,9 +1,18 @@
 ---
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'sv' } = Astro.props;
+
 const badges = [
   { name: 'ISO 27001', label: 'ISO/IEC 27001' },
   { name: 'NIS2', label: 'NIS2 Compliant' },
   { name: 'GDPR', label: 'GDPR' },
-  { name: 'MSB', label: 'MSB-ramverk' },
+  { name: 'MSB', label: t(locale, 'badges.msb') },
   { name: 'NIST', label: 'NIST CSF' },
 ];
 ---

@@ -1,12 +1,21 @@
 ---
 import Button from '@components/ui/Button.astro';
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+import { getSecurapilotPath, getContactPath } from '@i18n/routes';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'sv' } = Astro.props;
 
 const features = [
-  'Realtids-dashboard för compliance-status',
-  'Automatiserad gap-analys mot NIS2 och ISO 27001',
-  'Dokumenthantering och policykontroll',
-  'Incidentrapportering och uppföljning',
-  'Rollbaserad åtkomst och audit trail',
+  t(locale, 'pilot.feature1'),
+  t(locale, 'pilot.feature2'),
+  t(locale, 'pilot.feature3'),
+  t(locale, 'pilot.feature4'),
+  t(locale, 'pilot.feature5'),
 ];
 ---
 
@@ -27,7 +36,7 @@ const features = [
             <!-- Compliance score -->
             <div class="bg-white/5 rounded-lg p-4">
               <div class="flex justify-between items-center mb-2">
-                <span class="text-sm text-white/60">Compliance Score</span>
+                <span class="text-sm text-white/60">{t(locale, 'pilot.dashboard.score')}</span>
                 <span class="text-2xl font-bold text-accent">78%</span>
               </div>
               <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
@@ -38,32 +47,32 @@ const features = [
             <div class="grid grid-cols-3 gap-3">
               <div class="bg-white/5 rounded-lg p-3 text-center">
                 <p class="text-lg font-bold text-teal-light">24</p>
-                <p class="text-xs text-white/60">Kontroller OK</p>
+                <p class="text-xs text-white/60">{t(locale, 'pilot.dashboard.controlsOk')}</p>
               </div>
               <div class="bg-white/5 rounded-lg p-3 text-center">
                 <p class="text-lg font-bold text-accent">8</p>
-                <p class="text-xs text-white/60">Pågående</p>
+                <p class="text-xs text-white/60">{t(locale, 'pilot.dashboard.inProgress')}</p>
               </div>
               <div class="bg-white/5 rounded-lg p-3 text-center">
                 <p class="text-lg font-bold text-white/80">3</p>
-                <p class="text-xs text-white/60">Att åtgärda</p>
+                <p class="text-xs text-white/60">{t(locale, 'pilot.dashboard.toFix')}</p>
               </div>
             </div>
             <!-- Activity -->
             <div class="bg-white/5 rounded-lg p-4">
-              <p class="text-xs text-white/60 mb-2">Senaste aktivitet</p>
+              <p class="text-xs text-white/60 mb-2">{t(locale, 'pilot.dashboard.activity')}</p>
               <div class="space-y-2 text-xs">
                 <div class="flex justify-between text-white/60">
-                  <span>Riskanalys uppdaterad</span>
-                  <span class="text-white/60">2 tim sedan</span>
+                  <span>{t(locale, 'pilot.dashboard.activity1')}</span>
+                  <span class="text-white/60">{t(locale, 'pilot.dashboard.activity1Time')}</span>
                 </div>
                 <div class="flex justify-between text-white/60">
-                  <span>Policy godkänd: Åtkomstkontroll</span>
-                  <span class="text-white/60">5 tim sedan</span>
+                  <span>{t(locale, 'pilot.dashboard.activity2')}</span>
+                  <span class="text-white/60">{t(locale, 'pilot.dashboard.activity2Time')}</span>
                 </div>
                 <div class="flex justify-between text-white/60">
-                  <span>NIS2 gap-analys slutförd</span>
-                  <span class="text-white/60">Igår</span>
+                  <span>{t(locale, 'pilot.dashboard.activity3')}</span>
+                  <span class="text-white/60">{t(locale, 'pilot.dashboard.activity3Time')}</span>
                 </div>
               </div>
             </div>
@@ -75,11 +84,10 @@ const features = [
 
       <!-- Content -->
       <div data-reveal="right">
-        <p class="overline mb-3">Securapilot</p>
-        <h2 class="mb-6">Compliance som faktiskt fungerar</h2>
+        <p class="overline mb-3">{t(locale, 'pilot.overline')}</p>
+        <h2 class="mb-6">{t(locale, 'pilot.title')}</h2>
         <p class="lead mb-8">
-          Securapilot gör ert informationssäkerhetsarbete körbart. Sluta jaga dokument i mappar
-          — få realtidsöverblick över compliance-status, risker och åtgärder.
+          {t(locale, 'pilot.description')}
         </p>
         <ul class="space-y-3 mb-10">
           {features.map((feature) => (
@@ -92,11 +100,11 @@ const features = [
           ))}
         </ul>
         <div class="flex flex-wrap gap-4">
-          <Button href="/securapilot" variant="primary">
-            Upptäck Securapilot
+          <Button href={getSecurapilotPath(locale)} variant="primary">
+            {t(locale, 'pilot.cta')}
           </Button>
-          <Button href="/kontakt" variant="ghost">
-            Boka en demo
+          <Button href={getContactPath(locale)} variant="ghost">
+            {t(locale, 'pilot.demo')}
           </Button>
         </div>
       </div>

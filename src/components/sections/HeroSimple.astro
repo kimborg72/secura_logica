@@ -1,18 +1,20 @@
 ---
 import Breadcrumb from '@components/ui/Breadcrumb.astro';
+import type { Locale } from '@i18n/types';
 
 interface Props {
   title: string;
   description?: string;
   breadcrumbs?: Array<{ label: string; href?: string }>;
+  locale?: Locale;
 }
 
-const { title, description, breadcrumbs } = Astro.props;
+const { title, description, breadcrumbs, locale = 'sv' } = Astro.props;
 ---
 
 <section class="bg-surface -mt-20 pt-32 pb-16">
   <div class="container">
-    {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
+    {breadcrumbs && <Breadcrumb items={breadcrumbs} locale={locale} />}
     <div class="max-w-3xl mt-6" data-reveal>
       <h1>{title}</h1>
       {description && <p class="lead mt-4">{description}</p>}

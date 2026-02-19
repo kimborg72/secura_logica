@@ -1,13 +1,31 @@
+import type { Locale } from '@i18n/types';
+
 export const site = {
   name: 'Verit',
-  tagline: 'Cybersäkerhet & Compliance',
   url: 'https://verit.se',
-  locale: 'sv_SE',
-  language: 'sv',
   defaultOgImage: '/og-default.jpg',
-  defaultDescription:
-    'VER&IT hjälper samhällsviktiga verksamheter med cybersäkerhet, compliance och informationssäkerhet. NIS2, ISO 27001, CISO-as-a-Service och vår GRC-plattform Securapilot.',
 } as const;
+
+const siteLocalized: Record<Locale, { tagline: string; locale: string; language: string; defaultDescription: string }> = {
+  sv: {
+    tagline: 'Cybersäkerhet & Compliance',
+    locale: 'sv_SE',
+    language: 'sv',
+    defaultDescription:
+      'VER&IT hjälper samhällsviktiga verksamheter med cybersäkerhet, compliance och informationssäkerhet. NIS2, ISO 27001, CISO-as-a-Service och vår GRC-plattform Securapilot.',
+  },
+  en: {
+    tagline: 'Cybersecurity & Compliance',
+    locale: 'en_US',
+    language: 'en',
+    defaultDescription:
+      'VER&IT helps critical infrastructure organisations with cybersecurity, compliance and information security. NIS2, ISO 27001, CISO-as-a-Service and our GRC platform Securapilot.',
+  },
+};
+
+export function getSiteData(locale: Locale) {
+  return { ...site, ...siteLocalized[locale] };
+}
 
 export const organizationSchema = {
   '@context': 'https://schema.org',
@@ -15,7 +33,7 @@ export const organizationSchema = {
   name: site.name,
   url: site.url,
   logo: `${site.url}/favicon.svg`,
-  description: site.defaultDescription,
+  description: siteLocalized.sv.defaultDescription,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Nygatan 71',

@@ -1,0 +1,120 @@
+title: "Risk Management & Information Classification"
+shortTitle: "Risk Management"
+slug: "risk-management"
+metaTitle: "Risk Management & Information Classification | Verit"
+metaDescription: "Systematic risk analysis and information classification tailored to your business. Foundation for NIS2 and ISO 27001."
+excerpt: "Systematic risk analysis and information classification tailored to your business."
+introLead: >
+  Effective information security starts with understanding your risks. Without
+  systematic risk management, decisions are made blindly — resources are misallocated
+  and the real threats remain unaddressed.
+introduction: |
+  Risk management is the foundation of all information security work. It is through risk assessments that you identify which threats are relevant to your specific business, evaluate likelihood and impact, and make well-informed decisions about which measures are needed.
+
+  Information classification complements risk management by giving you a clear picture of which information is most worthy of protection. When you know what is critical, you can direct resources appropriately and avoid applying equal protection to everything.
+
+  We help you establish a risk management process that provides management with decision-support material and gives the organisation a clear direction for its security efforts. Our risk assessments are not academic exercises — they result in concrete measures with clear responsibilities and timelines.
+targetAudience:
+  heading: "Do you need systematic risk management?"
+  description: >
+    Risk management is a requirement under NIS2, ISO 27001, and GDPR — but
+    above all it is a tool for making better decisions
+    about where to invest in security.
+  segments:
+    - "Organisations implementing NIS2"
+    - "Companies on the path to ISO 27001"
+    - "Businesses with high information sensitivity"
+    - "Organisations that have experienced incidents"
+    - "Public sector organisations"
+    - "Companies looking to prioritise security investments"
+benefits:
+  - title: "Risk-based decisions"
+    description: >
+      Prioritise security efforts based on actual risk exposure,
+      not gut feeling. You receive clear decision-support material showing
+      where the risks lie, how severe they are, and which measures
+      deliver the greatest impact.
+  - title: "Regulatory compliance"
+    description: >
+      Risk management is a cornerstone of NIS2, ISO 27001, and GDPR.
+      Our methodology meets the requirements of all three frameworks
+      and produces documentation that holds up under audit and supervision.
+  - title: "Resource optimisation"
+    description: >
+      Invest in security measures where they deliver the greatest value.
+      Through systematic risk assessment you avoid
+      over-dimensioning protection in the wrong places and under-dimensioning
+      it where it is truly needed.
+process:
+  - step: 1
+    title: "Risk identification"
+    description: >
+      We identify threats, vulnerabilities, and information assets
+      through workshops and interviews with key personnel
+      from the business and IT.
+    duration: "1–2 weeks"
+  - step: 2
+    title: "Risk analysis & assessment"
+    description: >
+      Systematic evaluation of likelihood and impact using
+      established methodology. We assess each risk and present
+      the results in a risk matrix.
+    duration: "1–2 weeks"
+  - step: 3
+    title: "Risk treatment"
+    description: >
+      We develop recommended measures with clear responsibilities, timelines,
+      and follow-up points. Each risk receives a treatment plan
+      that you can start acting on immediately.
+    duration: "1 week"
+  - step: 4
+    title: "Ongoing monitoring"
+    description: >
+      Implementation in Securapilot for continuous risk monitoring
+      and reporting. Risks are re-evaluated regularly and
+      treatment plans are followed up automatically.
+    duration: "Ongoing"
+deliverables:
+  - "Risk analysis report with assessed risks and risk matrix"
+  - "Risk register with treatment plan"
+  - "Information classification model"
+  - "Classification guide for employees"
+  - "Management presentation with risk landscape and recommendations"
+faq:
+  - question: "What methodology do you use for risk analysis?"
+    answer: >
+      We use a methodology based on ISO 27005 and ISO 31000,
+      adapted for information security. The methodology is sufficiently
+      rigorous to meet regulatory requirements yet sufficiently
+      pragmatic to deliver practical results.
+  - question: "How often should a risk analysis be updated?"
+    answer: >
+      The risk analysis should be reassessed at least annually, but also
+      in response to significant changes in the business, IT environment, or
+      threat landscape. With Securapilot you can make ongoing
+      updates instead of large point-in-time efforts.
+  - question: "What is information classification?"
+    answer: >
+      Information classification means categorising your
+      information according to how sensitive it is. Common levels
+      are public, internal, confidential, and strictly confidential.
+      The classification determines which protective measures are required
+      for each information type.
+securapilotConnection:
+  heading: "Living risk management with Securapilot"
+  description: >
+    Securapilot turns your risk register into a living tool
+    instead of a dusty document. Risks, measures, and
+    follow-up — all updated in real time.
+  features:
+    - "Digital risk register with automated follow-up"
+    - "Risk matrix and heat map for visual overview"
+    - "Treatment plans with responsibilities and deadlines"
+    - "Automated reminders for reassessment"
+relatedServices:
+  - "nis2"
+  - "iso27001"
+  - "ciso-as-a-service"
+ctaText: "Book a risk management review"
+ctaDescription: "We discuss your challenges and propose an approach that fits your needs."
+order: 4

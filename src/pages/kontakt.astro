@@ -6,6 +6,8 @@ import { offices } from '@data/offices';
 import { site, organizationSchema } from '@data/site';
 import Button from '@components/ui/Button.astro';
 
+const locale = 'sv';
+
 const localBusinessSchemas = offices.map((office) => ({
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -28,7 +30,7 @@ const localBusinessSchemas = offices.map((office) => ({
 }));
 ---
 
-<PageLayout title="Kontakt" description="Kontakta Verit för en kostnadsfri genomgång av er cybersäkerhet och compliance.">
+<PageLayout title="Kontakt" description="Kontakta Verit för en kostnadsfri genomgång av er cybersäkerhet och compliance." locale={locale}>
   {localBusinessSchemas.map((schema) => (
     <JsonLd schema={schema} />
   ))}
@@ -37,6 +39,7 @@ const localBusinessSchemas = offices.map((office) => ({
     title="Kontakta oss"
     description="Vi berättar gärna mer om hur vi kan hjälpa er organisation. Boka ett kostnadsfritt möte eller hör av er direkt."
     breadcrumbs={[{ label: 'Kontakt' }]}
+    locale={locale}
   />
 
   <section class="section">
@@ -47,7 +50,9 @@ const localBusinessSchemas = offices.map((office) => ({
           <h2 class="mb-2" id="kontaktformular">Skicka ett meddelande</h2>
           <p class="text-gray mb-8">Fyll i formuläret så återkommer vi inom 24 timmar.</p>
 
-          <form id="contact-form" class="space-y-5" action="/api/contact" method="POST">
+          <form id="contact-form" class="space-y-5" action="/api/contact" method="POST" novalidate>
+            <!-- Locale -->
+            <input type="hidden" name="locale" value="sv" />
             <!-- Honeypot -->
             <div class="hidden" aria-hidden="true">
               <label for="website">Lämna detta fält tomt</label>
@@ -56,38 +61,48 @@ const localBusinessSchemas = offices.map((office) => ({
 
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
-                <label for="name" class="block text-sm font-medium text-navy mb-1.5">Namn</label>
+                <label for="name" class="block text-sm font-medium text-navy mb-1.5">Namn <span class="text-red-500">*</span></label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
-                  class="w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
+                  autocomplete="name"
+                  class="field-input w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
                   placeholder="Ditt namn"
+                  aria-describedby="name-error"
                 />
+                <p id="name-error" class="field-error hidden mt-1.5 text-sm text-red-600" role="alert"></p>
               </div>
               <div>
-                <label for="company" class="block text-sm font-medium text-navy mb-1.5">Organisation</label>
+                <label for="company" class="block text-sm font-medium text-navy mb-1.5">Organisation <span class="text-red-500">*</span></label>
                 <input
                   type="text"
                   id="company"
                   name="company"
-                  class="w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
+                  required
+                  autocomplete="organization"
+                  class="field-input w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
                   placeholder="Er organisation"
+                  aria-describedby="company-error"
                 />
+                <p id="company-error" class="field-error hidden mt-1.5 text-sm text-red-600" role="alert"></p>
               </div>
             </div>
 
             <div>
-              <label for="email" class="block text-sm font-medium text-navy mb-1.5">E-post</label>
+              <label for="email" class="block text-sm font-medium text-navy mb-1.5">E-post <span class="text-red-500">*</span></label>
               <input
                 type="email"
                 id="email"
                 name="email"
                 required
-                class="w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
+                autocomplete="email"
+                class="field-input w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
                 placeholder="namn@organisation.se"
+                aria-describedby="email-error"
               />
+              <p id="email-error" class="field-error hidden mt-1.5 text-sm text-red-600" role="alert"></p>
             </div>
 
             <div>
@@ -96,19 +111,24 @@ const localBusinessSchemas = offices.map((office) => ({
                 type="tel"
                 id="phone"
                 name="phone"
-                class="w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
+                autocomplete="tel"
+                class="field-input w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
                 placeholder="+46 70 000 00 00"
+                aria-describedby="phone-error"
               />
+              <p id="phone-error" class="field-error hidden mt-1.5 text-sm text-red-600" role="alert"></p>
             </div>
 
             <div>
-              <label for="service" class="block text-sm font-medium text-navy mb-1.5">Intresseområde</label>
+              <label for="service" class="block text-sm font-medium text-navy mb-1.5">Intresseområde <span class="text-red-500">*</span></label>
               <select
                 id="service"
                 name="service"
-                class="w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
+                required
+                class="field-input w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors"
+                aria-describedby="service-error"
               >
-                <option value="">Välj område (valfritt)</option>
+                <option value="">Välj område</option>
                 <option value="nis2">NIS2 / Cybersäkerhetslagen</option>
                 <option value="iso27001">ISO 27001 / LIS</option>
                 <option value="ciso">CISO-as-a-Service</option>
@@ -118,6 +138,7 @@ const localBusinessSchemas = offices.map((office) => ({
                 <option value="securapilot">Securapilot</option>
                 <option value="annat">Annat</option>
               </select>
+              <p id="service-error" class="field-error hidden mt-1.5 text-sm text-red-600" role="alert"></p>
             </div>
 
             <div>
@@ -126,23 +147,27 @@ const localBusinessSchemas = offices.map((office) => ({
                 id="message"
                 name="message"
                 rows="4"
-                class="w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors resize-y"
+                class="field-input w-full px-4 py-3 rounded-lg border border-border bg-white text-slate focus:border-accent-dark focus:ring-2 focus:ring-accent-dark/20 transition-colors resize-y"
                 placeholder="Berätta kort om er situation och hur vi kan hjälpa..."
               ></textarea>
             </div>
 
-            <div class="flex items-start gap-3">
-              <input
-                type="checkbox"
-                id="gdpr"
-                name="gdpr"
-                required
-                class="mt-1 h-4 w-4 rounded border-border text-accent-dark focus:ring-accent-dark/20"
-              />
-              <label for="gdpr" class="text-sm text-gray leading-relaxed">
-                Jag samtycker till att Verit behandlar mina personuppgifter enligt
-                <a href="/integritetspolicy" class="text-accent-dark hover:underline">integritetspolicyn</a>.
-              </label>
+            <div>
+              <div class="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="gdpr"
+                  name="gdpr"
+                  required
+                  class="mt-1 h-4 w-4 rounded border-border text-accent-dark focus:ring-accent-dark/20"
+                  aria-describedby="gdpr-error"
+                />
+                <label for="gdpr" class="text-sm text-gray leading-relaxed">
+                  Jag samtycker till att Verit behandlar mina personuppgifter enligt
+                  <a href="/integritetspolicy" class="text-accent-dark hover:underline">integritetspolicyn</a>. <span class="text-red-500">*</span>
+                </label>
+              </div>
+              <p id="gdpr-error" class="field-error hidden mt-1.5 text-sm text-red-600" role="alert"></p>
             </div>
 
             <Button variant="primary" size="lg">
@@ -224,10 +249,145 @@ const localBusinessSchemas = offices.map((office) => ({
     const successEl = document.getElementById('form-success');
     const errorEl = document.getElementById('form-error');
 
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const PHONE_RE = /^[\d\s\-+().]{7,20}$/;
+    const VALID_SERVICES = ['nis2','iso27001','ciso','riskhantering','utbildning','gdpr','securapilot','annat'];
+
+    // Track which fields have been touched (blurred at least once)
+    const touched = new Set<string>();
+    // Track which fields currently have errors (for "reward early" pattern)
+    const hasError = new Set<string>();
+
+    type Rule = { check: () => boolean; message: string };
+    const rules: Record<string, Rule[]> = {
+      name: [
+        { check: () => val('name').length >= 2, message: 'Ange ditt namn (minst 2 tecken).' },
+      ],
+      company: [
+        { check: () => val('company').length >= 2, message: 'Ange organisationens namn.' },
+      ],
+      email: [
+        { check: () => val('email').length > 0, message: 'Ange din e-postadress.' },
+        { check: () => EMAIL_RE.test(val('email')), message: 'Ange en giltig e-postadress, t.ex. namn@företag.se' },
+      ],
+      phone: [
+        { check: () => val('phone').length === 0 || PHONE_RE.test(val('phone')), message: 'Ange ett giltigt telefonnummer, t.ex. +46 70 123 45 67' },
+      ],
+      service: [
+        { check: () => VALID_SERVICES.includes(val('service')), message: 'Välj ett intresseområde.' },
+      ],
+      gdpr: [
+        { check: () => (form.querySelector('#gdpr') as HTMLInputElement).checked, message: 'Du behöver godkänna behandlingen av personuppgifter.' },
+      ],
+    };
+
+    function val(name: string): string {
+      const el = form!.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | null;
+      return el?.value.trim() ?? '';
+    }
+
+    function showError(fieldName: string, message: string) {
+      const errorEl = document.getElementById(`${fieldName}-error`);
+      const input = form!.elements.namedItem(fieldName) as HTMLElement | null;
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+      }
+      if (input) {
+        input.classList.remove('border-border', 'focus:border-accent-dark', 'focus:ring-accent-dark/20');
+        input.classList.add('border-red-400', 'focus:border-red-500', 'focus:ring-red-200/40');
+      }
+      hasError.add(fieldName);
+    }
+
+    function clearError(fieldName: string) {
+      const errorEl = document.getElementById(`${fieldName}-error`);
+      const input = form!.elements.namedItem(fieldName) as HTMLElement | null;
+      if (errorEl) {
+        errorEl.textContent = '';
+        errorEl.classList.add('hidden');
+      }
+      if (input) {
+        input.classList.remove('border-red-400', 'focus:border-red-500', 'focus:ring-red-200/40');
+        input.classList.add('border-border', 'focus:border-accent-dark', 'focus:ring-accent-dark/20');
+      }
+      hasError.delete(fieldName);
+    }
+
+    function validateField(fieldName: string): boolean {
+      const fieldRules = rules[fieldName];
+      if (!fieldRules) return true;
+
+      for (const rule of fieldRules) {
+        if (!rule.check()) {
+          showError(fieldName, rule.message);
+          return false;
+        }
+      }
+      clearError(fieldName);
+      return true;
+    }
+
+    // Blur: validate only if field has content or was previously in error
+    // (don't punish empty required fields until submit)
+    function onBlur(e: Event) {
+      const target = e.target as HTMLInputElement | HTMLSelectElement;
+      const name = target.name;
+      if (!rules[name]) return;
+      touched.add(name);
+
+      const isEmpty = target.type === 'checkbox'
+        ? !(target as HTMLInputElement).checked
+        : target.value.trim() === '';
+
+      // Only validate on blur if field has content or already has error
+      if (!isEmpty || hasError.has(name)) {
+        validateField(name);
+      }
+    }
+
+    // Input: only re-validate if field already has an error ("reward early")
+    function onInput(e: Event) {
+      const target = e.target as HTMLInputElement | HTMLSelectElement;
+      const name = target.name;
+      if (hasError.has(name)) {
+        validateField(name);
+      }
+    }
+
+    // Attach listeners to all validated fields
+    for (const fieldName of Object.keys(rules)) {
+      const el = form.elements.namedItem(fieldName) as HTMLElement | null;
+      if (!el) continue;
+      el.addEventListener('blur', onBlur);
+      el.addEventListener('input', onInput);
+      if (el instanceof HTMLSelectElement) {
+        el.addEventListener('change', onInput);
+      }
+      if ((el as HTMLInputElement).type === 'checkbox') {
+        el.addEventListener('change', onInput);
+      }
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       successEl?.classList.add('hidden');
       errorEl?.classList.add('hidden');
+
+      // Validate all fields
+      let firstErrorField: string | null = null;
+      for (const fieldName of Object.keys(rules)) {
+        touched.add(fieldName);
+        if (!validateField(fieldName) && !firstErrorField) {
+          firstErrorField = fieldName;
+        }
+      }
+
+      if (firstErrorField) {
+        const el = form.elements.namedItem(firstErrorField) as HTMLElement | null;
+        el?.focus();
+        return;
+      }
 
       const submitBtn = form.querySelector('button[type="submit"], .btn') as HTMLButtonElement | null;
       const originalText = submitBtn?.textContent ?? '';
@@ -246,10 +406,24 @@ const localBusinessSchemas = offices.map((office) => ({
           form.classList.add('hidden');
           successEl?.classList.remove('hidden');
         } else {
-          throw new Error('Submission failed');
+          const data = await response.json().catch(() => null);
+          // Show field-specific errors from backend
+          if (data?.fields) {
+            let focused = false;
+            for (const [field, msg] of Object.entries(data.fields)) {
+              showError(field, msg as string);
+              if (!focused) {
+                (form.elements.namedItem(field) as HTMLElement | null)?.focus();
+                focused = true;
+              }
+            }
+          } else {
+            throw new Error(data?.error || 'Submission failed');
+          }
         }
       } catch {
         errorEl?.classList.remove('hidden');
+      } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;

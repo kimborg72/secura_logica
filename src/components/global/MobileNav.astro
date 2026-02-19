@@ -1,6 +1,17 @@
 ---
-import { mainNav } from '@data/navigation';
+import { getMainNav } from '@data/navigation';
 import { offices } from '@data/offices';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+import { getContactPath } from '@i18n/routes';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'sv' } = Astro.props;
+const nav = getMainNav(locale);
 ---
 
 <div
@@ -9,9 +20,9 @@ import { offices } from '@data/offices';
   aria-hidden="true"
 >
   <div class="flex flex-col h-full pt-24 pb-8 px-6 overflow-y-auto">
-    <nav class="flex-1" aria-label="Mobilnavigation">
+    <nav class="flex-1" aria-label={t(locale, 'nav.mobileNav')}>
       <ul class="space-y-1">
-        {mainNav.map((item) => (
+        {nav.map((item) => (
           <li>
             {item.children ? (
               <details class="group">
@@ -47,19 +58,24 @@ import { offices } from '@data/offices';
       </ul>
     </nav>
 
+    <!-- Language Switcher -->
+    <div class="mt-6 pt-6 border-t border-border">
+      <LanguageSwitcher locale={locale} />
+    </div>
+
     <!-- CTA -->
-    <div class="mt-8 pt-6 border-t border-border">
+    <div class="mt-6 pt-6 border-t border-border">
       <a
-        href="/kontakt"
+        href={getContactPath(locale)}
         class="block w-full text-center px-6 py-3 bg-accent text-dark font-semibold rounded-lg hover:bg-accent-hover transition-colors"
       >
-        Kontakta oss
+        {t(locale, 'header.contactUs')}
       </a>
     </div>
 
     <!-- Offices -->
     <div class="mt-6 pt-6 border-t border-border">
-      <p class="overline mb-3">Kontor</p>
+      <p class="overline mb-3">{t(locale, 'footer.offices')}</p>
       <div class="flex gap-6 text-sm text-gray">
         {offices.map((office) => (
           <div>
@@ -81,7 +97,6 @@ import { offices } from '@data/offices';
     function open() {
       nav!.classList.remove('translate-x-full');
       nav!.setAttribute('aria-hidden', 'false');
-      toggle.setAttribute('aria-label', 'Stäng meny');
       toggle.setAttribute('aria-expanded', 'true');
       document.body.classList.add('mobile-open');
       document.body.style.overflow = 'hidden';
@@ -90,7 +105,6 @@ import { offices } from '@data/offices';
     function close() {
       nav!.classList.add('translate-x-full');
       nav!.setAttribute('aria-hidden', 'true');
-      toggle.setAttribute('aria-label', 'Öppna meny');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('mobile-open');
       document.body.style.overflow = '';

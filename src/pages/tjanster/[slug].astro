@@ -5,11 +5,15 @@ import ServiceCard from '@components/ui/ServiceCard.astro';
 import Button from '@components/ui/Button.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import JsonLd from '@components/seo/JsonLd.astro';
-import { getCollection } from 'astro:content';
 import { site, organizationSchema } from '@data/site';
+import { getServicesByLocale } from '@i18n/content';
+import { getServicePath, getServicesPath, getContactPath, getSecurapilotPath } from '@i18n/routes';
+import { t } from '@i18n/index';
+
+const locale = 'sv';
 
 export async function getStaticPaths() {
-  const services = await getCollection('services');
+  const services = await getServicesByLocale('sv');
   return services.map((service) => ({
     params: { slug: service.data.slug },
     props: { service },
@@ -19,7 +23,7 @@ export async function getStaticPaths() {
 const { service } = Astro.props;
 const { data } = service;
 
-const allServices = await getCollection('services');
+const allServices = await getServicesByLocale(locale);
 const relatedServices = allServices.filter((s) =>
   data.relatedServices.includes(s.data.slug),
 );
@@ -35,7 +39,7 @@ const serviceSchema = {
     url: organizationSchema.url,
   },
   areaServed: { '@type': 'Country', name: 'Sweden' },
-  url: `${site.url}/tjanster/${data.slug}`,
+  url: `${site.url}${getServicePath(locale, data.slug)}`,
 };
 
 const faqSchema = data.faq?.length ? {
@@ -52,16 +56,17 @@ const faqSchema = data.faq?.length ? {
 } : null;
 ---
 
-<PageLayout title={data.metaTitle} description={data.metaDescription}>
+<PageLayout title={data.metaTitle} description={data.metaDescription} locale={locale}>
   <JsonLd schema={serviceSchema} />
   {faqSchema && <JsonLd schema={faqSchema} />}
   <HeroSimple
     title={data.title}
     description={data.excerpt}
     breadcrumbs={[
-      { label: 'Tjänster', href: '/tjanster' },
+      { label: t(locale, 'services.overline'), href: getServicesPath(locale) },
       { label: data.shortTitle },
     ]}
+    locale={locale}
   />
 
   <!-- Introduction -->
@@ -69,7 +74,7 @@ const faqSchema = data.faq?.length ? {
     <div class="container">
       <div class="grid lg:grid-cols-5 gap-12">
         <div class="lg:col-span-3" data-reveal>
-          <p class="overline mb-4">Om tjänsten</p>
+          <p class="overline mb-4">{t(locale, 'serviceDetail.aboutService')}</p>
           {data.introLead && (
             <p class="lead text-slate mb-6">{data.introLead}</p>
           )}
@@ -79,26 +84,26 @@ const faqSchema = data.faq?.length ? {
         </div>
         <div class="lg:col-span-2" data-reveal="right">
           <div class="bg-surface rounded-xl p-6 border border-border lg:sticky lg:top-28">
-            <h3 class="text-lg font-semibold text-navy mb-4">Snabbfakta</h3>
+            <h3 class="text-lg font-semibold text-navy mb-4">{t(locale, 'serviceDetail.quickFacts')}</h3>
             <dl class="space-y-4 text-sm">
               <div>
-                <dt class="font-medium text-navy">Leverabler</dt>
-                <dd class="text-gray mt-0.5">{data.deliverables.length} konkreta leverabler</dd>
+                <dt class="font-medium text-navy">{t(locale, 'serviceDetail.deliverables')}</dt>
+                <dd class="text-gray mt-0.5">{data.deliverables.length} {t(locale, 'serviceDetail.deliverablesCount')}</dd>
               </div>
               <div>
-                <dt class="font-medium text-navy">Process</dt>
-                <dd class="text-gray mt-0.5">{data.process.length} steg från start till resultat</dd>
+                <dt class="font-medium text-navy">{t(locale, 'serviceDetail.process')}</dt>
+                <dd class="text-gray mt-0.5">{data.process.length} {t(locale, 'serviceDetail.processSteps')}</dd>
               </div>
               {relatedServices.length > 0 && (
                 <div>
-                  <dt class="font-medium text-navy">Kombineras ofta med</dt>
+                  <dt class="font-medium text-navy">{t(locale, 'serviceDetail.combinedWith')}</dt>
                   <dd class="text-gray mt-0.5">{relatedServices.map((s) => s.data.shortTitle).join(', ')}</dd>
                 </div>
               )}
             </dl>
             <div class="mt-6 pt-6 border-t border-border">
-              <Button href="/kontakt" variant="primary" size="md" class="w-full justify-center">
-                Boka ett samtal
+              <Button href={getContactPath(locale)} variant="primary" size="md" class="w-full justify-center">
+                {t(locale, 'serviceDetail.bookCall')}
               </Button>
             </div>
           </div>
@@ -112,7 +117,7 @@ const faqSchema = data.faq?.length ? {
     <section class="section-sm bg-surface">
       <div class="container">
         <div class="max-w-3xl mb-10" data-reveal>
-          <p class="overline mb-3">Passar det er?</p>
+          <p class="overline mb-3">{t(locale, 'serviceDetail.targetAudience')}</p>
           <h2 class="mb-4">{data.targetAudience.heading}</h2>
           <p class="text-lg text-slate leading-relaxed">{data.targetAudience.description}</p>
         </div>
@@ -132,8 +137,8 @@ const faqSchema = data.faq?.length ? {
   <section class="section">
     <div class="container">
       <div class="max-w-2xl mb-12" data-reveal>
-        <p class="overline mb-3">Fördelar</p>
-        <h2>Varför {data.shortTitle} med Verit</h2>
+        <p class="overline mb-3">{t(locale, 'serviceDetail.benefits')}</p>
+        <h2>{t(locale, 'serviceDetail.whyWith', { service: data.shortTitle })}</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-8">
         {data.benefits.map((benefit: any, i: number) => (
@@ -153,8 +158,8 @@ const faqSchema = data.faq?.length ? {
   <section class="section-sm bg-surface">
     <div class="container">
       <div class="text-center max-w-2xl mx-auto mb-16" data-reveal>
-        <p class="overline mb-3">Arbetssätt</p>
-        <h2>Vår process</h2>
+        <p class="overline mb-3">{t(locale, 'serviceDetail.workMethod')}</p>
+        <h2>{t(locale, 'serviceDetail.ourProcess')}</h2>
       </div>
 
       <!-- Desktop: horizontal timeline -->
@@ -210,8 +215,8 @@ const faqSchema = data.faq?.length ? {
             <p class="overline mb-3" style="color: var(--color-accent)">Securapilot</p>
             <h2 class="text-white mb-4">{data.securapilotConnection.heading}</h2>
             <p class="text-lg text-white/60 leading-relaxed mb-8">{data.securapilotConnection.description}</p>
-            <Button href="/securapilot" variant="primary" size="md">
-              Utforska Securapilot
+            <Button href={getSecurapilotPath(locale)} variant="primary" size="md">
+              {t(locale, 'serviceDetail.explorePilot')}
             </Button>
           </div>
           <div data-reveal="right">
@@ -234,8 +239,8 @@ const faqSchema = data.faq?.length ? {
     <div class="container">
       <div class={`grid gap-16 ${data.faq?.length ? 'lg:grid-cols-2' : ''}`}>
         <div data-reveal>
-          <p class="overline mb-3">Resultat</p>
-          <h2 class="mb-8">Vad ni får</h2>
+          <p class="overline mb-3">{t(locale, 'serviceDetail.results')}</p>
+          <h2 class="mb-8">{t(locale, 'serviceDetail.whatYouGet')}</h2>
           <ul class="space-y-4">
             {data.deliverables.map((item: string) => (
               <li class="flex items-start gap-3 pb-4 border-b border-border last:border-0">
@@ -248,8 +253,8 @@ const faqSchema = data.faq?.length ? {
 
         {data.faq && data.faq.length > 0 && (
           <div data-reveal="right">
-            <p class="overline mb-3">Vanliga frågor</p>
-            <h2 class="mb-8">Frågor & svar</h2>
+            <p class="overline mb-3">{t(locale, 'serviceDetail.faqOverline')}</p>
+            <h2 class="mb-8">{t(locale, 'serviceDetail.faqTitle')}</h2>
             <div class="space-y-3">
               {data.faq.map((item: any) => (
                 <details class="group bg-surface rounded-lg border border-border">
@@ -275,14 +280,15 @@ const faqSchema = data.faq?.length ? {
   {relatedServices.length > 0 && (
     <section class="section-sm bg-surface">
       <div class="container">
-        <h2 class="mb-10" data-reveal>Relaterade tjänster</h2>
+        <h2 class="mb-10" data-reveal>{t(locale, 'serviceDetail.relatedServices')}</h2>
         <div class="grid md:grid-cols-3 gap-6">
           {relatedServices.map((s, i) => (
             <div data-reveal data-delay={String(i + 1)}>
               <ServiceCard
                 title={s.data.title}
                 description={s.data.excerpt}
-                href={`/tjanster/${s.data.slug}`}
+                href={getServicePath(locale, s.data.slug)}
+                locale={locale}
               />
             </div>
           ))}
@@ -292,7 +298,8 @@ const faqSchema = data.faq?.length ? {
   )}
 
   <CTABanner
-    title={data.ctaText || 'Redo att komma igång?'}
-    description={data.ctaDescription || 'Kontakta oss för att diskutera hur vi kan hjälpa er organisation.'}
+    title={data.ctaText || t(locale, 'cta.defaultTitle')}
+    description={data.ctaDescription || t(locale, 'cta.defaultDescription')}
+    locale={locale}
   />
 </PageLayout>

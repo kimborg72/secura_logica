@@ -1,19 +1,23 @@
 ---
 import Button from '@components/ui/Button.astro';
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+import { getContactPath } from '@i18n/routes';
 
 interface Props {
   title?: string;
   description?: string;
   buttonText?: string;
   buttonHref?: string;
+  locale?: Locale;
 }
 
-const {
-  title = 'Redo att stärka er cybersäkerhet?',
-  description = 'Boka ett kostnadsfritt möte så diskuterar vi hur vi kan hjälpa er organisation att möta de nya kraven.',
-  buttonText = 'Boka ett möte',
-  buttonHref = '/kontakt',
-} = Astro.props;
+const { locale = 'sv' } = Astro.props;
+
+const title = Astro.props.title ?? t(locale, 'cta.defaultTitle');
+const description = Astro.props.description ?? t(locale, 'cta.defaultDescription');
+const buttonText = Astro.props.buttonText ?? t(locale, 'cta.defaultButton');
+const buttonHref = Astro.props.buttonHref ?? getContactPath(locale);
 ---
 
 <section class="bg-navy-dark relative overflow-hidden">

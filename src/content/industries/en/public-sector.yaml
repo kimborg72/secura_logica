@@ -1,0 +1,17 @@
+id: public-sector
+name: Public Sector
+slug: public-sector
+description: "Government agencies, municipalities, and regions subject to NIS2, protective security, and information classification requirements."
+displayTitle: "Government agencies, municipalities & regions"
+longDescription: "The public sector faces stricter requirements through NIS2, the Protective Security Act, and the new Cybersecurity Act. We help government agencies, municipalities, and regions build systematic information security programmes that meet regulatory requirements and protect functions vital to society."
+applicableServices:
+  - nis2
+  - iso27001
+  - ciso-as-a-service
+  - risk-management
+challenges:
+  - NIS2 / Cybersecurity Act
+  - Protective security
+  - Information classification
+  - GDPR in public sector operations
+order: 1

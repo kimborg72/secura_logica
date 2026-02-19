@@ -1,28 +1,40 @@
+---
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+import { getPrivacyPath } from '@i18n/routes';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'sv' } = Astro.props;
+---
+
 <div
   id="cookie-consent"
   class="fixed bottom-0 inset-x-0 z-40 translate-y-full transition-transform duration-500 ease-out motion-reduce:transition-none"
   role="dialog"
-  aria-label="Cookie-inställningar"
+  aria-label={t(locale, 'cookie.aria')}
   aria-hidden="true"
 >
   <div class="bg-navy-dark border-t border-white/10 shadow-2xl">
     <div class="container py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <p class="text-sm text-white/70 flex-1">
-        Vi använder anonymiserad statistik (Matomo) för att förbättra webbplatsen. Inga cookies lagras.
-        <a href="/integritetspolicy#cookies" class="text-accent hover:underline underline-offset-2 ml-1">Läs mer</a>
+        {t(locale, 'cookie.message')}
+        <a href={`${getPrivacyPath(locale)}#cookies`} class="text-accent hover:underline underline-offset-2 ml-1">{t(locale, 'cookie.readMore')}</a>
       </p>
       <div class="flex gap-3 shrink-0">
         <button
           data-consent="necessary"
           class="px-4 py-2 text-sm font-medium text-white/80 border border-white/20 rounded-lg hover:border-white/40 hover:text-white transition-colors"
         >
-          Endast nödvändiga
+          {t(locale, 'cookie.necessary')}
         </button>
         <button
           data-consent="all"
           class="px-4 py-2 text-sm font-medium bg-accent text-dark rounded-lg hover:bg-accent-light transition-colors"
         >
-          Acceptera
+          {t(locale, 'cookie.accept')}
         </button>
       </div>
     </div>

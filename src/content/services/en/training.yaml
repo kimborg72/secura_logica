@@ -1,0 +1,120 @@
+title: "Training & Awareness"
+shortTitle: "Training"
+slug: "training"
+metaTitle: "Information Security Training & Awareness | Verit"
+metaDescription: "Tailored training programmes and awareness initiatives that raise security awareness across your entire organisation."
+excerpt: "Tailored training programmes that raise security awareness across your entire organisation."
+introLead: >
+  The human factor is behind the majority of security incidents.
+  The right training is the most cost-effective security investment
+  you can make.
+introduction: |
+  Technical safeguards are necessary but not sufficient. All it takes is one employee clicking a malicious link, sharing sensitive information incorrectly, or failing to report an incident — for the entire security programme to be undermined.
+
+  Training and awareness is not about frightening employees or running box-ticking e-learnings. It is about building a security culture where every individual understands their role in protecting the organisation's information and feels confident acting correctly.
+
+  Our training programmes are tailored to your business and your risks. We design the content around real-world scenarios that are relevant to your specific employees — from the executive team to new hires.
+targetAudience:
+  heading: "Who needs training?"
+  description: >
+    Short answer: everyone. But content and format should be adapted to
+    the target audience and level of responsibility. We tailor training for
+    different roles within your organisation.
+  segments:
+    - "All employees — general awareness"
+    - "Executive teams and boards"
+    - "IT departments and developers"
+    - "Data owners and system owners"
+    - "New hires — onboarding"
+    - "Staff handling sensitive information"
+benefits:
+  - title: "Reduced human risk"
+    description: >
+      Employees who understand the risks and know how to respond
+      significantly reduce the likelihood of phishing attacks, data breaches,
+      and other incidents. Regular training
+      can reduce phishing click rates by over 80%.
+  - title: "Regulatory requirement"
+    description: >
+      Both NIS2 and ISO 27001 impose explicit requirements for
+      security training and awareness programmes. Our training
+      meets these requirements and provides documentation that
+      holds up under audit.
+  - title: "Tailored formats"
+    description: >
+      We offer everything from short workshops and lunch-and-learn sessions
+      to comprehensive programmes with e-learning, simulated phishing tests,
+      and regular follow-ups. Always tailored to your
+      business and your specific risks.
+process:
+  - step: 1
+    title: "Needs analysis"
+    description: >
+      We map your specific risks, target audiences, and existing
+      knowledge levels. The results determine which training interventions
+      deliver the greatest impact.
+    duration: "1 week"
+  - step: 2
+    title: "Training design"
+    description: >
+      We design training materials and formats tailored to
+      your needs. Real-world scenarios from your industry make
+      the content relevant and engaging.
+    duration: "1–2 weeks"
+  - step: 3
+    title: "Delivery"
+    description: >
+      Training is delivered in whichever format suits you best —
+      on-site, remotely, or a combination. We engage
+      participants through interactive exercises and discussions.
+    duration: "Per plan"
+  - step: 4
+    title: "Follow-up"
+    description: >
+      We measure impact through knowledge tests, simulated
+      phishing tests, and follow-up surveys. The results
+      are used to improve future sessions.
+    duration: "Ongoing"
+deliverables:
+  - "Needs analysis with audience-specific recommendations"
+  - "Training materials tailored to your business"
+  - "Delivered workshops and training sessions"
+  - "Knowledge tests and results reporting"
+  - "Annual plan for ongoing awareness activities"
+faq:
+  - question: "What formats do you offer?"
+    answer: >
+      We offer in-person workshops, digital training sessions,
+      lunch-and-learn sessions, simulated phishing campaigns,
+      e-learning modules, and executive presentations. We
+      adapt the format to your preferences and target audiences.
+  - question: "How do you measure the effectiveness of training?"
+    answer: >
+      We use a combination of pre- and post-training knowledge tests,
+      simulated phishing tests to measure behavioural change,
+      and follow-up surveys. The results are compiled into reports
+      that show progress over time.
+  - question: "How often should training be conducted?"
+    answer: >
+      We recommend at least annual training for all
+      employees, with quarterly awareness activities and
+      targeted interventions as needed. New hires should be trained
+      as part of the onboarding process.
+securapilotConnection:
+  heading: "Track awareness in Securapilot"
+  description: >
+    With Securapilot you can track training participation,
+    test results, and awareness activities over time — and
+    demonstrate to supervisory authorities that you meet the training requirements.
+  features:
+    - "Training register with participant status"
+    - "Results from knowledge tests and phishing simulations"
+    - "Automated reminders for recurring training"
+    - "Reports for management and audit"
+relatedServices:
+  - "iso27001"
+  - "ciso-as-a-service"
+  - "nis2"
+ctaText: "Discuss your training needs"
+ctaDescription: "We help you build an awareness programme that truly makes a difference."
+order: 5

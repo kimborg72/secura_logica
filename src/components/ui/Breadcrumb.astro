@@ -1,11 +1,14 @@
 ---
 import { site } from '@data/site';
+import type { Locale } from '@i18n/types';
+import { t, getHomePath } from '@i18n/index';
 
 interface Props {
   items: Array<{ label: string; href?: string }>;
+  locale?: Locale;
 }
 
-const { items } = Astro.props;
+const { items, locale = 'sv' } = Astro.props;
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -14,7 +17,7 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'Hem',
+      name: t(locale, 'breadcrumb.home'),
       item: site.url,
     },
     ...items.map((item, i) => ({
@@ -27,10 +30,10 @@ const breadcrumbSchema = {
 };
 ---
 
-<nav aria-label="Brödsmulor">
+<nav aria-label={t(locale, 'breadcrumb.aria')}>
   <ol class="flex flex-wrap items-center gap-1.5 text-sm text-gray">
     <li>
-      <a href="/" class="hover:text-accent-dark transition-colors">Hem</a>
+      <a href={getHomePath(locale)} class="hover:text-accent-dark transition-colors">{t(locale, 'breadcrumb.home')}</a>
     </li>
     {items.map((item, i) => (
       <li class="flex items-center gap-1.5">

@@ -1,0 +1,16 @@
+id: energy
+name: Energy
+slug: energy
+description: "Energy producers and grid operators subject to stringent cybersecurity and incident reporting requirements."
+displayTitle: "Energy production & distribution"
+longDescription: "The energy sector is one of the most heavily regulated industries under NIS2. From power producers to grid operators — the requirements for cybersecurity and incident reporting are high. We have experience working with energy companies that need to balance operational reliability with regulatory compliance."
+applicableServices:
+  - nis2
+  - risk-management
+  - iso27001
+challenges:
+  - NIS2 for the energy sector
+  - OT/IT security
+  - Incident reporting
+  - Risk and vulnerability analysis
+order: 2

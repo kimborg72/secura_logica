@@ -1,0 +1,121 @@
+title: "NIS2 / Cybersecurity Act"
+shortTitle: "NIS2"
+slug: "nis2"
+metaTitle: "NIS2 Compliance & the Cybersecurity Act | Verit"
+metaDescription: "Gap analysis, implementation support, and ongoing monitoring for the NIS2 directive and the Swedish Cybersecurity Act."
+excerpt: "Gap analysis and implementation support for the NIS2 directive and the Swedish Cybersecurity Act."
+introLead: >
+  The NIS2 directive and the Swedish Cybersecurity Act represent the most sweeping
+  changes in cybersecurity for Swedish organisations in over a decade.
+  We help you navigate the requirements and build real resilience.
+introduction: |
+  The NIS2 directive introduces new and strengthened cybersecurity requirements for essential and important entities across the EU. The Swedish implementation through the Cybersecurity Act imposes concrete obligations regarding risk management, incident reporting, supply chain security, and management accountability.
+
+  Many organisations know they fall within scope but lack a clear picture of what actually needs to be done. The requirements span technical, organisational, and legal dimensions — and the sanctions are substantial.
+
+  Verit helps you understand exactly which requirements apply to your organisation, identify gaps against your current state, and build a realistic plan to achieve compliance. We combine deep regulatory expertise with hands-on implementation experience and our platform Securapilot for ongoing monitoring.
+targetAudience:
+  heading: "Does NIS2 apply to you?"
+  description: >
+    The NIS2 directive covers essential and important entities across 18 sectors.
+    If your organisation provides services vital to society or
+    is part of a critical supply chain, you need to act.
+  segments:
+    - "Energy and power supply"
+    - "Transport and logistics"
+    - "Healthcare"
+    - "Drinking water and wastewater"
+    - "Digital infrastructure"
+    - "Public administration"
+    - "Manufacturing"
+    - "Postal and courier services"
+    - "Waste management"
+benefits:
+  - title: "A clear picture of where you stand"
+    description: >
+      Our gap analysis maps exactly where you stand in relation to the NIS2 requirements.
+      You receive a detailed report showing your compliance level per requirement area,
+      identified shortcomings, and recommended measures — all prioritised
+      by risk and business value.
+  - title: "Pragmatic implementation"
+    description: >
+      We prioritise measures based on actual risk exposure and your
+      organisation's circumstances. No one-size-fits-all — we tailor
+      the effort to your size, maturity, and industry so that you invest
+      resources where they make the greatest difference.
+  - title: "Ongoing compliance"
+    description: >
+      With Securapilot you have continuous control over your compliance.
+      Dashboards display compliance status in real time, automated reminders
+      ensure that measures are carried out, and reports are generated directly
+      for management and supervisory authorities.
+process:
+  - step: 1
+    title: "Assessment"
+    description: >
+      We analyse your current processes, technical measures, and
+      organisational conditions through document reviews and
+      interviews with key personnel.
+    duration: "1–2 weeks"
+  - step: 2
+    title: "Gap analysis"
+    description: >
+      Systematic comparison against the NIS2 requirements with clear prioritisation.
+      We assess each requirement area and classify gaps by severity.
+    duration: "1–2 weeks"
+  - step: 3
+    title: "Action plan"
+    description: >
+      A concrete action plan with timelines, responsible owners, and budget estimates.
+      We help you prioritise correctly and build a realistic schedule.
+    duration: "1 week"
+  - step: 4
+    title: "Implementation"
+    description: >
+      We support you through the implementation of technical and organisational
+      measures — from policies and processes to incident management
+      and supplier management.
+    duration: "Ongoing"
+deliverables:
+  - "NIS2 gap analysis report with prioritised measures"
+  - "Action plan with timelines and responsible owners"
+  - "Governing documents and policies"
+  - "Securapilot configuration for ongoing monitoring"
+  - "Management presentation with current state and recommendations"
+faq:
+  - question: "How do we know if our organisation falls under NIS2?"
+    answer: >
+      NIS2 covers essential and important entities across 18 sectors.
+      Determining factors include your sector affiliation, the size of your
+      organisation, and whether you provide services vital to society. We can help
+      with a quick assessment during a complimentary introductory call.
+  - question: "What distinguishes NIS2 from the original NIS directive?"
+    answer: >
+      NIS2 significantly expands the number of sectors in scope, introduces stricter
+      security requirements, tightened reporting obligations (24 hours for
+      an initial notification), and grants supervisory authorities enhanced sanctioning powers.
+      Management accountability is also clarified — executives can be held personally liable.
+  - question: "How long does it take to become NIS2-compliant?"
+    answer: >
+      It depends on your organisation's current maturity level. A typical
+      implementation takes 3–6 months from gap analysis to baseline
+      compliance. With Securapilot you can then maintain and continuously improve
+      your security posture on an ongoing basis.
+securapilotConnection:
+  heading: "Achieve NIS2 compliance with Securapilot"
+  description: >
+    Securapilot is built with the NIS2 requirements as its foundation.
+    The platform provides you with a real-time overview of your compliance
+    and automates the ongoing compliance work.
+  features:
+    - "NIS2-specific compliance dashboard with requirement mapping"
+    - "Automated incident reporting aligned with NIS2 timelines"
+    - "Risk register linked to NIS2 requirement areas"
+    - "Document management for policies and governing documents"
+relatedServices:
+  - "iso27001"
+  - "risk-management"
+  - "ciso-as-a-service"
+ctaText: "Book a complimentary NIS2 review"
+ctaDescription: "We analyse your current state and provide concrete recommendations — completely free of charge."
+order: 1

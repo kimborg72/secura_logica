@@ -1,0 +1,17 @@
+id: e-health
+name: E-health
+slug: e-health
+description: "Healthcare providers and e-health companies handling sensitive personal data under strict regulatory requirements."
+displayTitle: "Healthcare, social care & e-health"
+longDescription: "The healthcare sector handles some of the most sensitive personal data in existence. Digitalisation creates new opportunities but also new vulnerabilities. We support healthcare providers and e-health companies with security that protects patients without slowing down innovation."
+applicableServices:
+  - gdpr
+  - nis2
+  - risk-management
+  - iso27001
+challenges:
+  - Patient data security
+  - GDPR for healthcare
+  - NIS2 for the health sector
+  - Medical device regulations
+order: 4

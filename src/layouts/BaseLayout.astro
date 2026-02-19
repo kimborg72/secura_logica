@@ -1,21 +1,23 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import BaseHead from '@components/seo/BaseHead.astro';
+import type { Locale } from '@i18n/types';
 import '@styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  locale?: Locale;
 }
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, locale = 'sv' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="sv">
+<html lang={locale}>
   <head>
-    <BaseHead title={title} description={description} ogImage={ogImage} />
+    <BaseHead title={title} description={description} ogImage={ogImage} locale={locale} />
     <ClientRouter />
   </head>
   <body class="min-h-screen">

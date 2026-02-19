@@ -1,5 +1,8 @@
 ---
 import type { NavItem } from '@data/navigation';
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+import { getServicesPath } from '@i18n/routes';
 
 interface Props {
   services: NavItem[];
@@ -8,9 +11,10 @@ interface Props {
     description: string;
     href: string;
   };
+  locale?: Locale;
 }
 
-const { services, featured } = Astro.props;
+const { services, featured, locale = 'sv' } = Astro.props;
 ---
 
 <div
@@ -21,7 +25,7 @@ const { services, featured } = Astro.props;
     <div class="grid grid-cols-2 gap-x-8 gap-y-1">
       <!-- Services -->
       <div>
-        <p class="overline mb-3">Våra tjänster</p>
+        <p class="overline mb-3">{t(locale, 'mega.ourServices')}</p>
         <ul class="space-y-1">
           {services.map((service) => (
             <li>
@@ -41,7 +45,7 @@ const { services, featured } = Astro.props;
       {featured && (
         <div class="flex flex-col justify-between">
           <div>
-            <p class="overline mb-3">Plattform</p>
+            <p class="overline mb-3">{t(locale, 'mega.platform')}</p>
             <a
               href={featured.href}
               class="block p-4 bg-surface rounded-lg hover:bg-surface-alt transition-colors"
@@ -50,7 +54,7 @@ const { services, featured } = Astro.props;
               <p class="font-semibold text-navy mb-1">{featured.title}</p>
               <p class="text-sm text-gray">{featured.description}</p>
               <span class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-accent-dark">
-                Läs mer
+                {t(locale, 'mega.readMore')}
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -58,11 +62,11 @@ const { services, featured } = Astro.props;
             </a>
           </div>
           <a
-            href="/tjanster"
+            href={getServicesPath(locale)}
             class="mt-4 text-sm font-medium text-accent-dark hover:text-accent-dark transition-colors"
             role="menuitem"
           >
-            Alla tjänster &rarr;
+            {t(locale, 'mega.allServices')} &rarr;
           </a>
         </div>
       )}

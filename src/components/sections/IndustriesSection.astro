@@ -1,8 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
 import Tabs from '@components/ui/Tabs.astro';
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+import { getIndustriesByLocale } from '@i18n/content';
 
-const industriesData = (await getCollection('industries')).sort((a, b) => a.data.order - b.data.order);
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'sv' } = Astro.props;
+const industriesData = await getIndustriesByLocale(locale);
 
 const industries = industriesData.map((ind) => ({
   id: ind.data.id,
@@ -18,10 +25,10 @@ const tabs = industries.map((ind) => ({ id: ind.id, label: ind.label }));
 <section class="section bg-surface">
   <div class="container">
     <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
-      <p class="overline mb-3">Branscher</p>
-      <h2>Fokus på samhällsviktig verksamhet</h2>
+      <p class="overline mb-3">{t(locale, 'industries.overline')}</p>
+      <h2>{t(locale, 'industries.title')}</h2>
       <p class="lead mt-4">
-        Vi arbetar med organisationer där kraven på säkerhet, integritet och förtroende är särskilt höga.
+        {t(locale, 'industries.description')}
       </p>
     </div>
 
@@ -35,7 +42,7 @@ const tabs = industries.map((ind) => ({ id: ind.id, label: ind.label }));
                 <p class="text-gray leading-relaxed">{ind.description}</p>
               </div>
               <div class="bg-white rounded-xl p-6 border border-border">
-                <p class="text-sm font-semibold text-navy uppercase tracking-wider mb-4">Relevanta områden</p>
+                <p class="text-sm font-semibold text-navy uppercase tracking-wider mb-4">{t(locale, 'industries.relevantAreas')}</p>
                 <ul class="space-y-3">
                   {ind.challenges.map((challenge) => (
                     <li class="flex items-center gap-3 text-sm text-slate">

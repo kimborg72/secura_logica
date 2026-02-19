@@ -3,6 +3,9 @@ import PageLayout from '@layouts/PageLayout.astro';
 import HeroSimple from '@components/sections/HeroSimple.astro';
 import Button from '@components/ui/Button.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
+import { getContactPath } from '@i18n/routes';
+
+const locale = 'sv';
 
 const features = [
   {
@@ -38,11 +41,12 @@ const features = [
 ];
 ---
 
-<PageLayout title="Securapilot" description="Securapilot — compliance-plattformen som gör ert informationssäkerhetsarbete körbart.">
+<PageLayout title="Securapilot" description="Securapilot — compliance-plattformen som gör ert informationssäkerhetsarbete körbart." locale={locale}>
   <HeroSimple
     title="Securapilot"
     description="Compliance-plattformen som gör ert informationssäkerhetsarbete körbart. Från gap-analys till löpande uppföljning — allt på ett ställe."
     breadcrumbs={[{ label: 'Securapilot' }]}
+    locale={locale}
   />
 
   <!-- Product Overview -->
@@ -96,7 +100,7 @@ const features = [
             ensamt inte löser säkerhetsstyrning — därför prioriterar Securapilot processförståelse
             före kontrollkonfiguration. AI-funktioner förstärker, aldrig ersätter, era beslut.
           </p>
-          <Button href="/kontakt" variant="primary" size="lg">
+          <Button href={getContactPath(locale)} variant="primary" size="lg">
             Boka en demo
           </Button>
         </div>
@@ -129,5 +133,6 @@ const features = [
     title="Vill du se Securapilot i aktion?"
     description="Boka en personlig demo så visar vi hur plattformen kan stödja ert säkerhetsarbete."
     buttonText="Boka demo"
+    locale={locale}
   />
 </PageLayout>

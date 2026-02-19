@@ -1,0 +1,24 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Hero from '@components/sections/Hero.astro';
+import ValueProposition from '@components/sections/ValueProposition.astro';
+import ServicesGrid from '@components/sections/ServicesGrid.astro';
+import IndustriesSection from '@components/sections/IndustriesSection.astro';
+import SecuraPilotTeaser from '@components/sections/SecuraPilotTeaser.astro';
+import TrustBadges from '@components/sections/TrustBadges.astro';
+import InsightsPreview from '@components/sections/InsightsPreview.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+
+const locale = 'en';
+---
+
+<PageLayout title="Verit" description="Cybersecurity and compliance for critical infrastructure. NIS2, ISO 27001, CISO-as-a-Service and Securapilot — we protect what matters most." headerTheme="dark" locale={locale}>
+  <Hero locale={locale} />
+  <TrustBadges locale={locale} />
+  <ValueProposition locale={locale} />
+  <ServicesGrid locale={locale} />
+  <IndustriesSection locale={locale} />
+  <SecuraPilotTeaser locale={locale} />
+  <InsightsPreview locale={locale} />
+  <CTABanner locale={locale} />
+</PageLayout>

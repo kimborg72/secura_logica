@@ -1,7 +1,17 @@
 ---
-import { footerColumns } from '@data/footer';
+import { getFooterColumns } from '@data/footer';
 import { offices } from '@data/offices';
 import { site } from '@data/site';
+import type { Locale } from '@i18n/types';
+import { t, getHomePath } from '@i18n/index';
+import { getPrivacyPath } from '@i18n/routes';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'sv' } = Astro.props;
+const columns = getFooterColumns(locale);
 ---
 
 <footer class="bg-navy-dark text-white/80">
@@ -9,11 +19,11 @@ import { site } from '@data/site';
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
       <!-- Brand column -->
       <div class="lg:col-span-1">
-        <a href="/" class="inline-block mb-4">
+        <a href={getHomePath(locale)} class="inline-block mb-4">
           <img src="/images/logos/logo_verit_dark.png" alt={site.name} style="height: 46px; width: auto;" />
         </a>
         <p class="text-sm leading-relaxed mb-6 text-white/60">
-          {site.tagline}. Vi hjälper samhällsviktiga verksamheter att skydda sin information och uppfylla regulatoriska krav.
+          {t(locale, 'footer.tagline')}
         </p>
         <div class="flex gap-3">
           <a href="https://www.linkedin.com/company/verit" class="w-12 h-12 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener">
@@ -23,7 +33,7 @@ import { site } from '@data/site';
       </div>
 
       <!-- Link columns -->
-      {footerColumns.map((column) => (
+      {columns.map((column) => (
         <div>
           <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{column.title}</h3>
           <ul class="space-y-2.5">
@@ -40,7 +50,7 @@ import { site } from '@data/site';
 
       <!-- Contact column -->
       <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Kontor</h3>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{t(locale, 'footer.offices')}</h3>
         <ul class="space-y-4">
           {offices.map((office) => (
             <li>
@@ -58,10 +68,10 @@ import { site } from '@data/site';
     <!-- Bottom bar -->
     <div class="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
       <p class="text-sm text-white/60">
-        &copy; {new Date().getFullYear()} VER &amp; IT AB. Alla rättigheter förbehållna.
+        &copy; {new Date().getFullYear()} VER &amp; IT AB. {t(locale, 'footer.allRights')}.
       </p>
       <div class="flex gap-6 text-sm text-white/60">
-        <a href="/integritetspolicy" class="underline underline-offset-2 decoration-white/30 hover:text-white hover:decoration-white/60 transition-colors">Integritetspolicy</a>
+        <a href={getPrivacyPath(locale)} class="underline underline-offset-2 decoration-white/30 hover:text-white hover:decoration-white/60 transition-colors">{t(locale, 'footer.privacyPolicy')}</a>
       </div>
     </div>
   </div>

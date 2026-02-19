@@ -1,53 +1,54 @@
 ---
 import Badge from '@components/ui/Badge.astro';
 import Button from '@components/ui/Button.astro';
-import { getCollection } from 'astro:content';
 import { getReadingTime, formatReadingTime } from '@utils/reading-time';
+import type { Locale } from '@i18n/types';
+import { t, formatDate } from '@i18n/index';
+import { getInsightsByLocale } from '@i18n/content';
+import { getInsightsPath, getInsightPath } from '@i18n/routes';
 
-const allInsights = await getCollection('insights', ({ data }) => !data.draft);
-const insights = allInsights
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
-
-function formatDate(date: Date) {
-  return date.toLocaleDateString('sv-SE', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+interface Props {
+  locale?: Locale;
 }
+
+const { locale = 'sv' } = Astro.props;
+const allInsights = await getInsightsByLocale(locale);
+const insights = allInsights.slice(0, 3);
 ---
 
 <section class="section">
   <div class="container">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-12" data-reveal>
       <div>
-        <p class="overline mb-3">Insikter</p>
-        <h2>Senaste nytt</h2>
+        <p class="overline mb-3">{t(locale, 'insights.overline')}</p>
+        <h2>{t(locale, 'insights.title')}</h2>
       </div>
-      <Button href="/insikter" variant="ghost">Alla insikter</Button>
+      <Button href={getInsightsPath(locale)} variant="ghost">{t(locale, 'insights.allInsights')}</Button>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      {insights.map((item, i) => (
-        <article class="group" data-reveal data-delay={String(i + 1)}>
-          <a href={`/insikter/${item.id}`} class="block">
-            <!-- Placeholder image -->
-            <div class="aspect-[16/10] rounded-xl bg-surface mb-5 overflow-hidden">
-              <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
-            </div>
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3">
-              <Badge text={item.data.category} variant="copper" />
-              <time class="text-xs text-gray" datetime={item.data.date.toISOString()}>{formatDate(item.data.date)}</time>
-              <span class="text-xs text-gray">· {formatReadingTime(getReadingTime(item.body || ''))}</span>
-            </div>
-            <h3 class="text-lg font-semibold text-navy group-hover:text-accent-dark transition-colors mb-2">
-              {item.data.title}
-            </h3>
-            <p class="text-sm text-gray leading-relaxed">{item.data.description}</p>
-          </a>
-        </article>
-      ))}
+      {insights.map((item, i) => {
+        const slug = item.id.replace(`${locale}/`, '').replace(/\.\w+$/, '');
+        return (
+          <article class="group" data-reveal data-delay={String(i + 1)}>
+            <a href={getInsightPath(locale, slug)} class="block">
+              <!-- Placeholder image -->
+              <div class="aspect-[16/10] rounded-xl bg-surface mb-5 overflow-hidden">
+                <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
+              </div>
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3">
+                <Badge text={item.data.category} variant="copper" />
+                <time class="text-xs text-gray" datetime={item.data.date.toISOString()}>{formatDate(item.data.date, locale)}</time>
+                <span class="text-xs text-gray">· {formatReadingTime(getReadingTime(item.body || ''), locale)}</span>
+              </div>
+              <h3 class="text-lg font-semibold text-navy group-hover:text-accent-dark transition-colors mb-2">
+                {item.data.title}
+              </h3>
+              <p class="text-sm text-gray leading-relaxed">{item.data.description}</p>
+            </a>
+          </article>
+        );
+      })}
     </div>
   </div>
 </section>

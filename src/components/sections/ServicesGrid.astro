@@ -1,17 +1,25 @@
 ---
-import { getCollection } from 'astro:content';
 import ServiceCard from '@components/ui/ServiceCard.astro';
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+import { getServicesByLocale } from '@i18n/content';
+import { getServicePath } from '@i18n/routes';
 
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'sv' } = Astro.props;
+const services = await getServicesByLocale(locale);
 ---
 
 <section class="section">
   <div class="container">
     <div class="text-center max-w-2xl mx-auto mb-16" data-reveal>
-      <p class="overline mb-3">Tjänster</p>
-      <h2>Cybersäkerhet & compliance i praktiken</h2>
+      <p class="overline mb-3">{t(locale, 'services.overline')}</p>
+      <h2>{t(locale, 'services.title')}</h2>
       <p class="lead mt-4">
-        Vi täcker hela kedjan — från regelverkstolkning och gap-analys till implementering och löpande uppföljning.
+        {t(locale, 'services.description')}
       </p>
     </div>
 
@@ -21,7 +29,8 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
           <ServiceCard
             title={service.data.title}
             description={service.data.excerpt}
-            href={`/tjanster/${service.data.slug}`}
+            href={getServicePath(locale, service.data.slug)}
+            locale={locale}
           />
         </div>
       ))}

@@ -1,0 +1,16 @@
+id: manufacturing
+name: Manufacturing
+slug: manufacturing
+description: "Manufacturing industry and automotive with supply chain security requirements and ISO 27001 certification demands."
+displayTitle: "Manufacturing & automotive"
+longDescription: "The manufacturing industry faces new requirements through NIS2 and supply chain security demands. We help manufacturing companies integrate information security into existing management systems and ensure compliance throughout the entire value chain."
+applicableServices:
+  - iso27001
+  - nis2
+  - risk-management
+challenges:
+  - Supply chain security
+  - ISO 27001 certification
+  - NIS2 for manufacturing
+  - Integration security
+order: 3

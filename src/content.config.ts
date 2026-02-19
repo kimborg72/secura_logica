@@ -1,8 +1,11 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+/** Include subdirectory in the entry ID for YAML files (e.g. "sv/nis2") */
+const yamlId = ({ entry }: { entry: string }) => entry.replace(/\.\w+$/, '');
+
 const services = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/services' }),
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/services', generateId: yamlId }),
   schema: z.object({
     title: z.string(),
     shortTitle: z.string(),
@@ -51,7 +54,7 @@ const services = defineCollection({
 });
 
 const team = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/team' }),
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/team', generateId: yamlId }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
@@ -77,7 +80,7 @@ const insights = defineCollection({
 });
 
 const industries = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/industries' }),
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/industries', generateId: yamlId }),
   schema: z.object({
     id: z.string(),
     name: z.string(),

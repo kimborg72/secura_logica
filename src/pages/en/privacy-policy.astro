@@ -1,0 +1,319 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+
+const locale = 'en';
+
+const sections = [
+  { id: 'controller', label: 'Data controller' },
+  { id: 'roles', label: 'Roles' },
+  { id: 'data', label: 'Personal data' },
+  { id: 'purposes', label: 'Purposes & legal basis' },
+  { id: 'recipients', label: 'Recipients' },
+  { id: 'storage', label: 'Data storage' },
+  { id: 'cookies', label: 'Cookies & analytics' },
+  { id: 'rights', label: 'Your rights' },
+  { id: 'security', label: 'Security' },
+  { id: 'complaints', label: 'Complaints' },
+  { id: 'changes', label: 'Changes' },
+];
+---
+
+<PageLayout title="Privacy policy" description="VER&IT's privacy policy — how we handle your personal data in accordance with GDPR." locale={locale}>
+  <HeroSimple
+    title="Privacy policy"
+    description="Last updated: 19 February 2026"
+    breadcrumbs={[{ label: 'Privacy policy' }]}
+    locale={locale}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="grid lg:grid-cols-[220px_1fr] gap-12 lg:gap-16">
+
+        <!-- Sticky side nav (desktop) -->
+        <nav class="hidden lg:block" aria-label="Page navigation">
+          <div class="sticky top-28">
+            <ul class="space-y-1.5 text-sm">
+              {sections.map((s) => (
+                <li>
+                  <a
+                    href={`#${s.id}`}
+                    class="block py-1 text-gray hover:text-accent-dark transition-colors"
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="max-w-3xl policy-content">
+
+          <!-- 1. Data controller -->
+          <section id="controller" class="policy-section">
+            <h2>1. Data controller</h2>
+            <div class="bg-surface rounded-xl p-6 border border-border not-prose">
+              <p class="font-semibold text-navy">VER&amp;IT AB</p>
+              <p class="text-sm text-gray mt-1">Reg. no: 556985-1206</p>
+              <p class="text-sm text-gray mt-1">Nygatan 71, 462 32 Vanersborg, Sweden</p>
+              <p class="text-sm text-gray mt-3">
+                Data protection contact:
+                <a href="mailto:info@verit.se" class="text-accent-dark hover:underline">info@verit.se</a>
+              </p>
+            </div>
+          </section>
+
+          <!-- 2. Roles -->
+          <section id="roles" class="policy-section">
+            <h2>2. Data controller and data processor</h2>
+            <p>VER&amp;IT acts in two different roles depending on the context:</p>
+            <ul>
+              <li>
+                <strong>Data controller</strong> — for personal data collected via verit.se
+                (contact forms, website visits) and in direct client relationships.
+              </li>
+              <li>
+                <strong>Data processor</strong> — when clients use our platform Securapilot
+                to manage personal data within their own organisation. This is regulated through a
+                separate data processing agreement (DPA).
+              </li>
+            </ul>
+            <p>This policy describes our processing in the role of data controller.</p>
+          </section>
+
+          <!-- 3. Personal data -->
+          <section id="data" class="policy-section">
+            <h2>3. What personal data do we collect?</h2>
+
+            <h3>Contact form</h3>
+            <p>Name, email address, phone number, organisation and message that you provide when contacting us.</p>
+
+            <h3>Client relationships</h3>
+            <p>Contact persons, organisation details and contract information in connection with engagements and services.</p>
+
+            <h3>Website visits</h3>
+            <p>Visit statistics, page views and IP addresses. IP addresses are anonymised before storage.</p>
+
+            <h3>Communication</h3>
+            <p>Email content and support cases that arise in contact with us.</p>
+          </section>
+
+          <!-- 4. Purposes -->
+          <section id="purposes" class="policy-section">
+            <h2>4. Purposes, legal basis and retention period</h2>
+            <div class="overflow-x-auto not-prose">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="text-left py-3 pr-4 font-semibold text-navy">Purpose</th>
+                    <th class="text-left py-3 pr-4 font-semibold text-navy">Legal basis</th>
+                    <th class="text-left py-3 font-semibold text-navy">Retention period</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray">
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Responding to enquiries</td>
+                    <td class="py-3 pr-4">Legitimate interest</td>
+                    <td class="py-3">12 months</td>
+                  </tr>
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Client relationships and engagements</td>
+                    <td class="py-3 pr-4">Contract</td>
+                    <td class="py-3">Contract period + 12 months</td>
+                  </tr>
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Newsletters and marketing</td>
+                    <td class="py-3 pr-4">Consent</td>
+                    <td class="py-3">Until consent is withdrawn</td>
+                  </tr>
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Accounting and invoicing</td>
+                    <td class="py-3 pr-4">Legal obligation</td>
+                    <td class="py-3">7 years</td>
+                  </tr>
+                  <tr class="border-b border-border/50">
+                    <td class="py-3 pr-4">Web analytics and improvement</td>
+                    <td class="py-3 pr-4">Legitimate interest</td>
+                    <td class="py-3">Ongoing anonymisation</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 pr-4">Security and abuse prevention</td>
+                    <td class="py-3 pr-4">Legitimate interest</td>
+                    <td class="py-3">12 months</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 5. Recipients -->
+          <section id="recipients" class="policy-section">
+            <h2>5. Recipients of personal data</h2>
+            <p>We may share personal data with the following categories of recipients:</p>
+            <ul>
+              <li><strong>Hosting and service providers</strong> that process data on our behalf</li>
+              <li><strong>Authorities</strong> when we have a legal obligation to disclose information</li>
+              <li><strong>Auditors and legal advisors</strong> in connection with audits or disputes</li>
+            </ul>
+            <p><strong>We never sell personal data to third parties.</strong></p>
+          </section>
+
+          <!-- 6. Data storage -->
+          <section id="storage" class="policy-section">
+            <h2>6. Data storage and transfer</h2>
+            <p>
+              Personal data is primarily stored in Sweden and within the EU/EEA. Where personal data
+              is transferred to a country outside the EU/EEA, we ensure protection through the EU's
+              standard contractual clauses or adequacy decisions in accordance with GDPR.
+            </p>
+          </section>
+
+          <!-- 7. Cookies -->
+          <section id="cookies" class="policy-section">
+            <h2>7. Cookies and analytics</h2>
+
+            <h3>Matomo Analytics</h3>
+            <p>
+              We use Matomo for anonymous visitor statistics. Our implementation is configured
+              to work entirely without cookies. IP addresses are anonymised and the Do Not Track signal
+              is respected. No personal data is stored — this means no consent is required for
+              this anonymised tracking.
+            </p>
+
+            <h3>Local storage</h3>
+            <p>
+              Theme preferences, language settings and any opt-out choices are saved locally in your browser
+              and are never transferred to our servers.
+            </p>
+          </section>
+
+          <!-- 8. Rights -->
+          <section id="rights" class="policy-section">
+            <h2>8. Your rights</h2>
+            <p>Under GDPR you have the following rights:</p>
+            <ol>
+              <li><strong>Access</strong> — the right to receive confirmation of whether we process your personal data and, if so, to obtain a copy</li>
+              <li><strong>Rectification</strong> — the right to have incorrect or incomplete data corrected</li>
+              <li><strong>Erasure</strong> — the right to have your data deleted under certain conditions ("the right to be forgotten")</li>
+              <li><strong>Restriction</strong> — the right to restrict processing in specific situations</li>
+              <li><strong>Data portability</strong> — the right to receive your data in a structured, machine-readable format</li>
+              <li><strong>Objection</strong> — the right to object to processing based on legitimate interest</li>
+              <li><strong>Withdraw consent</strong> — the right to withdraw consent at any time, without affecting the lawfulness of prior processing</li>
+            </ol>
+            <p>
+              Contact us at <a href="mailto:info@verit.se">info@verit.se</a> to exercise
+              your rights. We will respond to your request within 30 days.
+            </p>
+          </section>
+
+          <!-- 9. Security -->
+          <section id="security" class="policy-section">
+            <h2>9. Security measures</h2>
+            <p>We take appropriate technical and organisational measures to protect your personal data:</p>
+            <ul>
+              <li>TLS encryption for data in transit and at rest</li>
+              <li>Role-based access control</li>
+              <li>Continuous monitoring and logging</li>
+              <li>Regular security reviews</li>
+            </ul>
+          </section>
+
+          <!-- 10. Complaints -->
+          <section id="complaints" class="policy-section">
+            <h2>10. Complaints</h2>
+            <p>
+              If you believe that our processing of your personal data violates GDPR, you have
+              the right to lodge a complaint with the supervisory authority:
+            </p>
+            <div class="bg-surface rounded-xl p-6 border border-border not-prose">
+              <p class="font-semibold text-navy">Integritetsskyddsmyndigheten (IMY)</p>
+              <p class="text-sm text-gray mt-1">Box 8114, 104 20 Stockholm, Sweden</p>
+              <p class="text-sm text-gray mt-1">Phone: +46 8-657 61 00</p>
+              <p class="text-sm text-gray mt-1">
+                Email: <a href="mailto:imy@imy.se" class="text-accent-dark hover:underline">imy@imy.se</a>
+              </p>
+              <p class="text-sm text-gray mt-1">
+                Web: <a href="https://www.imy.se" class="text-accent-dark hover:underline" target="_blank" rel="noopener">www.imy.se</a>
+              </p>
+            </div>
+          </section>
+
+          <!-- 11. Changes -->
+          <section id="changes" class="policy-section">
+            <h2>11. Changes to this policy</h2>
+            <p>
+              We may update this privacy policy as needed. In the event of significant
+              changes, we will announce this on the website. The current version is always
+              available on this page with the stated update date.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .policy-section {
+    scroll-margin-top: 7rem;
+  }
+
+  .policy-section + .policy-section {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .policy-content h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: 1rem;
+  }
+
+  .policy-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-content p {
+    color: var(--color-gray);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+
+  .policy-content ul,
+  .policy-content ol {
+    color: var(--color-gray);
+    line-height: 1.75;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .policy-content ul {
+    list-style-type: disc;
+  }
+
+  .policy-content ol {
+    list-style-type: decimal;
+  }
+
+  .policy-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-content a:not(.not-prose a) {
+    color: var(--color-accent-dark);
+  }
+
+  .policy-content a:not(.not-prose a):hover {
+    text-decoration: underline;
+  }
+</style>

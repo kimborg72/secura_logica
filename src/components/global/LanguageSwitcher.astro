@@ -1,0 +1,42 @@
+---
+import type { Locale } from '@i18n/types';
+import { t } from '@i18n/index';
+import { getAlternateUrl } from '@i18n/routes';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+
+const { locale, class: className } = Astro.props;
+const alternateLocale: Locale = locale === 'sv' ? 'en' : 'sv';
+const alternateUrl = getAlternateUrl(Astro.url.pathname, alternateLocale);
+---
+
+<div class:list={["flex items-center gap-1 text-sm font-medium", className]} role="navigation" aria-label={t(locale, 'lang.aria')}>
+  <a
+    href={locale === 'sv' ? Astro.url.pathname : getAlternateUrl(Astro.url.pathname, 'sv')}
+    class:list={[
+      "px-1.5 py-0.5 rounded transition-colors",
+      locale === 'sv' ? 'font-bold' : 'opacity-60 hover:opacity-100'
+    ]}
+    aria-current={locale === 'sv' ? 'true' : undefined}
+    hreflang="sv"
+    data-header-text
+  >
+    SV
+  </a>
+  <span class="opacity-40" data-header-text>/</span>
+  <a
+    href={locale === 'en' ? Astro.url.pathname : getAlternateUrl(Astro.url.pathname, 'en')}
+    class:list={[
+      "px-1.5 py-0.5 rounded transition-colors",
+      locale === 'en' ? 'font-bold' : 'opacity-60 hover:opacity-100'
+    ]}
+    aria-current={locale === 'en' ? 'true' : undefined}
+    hreflang="en"
+    data-header-text
+  >
+    EN
+  </a>
+</div>

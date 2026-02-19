@@ -1,15 +1,21 @@
 ---
-import { mainNav } from '@data/navigation';
+import { getMainNav } from '@data/navigation';
 import MegaMenu from './MegaMenu.astro';
 import MobileNav from './MobileNav.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { Locale } from '@i18n/types';
+import { t, getHomePath } from '@i18n/index';
+import { getContactPath } from '@i18n/routes';
 
 interface Props {
   theme?: 'light' | 'dark';
+  locale?: Locale;
 }
 
-const { theme = 'light' } = Astro.props;
+const { theme = 'light', locale = 'sv' } = Astro.props;
 const isDark = theme === 'dark';
 const textClass = isDark ? 'text-white' : 'text-navy';
+const nav = getMainNav(locale);
 ---
 
 <header
@@ -19,7 +25,7 @@ const textClass = isDark ? 'text-white' : 'text-navy';
 >
   <div class="container flex items-center justify-between h-20">
     <!-- Logo -->
-    <a href="/" class="flex items-center relative z-50" aria-label="Verit - Startsida">
+    <a href={getHomePath(locale)} class="flex items-center relative z-50" aria-label={`Verit - ${t(locale, 'header.home')}`}>
       <img
         src="/images/logos/logo_verit_dark.png"
         alt="Verit"
@@ -37,8 +43,8 @@ const textClass = isDark ? 'text-white' : 'text-navy';
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center gap-8" aria-label="Huvudnavigation">
-      {mainNav.map((item) => (
+    <nav class="hidden lg:flex items-center gap-8" aria-label={t(locale, 'nav.mainNav')}>
+      {nav.map((item) => (
         item.children ? (
           <div class="relative group">
             <button
@@ -53,7 +59,7 @@ const textClass = isDark ? 'text-white' : 'text-navy';
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <MegaMenu services={item.children} featured={item.featured} />
+            <MegaMenu services={item.children} featured={item.featured} locale={locale} />
           </div>
         ) : (
           <a href={item.href} class:list={["text-sm font-medium transition-colors", textClass]} data-header-text>
@@ -63,17 +69,18 @@ const textClass = isDark ? 'text-white' : 'text-navy';
       ))}
     </nav>
 
-    <!-- CTA + Mobile Toggle -->
+    <!-- Language Switcher + CTA + Mobile Toggle -->
     <div class="flex items-center gap-4">
+      <LanguageSwitcher locale={locale} class="hidden lg:flex" />
       <a
-        href="/kontakt"
+        href={getContactPath(locale)}
         class="hidden lg:inline-flex items-center px-5 py-2.5 bg-accent text-dark text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors"
       >
-        Kontakta oss
+        {t(locale, 'header.contactUs')}
       </a>
       <button
         class="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center"
-        aria-label="Öppna meny"
+        aria-label={t(locale, 'header.openMenu')}
         data-mobile-toggle
       >
         <div class="hamburger-icon">
@@ -86,7 +93,7 @@ const textClass = isDark ? 'text-white' : 'text-navy';
   </div>
 
   <!-- Mobile Nav -->
-  <MobileNav />
+  <MobileNav locale={locale} />
 </header>
 
 <!-- Spacer for fixed header -->

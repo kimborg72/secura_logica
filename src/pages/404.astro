@@ -1,17 +1,20 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import Button from '@components/ui/Button.astro';
+import { t, getLocaleFromUrl, getHomePath } from '@i18n/index';
+
+const locale = getLocaleFromUrl(Astro.url);
 ---
 
-<PageLayout title="Sidan hittades inte">
+<PageLayout title={t(locale, '404.title')} locale={locale}>
   <section class="section">
     <div class="container text-center">
       <p class="text-8xl font-bold text-accent-dark/20 mb-4">404</p>
-      <h1 class="mb-4">Sidan hittades inte</h1>
+      <h1 class="mb-4">{t(locale, '404.title')}</h1>
       <p class="lead max-w-lg mx-auto mb-8">
-        Sidan du letar efter finns inte eller har flyttats.
+        {t(locale, '404.description')}
       </p>
-      <Button href="/" variant="primary">Tillbaka till startsidan</Button>
+      <Button href={getHomePath(locale)} variant="primary">{t(locale, '404.back')}</Button>
     </div>
   </section>
 </PageLayout>

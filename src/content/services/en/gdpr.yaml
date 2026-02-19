@@ -1,0 +1,123 @@
+title: "GDPR & Data Protection"
+shortTitle: "GDPR"
+slug: "gdpr"
+metaTitle: "GDPR & Data Protection — Practical Advisory | Verit"
+metaDescription: "Practical advisory to meet the requirements of the General Data Protection Regulation. Gap analysis, records of processing, DPIA, and DPO services."
+excerpt: "Practical advisory to meet GDPR requirements in your organisation."
+introLead: >
+  With increased enforcement from the Swedish Authority for Privacy Protection (IMY)
+  and ever-higher fines, GDPR compliance is no longer optional.
+  Practical implementation is what protects your organisation — not policies sitting in a binder.
+introduction: |
+  The General Data Protection Regulation (GDPR) imposes extensive requirements on how organisations handle personal data. The requirements cover everything from how you collect and store data to how you handle individuals' rights and report personal data breaches.
+
+  Many organisations have made some progress but still lack a systematic approach to their data protection efforts. Records of processing activities are incomplete, data protection impact assessments are not carried out when they should be, and procedures for rights management and breach reporting are unclear.
+
+  Verit helps you build a data protection programme that works in practice. We combine legal understanding with technical expertise and offer everything from gap analyses and records of processing to an ongoing DPO service for organisations that need it.
+targetAudience:
+  heading: "Do you need data protection support?"
+  description: >
+    All organisations that process personal data are subject to GDPR.
+    The need for support is particularly significant in organisations that handle
+    sensitive personal data or large volumes of data.
+  segments:
+    - "Public sector and municipalities"
+    - "Healthcare and e-health"
+    - "E-commerce and digital services"
+    - "HR departments with complex workforce management"
+    - "Research organisations"
+    - "Education sector"
+benefits:
+  - title: "Practical compliance"
+    description: >
+      We focus on building processes that work in day-to-day operations,
+      not just on paper. Your employees should know how to handle
+      personal data correctly without having to call the legal team
+      for every decision.
+  - title: "Integrated approach"
+    description: >
+      Data protection should not be siloed. We integrate data protection
+      with your broader information security efforts — the same risk methodology,
+      the same processes, the same platform. This saves time and delivers
+      better results.
+  - title: "Risk-aware prioritisation"
+    description: >
+      Not all personal data processing carries the same risk.
+      We help you focus efforts where the risks are greatest —
+      sensitive data, large-scale processing, and third-country transfers
+      — so that you use your resources effectively.
+process:
+  - step: 1
+    title: "Current state assessment"
+    description: >
+      We map how you currently handle personal data —
+      which processing activities take place, which legal bases you
+      rely on, and how your procedures are structured.
+    duration: "1–2 weeks"
+  - step: 2
+    title: "Gap analysis"
+    description: >
+      Systematic comparison of your current state against GDPR requirements.
+      We identify gaps in records of processing,
+      consent management, transparency obligations, and technical safeguards.
+    duration: "1–2 weeks"
+  - step: 3
+    title: "Implementation"
+    description: >
+      We help you address identified gaps — from
+      updated privacy policies and records of processing
+      to data protection impact assessments and procedures for rights management.
+    duration: "2–4 weeks"
+  - step: 4
+    title: "Ongoing support"
+    description: >
+      We offer ongoing advisory and, where needed, a DPO service
+      (Data Protection Officer) for organisations that require external
+      expertise on a continuous basis.
+    duration: "Ongoing"
+deliverables:
+  - "GDPR current state and gap analysis report"
+  - "Records of processing activities (Article 30)"
+  - "Data protection impact assessments (DPIA) where required"
+  - "Data protection policies and procedures"
+  - "Procedures for rights management and breach reporting"
+  - "DPO service where required"
+faq:
+  - question: "Do we need a Data Protection Officer (DPO)?"
+    answer: >
+      A DPO is required for public authorities and public bodies, as well as
+      for organisations whose core activities involve large-scale
+      processing of sensitive personal data or systematic
+      monitoring. We help you assess whether the requirement applies to you
+      and can, if needed, act as your external DPO.
+  - question: "What is a DPIA and when is it required?"
+    answer: >
+      A Data Protection Impact Assessment (DPIA) is required
+      when processing is likely to result in a high risk to the
+      rights and freedoms of data subjects. Typical examples include
+      large-scale processing of sensitive data, systematic
+      monitoring, and new technologies.
+  - question: "How do we handle third-country transfers?"
+    answer: >
+      Transferring personal data outside the EU/EEA requires
+      appropriate safeguards. We help you map which
+      transfers take place and implement the right mechanisms —
+      standard contractual clauses, adequacy decisions, or derogations.
+securapilotConnection:
+  heading: "Data protection in Securapilot"
+  description: >
+    Securapilot gives you a central place to manage your
+    data protection efforts — records of processing, impact assessments,
+    and breach reporting in accordance with GDPR's 72-hour rule.
+  features:
+    - "Digital records of processing activities per Article 30"
+    - "DPIA workflow with template support"
+    - "Breach reporting aligned with GDPR timelines"
+    - "Document management for policies and procedures"
+relatedServices:
+  - "nis2"
+  - "risk-management"
+  - "training"
+ctaText: "Book a GDPR review"
+ctaDescription: "We assess your data protection efforts and provide concrete improvement recommendations."
+order: 6
