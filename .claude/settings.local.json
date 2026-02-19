@@ -45,7 +45,8 @@
       "WebFetch(domain:www.linnworks.com)",
       "Bash(file:*)",
       "WebFetch(domain:simplelocalize.io)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(ssh:*)"
     ]
   }
 }

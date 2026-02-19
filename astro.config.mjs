@@ -7,6 +7,9 @@ import { fileURLToPath } from 'node:url';
 export default defineConfig({
   site: 'https://verit.se',
   adapter: node({ mode: 'standalone' }),
+  security: {
+    checkOrigin: false,
+  },
   i18n: {
     defaultLocale: 'sv',
     locales: ['sv', 'en'],
