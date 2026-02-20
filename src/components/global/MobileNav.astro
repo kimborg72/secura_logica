@@ -21,23 +21,23 @@ const nav = getMainNav(locale);
 >
   <div class="flex flex-col h-full pt-24 pb-8 px-6 overflow-y-auto">
     <nav class="flex-1" aria-label={t(locale, 'nav.mobileNav')}>
-      <ul class="space-y-1">
+      <ul class="space-y-0">
         {nav.map((item) => (
-          <li>
+          <li class="border-b border-border">
             {item.children ? (
               <details class="group">
-                <summary class="flex items-center justify-between py-3 text-lg font-medium text-navy cursor-pointer">
+                <summary class="flex items-center justify-between py-4 text-lg font-medium text-navy cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                   {item.label}
-                  <svg class="w-5 h-5 text-gray transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <svg class="w-5 h-5 text-gray transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <ul class="pl-4 pb-2 space-y-1">
+                <ul class="pb-3 space-y-0">
                   {item.children.map((child) => (
                     <li>
                       <a
                         href={child.href}
-                        class="block py-2 text-base text-slate hover:text-accent-dark transition-colors"
+                        class="block py-3 pl-4 text-base text-slate hover:text-accent-dark hover:bg-surface rounded-lg transition-colors"
                       >
                         {child.label}
                       </a>
@@ -48,7 +48,7 @@ const nav = getMainNav(locale);
             ) : (
               <a
                 href={item.href}
-                class="block py-3 text-lg font-medium text-navy hover:text-accent-dark transition-colors"
+                class="block py-4 text-lg font-medium text-navy hover:text-accent-dark transition-colors"
               >
                 {item.label}
               </a>
@@ -64,10 +64,10 @@ const nav = getMainNav(locale);
     </div>
 
     <!-- CTA -->
-    <div class="mt-6 pt-6 border-t border-border">
+    <div class="mt-4">
       <a
         href={getContactPath(locale)}
-        class="block w-full text-center px-6 py-3 bg-accent text-dark font-semibold rounded-lg hover:bg-accent-hover transition-colors"
+        class="block w-full text-center px-6 py-4 bg-accent text-dark font-semibold rounded-lg hover:bg-accent-hover transition-colors text-lg"
       >
         {t(locale, 'header.contactUs')}
       </a>
@@ -80,7 +80,7 @@ const nav = getMainNav(locale);
         {offices.map((office) => (
           <div>
             <p class="font-medium text-navy">{office.city}</p>
-            <p>{office.phone}</p>
+            <a href={`tel:${office.phone.replace(/\s/g, '')}`} class="hover:text-accent-dark transition-colors">{office.phone}</a>
           </div>
         ))}
       </div>
@@ -92,7 +92,48 @@ const nav = getMainNav(locale);
   function initMobileNav() {
     const toggle = document.querySelector('[data-mobile-toggle]');
     const nav = document.getElementById('mobile-nav');
-    if (!toggle || !nav) return;
+    const header = document.getElementById('site-header');
+    if (!toggle || !nav || !header) return;
+
+    const textEls = header.querySelectorAll('[data-header-text]');
+    const logoDark = header.querySelector('[data-logo-dark]') as HTMLElement | null;
+    const logoLight = header.querySelector('[data-logo-light]') as HTMLElement | null;
+
+    function setNavyUI() {
+      header.classList.add('mobile-menu-open');
+      textEls.forEach((el) => {
+        el.classList.remove('text-white');
+        el.classList.add('text-navy');
+      });
+      toggle.classList.remove('text-white');
+      toggle.classList.add('text-navy');
+      if (logoDark && logoLight) {
+        logoLight.classList.remove('opacity-0', 'absolute');
+        logoLight.classList.add('opacity-80');
+        logoDark.classList.remove('opacity-80');
+        logoDark.classList.add('opacity-0', 'absolute');
+      }
+    }
+
+    function restoreUI() {
+      header.classList.remove('mobile-menu-open');
+      const isDark = header.dataset.theme === 'dark';
+      const isScrolled = window.scrollY > 50;
+      if (!isScrolled && isDark) {
+        textEls.forEach((el) => {
+          el.classList.remove('text-navy');
+          el.classList.add('text-white');
+        });
+        toggle.classList.remove('text-navy');
+        toggle.classList.add('text-white');
+        if (logoDark && logoLight) {
+          logoDark.classList.remove('opacity-0', 'absolute');
+          logoDark.classList.add('opacity-80');
+          logoLight.classList.remove('opacity-80');
+          logoLight.classList.add('opacity-0', 'absolute');
+        }
+      }
+    }
 
     function open() {
       nav!.classList.remove('translate-x-full');
@@ -100,6 +141,7 @@ const nav = getMainNav(locale);
       toggle.setAttribute('aria-expanded', 'true');
       document.body.classList.add('mobile-open');
       document.body.style.overflow = 'hidden';
+      setNavyUI();
     }
 
     function close() {
@@ -108,6 +150,7 @@ const nav = getMainNav(locale);
       toggle.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('mobile-open');
       document.body.style.overflow = '';
+      restoreUI();
     }
 
     toggle.addEventListener('click', () => {
@@ -115,12 +158,10 @@ const nav = getMainNav(locale);
       isOpen ? close() : open();
     });
 
-    // Close on link click
     nav!.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', close);
     });
 
-    // Close on escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') close();
     });
