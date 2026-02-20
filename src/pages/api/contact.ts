@@ -86,9 +86,9 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  const relayUrl = import.meta.env.MAIL_RELAY_URL;
-  const relayKey = import.meta.env.MAIL_RELAY_KEY;
-  const relaySender = import.meta.env.MAIL_RELAY_SENDER;
+  const relayUrl = process.env.MAIL_RELAY_URL;
+  const relayKey = process.env.MAIL_RELAY_KEY;
+  const relaySender = process.env.MAIL_RELAY_SENDER;
 
   if (!relayUrl || !relayKey) {
     console.error('Mail Relay is not configured (MAIL_RELAY_URL / MAIL_RELAY_KEY)');
