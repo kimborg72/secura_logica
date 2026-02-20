@@ -20,7 +20,7 @@ const nav = getMainNav(locale);
 
 <header
   id="site-header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  class="fixed top-0 left-0 right-0 z-[95] transition-all duration-300"
   data-theme={theme}
 >
   <div class="container flex items-center justify-between h-20">
@@ -79,7 +79,7 @@ const nav = getMainNav(locale);
         {t(locale, 'header.contactUs')}
       </a>
       <button
-        class="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center"
+        class="lg:hidden relative z-[100] w-10 h-10 flex items-center justify-center"
         aria-label={t(locale, 'header.openMenu')}
         data-mobile-toggle
       >
@@ -92,9 +92,10 @@ const nav = getMainNav(locale);
     </div>
   </div>
 
-  <!-- Mobile Nav -->
-  <MobileNav locale={locale} />
 </header>
+
+<!-- Mobile Nav (outside header to avoid stacking context issues) -->
+<MobileNav locale={locale} />
 
 <!-- Spacer for fixed header -->
 <div class="h-20"></div>
