@@ -27,17 +27,17 @@ const nav = getMainNav(locale);
     <!-- Logo -->
     <a href={getHomePath(locale)} class="flex items-center relative z-50" aria-label={`Verit - ${t(locale, 'header.home')}`}>
       <img
-        src="/images/logos/logo_verit_dark.png"
+        src="/images/logos/logo_verit_dark_2026.png"
         alt="Verit"
-        style="height: 46px; width: auto;"
-        class:list={["transition-opacity duration-300", isDark ? "opacity-100" : "opacity-0 absolute"]}
+        style="height: 49px; width: auto;"
+        class:list={["transition-opacity duration-300", isDark ? "opacity-80" : "opacity-0 absolute"]}
         data-logo-dark
       />
       <img
-        src="/images/logos/logo_verit_light.png"
+        src="/images/logos/logo_verit_light_2026.png"
         alt="Verit"
-        style="height: 46px; width: auto;"
-        class:list={["transition-opacity duration-300", isDark ? "opacity-0 absolute" : "opacity-100"]}
+        style="height: 49px; width: auto;"
+        class:list={["transition-opacity duration-300", isDark ? "opacity-0 absolute" : "opacity-80"]}
         data-logo-light
       />
     </a>
@@ -171,13 +171,13 @@ const nav = getMainNav(locale);
       if (!logoDark || !logoLight) return;
       if (variant === 'dark') {
         logoDark.classList.remove('opacity-0', 'absolute');
-        logoDark.classList.add('opacity-100');
-        logoLight.classList.remove('opacity-100');
+        logoDark.classList.add('opacity-80');
+        logoLight.classList.remove('opacity-80');
         logoLight.classList.add('opacity-0', 'absolute');
       } else {
         logoLight.classList.remove('opacity-0', 'absolute');
-        logoLight.classList.add('opacity-100');
-        logoDark.classList.remove('opacity-100');
+        logoLight.classList.add('opacity-80');
+        logoDark.classList.remove('opacity-80');
         logoDark.classList.add('opacity-0', 'absolute');
       }
     }
