@@ -46,7 +46,15 @@
       "Bash(file:*)",
       "WebFetch(domain:simplelocalize.io)",
       "Bash(node:*)",
-      "Bash(ssh:*)"
+      "Bash(ssh:*)",
+      "Bash(tr:*)",
+      "Bash(xargs kill:*)",
+      "WebFetch(domain:www.freepik.com)",
+      "WebFetch(domain:docs.freepik.com)",
+      "Bash(sips:*)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:worldmonitor.app)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }

@@ -36,6 +36,7 @@ export const insightSlugMap: Record<string, string> = {
   'nis2-cybersakerehtslagen': 'nis2-cybersecurity-act',
   'iso27001-forandringar': 'iso27001-changes',
   'ciso-as-a-service': 'ciso-as-a-service',
+  'cybersakerehtslagen-ledningsansvar': 'cybersecurity-act-leadership-accountability',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(
