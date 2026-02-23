@@ -63,7 +63,7 @@ const articleSchema = {
 };
 ---
 
-<PageLayout title={post.data.title} description={post.data.description} locale={locale} ogType="article">
+<PageLayout title={post.data.title} description={post.data.description} ogImage={`/og/en/insights/${post.id.replace('en/', '')}.png`} locale={locale} ogType="article">
   <JsonLd schema={articleSchema} />
 
   <!-- Reading progress bar -->

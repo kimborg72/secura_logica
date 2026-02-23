@@ -56,7 +56,7 @@ const faqSchema = data.faq?.length ? {
 } : null;
 ---
 
-<PageLayout title={data.metaTitle} description={data.metaDescription} locale={locale}>
+<PageLayout title={data.metaTitle} description={data.metaDescription} ogImage={`/og/en/services/${data.slug}.png`} locale={locale}>
   <JsonLd schema={serviceSchema} />
   {faqSchema && <JsonLd schema={faqSchema} />}
   <HeroSimple

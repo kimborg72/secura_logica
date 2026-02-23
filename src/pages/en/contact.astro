@@ -31,7 +31,7 @@ const localBusinessSchemas = offices.map((office) => ({
 }));
 ---
 
-<PageLayout title="Contact Verit | Cybersecurity & Compliance" description="Contact Verit for a free consultation on your cybersecurity and compliance." locale={locale}>
+<PageLayout title="Contact Verit | Cybersecurity & Compliance" description="Contact Verit for a free consultation on your cybersecurity and compliance." ogImage="/og/en/contact.png" locale={locale}>
   {localBusinessSchemas.map((schema) => (
     <JsonLd schema={schema} />
   ))}

@@ -121,7 +121,7 @@ const typeImage = `/images/kommuner/${kommun.type}.webp`;
 const heroImage = `/images/kommuner/hero-${kommun.type}.webp`;
 ---
 
-<PageLayout title={metaTitle} description={metaDescription} locale={locale} svOnly={true} headerTheme="dark">
+<PageLayout title={metaTitle} description={metaDescription} ogImage={`/og/kommuner/${kommun.slug}.png`} locale={locale} svOnly={true} headerTheme="dark">
   <JsonLd schema={localServiceSchema} />
   <JsonLd schema={faqSchema} />
   <!-- Hero with background image -->

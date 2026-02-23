@@ -15,8 +15,10 @@
     "@astrojs/check": "^0.9.0",
     "@astrojs/node": "^9.5.4",
     "@astrojs/sitemap": "^3.3.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tinacms/cli": "^2.1.6",
     "astro": "^5.7.0",
+    "satori": "^0.19.2",
     "tinacms": "^3.5.0"
   },
   "devDependencies": {

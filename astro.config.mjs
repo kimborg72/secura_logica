@@ -23,6 +23,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@i18n': fileURLToPath(new URL('./src/i18n', import.meta.url)),
+        '@lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
       },
     },
   },
