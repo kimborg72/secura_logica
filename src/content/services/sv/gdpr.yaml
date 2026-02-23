@@ -1,13 +1,13 @@
 title: "GDPR & Dataskydd"
 shortTitle: "GDPR"
 slug: "gdpr"
-metaTitle: "GDPR & Dataskydd — Praktisk rådgivning | Verit"
+metaTitle: "GDPR & Dataskydd: Praktisk rådgivning | Verit"
 metaDescription: "Praktisk rådgivning för att uppfylla dataskyddsförordningens krav. Gap-analys, registerförteckning, DPIA och DPO-tjänst."
 excerpt: "Praktisk rådgivning för att uppfylla dataskyddsförordningens krav i er verksamhet."
 introLead: >
   Med ökad tillsyn från IMY och allt högre sanktionsavgifter är GDPR-efterlevnad
   inte längre valfritt. Praktisk implementering är det som skyddar er
-  organisation — inte policyer i en pärm.
+  organisation, inte policyer i en pärm.
 introduction: |
   Dataskyddsförordningen (GDPR) ställer omfattande krav på hur organisationer hanterar personuppgifter. Kraven gäller allt från hur ni samlar in och lagrar data till hur ni hanterar individers rättigheter och rapporterar personuppgiftsincidenter.
 
@@ -37,20 +37,20 @@ benefits:
   - title: "Integrerad approach"
     description: >
       GDPR-arbetet bör inte vara isolerat. Vi integrerar dataskydd
-      med ert övriga informationssäkerhetsarbete — samma riskmetodik,
+      med ert övriga informationssäkerhetsarbete: samma riskmetodik,
       samma processer, samma plattform. Det sparar tid och ger
       bättre resultat.
   - title: "Riskmedveten prioritering"
     description: >
       Inte alla personuppgiftsbehandlingar innebär samma risk.
-      Vi hjälper er fokusera insatserna där riskerna är störst —
-      känsliga uppgifter, storskalig behandling och tredjelandsöverföringar
-      — så att ni använder era resurser effektivt.
+      Vi hjälper er fokusera insatserna där riskerna är störst:
+      känsliga uppgifter, storskalig behandling och tredjelandsöverföringar,
+      så att ni använder era resurser effektivt.
 process:
   - step: 1
     title: "Nulägesanalys"
     description: >
-      Vi kartlägger hur ni idag hanterar personuppgifter —
+      Vi kartlägger hur ni idag hanterar personuppgifter:
       vilka behandlingar som sker, vilka lagliga grunder ni
       stödjer er på och hur era rutiner ser ut.
     duration: "1–2 veckor"
@@ -64,7 +64,7 @@ process:
   - step: 3
     title: "Implementering"
     description: >
-      Vi hjälper er att åtgärda identifierade gap — från
+      Vi hjälper er att åtgärda identifierade gap, från
       uppdaterade integritetspolicyer och registerförteckningar
       till konsekvensbedömningar och rutiner för rättighetshantering.
     duration: "2–4 veckor"
@@ -101,13 +101,13 @@ faq:
     answer: >
       Överföring av personuppgifter utanför EU/EES kräver
       särskilda skyddsåtgärder. Vi hjälper er kartlägga vilka
-      överföringar som sker och implementera rätt mekanismer —
+      överföringar som sker och implementera rätt mekanismer:
       standardavtalsklausuler, adekvata länder eller undantag.
 securapilotConnection:
   heading: "Dataskydd i Securapilot"
   description: >
     Securapilot ger er ett centralt ställe att hantera ert
-    dataskyddsarbete — registerförteckning, konsekvensbedömningar
+    dataskyddsarbete: registerförteckning, konsekvensbedömningar
     och incidentrapportering enligt GDPR:s 72-timmarsregel.
   features:
     - "Digital registerförteckning enligt artikel 30"

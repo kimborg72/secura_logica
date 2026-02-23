@@ -21,7 +21,7 @@ export default defineConfig({
     collections: [
       {
         name: 'service',
-        label: 'Tjänster',
+        label: 'Tjänster / Services',
         path: 'src/content/services',
         format: 'yaml',
         fields: [
@@ -44,11 +44,33 @@ export default defineConfig({
             ui: { component: 'textarea' },
           },
           {
+            name: 'introLead',
+            label: 'Intro-ingress',
+            type: 'string',
+            ui: { component: 'textarea' },
+          },
+          {
             name: 'introduction',
             label: 'Introduktion',
             type: 'string',
             required: true,
             ui: { component: 'textarea' },
+          },
+          {
+            name: 'targetAudience',
+            label: 'Målgrupp',
+            type: 'object',
+            fields: [
+              { name: 'heading', label: 'Rubrik', type: 'string', required: true },
+              {
+                name: 'description',
+                label: 'Beskrivning',
+                type: 'string',
+                required: true,
+                ui: { component: 'textarea' },
+              },
+              { name: 'segments', label: 'Segment', type: 'string', list: true },
+            ],
           },
           {
             name: 'benefits',
@@ -81,6 +103,7 @@ export default defineConfig({
                 required: true,
                 ui: { component: 'textarea' },
               },
+              { name: 'duration', label: 'Tidsuppskattning', type: 'string' },
             ],
           },
           {
@@ -90,12 +113,50 @@ export default defineConfig({
             list: true,
           },
           {
+            name: 'faq',
+            label: 'Vanliga frågor',
+            type: 'object',
+            list: true,
+            fields: [
+              { name: 'question', label: 'Fråga', type: 'string', required: true },
+              {
+                name: 'answer',
+                label: 'Svar',
+                type: 'string',
+                required: true,
+                ui: { component: 'textarea' },
+              },
+            ],
+          },
+          {
+            name: 'securapilotConnection',
+            label: 'Securapilot-koppling',
+            type: 'object',
+            fields: [
+              { name: 'heading', label: 'Rubrik', type: 'string', required: true },
+              {
+                name: 'description',
+                label: 'Beskrivning',
+                type: 'string',
+                required: true,
+                ui: { component: 'textarea' },
+              },
+              { name: 'features', label: 'Funktioner', type: 'string', list: true },
+            ],
+          },
+          {
             name: 'relatedServices',
             label: 'Relaterade tjänster',
             type: 'string',
             list: true,
           },
           { name: 'ctaText', label: 'CTA-text', type: 'string' },
+          {
+            name: 'ctaDescription',
+            label: 'CTA-beskrivning',
+            type: 'string',
+            ui: { component: 'textarea' },
+          },
           { name: 'order', label: 'Ordning', type: 'number', required: true },
         ],
         ui: {
@@ -107,7 +168,7 @@ export default defineConfig({
 
       {
         name: 'insight',
-        label: 'Insikter',
+        label: 'Insikter / Insights',
         path: 'src/content/insights',
         format: 'md',
         fields: [
@@ -119,10 +180,13 @@ export default defineConfig({
             required: true,
             ui: { component: 'textarea' },
           },
-          { name: 'date', label: 'Datum', type: 'datetime', required: true },
+          { name: 'date', label: 'Publicerad', type: 'datetime', required: true },
+          { name: 'updatedDate', label: 'Uppdaterad', type: 'datetime' },
           { name: 'author', label: 'Författare', type: 'string', required: true },
           { name: 'category', label: 'Kategori', type: 'string', required: true },
           { name: 'draft', label: 'Utkast', type: 'boolean' },
+          { name: 'image', label: 'Bild', type: 'image' },
+          { name: 'tags', label: 'Taggar', type: 'string', list: true },
           { name: 'body', label: 'Innehåll', type: 'rich-text', isBody: true },
         ],
       },
@@ -148,7 +212,7 @@ export default defineConfig({
 
       {
         name: 'industry',
-        label: 'Branscher',
+        label: 'Branscher / Industries',
         path: 'src/content/industries',
         format: 'yaml',
         fields: [

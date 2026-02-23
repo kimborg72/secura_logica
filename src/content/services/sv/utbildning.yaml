@@ -9,11 +9,11 @@ introLead: >
   Rätt utbildning är den mest kostnadseffektiva säkerhetsinvesteringen
   ni kan göra.
 introduction: |
-  Tekniska skyddsåtgärder är nödvändiga men inte tillräckliga. Det räcker med att en enda medarbetare klickar på fel länk, delar känslig information på fel sätt eller missar att rapportera en incident — för att hela säkerhetsarbetet ska fallera.
+  Tekniska skyddsåtgärder är nödvändiga men inte tillräckliga. Det räcker med att en enda medarbetare klickar på fel länk, delar känslig information på fel sätt eller missar att rapportera en incident för att hela säkerhetsarbetet ska fallera.
 
   Utbildning och awareness handlar inte om att skrämma medarbetare eller genomföra plikttrogna e-learnings. Det handlar om att bygga en säkerhetskultur där varje person förstår sin roll i att skydda organisationens information och känner sig trygg med att agera rätt.
 
-  Våra utbildningar är anpassade efter er verksamhet och era risker. Vi designar innehållet utifrån verkliga scenarier som är relevanta för just era medarbetare — från ledningsgrupp till nyanställda.
+  Våra utbildningar är anpassade efter er verksamhet och era risker. Vi designar innehållet utifrån verkliga scenarier som är relevanta för just era medarbetare, från ledningsgrupp till nyanställda.
 targetAudience:
   heading: "Vilka behöver utbildning?"
   description: >
@@ -21,11 +21,11 @@ targetAudience:
     målgrupp och ansvarsnivå. Vi skräddarsyr utbildningar för
     olika roller i er organisation.
   segments:
-    - "Alla medarbetare — allmän awareness"
+    - "Alla medarbetare: allmän awareness"
     - "Ledningsgrupper och styrelser"
     - "IT-avdelningar och utvecklare"
     - "Dataägare och systemägare"
-    - "Nyanställda — onboarding"
+    - "Nyanställda: onboarding"
     - "Personal som hanterar känslig information"
 benefits:
   - title: "Minskad mänsklig risk"
@@ -64,7 +64,7 @@ process:
   - step: 3
     title: "Genomförande"
     description: >
-      Utbildningarna genomförs i det format som passar er bäst —
+      Utbildningarna genomförs i det format som passar er bäst:
       på plats, digitalt eller i kombination. Vi engagerar
       deltagarna genom interaktiva övningar och diskussioner.
     duration: "Enligt plan"
@@ -104,7 +104,7 @@ securapilotConnection:
   heading: "Följ upp awareness i Securapilot"
   description: >
     Med Securapilot kan ni följa utbildningsdeltagande,
-    testresultat och awareness-aktiviteter över tid — och
+    testresultat och awareness-aktiviteter över tid, och
     visa tillsynsmyndigheter att ni uppfyller utbildningskraven.
   features:
     - "Utbildningsregister med deltagarstatus"

@@ -10,6 +10,8 @@ interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   locale?: Locale;
+  ogType?: 'website' | 'article';
+  svOnly?: boolean;
 }
 
 const {
@@ -17,11 +19,15 @@ const {
   ogImage = site.defaultOgImage,
   canonicalUrl = Astro.url.href,
   locale = 'sv',
+  ogType = 'website',
+  svOnly = false,
 } = Astro.props;
 
 const siteData = getSiteData(locale);
 const description = Astro.props.description ?? siteData.defaultDescription;
-const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+const fullTitle = (title.includes(' — ') || title.includes(' | '))
+  ? title
+  : title === site.name ? title : `${title} | ${site.name}`;
 const ogImageUrl = new URL(ogImage, site.url).href;
 
 const currentPath = Astro.url.pathname;
@@ -33,7 +39,9 @@ const enUrl = new URL(enPath, site.url).href;
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="generator" content={Astro.generator} />
+
+<!-- Font preload -->
+<link rel="preload" href="/fonts/SpaceGrotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
 <!-- Primary -->
 <title>{fullTitle}</title>
@@ -47,10 +55,10 @@ const enUrl = new URL(enPath, site.url).href;
 <link rel="icon" type="image/png" sizes="48x48" href="/images/icons/favicon-48x48.png" />
 <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png" />
-<link rel="manifest" href="/images/icons/site.webmanifest" />
+<link rel="manifest" href="/site.webmanifest" />
 
 <!-- Open Graph -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
@@ -66,12 +74,32 @@ const enUrl = new URL(enPath, site.url).href;
 
 <!-- SEO -->
 <meta name="robots" content="index, follow" />
-<link rel="alternate" hreflang="sv" href={svUrl} />
-<link rel="alternate" hreflang="en" href={enUrl} />
-<link rel="alternate" hreflang="x-default" href={svUrl} />
+{svOnly ? (
+  <link rel="alternate" hreflang="sv-SE" href={canonicalUrl} />
+  <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+) : (
+  <link rel="alternate" hreflang="sv-SE" href={svUrl} />
+  <link rel="alternate" hreflang="en-US" href={enUrl} />
+  <link rel="alternate" hreflang="x-default" href={svUrl} />
+)}
 <meta name="theme-color" content="#121212" />
 
 <!-- Structured Data -->
 <JsonLd schema={organizationSchema} />
+
+<!-- Matomo -->
+<script is:inline>
+  var _paq = window._paq = window._paq || [];
+  _paq.push(['requireCookieConsent']);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u = "//stats.securapilot.com/";
+    _paq.push(['setTrackerUrl', u + 'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+    g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+  })();
+</script>
 
 <!-- Fonts (self-hosted, see global.css @font-face declarations) -->

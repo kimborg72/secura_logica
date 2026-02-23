@@ -42,9 +42,19 @@ const { locale = 'sv' } = Astro.props;
 </div>
 
 <script>
+  var _paq = window._paq = window._paq || [];
+
+  function applyMatomoConsent() {
+    if (localStorage.getItem('cookie-consent') === 'all') {
+      _paq.push(['setCookieConsentGiven']);
+    }
+  }
+
   function initCookieConsent() {
     const banner = document.getElementById('cookie-consent');
     if (!banner) return;
+
+    applyMatomoConsent();
 
     if (localStorage.getItem('cookie-consent')) {
       banner.remove();
@@ -62,7 +72,15 @@ const { locale = 'sv' } = Astro.props;
       const consent = target.closest<HTMLElement>('[data-consent]');
       if (!consent) return;
 
-      localStorage.setItem('cookie-consent', consent.dataset.consent!);
+      const value = consent.dataset.consent!;
+      localStorage.setItem('cookie-consent', value);
+
+      if (value === 'all') {
+        _paq.push(['setCookieConsentGiven']);
+      } else {
+        _paq.push(['forgetCookieConsentGiven']);
+      }
+
       banner.classList.add('translate-y-full');
       banner.setAttribute('aria-hidden', 'true');
 
@@ -70,6 +88,19 @@ const { locale = 'sv' } = Astro.props;
     });
   }
 
+  // Track SPA navigations (skip first load — handled by inline script in head)
+  let isFirstLoad = true;
+  function trackPageView() {
+    if (isFirstLoad) {
+      isFirstLoad = false;
+      return;
+    }
+    _paq.push(['setCustomUrl', window.location.href]);
+    _paq.push(['setDocumentTitle', document.title]);
+    _paq.push(['trackPageView']);
+  }
+
   initCookieConsent();
   document.addEventListener('astro:after-swap', initCookieConsent);
+  document.addEventListener('astro:page-load', trackPageView);
 </script>

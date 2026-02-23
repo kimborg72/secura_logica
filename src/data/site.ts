@@ -12,14 +12,14 @@ const siteLocalized: Record<Locale, { tagline: string; locale: string; language:
     locale: 'sv_SE',
     language: 'sv',
     defaultDescription:
-      'VER&IT hjälper samhällsviktiga verksamheter med cybersäkerhet, compliance och informationssäkerhet. NIS2, ISO 27001, CISO-as-a-Service och vår GRC-plattform Securapilot.',
+      'Verit hjälper samhällsviktiga verksamheter med cybersäkerhet, compliance och informationssäkerhet. NIS2, ISO 27001, CISO-as-a-Service och vår GRC-plattform Securapilot.',
   },
   en: {
     tagline: 'Cybersecurity & Compliance',
     locale: 'en_US',
     language: 'en',
     defaultDescription:
-      'VER&IT helps critical infrastructure organisations with cybersecurity, compliance and information security. NIS2, ISO 27001, CISO-as-a-Service and our GRC platform Securapilot.',
+      'Verit helps critical infrastructure organisations with cybersecurity, compliance and information security. NIS2, ISO 27001, CISO-as-a-Service and our GRC platform Securapilot.',
   },
 };
 
@@ -32,7 +32,7 @@ export const organizationSchema = {
   '@type': 'Organization',
   name: site.name,
   url: site.url,
-  logo: `${site.url}/favicon.svg`,
+  logo: `${site.url}/images/logos/logo_verit_light_2026.png`,
   description: siteLocalized.sv.defaultDescription,
   address: {
     '@type': 'PostalAddress',

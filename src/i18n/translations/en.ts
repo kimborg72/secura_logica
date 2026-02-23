@@ -52,7 +52,7 @@ export default {
   // Hero
   'hero.overline': 'Cybersecurity & Compliance',
   'hero.title': 'From regulatory requirements to operational resilience',
-  'hero.description': 'We help critical infrastructure organisations navigate NIS2, ISO 27001 and the Cybersecurity Act — combining specialist advisory with our platform Securapilot.',
+  'hero.description': 'We help critical infrastructure organisations navigate NIS2, ISO 27001 and the Cybersecurity Act, combining specialist advisory with our platform Securapilot.',
   'hero.cta': 'Book a meeting',
   'hero.services': 'Our services',
   'hero.stat1.label': 'Gap analysis & implementation',
@@ -63,7 +63,7 @@ export default {
   // Value Proposition
   'value.overline': 'Why Verit',
   'value.title': 'Expertise that makes a difference',
-  'value.description': 'We combine deep specialist knowledge with our own technology platform — for compliance that actually works in practice.',
+  'value.description': 'We combine deep specialist knowledge with our own technology platform, for compliance that actually works in practice.',
   'value.item1.overline': 'Advisory',
   'value.item1.title': 'Specialist expertise',
   'value.item1.description': 'Experienced consultants in information security, compliance and risk management. We guide you from gap analysis to full implementation.',
@@ -72,12 +72,12 @@ export default {
   'value.item2.description': 'Our SaaS platform makes compliance actionable. Automated follow-up, document management and real-time dashboards.',
   'value.item3.overline': 'The combination',
   'value.item3.title': 'Advisory + Tools',
-  'value.item3.description': 'A unique combination of hands-on consulting and our own technology platform. You get not just a plan — you get the tool to execute it.',
+  'value.item3.description': 'A unique combination of hands-on consulting and our own technology platform. You get not just a plan; you get the tool to execute it.',
 
   // Services Grid
   'services.overline': 'Services',
   'services.title': 'Cybersecurity & compliance in practice',
-  'services.description': 'We cover the entire chain — from regulatory interpretation and gap analysis to implementation and ongoing monitoring.',
+  'services.description': 'We cover the entire chain: from regulatory interpretation and gap analysis to implementation and ongoing monitoring.',
 
   // Industries Section
   'industries.overline': 'Industries',
@@ -88,7 +88,7 @@ export default {
   // Securapilot Teaser
   'pilot.overline': 'Securapilot',
   'pilot.title': 'Compliance that actually works',
-  'pilot.description': 'Securapilot makes your information security work actionable. Stop chasing documents in folders — get real-time oversight of compliance status, risks and actions.',
+  'pilot.description': 'Securapilot makes your information security work actionable. Stop chasing documents in folders. Get real-time oversight of compliance status, risks and actions.',
   'pilot.feature1': 'Real-time dashboard for compliance status',
   'pilot.feature2': 'Automated gap analysis for NIS2 and ISO 27001',
   'pilot.feature3': 'Document management and policy control',
@@ -114,7 +114,7 @@ export default {
   'insights.allInsights': 'All insights',
 
   // Trust Badges
-  'badges.msb': 'MSB Framework',
+  'badges.mcf': 'MCF Framework',
 
   // CTA Banner defaults
   'cta.defaultTitle': 'Ready to strengthen your cybersecurity?',

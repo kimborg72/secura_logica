@@ -1,19 +1,19 @@
 title: "CISO-as-a-Service"
 shortTitle: "CISO"
 slug: "ciso-as-a-service"
-metaTitle: "CISO-as-a-Service — Interim säkerhetsansvarig | Verit"
+metaTitle: "CISO-as-a-Service: Interim säkerhetsansvarig | Verit"
 metaDescription: "Erfaren CISO på deltid som ger er strategisk styrning av informationssäkerhetsarbetet utan fast anställning."
 excerpt: "Interim säkerhetsansvarig som ger er strategisk styrning utan fast anställning."
 introLead: >
-  Inte alla organisationer behöver en heltidsanställd CISO — men alla behöver
+  Inte alla organisationer behöver en heltidsanställd CISO, men alla behöver
   strategisk säkerhetsstyrning. Vår CISO-as-a-Service ger er tillgång till
   erfaren kompetens på den nivå ni behöver.
 introduction: |
-  En Chief Information Security Officer (CISO) ansvarar för att driva organisationens informationssäkerhetsarbete strategiskt. Rollen kräver djup kompetens inom både teknik, risk och verksamhetsstyrning — och att hitta rätt person som heltidsanställd är både svårt och kostsamt.
+  En Chief Information Security Officer (CISO) ansvarar för att driva organisationens informationssäkerhetsarbete strategiskt. Rollen kräver djup kompetens inom både teknik, risk och verksamhetsstyrning, och att hitta rätt person som heltidsanställd är både svårt och kostsamt.
 
   Med CISO-as-a-Service får ni tillgång till en erfaren säkerhetsledare som arbetar som en del av er organisation, men på den omfattning som passar era behov. Från strategisk rådgivning till ledningsrapportering och operativt stöd.
 
-  Vår CISO-tjänst är inte en generisk konsultroll. Vi sätter oss in i er verksamhet, era utmaningar och era mål — och bygger sedan ett säkerhetsarbete som är anpassat efter just er organisation. Vi rapporterar direkt till er ledning och tar ansvar för framdriften.
+  Vår CISO-tjänst är inte en generisk konsultroll. Vi sätter oss in i er verksamhet, era utmaningar och era mål, och bygger sedan ett säkerhetsarbete som är anpassat efter just er organisation. Vi rapporterar direkt till er ledning och tar ansvar för framdriften.
 targetAudience:
   heading: "Behöver ni en CISO?"
   description: >
@@ -34,7 +34,7 @@ benefits:
       ledningssystem, regulatorisk efterlevnad och säkerhetsstyrning.
   - title: "Flexibel insats"
     description: >
-      Vi skalar insatsen efter era behov — från en dag i veckan till
+      Vi skalar insatsen efter era behov, från en dag i veckan till
       en mer omfattande roll under intensiva perioder som
       NIS2-implementering eller certifieringsprojekt. Ni betalar
       för den tid ni faktiskt behöver.
@@ -102,7 +102,7 @@ securapilotConnection:
   heading: "Verktygen för effektiv CISO-styrning"
   description: >
     Vår CISO använder Securapilot för att ge er transparens och
-    kontroll. Ni ser alltid var ni står och vad som händer —
+    kontroll. Ni ser alltid var ni står och vad som händer,
     utan att behöva vänta på nästa möte.
   features:
     - "Strategisk dashboard med säkerhetsstatus och KPI:er"

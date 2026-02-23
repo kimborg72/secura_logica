@@ -1,10 +1,11 @@
 ---
-title: "NIS2 och cybersäkerhetslagen — vad gäller nu?"
+title: "NIS2 och cybersäkerhetslagen: vad gäller nu?"
 description: "Den svenska cybersäkerhetslagen trädde i kraft januari 2025. Vi går igenom de viktigaste kraven och vad din organisation behöver göra."
 date: 2025-02-10
 author: "Kim Borg"
 category: "NIS2"
 draft: false
+image: /images/insights/nis2-cybersakerehtslagen.webp
 ---
 
 Den 1 januari 2025 trädde den svenska cybersäkerhetslagen i kraft som en implementering av EU:s NIS2-direktiv. Lagen innebär skärpta krav på cybersäkerhet för organisationer som bedriver samhällsviktig verksamhet.

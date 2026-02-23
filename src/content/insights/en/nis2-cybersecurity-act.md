@@ -1,10 +1,11 @@
 ---
-title: "NIS2 and the Cybersecurity Act — what applies now?"
+title: "NIS2 and the Cybersecurity Act: what applies now?"
 description: "The Swedish Cybersecurity Act entered into force in January 2025. We walk through the key requirements and what your organisation needs to do."
 date: 2025-02-10
 author: "Kim Borg"
 category: "NIS2"
 draft: false
+image: /images/insights/nis2-cybersakerehtslagen.webp
 ---
 
 On 1 January 2025, the Swedish Cybersecurity Act entered into force as an implementation of the EU's NIS2 directive. The act introduces strengthened cybersecurity requirements for organisations operating essential services.

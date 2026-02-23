@@ -6,18 +6,18 @@ metaDescription: "Systematic risk analysis and information classification tailor
 excerpt: "Systematic risk analysis and information classification tailored to your business."
 introLead: >
   Effective information security starts with understanding your risks. Without
-  systematic risk management, decisions are made blindly — resources are misallocated
+  systematic risk management, decisions are made blindly, resources are misallocated
   and the real threats remain unaddressed.
 introduction: |
   Risk management is the foundation of all information security work. It is through risk assessments that you identify which threats are relevant to your specific business, evaluate likelihood and impact, and make well-informed decisions about which measures are needed.
 
   Information classification complements risk management by giving you a clear picture of which information is most worthy of protection. When you know what is critical, you can direct resources appropriately and avoid applying equal protection to everything.
 
-  We help you establish a risk management process that provides management with decision-support material and gives the organisation a clear direction for its security efforts. Our risk assessments are not academic exercises — they result in concrete measures with clear responsibilities and timelines.
+  We help you establish a risk management process that provides management with decision-support material and gives the organisation a clear direction for its security efforts. Our risk assessments are not academic exercises. They result in concrete measures with clear responsibilities and timelines.
 targetAudience:
   heading: "Do you need systematic risk management?"
   description: >
-    Risk management is a requirement under NIS2, ISO 27001, and GDPR — but
+    Risk management is a requirement under NIS2, ISO 27001, and GDPR, but
     above all it is a tool for making better decisions
     about where to invest in security.
   segments:
@@ -105,7 +105,7 @@ securapilotConnection:
   description: >
     Securapilot turns your risk register into a living tool
     instead of a dusty document. Risks, measures, and
-    follow-up — all updated in real time.
+    follow-up, all updated in real time.
   features:
     - "Digital risk register with automated follow-up"
     - "Risk matrix and heat map for visual overview"

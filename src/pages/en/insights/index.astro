@@ -13,7 +13,7 @@ const insights = await getInsightsByLocale(locale);
 const [featured, ...rest] = insights;
 ---
 
-<PageLayout title="Insights" description="Articles and analyses on cybersecurity, compliance and information security." locale={locale}>
+<PageLayout title="Cybersecurity & Compliance Insights" description="Articles and analyses on cybersecurity, compliance and information security." locale={locale}>
   <HeroSimple
     title="Insights"
     description="Articles, analyses and practical advice on cybersecurity, compliance and information security."
@@ -29,7 +29,7 @@ const [featured, ...rest] = insights;
           {featured && (
             <article class="grid lg:grid-cols-5 gap-8 lg:gap-12 mb-16" data-reveal>
               <a href={getInsightPath(locale, featured.id.replace(`${locale}/`, ''))} class="lg:col-span-3 block group">
-                <div class="aspect-[16/10] rounded-xl bg-surface overflow-hidden">
+                <div class="aspect-[16/9] rounded-xl bg-surface overflow-hidden">
                   {featured.data.image ? (
                     <img src={featured.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                   ) : (
@@ -64,7 +64,7 @@ const [featured, ...rest] = insights;
               {rest.map((post, i) => (
                 <article class="group" data-reveal data-delay={String((i % 3) + 1)}>
                   <a href={getInsightPath(locale, post.id.replace(`${locale}/`, ''))} class="block">
-                    <div class="aspect-[16/10] rounded-xl bg-surface mb-5 overflow-hidden">
+                    <div class="aspect-[16/9] rounded-xl bg-surface mb-5 overflow-hidden">
                       {post.data.image ? (
                         <img src={post.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                       ) : (

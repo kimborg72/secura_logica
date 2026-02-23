@@ -1,10 +1,11 @@
 ---
-title: "ISO 27001:2022 — de viktigaste förändringarna"
+title: "ISO 27001:2022: de viktigaste förändringarna"
 description: "Den uppdaterade standarden medför nya kontroller och en omstrukturerad kontrollbilaga. Så påverkas ert LIS."
 date: 2025-01-22
 author: "Kim Borg"
 category: "ISO 27001"
 draft: false
+image: /images/insights/iso27001-forandringar.webp
 ---
 
 ISO 27001:2022 är den senaste versionen av den internationella standarden för ledningssystem för informationssäkerhet. Uppdateringen medför viktiga förändringar som påverkar både nya implementeringar och befintliga certifierade organisationer.

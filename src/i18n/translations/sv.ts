@@ -52,7 +52,7 @@ export default {
   // Hero
   'hero.overline': 'Cybersäkerhet & Compliance',
   'hero.title': 'Från regulatoriska krav till verksamhetsskydd',
-  'hero.description': 'Vi hjälper samhällsviktiga verksamheter att navigera NIS2, ISO 27001 och cybersäkerhetslagen — med en kombination av specialistrådgivning och vår plattform Securapilot.',
+  'hero.description': 'Vi hjälper verksamheter att navigera NIS2, ISO 27001 och cybersäkerhetslagen, med en kombination av specialistrådgivning och vår plattform Securapilot.',
   'hero.cta': 'Boka ett möte',
   'hero.services': 'Våra tjänster',
   'hero.stat1.label': 'Gap-analys & implementering',
@@ -63,7 +63,7 @@ export default {
   // Value Proposition
   'value.overline': 'Varför Verit',
   'value.title': 'Kompetens som gör skillnad',
-  'value.description': 'Vi kombinerar djup specialistkunskap med en egen teknikplattform — för compliance som faktiskt fungerar i praktiken.',
+  'value.description': 'Vi kombinerar djup specialistkunskap med en egen teknikplattform, för compliance som faktiskt fungerar i praktiken.',
   'value.item1.overline': 'Rådgivning',
   'value.item1.title': 'Specialistkompetens',
   'value.item1.description': 'Erfarna konsulter inom informationssäkerhet, compliance och riskhantering. Vi guidar er från gap-analys till full implementering.',
@@ -72,12 +72,12 @@ export default {
   'value.item2.description': 'Vår SaaS-plattform gör compliance körbart. Automatiserad uppföljning, dokumenthantering och realtids-dashboards.',
   'value.item3.overline': 'Kombinationen',
   'value.item3.title': 'Rådgivning + Verktyg',
-  'value.item3.description': 'Unik kombination av hands-on konsulting och egen teknikplattform. Ni får inte bara en plan — ni får verktyget att genomföra den.',
+  'value.item3.description': 'Unik kombination av hands-on konsulting och egen teknikplattform. Ni får inte bara en plan; ni får verktyget att genomföra den.',
 
   // Services Grid
   'services.overline': 'Tjänster',
   'services.title': 'Cybersäkerhet & compliance i praktiken',
-  'services.description': 'Vi täcker hela kedjan — från regelverkstolkning och gap-analys till implementering och löpande uppföljning.',
+  'services.description': 'Vi täcker hela kedjan: från regelverkstolkning och gap-analys till implementering och löpande uppföljning.',
 
   // Industries Section
   'industries.overline': 'Branscher',
@@ -88,7 +88,7 @@ export default {
   // Securapilot Teaser
   'pilot.overline': 'Securapilot',
   'pilot.title': 'Compliance som faktiskt fungerar',
-  'pilot.description': 'Securapilot gör ert informationssäkerhetsarbete körbart. Sluta jaga dokument i mappar — få realtidsöverblick över compliance-status, risker och åtgärder.',
+  'pilot.description': 'Securapilot gör ert informationssäkerhetsarbete körbart. Sluta jaga dokument i mappar. Få realtidsöverblick över compliance-status, risker och åtgärder.',
   'pilot.feature1': 'Realtids-dashboard för compliance-status',
   'pilot.feature2': 'Automatiserad gap-analys mot NIS2 och ISO 27001',
   'pilot.feature3': 'Dokumenthantering och policykontroll',
@@ -114,7 +114,7 @@ export default {
   'insights.allInsights': 'Alla insikter',
 
   // Trust Badges
-  'badges.msb': 'MSB-ramverk',
+  'badges.mcf': 'MCF-ramverk',
 
   // CTA Banner defaults
   'cta.defaultTitle': 'Redo att stärka er cybersäkerhet?',

@@ -9,15 +9,17 @@ interface Props {
   description?: string;
   ogImage?: string;
   locale?: Locale;
+  ogType?: 'website' | 'article';
+  svOnly?: boolean;
 }
 
-const { title, description, ogImage, locale = 'sv' } = Astro.props;
+const { title, description, ogImage, locale = 'sv', ogType, svOnly } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={locale}>
   <head>
-    <BaseHead title={title} description={description} ogImage={ogImage} locale={locale} />
+    <BaseHead title={title} description={description} ogImage={ogImage} locale={locale} ogType={ogType} svOnly={svOnly} />
     <ClientRouter />
   </head>
   <body class="min-h-screen">

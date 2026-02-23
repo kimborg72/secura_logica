@@ -12,12 +12,14 @@ interface Props {
   ogImage?: string;
   headerTheme?: 'light' | 'dark';
   locale?: Locale;
+  ogType?: 'website' | 'article';
+  svOnly?: boolean;
 }
 
-const { title, description, ogImage, headerTheme = 'light', locale = 'sv' } = Astro.props;
+const { title, description, ogImage, headerTheme = 'light', locale = 'sv', ogType, svOnly } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} ogImage={ogImage} locale={locale}>
+<BaseLayout title={title} description={description} ogImage={ogImage} locale={locale} ogType={ogType} svOnly={svOnly}>
   <div>
     <a href="#main-content" class="skip-link sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-dark focus:rounded-lg focus:font-semibold focus:text-sm">
       {t(locale, 'a11y.skipToContent')}

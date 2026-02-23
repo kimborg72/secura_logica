@@ -11,7 +11,7 @@ introLead: >
 introduction: |
   The NIS2 directive introduces new and strengthened cybersecurity requirements for essential and important entities across the EU. The Swedish implementation through the Cybersecurity Act imposes concrete obligations regarding risk management, incident reporting, supply chain security, and management accountability.
 
-  Many organisations know they fall within scope but lack a clear picture of what actually needs to be done. The requirements span technical, organisational, and legal dimensions — and the sanctions are substantial.
+  Many organisations know they fall within scope but lack a clear picture of what actually needs to be done. The requirements span technical, organisational, and legal dimensions, and the sanctions are substantial.
 
   Verit helps you understand exactly which requirements apply to your organisation, identify gaps against your current state, and build a realistic plan to achieve compliance. We combine deep regulatory expertise with hands-on implementation experience and our platform Securapilot for ongoing monitoring.
 targetAudience:
@@ -35,12 +35,12 @@ benefits:
     description: >
       Our gap analysis maps exactly where you stand in relation to the NIS2 requirements.
       You receive a detailed report showing your compliance level per requirement area,
-      identified shortcomings, and recommended measures — all prioritised
+      identified shortcomings, and recommended measures, all prioritised
       by risk and business value.
   - title: "Pragmatic implementation"
     description: >
       We prioritise measures based on actual risk exposure and your
-      organisation's circumstances. No one-size-fits-all — we tailor
+      organisation's circumstances. No one-size-fits-all. We tailor
       the effort to your size, maturity, and industry so that you invest
       resources where they make the greatest difference.
   - title: "Ongoing compliance"
@@ -73,7 +73,7 @@ process:
     title: "Implementation"
     description: >
       We support you through the implementation of technical and organisational
-      measures — from policies and processes to incident management
+      measures, from policies and processes to incident management
       and supplier management.
     duration: "Ongoing"
 deliverables:
@@ -94,7 +94,7 @@ faq:
       NIS2 significantly expands the number of sectors in scope, introduces stricter
       security requirements, tightened reporting obligations (24 hours for
       an initial notification), and grants supervisory authorities enhanced sanctioning powers.
-      Management accountability is also clarified — executives can be held personally liable.
+      Management accountability is also clarified: executives can be held personally liable.
   - question: "How long does it take to become NIS2-compliant?"
     answer: >
       It depends on your organisation's current maturity level. A typical
@@ -117,5 +117,5 @@ relatedServices:
   - "risk-management"
   - "ciso-as-a-service"
 ctaText: "Book a complimentary NIS2 review"
-ctaDescription: "We analyse your current state and provide concrete recommendations — completely free of charge."
+ctaDescription: "We analyse your current state and provide concrete recommendations, completely free of charge."
 order: 1

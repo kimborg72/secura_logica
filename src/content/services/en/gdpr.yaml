@@ -1,13 +1,13 @@
 title: "GDPR & Data Protection"
 shortTitle: "GDPR"
 slug: "gdpr"
-metaTitle: "GDPR & Data Protection — Practical Advisory | Verit"
+metaTitle: "GDPR & Data Protection: Practical Advisory | Verit"
 metaDescription: "Practical advisory to meet the requirements of the General Data Protection Regulation. Gap analysis, records of processing, DPIA, and DPO services."
 excerpt: "Practical advisory to meet GDPR requirements in your organisation."
 introLead: >
   With increased enforcement from the Swedish Authority for Privacy Protection (IMY)
   and ever-higher fines, GDPR compliance is no longer optional.
-  Practical implementation is what protects your organisation — not policies sitting in a binder.
+  Practical implementation is what protects your organisation, not policies sitting in a binder.
 introduction: |
   The General Data Protection Regulation (GDPR) imposes extensive requirements on how organisations handle personal data. The requirements cover everything from how you collect and store data to how you handle individuals' rights and report personal data breaches.
 
@@ -37,20 +37,20 @@ benefits:
   - title: "Integrated approach"
     description: >
       Data protection should not be siloed. We integrate data protection
-      with your broader information security efforts — the same risk methodology,
+      with your broader information security efforts: the same risk methodology,
       the same processes, the same platform. This saves time and delivers
       better results.
   - title: "Risk-aware prioritisation"
     description: >
       Not all personal data processing carries the same risk.
-      We help you focus efforts where the risks are greatest —
-      sensitive data, large-scale processing, and third-country transfers
-      — so that you use your resources effectively.
+      We help you focus efforts where the risks are greatest:
+      sensitive data, large-scale processing, and third-country transfers,
+      so that you use your resources effectively.
 process:
   - step: 1
     title: "Current state assessment"
     description: >
-      We map how you currently handle personal data —
+      We map how you currently handle personal data:
       which processing activities take place, which legal bases you
       rely on, and how your procedures are structured.
     duration: "1–2 weeks"
@@ -64,7 +64,7 @@ process:
   - step: 3
     title: "Implementation"
     description: >
-      We help you address identified gaps — from
+      We help you address identified gaps, from
       updated privacy policies and records of processing
       to data protection impact assessments and procedures for rights management.
     duration: "2–4 weeks"
@@ -101,13 +101,13 @@ faq:
     answer: >
       Transferring personal data outside the EU/EEA requires
       appropriate safeguards. We help you map which
-      transfers take place and implement the right mechanisms —
+      transfers take place and implement the right mechanisms:
       standard contractual clauses, adequacy decisions, or derogations.
 securapilotConnection:
   heading: "Data protection in Securapilot"
   description: >
     Securapilot gives you a central place to manage your
-    data protection efforts — records of processing, impact assessments,
+    data protection efforts: records of processing, impact assessments,
     and breach reporting in accordance with GDPR's 72-hour rule.
   features:
     - "Digital records of processing activities per Article 30"

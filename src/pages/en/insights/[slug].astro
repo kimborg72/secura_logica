@@ -45,6 +45,7 @@ const articleSchema = {
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.date.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.date).toISOString(),
   wordCount,
   articleSection: post.data.category,
   author: {
@@ -58,10 +59,11 @@ const articleSchema = {
     logo: { '@type': 'ImageObject', url: organizationSchema.logo },
   },
   url: `${site.url}${getInsightPath(locale, post.id.replace(`${locale}/`, ''))}`,
+  ...(post.data.image ? { image: `${site.url}${post.data.image}` } : {}),
 };
 ---
 
-<PageLayout title={post.data.title} description={post.data.description} locale={locale}>
+<PageLayout title={post.data.title} description={post.data.description} locale={locale} ogType="article">
   <JsonLd schema={articleSchema} />
 
   <!-- Reading progress bar -->
@@ -95,6 +97,18 @@ const articleSchema = {
           <span class="text-sm text-gray">{readingTimeText}</span>
         </div>
 
+        <!-- Featured image -->
+        {post.data.image && (
+          <div class="mb-10 -mx-4 sm:mx-0" data-reveal>
+            <img
+              src={post.data.image}
+              alt=""
+              class="w-full rounded-lg object-cover aspect-[16/9]"
+              loading="eager"
+            />
+          </div>
+        )}
+
         <!-- Article body -->
         <div class="prose" data-reveal>
           <Content />
@@ -124,8 +138,12 @@ const articleSchema = {
             {allInsights.map((item) => (
               <article class="group">
                 <a href={getInsightPath(locale, item.id.replace(`${locale}/`, ''))} class="block">
-                  <div class="aspect-[16/10] rounded-xl bg-surface mb-4 overflow-hidden">
-                    <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
+                  <div class="aspect-[16/9] rounded-xl bg-surface mb-4 overflow-hidden">
+                    {item.data.image ? (
+                      <img src={item.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    ) : (
+                      <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
+                    )}
                   </div>
                   <div class="flex items-center gap-3 mb-2">
                     <Badge text={item.data.category} variant="copper" />

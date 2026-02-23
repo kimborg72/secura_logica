@@ -1,19 +1,19 @@
 title: "CISO-as-a-Service"
 shortTitle: "CISO"
 slug: "ciso-as-a-service"
-metaTitle: "CISO-as-a-Service — Interim Security Leader | Verit"
+metaTitle: "CISO-as-a-Service: Interim Security Leader | Verit"
 metaDescription: "An experienced part-time CISO providing strategic direction for your information security programme without a full-time hire."
 excerpt: "An interim security leader providing strategic direction without a full-time hire."
 introLead: >
-  Not every organisation needs a full-time CISO — but every organisation needs
+  Not every organisation needs a full-time CISO, but every organisation needs
   strategic security leadership. Our CISO-as-a-Service gives you access to
   experienced expertise at the level you need.
 introduction: |
-  A Chief Information Security Officer (CISO) is responsible for driving an organisation's information security programme at a strategic level. The role demands deep expertise across technology, risk, and governance — and finding the right person as a full-time hire is both difficult and costly.
+  A Chief Information Security Officer (CISO) is responsible for driving an organisation's information security programme at a strategic level. The role demands deep expertise across technology, risk, and governance, and finding the right person as a full-time hire is both difficult and costly.
 
   With CISO-as-a-Service you gain access to an experienced security leader who works as part of your organisation, but at the scope that suits your needs. From strategic advisory to board reporting and operational support.
 
-  Our CISO service is not a generic consulting role. We immerse ourselves in your business, your challenges, and your objectives — and then build a security programme tailored to your specific organisation. We report directly to your executive team and take ownership of progress.
+  Our CISO service is not a generic consulting role. We immerse ourselves in your business, your challenges, and your objectives, and then build a security programme tailored to your specific organisation. We report directly to your executive team and take ownership of progress.
 targetAudience:
   heading: "Do you need a CISO?"
   description: >
@@ -34,7 +34,7 @@ benefits:
       management systems, regulatory compliance, and security governance.
   - title: "Flexible engagement"
     description: >
-      We scale the engagement to your needs — from one day per week to
+      We scale the engagement to your needs, from one day per week to
       a more comprehensive role during intensive periods such as
       NIS2 implementation or certification projects. You pay
       for the time you actually need.
@@ -102,7 +102,7 @@ securapilotConnection:
   heading: "The tools for effective CISO governance"
   description: >
     Our CISO uses Securapilot to give you transparency and
-    control. You always see where you stand and what is happening —
+    control. You always see where you stand and what is happening,
     without having to wait for the next meeting.
   features:
     - "Strategic dashboard with security status and KPIs"

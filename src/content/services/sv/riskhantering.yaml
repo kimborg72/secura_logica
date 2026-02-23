@@ -6,18 +6,18 @@ metaDescription: "Systematisk riskanalys och informationsklassificering anpassad
 excerpt: "Systematisk riskanalys och informationsklassificering anpassad efter er verksamhet."
 introLead: >
   Effektiv informationssäkerhet börjar med att förstå sina risker. Utan
-  systematisk riskhantering fattas beslut i blindo — resurser fördelas
+  systematisk riskhantering fattas beslut i blindo, resurser fördelas
   fel och de verkliga hoten förblir oadresserade.
 introduction: |
   Riskhantering är grunden i allt informationssäkerhetsarbete. Det är genom riskanalyser ni identifierar vilka hot som är relevanta för just er verksamhet, bedömer sannolikhet och konsekvens, och fattar välgrundade beslut om vilka åtgärder som behövs.
 
   Informationsklassificering kompletterar riskhanteringen genom att ge er en tydlig bild av vilken information som är mest skyddsvärd. När ni vet vad som är kritiskt kan ni rikta resurser rätt och undvika att lägga lika mycket skydd på allt.
 
-  Vi hjälper er att etablera en riskhanteringsprocess som ger ledningen beslutsunderlag och organisationen en tydlig riktning för sitt säkerhetsarbete. Våra riskanalyser är inte akademiska övningar — de resulterar i konkreta åtgärder med tydliga ansvar och tidsramar.
+  Vi hjälper er att etablera en riskhanteringsprocess som ger ledningen beslutsunderlag och organisationen en tydlig riktning för sitt säkerhetsarbete. Våra riskanalyser är inte akademiska övningar. De resulterar i konkreta åtgärder med tydliga ansvar och tidsramar.
 targetAudience:
   heading: "Behöver ni systematisk riskhantering?"
   description: >
-    Riskhantering är ett krav i NIS2, ISO 27001 och GDPR — men
+    Riskhantering är ett krav i NIS2, ISO 27001 och GDPR, men
     framför allt är det ett verktyg för att fatta bättre beslut
     om var ni ska investera i säkerhet.
   segments:
@@ -105,7 +105,7 @@ securapilotConnection:
   description: >
     Securapilot gör ert riskregister till ett levande verktyg
     istället för ett dammigt dokument. Risker, åtgärder och
-    uppföljning — allt uppdaterat i realtid.
+    uppföljning, allt uppdaterat i realtid.
   features:
     - "Digitalt riskregister med automatisk uppföljning"
     - "Riskmatris och värmekarta för visuell överblick"

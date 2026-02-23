@@ -11,7 +11,7 @@ introLead: >
 introduction: |
   NIS2-direktivet ställer nya och skärpta krav på cybersäkerhet för samhällsviktiga och viktiga verksamheter i hela EU. Den svenska implementeringen genom cybersäkerhetslagen innebär konkreta skyldigheter kring riskhantering, incidentrapportering, leverantörssäkerhet och ledningsansvar.
 
-  Många organisationer vet att de omfattas av kraven men saknar en tydlig bild av vad som faktiskt behöver göras. Kraven spänner över tekniska, organisatoriska och juridiska dimensioner — och sanktionsmöjligheterna är kännbara.
+  Många organisationer vet att de omfattas av kraven men saknar en tydlig bild av vad som faktiskt behöver göras. Kraven spänner över tekniska, organisatoriska och juridiska dimensioner, och sanktionsmöjligheterna är kännbara.
 
   Verit hjälper er att förstå exakt vilka krav som gäller er verksamhet, identifiera gap mot nuläget och bygga en realistisk plan för att nå efterlevnad. Vi kombinerar djup regelverkskunskap med praktisk erfarenhet av implementering och vår plattform Securapilot för löpande uppföljning.
 targetAudience:
@@ -35,12 +35,12 @@ benefits:
     description: >
       Vår gap-analys kartlägger exakt var ni står i förhållande till NIS2-kraven.
       Ni får en detaljerad rapport som visar efterlevnadsgrad per kravområde,
-      identifierade brister och rekommenderade åtgärder — allt prioriterat
+      identifierade brister och rekommenderade åtgärder, allt prioriterat
       efter risk och verksamhetsnytta.
   - title: "Pragmatisk implementering"
     description: >
       Vi prioriterar åtgärder baserat på faktisk riskexponering och er
-      organisations förutsättningar. Ingen one-size-fits-all — vi anpassar
+      organisations förutsättningar. Ingen one-size-fits-all. Vi anpassar
       insatsen efter er storlek, mognad och bransch så att ni investerar
       resurser där de gör störst skillnad.
   - title: "Löpande compliance"
@@ -73,7 +73,7 @@ process:
     title: "Implementering"
     description: >
       Vi stöttar er genom implementeringen av tekniska och organisatoriska
-      åtgärder — från policyer och processer till incidenthantering
+      åtgärder, från policyer och processer till incidenthantering
       och leverantörshantering.
     duration: "Löpande"
 deliverables:
@@ -94,7 +94,7 @@ faq:
       NIS2 utökar antalet omfattade sektorer markant, inför striktare
       säkerhetskrav, skärpta rapporteringsskyldigheter (24 timmar för
       initial anmälan) och ger tillsynsmyndigheter utökade sanktionsmöjligheter.
-      Ledningsansvar förtydligas också — ledningen kan hållas personligt ansvarig.
+      Ledningsansvar förtydligas också: ledningen kan hållas personligt ansvarig.
   - question: "Hur lång tid tar det att bli NIS2-compliant?"
     answer: >
       Det beror på er organisations nuvarande mognadsnivå. En typisk
@@ -117,5 +117,5 @@ relatedServices:
   - "riskhantering"
   - "ciso-as-a-service"
 ctaText: "Boka en kostnadsfri NIS2-genomgång"
-ctaDescription: "Vi analyserar ert nuläge och ger konkreta rekommendationer — helt utan kostnad."
+ctaDescription: "Vi analyserar ert nuläge och ger konkreta rekommendationer, helt utan kostnad."
 order: 1

@@ -3,9 +3,34 @@ import PageLayout from '@layouts/PageLayout.astro';
 import HeroSimple from '@components/sections/HeroSimple.astro';
 import Button from '@components/ui/Button.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+import { site } from '@data/site';
 import { getContactPath } from '@i18n/routes';
 
 const locale = 'sv';
+
+const securapilotSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Securapilot',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description: 'GRC-plattform för NIS2 och ISO 27001 compliance: gap-analys, riskregister, dokumenthantering och audit trail.',
+  url: 'https://app.securapilot.com',
+  offers: {
+    '@type': 'Offer',
+    seller: {
+      '@type': 'Organization',
+      name: 'Verit',
+      url: site.url,
+    },
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Verit',
+    url: site.url,
+  },
+};
 
 const features = [
   {
@@ -41,10 +66,11 @@ const features = [
 ];
 ---
 
-<PageLayout title="Securapilot" description="Securapilot — compliance-plattformen som gör ert informationssäkerhetsarbete körbart." locale={locale}>
+<PageLayout title="Securapilot | GRC-plattform för NIS2 & ISO 27001" description="Securapilot: compliance-plattformen som gör ert informationssäkerhetsarbete körbart." locale={locale}>
+  <JsonLd schema={securapilotSchema} />
   <HeroSimple
     title="Securapilot"
-    description="Compliance-plattformen som gör ert informationssäkerhetsarbete körbart. Från gap-analys till löpande uppföljning — allt på ett ställe."
+    description="Compliance-plattformen som gör ert informationssäkerhetsarbete körbart. Från gap-analys till löpande uppföljning, allt på ett ställe."
     breadcrumbs={[{ label: 'Securapilot' }]}
     locale={locale}
   />
@@ -93,11 +119,11 @@ const features = [
           <h2 class="mb-6">Sluta jaga dokument. Börja styra compliance.</h2>
           <p class="text-lg text-slate leading-relaxed mb-4">
             Securapilot samlar ert hela informationssäkerhetsarbete på ett ställe. Gap-analyser,
-            riskregister, policyer, incidenter och compliance-status — allt uppdaterat i realtid.
+            riskregister, policyer, incidenter och compliance-status. Allt uppdaterat i realtid.
           </p>
           <p class="text-gray leading-relaxed mb-8">
             Plattformen är byggd med filosofin "metod först, verktyg sedan". Vi förstår att bättre verktyg
-            ensamt inte löser säkerhetsstyrning — därför prioriterar Securapilot processförståelse
+            ensamt inte löser säkerhetsstyrning. Därför prioriterar Securapilot processförståelse
             före kontrollkonfiguration. AI-funktioner förstärker, aldrig ersätter, era beslut.
           </p>
           <Button href={getContactPath(locale)} variant="primary" size="lg">

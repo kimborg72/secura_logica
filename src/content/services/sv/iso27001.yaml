@@ -11,7 +11,7 @@ introLead: >
 introduction: |
   Ett ledningssystem för informationssäkerhet (LIS) enligt ISO 27001 ger er organisation ett strukturerat ramverk för att skydda information. Standarden är erkänd globalt och visar kunder, partners och myndigheter att ni tar informationssäkerhet på allvar.
 
-  ISO 27001:2022 innehåller uppdaterade kontroller som speglar dagens hotlandskap — med fokus på molnsäkerhet, hotintelligens och dataskydd. Certifieringen kräver systematiskt arbete men ger betydande fördelar i form av stärkt förtroende och minskade risker.
+  ISO 27001:2022 innehåller uppdaterade kontroller som speglar dagens hotlandskap, med fokus på molnsäkerhet, hotintelligens och dataskydd. Certifieringen kräver systematiskt arbete men ger betydande fördelar i form av stärkt förtroende och minskade risker.
 
   Verit har lång erfarenhet av att bygga ledningssystem som inte bara klarar certifieringsrevisioner utan faktiskt fungerar i vardagen. Vi anpassar insatsen efter er organisations storlek och mognad och ser till att säkerhetsarbetet blir en naturlig del av verksamheten.
 targetAudience:
@@ -54,7 +54,7 @@ process:
   - step: 2
     title: "Design & planering"
     description: >
-      Vi designar ert ledningssystem — scope, policyer, riskmetodik
+      Vi designar ert ledningssystem: scope, policyer, riskmetodik
       och kontrollstruktur. Allt anpassas efter er verksamhet
       och befintliga processer.
     duration: "3–4 veckor"
@@ -102,7 +102,7 @@ securapilotConnection:
   description: >
     Securapilot ger er verktyget att förvalta ert ledningssystem
     efter certifieringen. Dokumenthantering, riskregister och
-    uppföljning — allt på ett ställe.
+    uppföljning, allt på ett ställe.
   features:
     - "SoA-hantering med kontrollstatus i realtid"
     - "Dokumentversionshantering med godkännandeflöden"

@@ -1,10 +1,11 @@
 ---
-title: "ISO 27001:2022 — the key changes"
+title: "ISO 27001:2022: the key changes"
 description: "The updated standard introduces new controls and a restructured control annex. Here is how your ISMS is affected."
 date: 2025-01-22
 author: "Kim Borg"
 category: "ISO 27001"
 draft: false
+image: /images/insights/iso27001-forandringar.webp
 ---
 
 ISO 27001:2022 is the latest version of the international standard for information security management systems. The update introduces important changes that affect both new implementations and existing certified organisations.

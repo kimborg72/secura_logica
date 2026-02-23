@@ -1,7 +1,7 @@
 import type { Locale } from './types';
 
 /** Static route mapping: Swedish path → English path */
-const routeMap: Record<string, string> = {
+export const routeMap: Record<string, string> = {
   '/': '/en',
   '/om-oss': '/en/about-us',
   '/kontakt': '/en/contact',
@@ -30,10 +30,26 @@ const reverseServiceSlugMap: Record<string, string> = Object.fromEntries(
   Object.entries(serviceSlugMap).map(([sv, en]) => [en, sv]),
 );
 
+/** Insight slug mapping: Swedish slug → English slug */
+export const insightSlugMap: Record<string, string> = {
+  'nis2-cybersakerehtslagen': 'nis2-cybersecurity-act',
+  'iso27001-forandringar': 'iso27001-changes',
+  'ciso-as-a-service': 'ciso-as-a-service',
+};
+
+const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(
+  Object.entries(insightSlugMap).map(([sv, en]) => [en, sv]),
+);
+
 /**
  * Given the current pathname, return the path for the target locale.
  */
 export function getAlternateUrl(currentPath: string, targetLocale: Locale): string {
+  // Kommuner pages are Swedish-only — no English equivalent
+  if (currentPath.startsWith('/kommuner')) {
+    return currentPath;
+  }
+
   if (targetLocale === 'en') {
     // Static routes
     if (routeMap[currentPath]) return routeMap[currentPath];
@@ -47,7 +63,10 @@ export function getAlternateUrl(currentPath: string, targetLocale: Locale): stri
 
     // Insights: /insikter/slug → /en/insights/slug
     const insightMatch = currentPath.match(/^\/insikter\/(.+)$/);
-    if (insightMatch) return `/en/insights/${insightMatch[1]}`;
+    if (insightMatch) {
+      const enSlug = insightSlugMap[insightMatch[1]] ?? insightMatch[1];
+      return `/en/insights/${enSlug}`;
+    }
 
     // Fallback
     return `/en${currentPath}`;
@@ -65,7 +84,10 @@ export function getAlternateUrl(currentPath: string, targetLocale: Locale): stri
 
   // Insights: /en/insights/slug → /insikter/slug
   const insightMatch = currentPath.match(/^\/en\/insights\/(.+)$/);
-  if (insightMatch) return `/insikter/${insightMatch[1]}`;
+  if (insightMatch) {
+    const svSlug = reverseInsightSlugMap[insightMatch[1]] ?? insightMatch[1];
+    return `/insikter/${svSlug}`;
+  }
 
   // Fallback: strip /en prefix
   return currentPath.replace(/^\/en/, '') || '/';
@@ -134,4 +156,18 @@ export function getAboutPath(locale: Locale): string {
  */
 export function getReferencesPath(locale: Locale): string {
   return locale === 'sv' ? '/referenser' : '/en/references';
+}
+
+/**
+ * Get the kommuner index path (Swedish-only).
+ */
+export function getKommunerPath(): string {
+  return '/kommuner';
+}
+
+/**
+ * Get a kommun detail path (Swedish-only).
+ */
+export function getKommunPath(slug: string): string {
+  return `/kommuner/${slug}`;
 }

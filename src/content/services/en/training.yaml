@@ -9,11 +9,11 @@ introLead: >
   The right training is the most cost-effective security investment
   you can make.
 introduction: |
-  Technical safeguards are necessary but not sufficient. All it takes is one employee clicking a malicious link, sharing sensitive information incorrectly, or failing to report an incident — for the entire security programme to be undermined.
+  Technical safeguards are necessary but not sufficient. All it takes is one employee clicking a malicious link, sharing sensitive information incorrectly, or failing to report an incident for the entire security programme to be undermined.
 
   Training and awareness is not about frightening employees or running box-ticking e-learnings. It is about building a security culture where every individual understands their role in protecting the organisation's information and feels confident acting correctly.
 
-  Our training programmes are tailored to your business and your risks. We design the content around real-world scenarios that are relevant to your specific employees — from the executive team to new hires.
+  Our training programmes are tailored to your business and your risks. We design the content around real-world scenarios that are relevant to your specific employees, from the executive team to new hires.
 targetAudience:
   heading: "Who needs training?"
   description: >
@@ -21,11 +21,11 @@ targetAudience:
     the target audience and level of responsibility. We tailor training for
     different roles within your organisation.
   segments:
-    - "All employees — general awareness"
+    - "All employees: general awareness"
     - "Executive teams and boards"
     - "IT departments and developers"
     - "Data owners and system owners"
-    - "New hires — onboarding"
+    - "New hires: onboarding"
     - "Staff handling sensitive information"
 benefits:
   - title: "Reduced human risk"
@@ -64,7 +64,7 @@ process:
   - step: 3
     title: "Delivery"
     description: >
-      Training is delivered in whichever format suits you best —
+      Training is delivered in whichever format suits you best:
       on-site, remotely, or a combination. We engage
       participants through interactive exercises and discussions.
     duration: "Per plan"
@@ -104,7 +104,7 @@ securapilotConnection:
   heading: "Track awareness in Securapilot"
   description: >
     With Securapilot you can track training participation,
-    test results, and awareness activities over time — and
+    test results, and awareness activities over time, and
     demonstrate to supervisory authorities that you meet the training requirements.
   features:
     - "Training register with participant status"
