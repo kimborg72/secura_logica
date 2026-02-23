@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const prompts = {
-  'ciso-as-a-service': 'Small team of three Swedish professionals in a relaxed strategy meeting around a round table, cozy modern Scandinavian meeting room, coffee cups on table, whiteboard in background, warm afternoon light through window, genuine candid moment of collaboration, no text, no logos, photorealistic editorial photography',
+  'hero-hotbild': 'Cybersecurity monitoring room, large screens with data, dark blue ambient lighting, professional office',
 };
 
 async function generateImage(type, prompt) {
@@ -27,15 +27,9 @@ async function generateImage(type, prompt) {
     },
     body: JSON.stringify({
       prompt,
-      resolution: '2k',
+      resolution: '1k',
       aspect_ratio: 'widescreen_16_9',
-      model: 'realism',
-      styling: {
-        colors: [
-          { color: '#0f1b2d', weight: 0.15 },
-          { color: '#7dcfb6', weight: 0.05 },
-        ],
-      },
+      model: 'super_real',
     }),
   });
 
@@ -63,7 +57,7 @@ async function generateImage(type, prompt) {
 
 async function pollForResult(taskId) {
   const pollUrl = `https://api.freepik.com/v1/ai/mystic/${taskId}`;
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 60; i++) {
     console.log(`  Polling attempt ${i + 1}...`);
     await new Promise((r) => setTimeout(r, 3000));
 

@@ -1,0 +1,81 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Breadcrumb from '@components/ui/Breadcrumb.astro';
+import ThreatDashboard from '@components/sections/ThreatDashboard.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+import { site } from '@data/site';
+import { t } from '@i18n/index';
+import { fetchThreatData } from '@lib/threat-data';
+
+export const prerender = false;
+
+const locale = 'en';
+
+let data = null;
+let error = false;
+
+try {
+  data = await fetchThreatData();
+} catch (err) {
+  console.error('Failed to fetch threat data:', err);
+  error = true;
+}
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: t(locale, 'threat.title'),
+  description: t(locale, 'threat.description'),
+  url: `${site.url}/en/insights/threat-landscape`,
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+  },
+};
+---
+
+<PageLayout
+  title={t(locale, 'threat.title')}
+  description={t(locale, 'threat.description')}
+  headerTheme="dark"
+  locale={locale}
+>
+  <JsonLd schema={schema} />
+  <section class="relative -mt-20 pt-32 pb-20 overflow-hidden">
+    <img src="/images/insights/hero-hotbild.webp" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-navy-dark/75"></div>
+    <div class="container relative z-10">
+      <div class="hero-breadcrumb">
+        <Breadcrumb items={[{ label: 'Insights', href: '/en/insights' }, { label: t(locale, 'threat.title') }]} locale={locale} />
+      </div>
+      <div class="max-w-3xl mt-6" data-reveal>
+        <h1 class="text-white">{t(locale, 'threat.title')}</h1>
+        <p class="lead mt-4 text-white/70">{t(locale, 'threat.description')}</p>
+      </div>
+    </div>
+  </section>
+
+  {data ? (
+    <ThreatDashboard locale={locale} data={data} />
+  ) : (
+    <section class="section">
+      <div class="container">
+        <div class="bg-white rounded-xl p-12 border border-border text-center">
+          <p class="text-gray">{t(locale, 'threat.error')}</p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTABanner locale={locale} />
+</PageLayout>
+
+<style>
+  .hero-breadcrumb :global(ol) { color: rgba(255, 255, 255, 0.6); }
+  .hero-breadcrumb :global(a) { color: rgba(255, 255, 255, 0.6); }
+  .hero-breadcrumb :global(a:hover) { color: white; }
+  .hero-breadcrumb :global(span) { color: white; }
+  .hero-breadcrumb :global(svg) { color: rgba(255, 255, 255, 0.4); }
+</style>

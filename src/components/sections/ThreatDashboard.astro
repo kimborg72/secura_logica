@@ -1,0 +1,507 @@
+---
+import type { Locale } from '@i18n/types';
+import type { ThreatData } from '@lib/threat-data';
+import { t } from '@i18n/index';
+import Badge from '@components/ui/Badge.astro';
+import ThreatMap from '@components/sections/ThreatMap.astro';
+
+interface Props {
+  locale: Locale;
+  data: ThreatData;
+}
+
+const { locale, data } = Astro.props;
+
+function formatNumber(n: number): string {
+  return n.toLocaleString(locale === 'sv' ? 'sv-SE' : 'en-GB');
+}
+
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString(locale === 'sv' ? 'sv-SE' : 'en-GB', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+const stats = [
+  { value: data.kev.total, label: t(locale, 'threat.statsKev') },
+  { value: data.kev.last30Days, label: t(locale, 'threat.statsNew30') },
+  { value: data.nvd.last7Days, label: t(locale, 'threat.statsNvd7') },
+  { value: data.nvd.criticalCount, label: t(locale, 'threat.statsCritical') },
+  { value: data.nvd.highCount, label: t(locale, 'threat.statsHigh') },
+];
+
+const whyCards = [
+  {
+    title: t(locale, 'threat.why1Title'),
+    description: t(locale, 'threat.why1Desc'),
+    icon: 'M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z',
+  },
+  {
+    title: t(locale, 'threat.why2Title'),
+    description: t(locale, 'threat.why2Desc'),
+    icon: 'M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.25-8.25-3.286Z',
+  },
+  {
+    title: t(locale, 'threat.why3Title'),
+    description: t(locale, 'threat.why3Desc'),
+    icon: 'M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z',
+  },
+];
+
+/* Attack source aggregation */
+const layerNames: Record<string, { sv: string; en: string }> = {
+  attacks: { sv: 'Attacktrafik (SANS)', en: 'Attack traffic (SANS)' },
+  malware: { sv: 'Malware C2 (ThreatFox)', en: 'Malware C2 (ThreatFox)' },
+  blocklist: { sv: 'Blocklist (Blocklist.de)', en: 'Blocklist (Blocklist.de)' },
+  urlhaus: { sv: 'Malware-distribution (URLhaus)', en: 'Malware distribution (URLhaus)' },
+  compromised: { sv: 'Komprometterade (ET)', en: 'Compromised (ET)' },
+  ciarmy: { sv: 'Kända hot (CI Army)', en: 'Known threats (CI Army)' },
+};
+
+const layerColors: Record<string, string> = {
+  attacks: '#4ecdc4',
+  malware: '#e74c3c',
+  blocklist: '#f39c12',
+  urlhaus: '#9b59b6',
+  compromised: '#e67e22',
+  ciarmy: '#1abc9c',
+};
+
+const layerStats = Object.keys(layerNames)
+  .map((layer) => {
+    const items = data.attackSources.filter((s) => s.layer === layer);
+    const totalReports = items.reduce((sum, s) => sum + s.count, 0);
+    return { layer, totalReports, countryCount: items.length };
+  })
+  .filter((l) => l.countryCount > 0)
+  .sort((a, b) => b.totalReports - a.totalReports);
+
+const countryTotals = new Map<string, { country: string; count: number }>();
+for (const s of data.attackSources) {
+  const existing = countryTotals.get(s.code) || { country: s.country, count: 0 };
+  existing.count += s.count;
+  countryTotals.set(s.code, existing);
+}
+const topCountries = [...countryTotals.values()]
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 5);
+
+/* Chart data */
+const maxVendorCount = data.kev.topVendors[0]?.count || 1;
+const ransomwarePercent = data.kev.total > 0
+  ? Math.round((data.kev.ransomwareCount / data.kev.total) * 100)
+  : 0;
+const unknownPercent = 100 - ransomwarePercent;
+
+/* Donut chart calculations (SVG circle) */
+const donutRadius = 54;
+const donutCircumference = 2 * Math.PI * donutRadius;
+const ransomwareStroke = (ransomwarePercent / 100) * donutCircumference;
+const unknownStroke = donutCircumference - ransomwareStroke;
+
+const ransomwareLabel = locale === 'sv' ? 'Ransomware-kopplad' : 'Ransomware-linked';
+const unknownLabel = locale === 'sv' ? 'Okänd koppling' : 'Unknown link';
+const topVendorsLabel = locale === 'sv' ? 'Mest drabbade leverantörer' : 'Most affected vendors';
+const ransomwareChartLabel = locale === 'sv' ? 'Ransomware-andel' : 'Ransomware share';
+const vulnerabilitiesLabel = locale === 'sv' ? 'sårbarheter' : 'vulnerabilities';
+---
+
+<!-- Interactive threat map -->
+{data.attackSources.length > 0 && (
+  <ThreatMap locale={locale} sources={data.attackSources} />
+)}
+
+<!-- Attack source summary -->
+{data.attackSources.length > 0 && (
+  <section class="section-sm">
+    <div class="container">
+      <div class="mb-6" data-reveal>
+        <h2 class="text-2xl font-bold text-navy">{t(locale, 'threat.attackSummaryTitle')}</h2>
+        <p class="text-sm text-gray mt-1">{t(locale, 'threat.attackSummaryDesc')}</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+        {/* Bar chart: reports per source */}
+        <div class="bg-white rounded-xl p-6 md:p-8 border border-border" data-reveal>
+          <h3 class="text-lg font-semibold text-navy mb-6">{t(locale, 'threat.attackBySource')}</h3>
+          <div class="space-y-4">
+            {layerStats.map((ls, i) => {
+              const maxReports = layerStats[0]?.totalReports || 1;
+              const pct = Math.round((ls.totalReports / maxReports) * 100);
+              const label = locale === 'sv' ? layerNames[ls.layer].sv : layerNames[ls.layer].en;
+              return (
+                <div>
+                  <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                        style={`background: ${layerColors[ls.layer]}`}
+                      />
+                      <span class="text-sm font-medium text-navy">{label}</span>
+                    </div>
+                    <span class="text-xs text-gray tabular-nums">
+                      {formatNumber(ls.totalReports)} {t(locale, 'threat.attackReports')} · {ls.countryCount} {t(locale, 'threat.attackCountries')}
+                    </span>
+                  </div>
+                  <div class="h-2.5 bg-surface rounded-full overflow-hidden">
+                    <div
+                      class="h-full rounded-full threat-bar"
+                      style={`--bar-width: ${pct}%; background: ${layerColors[ls.layer]}; animation-delay: ${i * 0.15}s`}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Top 5 source countries */}
+        <div class="bg-white rounded-xl p-6 md:p-8 border border-border" data-reveal data-delay="1">
+          <h3 class="text-lg font-semibold text-navy mb-6">{t(locale, 'threat.attackTopCountries')}</h3>
+          <div class="space-y-3">
+            {topCountries.map((c, i) => (
+              <div class="flex items-center justify-between py-2 border-b border-border/50 last:border-0">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg font-bold text-gray tabular-nums w-6 text-right">{i + 1}</span>
+                  <span class="text-sm font-medium text-navy">{c.country}</span>
+                </div>
+                <span class="text-sm text-gray tabular-nums">{formatNumber(c.count)}</span>
+              </div>
+            ))}
+          </div>
+          <p class="text-xs text-gray mt-4">{t(locale, 'threat.attackTopNote')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Stats cards with animated counters -->
+<section class="section-sm">
+  <div class="container">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+      {stats.map((stat, i) => (
+        <div
+          class="bg-white rounded-xl p-6 md:p-8 border border-border text-center"
+          data-reveal
+          data-delay={String(i + 1)}
+        >
+          <p
+            class="text-3xl md:text-4xl font-bold text-navy mb-2 tabular-nums"
+            data-count-to={stat.value}
+          >
+            {formatNumber(stat.value)}
+          </p>
+          <p class="text-sm text-gray leading-snug">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Charts: Top Vendors bar chart + Ransomware donut -->
+<section class="section-sm">
+  <div class="container">
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+
+      {/* Bar chart: top vendors */}
+      <div class="bg-white rounded-xl p-6 md:p-8 border border-border" data-reveal>
+        <h3 class="text-lg font-semibold text-navy mb-6">{topVendorsLabel}</h3>
+        <div class="space-y-4">
+          {data.kev.topVendors.map((vendor, i) => {
+            const pct = Math.round((vendor.count / maxVendorCount) * 100);
+            return (
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-sm font-medium text-navy">{vendor.name}</span>
+                  <span class="text-xs text-gray tabular-nums">{vendor.count} {vulnerabilitiesLabel}</span>
+                </div>
+                <div class="h-2.5 bg-surface rounded-full overflow-hidden">
+                  <div
+                    class="h-full rounded-full threat-bar"
+                    style={`--bar-width: ${pct}%; background: linear-gradient(90deg, #4ecdc4, #6b7520); animation-delay: ${i * 0.15}s`}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Donut chart: ransomware share */}
+      <div class="bg-white rounded-xl p-6 md:p-8 border border-border" data-reveal data-delay="1">
+        <h3 class="text-lg font-semibold text-navy mb-6">{ransomwareChartLabel}</h3>
+        <div class="flex items-center gap-8">
+          <div class="relative w-36 h-36 flex-shrink-0">
+            <svg viewBox="0 0 120 120" class="w-full h-full -rotate-90">
+              {/* Background circle */}
+              <circle cx="60" cy="60" r={donutRadius} fill="none" stroke="#f0f0f0" stroke-width="12" />
+              {/* Ransomware segment */}
+              <circle
+                cx="60" cy="60" r={donutRadius}
+                fill="none"
+                stroke="#4ecdc4"
+                stroke-width="12"
+                stroke-linecap="round"
+                stroke-dasharray={`${ransomwareStroke} ${unknownStroke}`}
+                class="threat-donut"
+              />
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="text-2xl font-bold text-navy" data-count-to={ransomwarePercent} data-count-suffix="%">{ransomwarePercent}%</span>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-teal flex-shrink-0"></span>
+              <span class="text-sm text-navy">{ransomwareLabel}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-gray-light/40 flex-shrink-0"></span>
+              <span class="text-sm text-gray">{unknownLabel}</span>
+            </div>
+            <p class="text-xs text-gray mt-2">
+              {formatNumber(data.kev.ransomwareCount)} / {formatNumber(data.kev.total)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Critical NVD CVEs (past 7 days) -->
+{data.nvd.recentCritical.length > 0 && (
+  <section class="section-sm">
+    <div class="container">
+      <div class="mb-8" data-reveal>
+        <h2 class="text-2xl font-bold text-navy">{t(locale, 'threat.criticalTitle')}</h2>
+        <p class="text-sm text-gray mt-1">{t(locale, 'threat.criticalDesc')}</p>
+      </div>
+
+      <div class="space-y-4" data-reveal data-delay="1">
+        {data.nvd.recentCritical.map((cve) => (
+          <div class="bg-white rounded-xl p-5 md:p-6 border border-border flex flex-col md:flex-row md:items-start gap-4">
+            <div class="flex items-center gap-3 md:w-48 flex-shrink-0">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-red-50 text-red-600 font-bold text-lg flex-shrink-0">
+                {cve.score.toFixed(1)}
+              </span>
+              <div>
+                <a
+                  href={`https://nvd.nist.gov/vuln/detail/${cve.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-mono text-xs text-accent-dark font-semibold hover:underline"
+                >
+                  {cve.id}
+                </a>
+                <p class="text-xs text-gray mt-0.5">{formatDate(cve.published)}</p>
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm text-navy leading-relaxed">{cve.description}</p>
+            </div>
+            <div class="flex-shrink-0">
+              <Badge text={t(locale, 'threat.severityCritical')} variant="red" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Recent exploited vulnerabilities table -->
+<section class="section-sm">
+  <div class="container">
+    <div class="mb-8" data-reveal>
+      <h2 class="text-2xl font-bold text-navy">{t(locale, 'threat.tableTitle')}</h2>
+    </div>
+
+    {/* Desktop table */}
+    <div class="hidden md:block overflow-x-auto" data-reveal data-delay="1">
+      <table class="w-full text-left text-sm">
+        <thead>
+          <tr class="border-b border-border">
+            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colCve')}</th>
+            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colVendor')}</th>
+            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colProduct')}</th>
+            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colDate')}</th>
+            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colRansomware')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.kev.recentVulnerabilities.map((vuln) => (
+            <tr class="border-b border-border/50 hover:bg-surface/50 transition-colors">
+              <td class="py-3 font-mono text-xs text-accent-dark">{vuln.cveID}</td>
+              <td class="py-3 text-navy">{vuln.vendor}</td>
+              <td class="py-3 text-gray">{vuln.product}</td>
+              <td class="py-3 text-gray">{formatDate(vuln.dateAdded)}</td>
+              <td class="py-3">
+                <Badge
+                  text={vuln.ransomware ? t(locale, 'threat.ransomwareYes') : t(locale, 'threat.ransomwareUnknown')}
+                  variant={vuln.ransomware ? 'teal' : 'neutral'}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {/* Mobile cards */}
+    <div class="md:hidden space-y-4" data-reveal data-delay="1">
+      {data.kev.recentVulnerabilities.map((vuln) => (
+        <div class="bg-white rounded-xl p-5 border border-border">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono text-xs text-accent-dark font-semibold">{vuln.cveID}</span>
+            <Badge
+              text={vuln.ransomware ? t(locale, 'threat.ransomwareYes') : t(locale, 'threat.ransomwareUnknown')}
+              variant={vuln.ransomware ? 'teal' : 'neutral'}
+            />
+          </div>
+          <p class="text-sm font-semibold text-navy mb-1">{vuln.vendor}</p>
+          <p class="text-sm text-gray mb-2">{vuln.product}</p>
+          <p class="text-xs text-gray">{formatDate(vuln.dateAdded)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Why it matters -->
+<section class="section bg-surface">
+  <div class="container">
+    <div class="text-center max-w-2xl mx-auto mb-16" data-reveal>
+      <p class="overline mb-3">{t(locale, 'threat.whyOverline')}</p>
+      <h2>{t(locale, 'threat.whyTitle')}</h2>
+      <p class="lead mt-4">{t(locale, 'threat.whyDescription')}</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {whyCards.map((card, i) => (
+        <div
+          class="bg-white rounded-xl p-8 border border-border relative"
+          data-reveal
+          data-delay={String(i + 1)}
+        >
+          <svg
+            aria-hidden="true"
+            class="w-6 h-6 absolute top-8 right-8 text-accent-dark"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d={card.icon} />
+          </svg>
+          <h3 class="text-xl font-semibold text-navy mb-3 pr-10">{card.title}</h3>
+          <p class="text-gray text-sm leading-relaxed">{card.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Sources + updated timestamp -->
+<section class="section-sm">
+  <div class="container">
+    <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-gray" data-reveal>
+      <div class="flex flex-wrap gap-x-6 gap-y-2">
+        <span>{t(locale, 'threat.source')}: {t(locale, 'threat.sourceKev')}</span>
+        <span>{t(locale, 'threat.source')}: {t(locale, 'threat.sourceNvd')}</span>
+        <span>{t(locale, 'threat.source')}: SANS ISC</span>
+        <span>{t(locale, 'threat.source')}: ThreatFox (abuse.ch)</span>
+        <span>{t(locale, 'threat.source')}: Blocklist.de</span>
+        <span>{t(locale, 'threat.source')}: URLhaus (abuse.ch)</span>
+        <span>{t(locale, 'threat.source')}: Emerging Threats</span>
+        <span>{t(locale, 'threat.source')}: CI Army</span>
+      </div>
+      <span>{t(locale, 'threat.updatedAt')}: {formatDate(data.updatedAt)}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Bar chart animation */
+  @keyframes bar-grow {
+    from { width: 0; }
+    to { width: var(--bar-width); }
+  }
+
+  .threat-bar {
+    width: var(--bar-width);
+    animation: bar-grow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Donut chart animation */
+  @keyframes donut-draw {
+    from { stroke-dashoffset: 339.292; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  .threat-donut {
+    animation: donut-draw 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .threat-bar,
+    .threat-donut {
+      animation: none !important;
+    }
+    .threat-bar {
+      width: var(--bar-width);
+    }
+  }
+</style>
+
+<script>
+  function initThreatCounters() {
+    const counters = document.querySelectorAll<HTMLElement>('[data-count-to]');
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          observer.unobserve(el);
+
+          const target = parseInt(el.dataset.countTo || '0', 10);
+          const suffix = el.dataset.countSuffix || '';
+          const duration = 1200;
+          const start = performance.now();
+
+          // Determine locale from page lang
+          const lang = document.documentElement.lang || 'sv';
+          const loc = lang.startsWith('en') ? 'en-GB' : 'sv-SE';
+
+          function step(now: number) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            el.textContent = current.toLocaleString(loc) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          }
+
+          el.textContent = '0' + suffix;
+          requestAnimationFrame(step);
+        });
+      },
+      { threshold: 0.3 },
+    );
+
+    counters.forEach((el) => observer.observe(el));
+  }
+
+  initThreatCounters();
+  document.addEventListener('astro:after-swap', initThreatCounters);
+</script>

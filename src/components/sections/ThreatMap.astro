@@ -1,0 +1,430 @@
+---
+import type { Locale } from '@i18n/types';
+import type { AttackSource } from '@lib/threat-data';
+
+interface Props {
+  locale: Locale;
+  sources: AttackSource[];
+}
+
+const { locale, sources } = Astro.props;
+
+const title = locale === 'sv' ? 'Global hotaktivitet' : 'Global threat activity';
+const desc = locale === 'sv'
+  ? 'Realtidsdata från flera öppna hotdatabaser visar var cyberattacker har sitt ursprung och hur de riktas mot europeiska mål.'
+  : 'Real-time data from multiple open threat databases shows where cyber attacks originate and how they target European countries.';
+const sourceLabel = locale === 'sv'
+  ? 'Källor: SANS ISC · ThreatFox · Blocklist.de · URLhaus · Emerging Threats · CI Army'
+  : 'Sources: SANS ISC · ThreatFox · Blocklist.de · URLhaus · Emerging Threats · CI Army';
+const reportsLabel = locale === 'sv' ? 'rapporter' : 'reports';
+
+const legend = [
+  { color: '#4ecdc4', label: locale === 'sv' ? 'Attacktrafik (SANS)' : 'Attack traffic (SANS)' },
+  { color: '#e74c3c', label: locale === 'sv' ? 'Malware C2 (ThreatFox)' : 'Malware C2 (ThreatFox)' },
+  { color: '#f39c12', label: locale === 'sv' ? 'Blocklist (Blocklist.de)' : 'Blocklist (Blocklist.de)' },
+  { color: '#9b59b6', label: locale === 'sv' ? 'Malware-distribution (URLhaus)' : 'Malware distribution (URLhaus)' },
+  { color: '#e67e22', label: locale === 'sv' ? 'Komprometterade (ET)' : 'Compromised (ET)' },
+  { color: '#1abc9c', label: locale === 'sv' ? 'Kända hot (CI Army)' : 'Known threats (CI Army)' },
+];
+const legendTarget = locale === 'sv' ? 'Europeiska mål' : 'European targets';
+---
+
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.1.0/dist/maplibre-gl.css" />
+
+<section class="section-sm overflow-hidden">
+  <div class="container">
+    <div class="mb-6" data-reveal>
+      <h2 class="text-2xl font-bold text-navy">{title}</h2>
+      <p class="text-sm text-gray mt-1">{desc}</p>
+    </div>
+    <div class="bg-white rounded-2xl border border-border overflow-hidden" data-reveal data-delay="1">
+      <div
+        id="threat-map"
+        class="w-full"
+        style="height: 480px;"
+        data-sources={JSON.stringify(sources)}
+        data-reports-label={reportsLabel}
+      ></div>
+      <!-- Legend -->
+      <div class="px-4 py-3 border-t border-border/50 flex flex-wrap items-center gap-x-4 gap-y-2">
+        {legend.map((l) => (
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background:${l.color}`}></span>
+            <span class="text-[11px] text-gray">{l.label}</span>
+          </div>
+        ))}
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full border-2 border-[#e74c3c] bg-white flex-shrink-0"></span>
+          <span class="text-[11px] text-gray">{legendTarget}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline src="https://unpkg.com/maplibre-gl@5.1.0/dist/maplibre-gl.js"></script>
+<script is:inline>
+  function initThreatMap() {
+    if (typeof maplibregl === 'undefined') return;
+    var container = document.getElementById('threat-map');
+    if (!container || container.dataset.initialized) return;
+    container.dataset.initialized = 'true';
+
+    var allSources = JSON.parse(container.dataset.sources || '[]');
+    var reportsLabel = container.dataset.reportsLabel || 'reports';
+
+    if (allSources.length === 0) return;
+
+    // Color config per layer
+    var colors = {
+      attacks: '#4ecdc4',
+      malware: '#e74c3c',
+      blocklist: '#f39c12',
+      urlhaus: '#9b59b6',
+      compromised: '#e67e22',
+      ciarmy: '#1abc9c',
+    };
+
+    var layerLabels = {
+      attacks: 'Attack traffic',
+      malware: 'Malware C2',
+      blocklist: 'Blocklist',
+      urlhaus: 'Malware distribution',
+      compromised: 'Compromised',
+      ciarmy: 'Known threats',
+    };
+
+    // Split by layer
+    var layerNames = Object.keys(colors);
+    var layerData = {};
+    layerNames.forEach(function (name) {
+      layerData[name] = allSources.filter(function (s) { return s.layer === name; });
+    });
+    var attacks = layerData.attacks;
+
+    var maxAttackCount = attacks.length > 0 ? attacks[0].count : 1;
+
+    var map = new maplibregl.Map({
+      container: 'threat-map',
+      style: {
+        version: 8,
+        name: 'threat-map-light',
+        sources: {
+          'carto-light': {
+            type: 'raster',
+            tiles: [
+              'https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png',
+              'https://b.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png',
+              'https://c.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png',
+            ],
+            tileSize: 256,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            maxzoom: 6,
+          },
+        },
+        layers: [{
+          id: 'carto-light-layer',
+          type: 'raster',
+          source: 'carto-light',
+          minzoom: 0,
+          maxzoom: 6,
+        }],
+      },
+      center: [20, 30],
+      zoom: 1.3,
+      minZoom: 1,
+      maxZoom: 5,
+      attributionControl: false,
+      dragRotate: false,
+      pitchWithRotate: false,
+      touchPitch: false,
+    });
+
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+    // European target destinations
+    var targets = [
+      { lng: 18.07, lat: 59.33, name: 'Sweden' },
+      { lng: 10.5,  lat: 51.2,  name: 'Germany' },
+      { lng: 2.2,   lat: 46.2,  name: 'France' },
+      { lng: 5.3,   lat: 52.1,  name: 'Netherlands' },
+      { lng: 19.1,  lat: 51.9,  name: 'Poland' },
+      { lng: 12.6,  lat: 41.9,  name: 'Italy' },
+    ];
+
+    // Quadratic bezier arc
+    function makeArc(srcLng, srcLat, dstLng, dstLat, segments) {
+      var points = [];
+      var midLng = (srcLng + dstLng) / 2;
+      var midLat = (srcLat + dstLat) / 2;
+      var dx = dstLng - srcLng;
+      var dy = dstLat - srcLat;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      var offsetLat = midLat + dist * 0.2;
+      var offsetLng = midLng - dist * 0.05;
+      for (var i = 0; i <= segments; i++) {
+        var t = i / segments;
+        var inv = 1 - t;
+        var lng = inv * inv * srcLng + 2 * inv * t * offsetLng + t * t * dstLng;
+        var lat = inv * inv * srcLat + 2 * inv * t * offsetLat + t * t * dstLat;
+        points.push([lng, lat]);
+      }
+      return points;
+    }
+
+    // Helper: create point geojson
+    function makePointsGeojson(items, maxCount) {
+      return {
+        type: 'FeatureCollection',
+        features: items.map(function (s) {
+          return {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [s.lng, s.lat] },
+            properties: {
+              country: s.country,
+              count: s.count,
+              layer: s.layer || 'attacks',
+              intensity: s.count / (maxCount || 1),
+            },
+          };
+        }),
+      };
+    }
+
+    // Helper: add a dot layer group (glow + ring + dot)
+    function addDotLayers(id, sourceId, color, minR, maxR) {
+      map.addLayer({
+        id: id + '-glow',
+        type: 'circle',
+        source: sourceId,
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['get', 'intensity'], 0, minR * 2, 1, maxR * 2.5],
+          'circle-color': color,
+          'circle-opacity': 0.12,
+          'circle-blur': 1,
+        },
+      });
+      map.addLayer({
+        id: id + '-ring',
+        type: 'circle',
+        source: sourceId,
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['get', 'intensity'], 0, minR * 1.3, 1, maxR * 1.5],
+          'circle-color': color,
+          'circle-opacity': 0.25,
+        },
+      });
+      map.addLayer({
+        id: id + '-dot',
+        type: 'circle',
+        source: sourceId,
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['get', 'intensity'], 0, minR, 1, maxR],
+          'circle-color': color,
+          'circle-opacity': 0.90,
+          'circle-stroke-width': 1.5,
+          'circle-stroke-color': '#fff',
+        },
+      });
+    }
+
+    map.on('load', function () {
+      // --- Arc lines (top attack sources → multiple EU targets) ---
+      var arcSegments = 64;
+      // Pick top sources, exclude any that are EU targets themselves
+      var targetCodes = { SE:1, DE:1, FR:1, NL:1, PL:1, IT:1 };
+      var arcSources = attacks.filter(function (s) { return !targetCodes[s.code]; }).slice(0, 10);
+      var arcs = [];
+      var travelerData = [];
+
+      // Distribute arcs across targets: each source → a different EU target
+      arcSources.forEach(function (s, i) {
+        var tgt = targets[i % targets.length];
+        var arcPoints = makeArc(s.lng, s.lat, tgt.lng, tgt.lat, arcSegments);
+        arcs.push({
+          type: 'Feature',
+          geometry: { type: 'LineString', coordinates: arcPoints },
+          properties: {},
+        });
+        travelerData.push({
+          arcPoints: arcPoints,
+          phase: i / arcSources.length,
+          speed: 0.002 + (s.count / maxAttackCount) * 0.005,
+        });
+      });
+
+      map.addSource('arcs', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: arcs },
+      });
+      map.addLayer({
+        id: 'arc-trail',
+        type: 'line',
+        source: 'arcs',
+        paint: { 'line-color': colors.attacks, 'line-opacity': 0.12, 'line-width': 1 },
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+      });
+
+      // Arc heads (animated bright segment)
+      map.addSource('arc-heads', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: [] },
+      });
+      map.addLayer({
+        id: 'arc-head-line',
+        type: 'line',
+        source: 'arc-heads',
+        paint: { 'line-color': colors.attacks, 'line-opacity': 0.6, 'line-width': 2 },
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+      });
+
+      // Travelers
+      map.addSource('travelers', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: [] },
+      });
+      map.addLayer({
+        id: 'traveler-glow',
+        type: 'circle',
+        source: 'travelers',
+        paint: { 'circle-radius': 5, 'circle-color': colors.attacks, 'circle-opacity': 0.4, 'circle-blur': 0.5 },
+      });
+      map.addLayer({
+        id: 'traveler-dot',
+        type: 'circle',
+        source: 'travelers',
+        paint: { 'circle-radius': 2.5, 'circle-color': '#fff', 'circle-opacity': 0.95, 'circle-stroke-width': 1.5, 'circle-stroke-color': colors.attacks },
+      });
+
+      // --- European target markers (multiple) ---
+      var targetFeatures = targets.map(function (tgt) {
+        return { type: 'Feature', geometry: { type: 'Point', coordinates: [tgt.lng, tgt.lat] }, properties: { name: tgt.name } };
+      });
+      map.addSource('targets', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: targetFeatures },
+      });
+      map.addLayer({ id: 'target-glow', type: 'circle', source: 'targets', paint: { 'circle-radius': 16, 'circle-color': '#e74c3c', 'circle-opacity': 0.10, 'circle-blur': 0.8 } });
+      map.addLayer({ id: 'target-ring', type: 'circle', source: 'targets', paint: { 'circle-radius': 8, 'circle-color': '#e74c3c', 'circle-opacity': 0.18 } });
+      map.addLayer({ id: 'target-dot', type: 'circle', source: 'targets', paint: { 'circle-radius': 4, 'circle-color': '#e74c3c', 'circle-opacity': 0.9, 'circle-stroke-width': 2, 'circle-stroke-color': '#fff' } });
+
+      // --- Add dot layers for all data sources ---
+      var dotLayerIds = [];
+      var glowLayerIds = [];
+      // Render order: attacks on top, then others
+      var renderOrder = ['ciarmy', 'compromised', 'urlhaus', 'blocklist', 'malware', 'attacks'];
+      renderOrder.forEach(function (name) {
+        var items = layerData[name];
+        if (!items || items.length === 0) return;
+        var localMax = items[0].count || 1;
+        var prefix = name.substring(0, 3); // short prefix for layer IDs
+        map.addSource('src-' + name, { type: 'geojson', data: makePointsGeojson(items, localMax) });
+        var isMain = name === 'attacks';
+        addDotLayers(prefix, 'src-' + name, colors[name], isMain ? 4 : 3, isMain ? 12 : 8);
+        dotLayerIds.push(prefix + '-dot');
+        glowLayerIds.push(prefix + '-glow');
+      });
+
+      // --- Popups on hover (all dot layers) ---
+      var popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12, className: 'threat-map-popup' });
+
+      dotLayerIds.forEach(function (layerId) {
+        map.on('mouseenter', layerId, function (e) {
+          map.getCanvas().style.cursor = 'pointer';
+          var f = e.features && e.features[0];
+          if (!f || f.geometry.type !== 'Point') return;
+          var props = f.properties;
+          var lyr = props.layer || 'attacks';
+          var color = colors[lyr] || colors.attacks;
+          var label = layerLabels[lyr] || '';
+          popup
+            .setLngLat(f.geometry.coordinates.slice())
+            .setHTML(
+              '<strong>' + props.country + '</strong>' +
+              '<br><span style="color:' + color + ';font-weight:600">' + Number(props.count).toLocaleString() + '</span> ' + reportsLabel +
+              '<br><span style="font-size:11px;color:#999">' + label + '</span>'
+            )
+            .addTo(map);
+        });
+        map.on('mouseleave', layerId, function () {
+          map.getCanvas().style.cursor = '';
+          popup.remove();
+        });
+      });
+
+      // --- Animation loop ---
+      var frame = 0;
+      var tailLength = 10;
+
+      function animate() {
+        frame++;
+        var pulseT = Math.sin((frame / 180) * Math.PI * 2) * 0.5 + 0.5;
+
+        // Pulse all glow layers
+        glowLayerIds.forEach(function (id) {
+          if (map.getLayer(id)) {
+            map.setPaintProperty(id, 'circle-opacity', 0.05 + pulseT * 0.20);
+          }
+        });
+
+        // Pulse targets
+        var targetT = Math.sin((frame / 120) * Math.PI * 2) * 0.5 + 0.5;
+        map.setPaintProperty('target-glow', 'circle-radius', 14 + targetT * 10);
+        map.setPaintProperty('target-glow', 'circle-opacity', 0.06 + targetT * 0.14);
+        map.setPaintProperty('target-ring', 'circle-radius', 6 + targetT * 4);
+
+        // Move travelers
+        var newTravelers = [];
+        var newHeads = [];
+        travelerData.forEach(function (td) {
+          var progress = ((frame * td.speed) + td.phase) % 1;
+          var idx = Math.floor(progress * (td.arcPoints.length - 1));
+          var point = td.arcPoints[Math.min(idx, td.arcPoints.length - 1)];
+          newTravelers.push({ type: 'Feature', geometry: { type: 'Point', coordinates: point }, properties: {} });
+          var startIdx = Math.max(0, idx - tailLength);
+          var endIdx = Math.min(idx + 1, td.arcPoints.length);
+          if (endIdx > startIdx + 1) {
+            newHeads.push({ type: 'Feature', geometry: { type: 'LineString', coordinates: td.arcPoints.slice(startIdx, endIdx) }, properties: {} });
+          }
+        });
+        map.getSource('travelers').setData({ type: 'FeatureCollection', features: newTravelers });
+        map.getSource('arc-heads').setData({ type: 'FeatureCollection', features: newHeads });
+
+        requestAnimationFrame(animate);
+      }
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        animate();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThreatMap);
+  } else {
+    initThreatMap();
+  }
+  document.addEventListener('astro:after-swap', initThreatMap);
+</script>
+
+<style is:global>
+  .maplibregl-ctrl-top-right {
+    top: 8px;
+    right: 8px;
+  }
+  .maplibregl-ctrl-group {
+    border-radius: 8px !important;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08) !important;
+  }
+  .threat-map-popup .maplibregl-popup-content {
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .threat-map-popup .maplibregl-popup-tip {
+    border-top-color: white;
+  }
+</style>

@@ -7,6 +7,7 @@ export const routeMap: Record<string, string> = {
   '/kontakt': '/en/contact',
   '/tjanster': '/en/services',
   '/insikter': '/en/insights',
+  '/insikter/hotbild': '/en/insights/threat-landscape',
   '/securapilot': '/en/securapilot',
   '/integritetspolicy': '/en/privacy-policy',
   '/referenser': '/en/references',
@@ -156,6 +157,13 @@ export function getAboutPath(locale: Locale): string {
  */
 export function getReferencesPath(locale: Locale): string {
   return locale === 'sv' ? '/referenser' : '/en/references';
+}
+
+/**
+ * Get the threat landscape page path for a locale.
+ */
+export function getThreatLandscapePath(locale: Locale): string {
+  return locale === 'sv' ? '/insikter/hotbild' : '/en/insights/threat-landscape';
 }
 
 /**
