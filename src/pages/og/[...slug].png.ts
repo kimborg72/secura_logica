@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     { params: { slug: 'securapilot' }, props: { title: 'Securapilot', subtitle: 'GRC-plattform för NIS2 & ISO 27001' } },
     { params: { slug: 'integritetspolicy' }, props: { title: 'Integritetspolicy' } },
     { params: { slug: 'referenser' }, props: { title: 'Referenser' } },
-    { params: { slug: 'kommuner' }, props: { title: 'Cybersäkerhet & NIS2', subtitle: 'Per kommun i Sverige' } },
+    { params: { slug: 'insikter/kommuner' }, props: { title: 'Cybersäkerhet & NIS2', subtitle: 'Per kommun i Sverige' } },
   );
 
   // --- Static pages (EN) ---
@@ -77,7 +77,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // --- Kommuner ---
   for (const k of kommuner) {
     paths.push({
-      params: { slug: `kommuner/${k.slug}` },
+      params: { slug: `insikter/kommuner/${k.slug}` },
       props: { title: `Cybersäkerhet i ${k.name}`, subtitle: 'NIS2 & ISO 27001' },
     });
   }

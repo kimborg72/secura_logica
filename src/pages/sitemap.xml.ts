@@ -60,9 +60,9 @@ export const GET: APIRoute = async () => {
   }
 
   // 4. Municipality pages — Swedish-only
-  blocks.push(buildSvOnlyBlock('/kommuner'));
+  blocks.push(buildSvOnlyBlock('/insikter/kommuner'));
   for (const k of kommuner) {
-    blocks.push(buildSvOnlyBlock(`/kommuner/${k.slug}`));
+    blocks.push(buildSvOnlyBlock(`/insikter/kommuner/${k.slug}`));
   }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

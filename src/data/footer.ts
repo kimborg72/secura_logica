@@ -25,6 +25,7 @@ const footerData: Record<Locale, FooterColumn[]> = {
         { label: 'Referenser', href: '/referenser' },
         { label: 'Securapilot', href: '/securapilot' },
         { label: 'Insikter', href: '/insikter' },
+        { label: 'NIS2 i våra kommuner', href: '/insikter/kommuner' },
         { label: 'Kontakt', href: '/kontakt' },
         { label: 'Integritetspolicy', href: '/integritetspolicy' },
       ],

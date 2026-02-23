@@ -46,7 +46,7 @@ const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(
  */
 export function getAlternateUrl(currentPath: string, targetLocale: Locale): string {
   // Kommuner pages are Swedish-only — no English equivalent
-  if (currentPath.startsWith('/kommuner')) {
+  if (currentPath.startsWith('/insikter/kommuner')) {
     return currentPath;
   }
 
@@ -162,12 +162,12 @@ export function getReferencesPath(locale: Locale): string {
  * Get the kommuner index path (Swedish-only).
  */
 export function getKommunerPath(): string {
-  return '/kommuner';
+  return '/insikter/kommuner';
 }
 
 /**
  * Get a kommun detail path (Swedish-only).
  */
 export function getKommunPath(slug: string): string {
-  return `/kommuner/${slug}`;
+  return `/insikter/kommuner/${slug}`;
 }

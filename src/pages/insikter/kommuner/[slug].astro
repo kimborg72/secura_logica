@@ -36,7 +36,7 @@ const localServiceSchema = {
   '@type': 'ProfessionalService',
   name: `Verit, Cybersäkerhet & NIS2 i ${kommun.name}`,
   description: metaDescription,
-  url: `${site.url}/kommuner/${kommun.slug}`,
+  url: `${site.url}/insikter/kommuner/${kommun.slug}`,
   provider: {
     '@type': 'Organization',
     name: organizationSchema.name,
@@ -121,7 +121,7 @@ const typeImage = `/images/kommuner/${kommun.type}.webp`;
 const heroImage = `/images/kommuner/hero-${kommun.type}.webp`;
 ---
 
-<PageLayout title={metaTitle} description={metaDescription} ogImage={`/og/kommuner/${kommun.slug}.png`} locale={locale} svOnly={true} headerTheme="dark">
+<PageLayout title={metaTitle} description={metaDescription} ogImage={`/og/insikter/kommuner/${kommun.slug}.png`} locale={locale} svOnly={true} headerTheme="dark">
   <JsonLd schema={localServiceSchema} />
   <JsonLd schema={faqSchema} />
   <!-- Hero with background image -->
@@ -135,7 +135,7 @@ const heroImage = `/images/kommuner/hero-${kommun.type}.webp`;
     <div class="absolute inset-0 bg-navy-dark/75"></div>
     <div class="container relative z-10">
       <div class="hero-breadcrumb">
-        <Breadcrumb items={[{ label: 'Kommuner', href: '/kommuner' }, { label: kommun.name }]} locale={locale} />
+        <Breadcrumb items={[{ label: 'Insikter', href: '/insikter' }, { label: 'Kommuner', href: '/insikter/kommuner' }, { label: kommun.name }]} locale={locale} />
       </div>
       <div class="max-w-3xl mt-6" data-reveal>
         <h1 class="text-white">{`Cybersäkerhet och NIS2 i ${kommun.name}`}</h1>
