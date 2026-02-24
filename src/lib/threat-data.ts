@@ -82,6 +82,13 @@ let cacheTimestamp = 0;
 
 /* ---------- helpers ---------- */
 
+/** Fetch with a timeout to prevent slow APIs from blocking the page. */
+function fetchWithTimeout(url: string | URL, init?: RequestInit, timeoutMs = 10_000): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url.toString(), { ...init, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 function daysAgo(days: number): string {
   const d = new Date();
   d.setDate(d.getDate() - days);
@@ -155,7 +162,7 @@ async function batchGeolocate(ips: string[]): Promise<Map<string, IpApiResult>> 
   const geoMap = new Map<string, IpApiResult>();
   if (ips.length === 0) return geoMap;
 
-  const geoRes = await fetch('http://ip-api.com/batch', {
+  const geoRes = await fetchWithTimeout('http://ip-api.com/batch', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(ips.slice(0, 100).map((ip) => ({
@@ -216,7 +223,7 @@ interface SansCountryEntry {
 }
 
 async function fetchSansCountryData(): Promise<AttackSource[]> {
-  const res = await fetch('https://isc.sans.edu/api/country/US?json', {
+  const res = await fetchWithTimeout('https://isc.sans.edu/api/country/US?json', {
     headers: {
       'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)',
       Accept: 'application/json',
@@ -242,7 +249,7 @@ async function fetchSansCountryData(): Promise<AttackSource[]> {
 /* ---------- Source 2: ThreatFox malware C2 servers ---------- */
 
 async function fetchThreatFoxC2(): Promise<AttackSource[]> {
-  const res = await fetch('https://threatfox.abuse.ch/export/json/recent/', {
+  const res = await fetchWithTimeout('https://threatfox.abuse.ch/export/json/recent/', {
     headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' },
   });
   if (!res.ok) throw new Error(`ThreatFox responded ${res.status}`);
@@ -267,7 +274,7 @@ async function fetchThreatFoxC2(): Promise<AttackSource[]> {
 /* ---------- Source 3: Blocklist.de (sampled) ---------- */
 
 async function fetchBlocklistDe(): Promise<AttackSource[]> {
-  const res = await fetch('https://lists.blocklist.de/lists/all.txt', {
+  const res = await fetchWithTimeout('https://lists.blocklist.de/lists/all.txt', {
     headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' },
   });
   if (!res.ok) throw new Error(`Blocklist.de responded ${res.status}`);
@@ -289,7 +296,7 @@ async function fetchBlocklistDe(): Promise<AttackSource[]> {
 /* ---------- Source 4: URLhaus (abuse.ch) — malware distribution ---------- */
 
 async function fetchUrlhaus(): Promise<AttackSource[]> {
-  const res = await fetch('https://urlhaus.abuse.ch/downloads/csv_recent/', {
+  const res = await fetchWithTimeout('https://urlhaus.abuse.ch/downloads/csv_recent/', {
     headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' },
   });
   if (!res.ok) throw new Error(`URLhaus responded ${res.status}`);
@@ -312,7 +319,7 @@ async function fetchUrlhaus(): Promise<AttackSource[]> {
 /* ---------- Source 5: Emerging Threats — compromised IPs ---------- */
 
 async function fetchEmergingThreats(): Promise<AttackSource[]> {
-  const res = await fetch('https://rules.emergingthreats.net/blockrules/compromised-ips.txt', {
+  const res = await fetchWithTimeout('https://rules.emergingthreats.net/blockrules/compromised-ips.txt', {
     headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' },
   });
   if (!res.ok) throw new Error(`Emerging Threats responded ${res.status}`);
@@ -327,7 +334,7 @@ async function fetchEmergingThreats(): Promise<AttackSource[]> {
 /* ---------- Source 6: CI Army — known bad IPs ---------- */
 
 async function fetchCiArmy(): Promise<AttackSource[]> {
-  const res = await fetch('https://cinsscore.com/list/ci-badguys.txt', {
+  const res = await fetchWithTimeout('https://cinsscore.com/list/ci-badguys.txt', {
     headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' },
   });
   if (!res.ok) throw new Error(`CI Army responded ${res.status}`);
@@ -372,7 +379,7 @@ async function fetchAttackSources(): Promise<AttackSource[]> {
 /* ---------- data fetching ---------- */
 
 async function fetchKev(): Promise<ThreatData['kev']> {
-  const res = await fetch(
+  const res = await fetchWithTimeout(
     'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json',
     { headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' } },
   );
@@ -427,7 +434,7 @@ async function fetchNvd(): Promise<ThreatData['nvd']> {
   url.searchParams.set('pubEndDate', now.toISOString());
   url.searchParams.set('resultsPerPage', '100');
 
-  const res = await fetch(url.toString(), {
+  const res = await fetchWithTimeout(url.toString(), {
     headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' },
   });
   if (!res.ok) throw new Error(`NVD responded ${res.status}`);

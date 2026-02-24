@@ -64,10 +64,25 @@ const legendTarget = locale === 'sv' ? 'Europeiska mål' : 'European targets';
 
 <script is:inline src="https://unpkg.com/maplibre-gl@5.1.0/dist/maplibre-gl.js"></script>
 <script is:inline>
-  function initThreatMap() {
-    if (typeof maplibregl === 'undefined') return;
+  // Track map instance for cleanup on view transitions
+  window.__threatMapInstance = window.__threatMapInstance || null;
+
+  function initThreatMap(retries) {
+    retries = retries || 0;
+    if (typeof maplibregl === 'undefined') {
+      // Library not loaded yet — retry up to 5 seconds
+      if (retries < 50) setTimeout(function() { initThreatMap(retries + 1); }, 100);
+      return;
+    }
     var container = document.getElementById('threat-map');
-    if (!container || container.dataset.initialized) return;
+    if (!container) return;
+
+    // Clean up previous map instance (view transitions replace the container)
+    if (window.__threatMapInstance) {
+      try { window.__threatMapInstance.remove(); } catch (e) {}
+      window.__threatMapInstance = null;
+    }
+    if (container.dataset.initialized) return;
     container.dataset.initialized = 'true';
 
     var allSources = JSON.parse(container.dataset.sources || '[]');
@@ -104,7 +119,7 @@ const legendTarget = locale === 'sv' ? 'Europeiska mål' : 'European targets';
 
     var maxAttackCount = attacks.length > 0 ? attacks[0].count : 1;
 
-    var map = new maplibregl.Map({
+    var map = window.__threatMapInstance = new maplibregl.Map({
       container: 'threat-map',
       style: {
         version: 8,
@@ -404,7 +419,11 @@ const legendTarget = locale === 'sv' ? 'Europeiska mål' : 'European targets';
   } else {
     initThreatMap();
   }
-  document.addEventListener('astro:after-swap', initThreatMap);
+  document.addEventListener('astro:after-swap', function () {
+    // Reset initialized flag — the container was replaced by view transition
+    window.__threatMapInstance = null;
+    initThreatMap();
+  });
 </script>
 
 <style is:global>
