@@ -19,14 +19,14 @@ const typeBadge: Record<KommunType, { label: string; class: string }> = {
 const collectionPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Cybersäkerhet & NIS2 per kommun',
+  name: 'Cybersäkerhet & NIS2 i våra kommuner',
   description: 'Verit hjälper kommuner och företag i hela Sverige med NIS2-efterlevnad, ISO 27001 och cybersäkerhet.',
   url: `${site.url}/insikter/kommuner`,
 };
 ---
 
 <PageLayout
-  title="Cybersäkerhet & NIS2 per kommun | Alla kommuner i Sverige | Verit"
+  title="Cybersäkerhet & NIS2 i våra kommuner | Alla kommuner i Sverige | Verit"
   description="Verit hjälper kommuner och företag i hela Sverige med NIS2-efterlevnad, ISO 27001 och cybersäkerhet. Hitta din kommun och se vilka verksamheter som berörs."
   ogImage="/og/insikter/kommuner.png"
   locale={locale}
@@ -34,7 +34,7 @@ const collectionPageSchema = {
 >
   <JsonLd schema={collectionPageSchema} />
   <HeroSimple
-    title="Cybersäkerhet & NIS2 per kommun"
+    title="Cybersäkerhet & NIS2 i våra kommuner"
     description="Cybersäkerhetslagen berör alla Sveriges 290 kommuner, både som offentlig förvaltning och genom de privata företag som verkar lokalt. Hitta din kommun och se vilka verksamheter som berörs."
     breadcrumbs={[{ label: 'Insikter', href: '/insikter' }, { label: 'Kommuner' }]}
     locale={locale}
