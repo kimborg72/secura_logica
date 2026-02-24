@@ -169,6 +169,13 @@ const articleSchema = {
 
 <style is:global>
   /* Prose typography — article body */
+  .prose {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
   .prose h2, .prose h3, .prose h4 {
     font-family: var(--font-sans);
     color: var(--color-dark);

@@ -1,6 +1,11 @@
 /* Typographic scale — AFRY-inspired: bold geometric sans, high contrast */
 
 @layer base {
+  h1, h2, h3, h4, p, li {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   h1, .h1 {
     font-family: var(--font-sans);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
