@@ -226,6 +226,7 @@ export default {
   'threat.criticalTitle': 'Kritiska CVE:er senaste 7 dagarna',
   'threat.criticalDesc': 'De fem allvarligaste nya sårbarheterna med CVSS-poäng 9.0 eller högre.',
   'threat.severityCritical': 'Kritisk',
+  'threat.kevUnavailable': 'CISA KEV-data kunde inte hämtas just nu. Försök igen om en stund.',
   'threat.insikterLink': 'Hotbilden just nu',
   'threat.insikterLinkDesc': 'Se realtidsdata från CISA och NIST som visar det aktuella hotlandskapet och varför kontinuerligt säkerhetsarbete är avgörande.',
 } as const;

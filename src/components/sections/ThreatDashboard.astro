@@ -102,6 +102,8 @@ const donutCircumference = 2 * Math.PI * donutRadius;
 const ransomwareStroke = (ransomwarePercent / 100) * donutCircumference;
 const unknownStroke = donutCircumference - ransomwareStroke;
 
+const kevAvailable = data.kev.total > 0;
+
 const ransomwareLabel = locale === 'sv' ? 'Ransomware-kopplad' : 'Ransomware-linked';
 const unknownLabel = locale === 'sv' ? 'Okänd koppling' : 'Unknown link';
 const topVendorsLabel = locale === 'sv' ? 'Mest drabbade leverantörer' : 'Most affected vendors';
@@ -143,7 +145,7 @@ const vulnerabilitiesLabel = locale === 'sv' ? 'sårbarheter' : 'vulnerabilities
                       <span class="text-sm font-medium text-navy">{label}</span>
                     </div>
                     <span class="text-xs text-gray tabular-nums">
-                      {formatNumber(ls.totalReports)} {t(locale, 'threat.attackReports')} · {ls.countryCount} {t(locale, 'threat.attackCountries')}
+                      {`${formatNumber(ls.totalReports)} ${t(locale, 'threat.attackReports')} · ${ls.countryCount} ${t(locale, 'threat.attackCountries')}`}
                     </span>
                   </div>
                   <div class="h-2.5 bg-surface rounded-full overflow-hidden">
@@ -210,64 +212,70 @@ const vulnerabilitiesLabel = locale === 'sv' ? 'sårbarheter' : 'vulnerabilities
       {/* Bar chart: top vendors */}
       <div class="bg-white rounded-xl p-6 md:p-8 border border-border" data-reveal>
         <h3 class="text-lg font-semibold text-navy mb-6">{topVendorsLabel}</h3>
-        <div class="space-y-4">
-          {data.kev.topVendors.map((vendor, i) => {
-            const pct = Math.round((vendor.count / maxVendorCount) * 100);
-            return (
-              <div>
-                <div class="flex items-center justify-between mb-1.5">
-                  <span class="text-sm font-medium text-navy">{vendor.name}</span>
-                  <span class="text-xs text-gray tabular-nums">{vendor.count} {vulnerabilitiesLabel}</span>
+        {kevAvailable ? (
+          <div class="space-y-4">
+            {data.kev.topVendors.map((vendor, i) => {
+              const pct = Math.round((vendor.count / maxVendorCount) * 100);
+              return (
+                <div>
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-sm font-medium text-navy">{vendor.name}</span>
+                    <span class="text-xs text-gray tabular-nums">{`${vendor.count} ${vulnerabilitiesLabel}`}</span>
+                  </div>
+                  <div class="h-2.5 bg-surface rounded-full overflow-hidden">
+                    <div
+                      class="h-full rounded-full threat-bar"
+                      style={`--bar-width: ${pct}%; background: linear-gradient(90deg, #4ecdc4, #6b7520); animation-delay: ${i * 0.15}s`}
+                    />
+                  </div>
                 </div>
-                <div class="h-2.5 bg-surface rounded-full overflow-hidden">
-                  <div
-                    class="h-full rounded-full threat-bar"
-                    style={`--bar-width: ${pct}%; background: linear-gradient(90deg, #4ecdc4, #6b7520); animation-delay: ${i * 0.15}s`}
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p class="text-sm text-gray italic">{t(locale, 'threat.kevUnavailable')}</p>
+        )}
       </div>
 
       {/* Donut chart: ransomware share */}
       <div class="bg-white rounded-xl p-6 md:p-8 border border-border" data-reveal data-delay="1">
         <h3 class="text-lg font-semibold text-navy mb-6">{ransomwareChartLabel}</h3>
-        <div class="flex items-center gap-8">
-          <div class="relative w-36 h-36 flex-shrink-0">
-            <svg viewBox="0 0 120 120" class="w-full h-full -rotate-90">
-              {/* Background circle */}
-              <circle cx="60" cy="60" r={donutRadius} fill="none" stroke="#f0f0f0" stroke-width="12" />
-              {/* Ransomware segment */}
-              <circle
-                cx="60" cy="60" r={donutRadius}
-                fill="none"
-                stroke="#4ecdc4"
-                stroke-width="12"
-                stroke-linecap="round"
-                stroke-dasharray={`${ransomwareStroke} ${unknownStroke}`}
-                class="threat-donut"
-              />
-            </svg>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <span class="text-2xl font-bold text-navy" data-count-to={ransomwarePercent} data-count-suffix="%">{ransomwarePercent}%</span>
+        {kevAvailable ? (
+          <div class="flex items-center gap-8">
+            <div class="relative w-36 h-36 flex-shrink-0">
+              <svg viewBox="0 0 120 120" class="w-full h-full -rotate-90">
+                <circle cx="60" cy="60" r={donutRadius} fill="none" stroke="#f0f0f0" stroke-width="12" />
+                <circle
+                  cx="60" cy="60" r={donutRadius}
+                  fill="none"
+                  stroke="#4ecdc4"
+                  stroke-width="12"
+                  stroke-linecap="round"
+                  stroke-dasharray={`${ransomwareStroke} ${unknownStroke}`}
+                  class="threat-donut"
+                />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-2xl font-bold text-navy" data-count-to={ransomwarePercent} data-count-suffix="%">{ransomwarePercent}%</span>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-teal flex-shrink-0"></span>
+                <span class="text-sm text-navy">{ransomwareLabel}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-gray-light/40 flex-shrink-0"></span>
+                <span class="text-sm text-gray">{unknownLabel}</span>
+              </div>
+              <p class="text-xs text-gray mt-2">
+                {`${formatNumber(data.kev.ransomwareCount)} / ${formatNumber(data.kev.total)}`}
+              </p>
             </div>
           </div>
-          <div class="space-y-3">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-teal flex-shrink-0"></span>
-              <span class="text-sm text-navy">{ransomwareLabel}</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-gray-light/40 flex-shrink-0"></span>
-              <span class="text-sm text-gray">{unknownLabel}</span>
-            </div>
-            <p class="text-xs text-gray mt-2">
-              {formatNumber(data.kev.ransomwareCount)} / {formatNumber(data.kev.total)}
-            </p>
-          </div>
-        </div>
+        ) : (
+          <p class="text-sm text-gray italic">{t(locale, 'threat.kevUnavailable')}</p>
+        )}
       </div>
 
     </div>
@@ -322,54 +330,62 @@ const vulnerabilitiesLabel = locale === 'sv' ? 'sårbarheter' : 'vulnerabilities
       <h2 class="text-2xl font-bold text-navy">{t(locale, 'threat.tableTitle')}</h2>
     </div>
 
-    {/* Desktop table */}
-    <div class="hidden md:block overflow-x-auto" data-reveal data-delay="1">
-      <table class="w-full text-left text-sm">
-        <thead>
-          <tr class="border-b border-border">
-            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colCve')}</th>
-            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colVendor')}</th>
-            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colProduct')}</th>
-            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colDate')}</th>
-            <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colRansomware')}</th>
-          </tr>
-        </thead>
-        <tbody>
+    {kevAvailable ? (
+      <Fragment>
+        {/* Desktop table */}
+        <div class="hidden md:block overflow-x-auto" data-reveal data-delay="1">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colCve')}</th>
+                <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colVendor')}</th>
+                <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colProduct')}</th>
+                <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colDate')}</th>
+                <th class="pb-3 font-semibold text-navy">{t(locale, 'threat.colRansomware')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.kev.recentVulnerabilities.map((vuln) => (
+                <tr class="border-b border-border/50 hover:bg-surface/50 transition-colors">
+                  <td class="py-3 font-mono text-xs text-accent-dark">{vuln.cveID}</td>
+                  <td class="py-3 text-navy">{vuln.vendor}</td>
+                  <td class="py-3 text-gray">{vuln.product}</td>
+                  <td class="py-3 text-gray">{formatDate(vuln.dateAdded)}</td>
+                  <td class="py-3">
+                    <Badge
+                      text={vuln.ransomware ? t(locale, 'threat.ransomwareYes') : t(locale, 'threat.ransomwareUnknown')}
+                      variant={vuln.ransomware ? 'teal' : 'neutral'}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile cards */}
+        <div class="md:hidden space-y-4" data-reveal data-delay="1">
           {data.kev.recentVulnerabilities.map((vuln) => (
-            <tr class="border-b border-border/50 hover:bg-surface/50 transition-colors">
-              <td class="py-3 font-mono text-xs text-accent-dark">{vuln.cveID}</td>
-              <td class="py-3 text-navy">{vuln.vendor}</td>
-              <td class="py-3 text-gray">{vuln.product}</td>
-              <td class="py-3 text-gray">{formatDate(vuln.dateAdded)}</td>
-              <td class="py-3">
+            <div class="bg-white rounded-xl p-5 border border-border">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-mono text-xs text-accent-dark font-semibold">{vuln.cveID}</span>
                 <Badge
                   text={vuln.ransomware ? t(locale, 'threat.ransomwareYes') : t(locale, 'threat.ransomwareUnknown')}
                   variant={vuln.ransomware ? 'teal' : 'neutral'}
                 />
-              </td>
-            </tr>
+              </div>
+              <p class="text-sm font-semibold text-navy mb-1">{vuln.vendor}</p>
+              <p class="text-sm text-gray mb-2">{vuln.product}</p>
+              <p class="text-xs text-gray">{formatDate(vuln.dateAdded)}</p>
+            </div>
           ))}
-        </tbody>
-      </table>
-    </div>
-
-    {/* Mobile cards */}
-    <div class="md:hidden space-y-4" data-reveal data-delay="1">
-      {data.kev.recentVulnerabilities.map((vuln) => (
-        <div class="bg-white rounded-xl p-5 border border-border">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-mono text-xs text-accent-dark font-semibold">{vuln.cveID}</span>
-            <Badge
-              text={vuln.ransomware ? t(locale, 'threat.ransomwareYes') : t(locale, 'threat.ransomwareUnknown')}
-              variant={vuln.ransomware ? 'teal' : 'neutral'}
-            />
-          </div>
-          <p class="text-sm font-semibold text-navy mb-1">{vuln.vendor}</p>
-          <p class="text-sm text-gray mb-2">{vuln.product}</p>
-          <p class="text-xs text-gray">{formatDate(vuln.dateAdded)}</p>
         </div>
-      ))}
-    </div>
+      </Fragment>
+    ) : (
+      <div class="bg-white rounded-xl p-6 border border-border" data-reveal data-delay="1">
+        <p class="text-sm text-gray italic">{t(locale, 'threat.kevUnavailable')}</p>
+      </div>
+    )}
   </div>
 </section>
 

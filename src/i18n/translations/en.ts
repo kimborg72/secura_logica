@@ -226,6 +226,7 @@ export default {
   'threat.criticalTitle': 'Critical CVEs in the last 7 days',
   'threat.criticalDesc': 'The five most severe new vulnerabilities with a CVSS score of 9.0 or higher.',
   'threat.severityCritical': 'Critical',
+  'threat.kevUnavailable': 'CISA KEV data could not be fetched right now. Please try again shortly.',
   'threat.insikterLink': 'Threat Landscape',
   'threat.insikterLinkDesc': 'See real-time data from CISA and NIST showing the current threat landscape and why continuous security work is essential.',
 } as const;

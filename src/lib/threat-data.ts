@@ -379,10 +379,16 @@ async function fetchAttackSources(): Promise<AttackSource[]> {
 /* ---------- data fetching ---------- */
 
 async function fetchKev(): Promise<ThreatData['kev']> {
-  const res = await fetchWithTimeout(
-    'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json',
-    { headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' } },
-  );
+  const kevUrl = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
+  const kevInit = { headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' } };
+
+  // KEV feed is ~1.4 MB — use a longer timeout (30 s) and retry once on failure
+  let res: Response;
+  try {
+    res = await fetchWithTimeout(kevUrl, kevInit, 30_000);
+  } catch {
+    res = await fetchWithTimeout(kevUrl, kevInit, 30_000);
+  }
   if (!res.ok) throw new Error(`CISA KEV responded ${res.status}`);
   const feed: KevFeed = await res.json();
 
