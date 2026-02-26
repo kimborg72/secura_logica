@@ -73,11 +73,11 @@ const layerColors: Record<string, string> = {
 const layerStats = Object.keys(layerNames)
   .map((layer) => {
     const items = data.attackSources.filter((s) => s.layer === layer);
-    const totalReports = items.reduce((sum, s) => sum + s.count, 0);
-    return { layer, totalReports, countryCount: items.length };
+    const totalIndicators = items.reduce((sum, s) => sum + s.count, 0);
+    return { layer, totalIndicators, countryCount: items.length };
   })
   .filter((l) => l.countryCount > 0)
-  .sort((a, b) => b.totalReports - a.totalReports);
+  .sort((a, b) => b.countryCount - a.countryCount);
 
 const countryTotals = new Map<string, { country: string; count: number }>();
 for (const s of data.attackSources) {
@@ -131,8 +131,8 @@ const vulnerabilitiesLabel = locale === 'sv' ? 'sårbarheter' : 'vulnerabilities
           <h3 class="text-lg font-semibold text-navy mb-6">{t(locale, 'threat.attackBySource')}</h3>
           <div class="space-y-4">
             {layerStats.map((ls, i) => {
-              const maxReports = layerStats[0]?.totalReports || 1;
-              const pct = Math.round((ls.totalReports / maxReports) * 100);
+              const maxCountries = layerStats[0]?.countryCount || 1;
+              const pct = Math.round((ls.countryCount / maxCountries) * 100);
               const label = locale === 'sv' ? layerNames[ls.layer].sv : layerNames[ls.layer].en;
               return (
                 <div>
@@ -145,7 +145,7 @@ const vulnerabilitiesLabel = locale === 'sv' ? 'sårbarheter' : 'vulnerabilities
                       <span class="text-sm font-medium text-navy">{label}</span>
                     </div>
                     <span class="text-xs text-gray tabular-nums">
-                      {`${formatNumber(ls.totalReports)} ${t(locale, 'threat.attackReports')} · ${ls.countryCount} ${t(locale, 'threat.attackCountries')}`}
+                      {`${formatNumber(ls.totalIndicators)} ${t(locale, 'threat.attackIndicators')} · ${ls.countryCount} ${t(locale, 'threat.attackCountries')}`}
                     </span>
                   </div>
                   <div class="h-2.5 bg-surface rounded-full overflow-hidden">
