@@ -379,17 +379,22 @@ async function fetchAttackSources(): Promise<AttackSource[]> {
 /* ---------- data fetching ---------- */
 
 async function fetchKev(): Promise<ThreatData['kev']> {
-  const kevUrl = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
+  // Primary: official CISA GitHub mirror (not behind Akamai WAF that blocks datacenter IPs)
+  // Fallback: original cisa.gov URL (works from residential IPs)
+  const kevUrls = [
+    'https://raw.githubusercontent.com/cisagov/kev-data/main/known_exploited_vulnerabilities.json',
+    'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json',
+  ];
   const kevInit = { headers: { 'User-Agent': 'Verit-ThreatDashboard/1.0 (https://verit.se)' } };
 
-  // KEV feed is ~1.4 MB — use a longer timeout (30 s) and retry once on failure
-  let res: Response;
-  try {
-    res = await fetchWithTimeout(kevUrl, kevInit, 30_000);
-  } catch {
-    res = await fetchWithTimeout(kevUrl, kevInit, 30_000);
+  let res: Response | null = null;
+  for (const url of kevUrls) {
+    try {
+      const r = await fetchWithTimeout(url, kevInit, 30_000);
+      if (r.ok) { res = r; break; }
+    } catch { /* try next URL */ }
   }
-  if (!res.ok) throw new Error(`CISA KEV responded ${res.status}`);
+  if (!res) throw new Error('CISA KEV: all sources failed');
   const feed: KevFeed = await res.json();
 
   const thirtyDaysAgo = daysAgo(30);
