@@ -6,6 +6,7 @@ interface KevVulnerability {
   product: string;
   vulnerabilityName: string;
   dateAdded: string;
+  dueDate: string;
   knownRansomwareCampaignUse: 'Known' | 'Unknown';
 }
 
@@ -406,8 +407,10 @@ async function fetchKev(): Promise<ThreatData['kev']> {
     (v) => v.knownRansomwareCampaignUse === 'Known',
   ).length;
 
+  const today = new Date().toISOString().slice(0, 10);
+  const activeVulns = feed.vulnerabilities.filter((v) => v.dueDate >= today);
   const vendorCounts = new Map<string, number>();
-  for (const v of feed.vulnerabilities) {
+  for (const v of activeVulns) {
     vendorCounts.set(v.vendorProject, (vendorCounts.get(v.vendorProject) || 0) + 1);
   }
   const topVendors = [...vendorCounts.entries()]
