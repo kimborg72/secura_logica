@@ -1,5 +1,5 @@
 ---
-title: "The Cybersecurity Act and leadership accountability – are the rules really the same for everyone?"
+title: "The Cybersecurity Act and leadership accountability. Are the rules really the same for everyone?"
 description: "The Swedish Cybersecurity Act imposes the same requirements on public and private sectors, but the consequences for non-compliance differ significantly. We examine what this means for leadership accountability."
 date: 2026-02-23
 author: "Kim Borg"
@@ -9,7 +9,7 @@ image: /images/insights/cybersakerehtslagen-ledningsansvar.webp
 tags: ["NIS2", "Leadership accountability", "Public sector", "Cybersecurity"]
 ---
 
-On 15 January 2026, the Swedish Cybersecurity Act (SFS 2025:1506) entered into force. It introduces stricter requirements for systematic cybersecurity work, incident reporting and – not least – clearer accountability for organisational leadership. However, a closer examination of the law reveals that the consequences for leadership differ substantially depending on whether the organisation is private or public.
+On 15 January 2026, the Swedish Cybersecurity Act (SFS 2025:1506) entered into force. It introduces stricter requirements for systematic cybersecurity work, incident reporting and, not least, clearer accountability for organisational leadership. However, a closer examination of the law reveals that the consequences for leadership differ substantially depending on whether the organisation is private or public.
 
 ## What does the law say about leadership accountability?
 
@@ -25,7 +25,7 @@ The law also provides supervisory authorities with a powerful tool: the ability 
 
 ## The exception: public sector
 
-Here an important distinction arises. The law explicitly states that prohibitions on exercising a leadership role **may not be directed at public sector operators**. This means that the strongest personal sanction – the ability to actually remove a leader from their role – is unavailable for municipalities, regions and government agencies.
+Here an important distinction arises. The law explicitly states that prohibitions on exercising a leadership role **may not be directed at public sector operators**. This means that the strongest personal sanction, the ability to actually remove a leader from their role, is unavailable for municipalities, regions and government agencies.
 
 This limitation is confirmed by the Swedish Agency for Civil Defence (MCF) in their FAQ on the Cybersecurity Act, last updated on 12 February 2026.
 
@@ -33,7 +33,7 @@ This limitation is confirmed by the Swedish Agency for Civil Defence (MCF) in th
 
 It is important to emphasise that the public sector is not exempt from the law in other respects. **Financial sanctions apply in full.** For essential operators, penalties can amount to EUR 10 million or 2 per cent of global annual turnover, and for important operators up to EUR 7 million or 1.4 per cent. Supervisory authorities can also issue remarks and injunctions.
 
-The difference lies in **who bears the consequences**. In a private company, the sanction can affect both the organisation financially and the leadership personally. In a municipality, the financial sanction hits the municipal budget – and ultimately the citizens whose welfare services are funded from it.
+The difference lies in **who bears the consequences**. In a private company, the sanction can affect both the organisation financially and the leadership personally. In a municipality, the financial sanction hits the municipal budget, and ultimately the citizens whose welfare services are funded from it.
 
 ## Why does this matter in practice?
 
@@ -41,15 +41,15 @@ To understand the practical significance, one needs to examine how governance wo
 
 ### Term of office and continuity
 
-In a municipality, the governing body consists of elected officials who rotate with political terms of four years. Systematic cybersecurity work requires long-term development and maturity – often three to five years to reach a stable level. This creates a natural tension between the political cycle and the time horizon of cybersecurity work.
+In a municipality, the governing body consists of elected officials who rotate with political terms of four years. Systematic cybersecurity work requires long-term development and maturity, often three to five years to reach a stable level. This creates a natural tension between the political cycle and the time horizon of cybersecurity work.
 
 ### Competence and prerequisites
 
-Municipal board members rarely have specialised expertise in information security. Nor is it reasonable to expect them to – but it presupposes that functioning support structures exist and that leadership has access to the right decision-making materials.
+Municipal board members rarely have specialised expertise in information security. Nor is it reasonable to expect them to, but it presupposes that functioning support structures exist and that leadership has access to the right decision-making materials.
 
 ### Incentive structure
 
-Without the possibility of personal consequences for leadership, the driving force rests entirely on the organisation's own ability to create internal governance. This is not impossible – but it requires deliberate decisions.
+Without the possibility of personal consequences for leadership, the driving force rests entirely on the organisation's own ability to create internal governance. This is not impossible, but it requires deliberate decisions.
 
 ## No requirements for an internal oversight role
 
@@ -73,7 +73,7 @@ The law requires that leadership undergoes training. How the training should be 
 
 ### Elevate cybersecurity into the political governance chain
 
-Cybersecurity should not solely be a matter for the IT department or a single committee. When the municipal executive board is the formal governing body, they also need regular situational awareness reports and decision-making materials – not just annual reports.
+Cybersecurity should not solely be a matter for the IT department or a single committee. When the municipal executive board is the formal governing body, they also need regular situational awareness reports and decision-making materials, not just annual reports.
 
 ### Use Cybersäkerhetskollen and MCF's methodological support
 
@@ -81,9 +81,9 @@ MCF provides freely available tools for assessing and developing systematic cybe
 
 ## Summary
 
-The Cybersecurity Act imposes the same requirements on the public and private sectors. The same obligations regarding risk management, incident reporting and leadership accountability apply. But the consequences for non-compliance differ. The prohibition on exercising a leadership role – the law's strongest personal sanction – is not applicable in the public sector.
+The Cybersecurity Act imposes the same requirements on the public and private sectors. The same obligations regarding risk management, incident reporting and leadership accountability apply. But the consequences for non-compliance differ. The prohibition on exercising a leadership role, the law's strongest personal sanction, is not applicable in the public sector.
 
-This makes it all the more important that public organisations build internal governance that compensates for this limitation. Mandate, responsibility and risk ownership must be aligned – even when the law does not fully compel it.
+This makes it all the more important that public organisations build internal governance that compensates for this limitation. Mandate, responsibility and risk ownership must be aligned, even when the law does not fully compel it.
 
 ## Sources
 
@@ -91,7 +91,7 @@ This makes it all the more important that public organisations build internal go
 - The Swedish Cybersecurity Regulation (SFS 2025:1507)
 - MCF: Questions and answers about the Cybersecurity Act, updated 2026-02-12
 - MCF: The Cybersecurity Act for leadership
-- MCFFS 2026:1 – Regulations on notification and identification of essential and important operators
-- Government Bill 2024/25:45 – Cybersecurity in Sweden
+- MCFFS 2026:1, Regulations on notification and identification of essential and important operators
+- Government Bill 2024/25:45, Cybersecurity in Sweden
 
 Need support interpreting the Cybersecurity Act and building an effective governance model? [Contact us](/en/contact) for a complimentary consultation.
