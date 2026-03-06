@@ -1,0 +1,7 @@
+services:
+  verit-se:
+    build: .
+    container_name: verit-se
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:4321:4321"
