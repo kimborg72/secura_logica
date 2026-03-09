@@ -6,6 +6,7 @@ author: "Kim Borg"
 category: "CISO"
 draft: false
 image: /images/insights/ciso-as-a-service.webp
+heroImage: /images/insights/hero-ciso-as-a-service.webp
 ---
 
 Information security has become a critical function in every organisation, but not all have the resources to hire a full-time CISO (Chief Information Security Officer). CISO-as-a-Service offers a flexible alternative that provides access to strategic security expertise without the fixed cost.

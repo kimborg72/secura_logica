@@ -6,6 +6,7 @@ author: "Kim Borg"
 category: "ISO 27001"
 draft: false
 image: /images/insights/iso27001-forandringar.webp
+heroImage: /images/insights/hero-iso27001-forandringar.webp
 ---
 
 ISO 27001:2022 is the latest version of the international standard for information security management systems. The update introduces important changes that affect both new implementations and existing certified organisations.

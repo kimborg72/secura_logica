@@ -54,7 +54,19 @@
       "Bash(sips:*)",
       "Bash(gh api:*)",
       "WebFetch(domain:worldmonitor.app)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(openssl dgst:*)",
+      "Bash(wc -l /Users/kimborg/Development/secura_logica/src/content/insights/en/*.md)",
+      "Bash(git remote:*)",
+      "Bash(gh run:*)",
+      "Bash(gh:*)",
+      "WebSearch",
+      "Bash(chmod +x /Users/kimborg/Development/secura_logica/scripts/generate-article-images.sh)",
+      "Bash(bash scripts/generate-article-images.sh)",
+      "Bash(zsh scripts/generate-article-images.sh)",
+      "Bash(git checkout -- public/images/insights/ciso-as-a-service.webp public/images/insights/nis2-cybersakerehtslagen.webp public/images/insights/iso27001-forandringar.webp public/images/insights/cybersakerehtslagen-ledningsansvar.webp public/images/insights/femton-ar-samma-hotbild.webp)",
+      "Bash(git mv src/content/insights/sv/nis2-cybersakerehtslagen.md src/content/insights/sv/nis2-cybersakerhetslagen.md)",
+      "Bash(git mv src/content/insights/sv/cybersakerehtslagen-ledningsansvar.md src/content/insights/sv/cybersakerhetslagen-ledningsansvar.md)"
     ]
   }
 }

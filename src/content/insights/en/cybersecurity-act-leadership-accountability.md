@@ -6,6 +6,7 @@ author: "Kim Borg"
 category: "Cybersecurity Act"
 draft: false
 image: /images/insights/cybersakerehtslagen-ledningsansvar.webp
+heroImage: /images/insights/hero-cybersakerehtslagen-ledningsansvar.webp
 tags: ["NIS2", "Leadership accountability", "Public sector", "Cybersecurity"]
 ---
 

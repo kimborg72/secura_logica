@@ -30,8 +30,8 @@ const [featured, ...rest] = insights;
             <article class="grid lg:grid-cols-5 gap-8 lg:gap-12 mb-16" data-reveal>
               <a href={getInsightPath(locale, featured.id.replace(`${locale}/`, ''))} class="lg:col-span-3 block group">
                 <div class="aspect-[16/9] rounded-xl bg-surface overflow-hidden">
-                  {featured.data.image ? (
-                    <img src={featured.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  {(featured.data.heroImage || featured.data.image) ? (
+                    <img src={featured.data.heroImage || featured.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                   ) : (
                     <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/10 group-hover:scale-105 transition-transform duration-500"></div>
                   )}
@@ -65,8 +65,8 @@ const [featured, ...rest] = insights;
                 <article class="group" data-reveal data-delay={String((i % 3) + 1)}>
                   <a href={getInsightPath(locale, post.id.replace(`${locale}/`, ''))} class="block">
                     <div class="aspect-[16/9] rounded-xl bg-surface mb-5 overflow-hidden">
-                      {post.data.image ? (
-                        <img src={post.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                      {(post.data.heroImage || post.data.image) ? (
+                        <img src={post.data.heroImage || post.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                       ) : (
                         <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
                       )}

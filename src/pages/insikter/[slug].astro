@@ -1,6 +1,6 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import HeroSimple from '@components/sections/HeroSimple.astro';
+import Breadcrumb from '@components/ui/Breadcrumb.astro';
 import Badge from '@components/ui/Badge.astro';
 import AuthorCard from '@components/ui/AuthorCard.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
@@ -40,6 +40,9 @@ const allInsights = (await getInsightsByLocale(locale))
 
 const wordCount = (post.body || '').trim().split(/\s+/).length;
 
+const slug = post.id.replace(`${locale}/`, '');
+const heroImage = post.data.heroImage;
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -64,7 +67,7 @@ const articleSchema = {
 };
 ---
 
-<PageLayout title={post.data.title} description={post.data.description} ogImage={`/og/insikter/${post.id.replace('sv/', '')}.png`} locale={locale} ogType="article">
+<PageLayout title={post.data.title} description={post.data.description} ogImage={`/og/insikter/${slug}.png`} locale={locale} ogType="article" headerTheme="dark">
   <JsonLd schema={articleSchema} />
 
   <!-- Reading progress bar -->
@@ -75,14 +78,25 @@ const articleSchema = {
     aria-hidden="true"
   ></div>
 
-  <HeroSimple
-    title={post.data.title}
-    breadcrumbs={[
-      { label: t(locale, 'insights.overline'), href: getInsightsPath(locale) },
-      { label: post.data.title },
-    ]}
-    locale={locale}
-  />
+  <!-- Hero with background image -->
+  <section class="relative -mt-20 pt-32 pb-20 overflow-hidden">
+    <img
+      src={heroImage}
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-navy-dark/75"></div>
+    <div class="container relative z-10">
+      <div class="hero-breadcrumb">
+        <Breadcrumb items={[{ label: t(locale, 'insights.overline'), href: getInsightsPath(locale) }, { label: post.data.title }]} locale={locale} />
+      </div>
+      <div class="max-w-3xl mt-6" data-reveal>
+        <h1 class="text-white">{post.data.title}</h1>
+        {post.data.description && <p class="lead mt-4 text-white/70">{post.data.description}</p>}
+      </div>
+    </div>
+  </section>
 
   <article class="section" id="article-content">
     <div class="container">
@@ -97,18 +111,6 @@ const articleSchema = {
           <span class="text-gray-light text-sm">&middot;</span>
           <span class="text-sm text-gray">{readingTimeText}</span>
         </div>
-
-        <!-- Featured image -->
-        {post.data.image && (
-          <div class="mb-10 -mx-4 sm:mx-0" data-reveal>
-            <img
-              src={post.data.image}
-              alt=""
-              class="w-full rounded-lg object-cover aspect-[16/9]"
-              loading="eager"
-            />
-          </div>
-        )}
 
         <!-- Article body -->
         <div class="prose" data-reveal>
@@ -140,8 +142,8 @@ const articleSchema = {
               <article class="group">
                 <a href={getInsightPath(locale, item.id.replace(`${locale}/`, ''))} class="block">
                   <div class="aspect-[16/9] rounded-xl bg-surface mb-4 overflow-hidden">
-                    {item.data.image ? (
-                      <img src={item.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    {(item.data.heroImage || item.data.image) ? (
+                      <img src={item.data.heroImage || item.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                     ) : (
                       <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
                     )}
@@ -334,6 +336,25 @@ const articleSchema = {
   .prose img {
     border-radius: 0.75rem;
     margin-block: 2rem;
+  }
+
+  .hero-breadcrumb :global(ol) {
+    color: white;
+  }
+  .hero-breadcrumb :global(a) {
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  .hero-breadcrumb :global(a:hover) {
+    color: white;
+    text-decoration: underline;
+  }
+  .hero-breadcrumb :global(span) {
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  .hero-breadcrumb :global(svg) {
+    color: rgba(255, 255, 255, 0.8);
   }
 </style>
 

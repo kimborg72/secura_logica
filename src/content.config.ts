@@ -76,6 +76,7 @@ const insights = defineCollection({
     category: z.string(),
     draft: z.boolean().default(false),
     image: z.string().optional(),
+    heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
   }),
 });
