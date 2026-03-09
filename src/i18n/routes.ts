@@ -33,10 +33,11 @@ const reverseServiceSlugMap: Record<string, string> = Object.fromEntries(
 
 /** Insight slug mapping: Swedish slug → English slug */
 export const insightSlugMap: Record<string, string> = {
-  'nis2-cybersakerehtslagen': 'nis2-cybersecurity-act',
+  'nis2-cybersakerhetslagen': 'nis2-cybersecurity-act',
   'iso27001-forandringar': 'iso27001-changes',
   'ciso-as-a-service': 'ciso-as-a-service',
-  'cybersakerehtslagen-ledningsansvar': 'cybersecurity-act-leadership-accountability',
+  'cybersakerhetslagen-ledningsansvar': 'cybersecurity-act-leadership-accountability',
+  'femton-ar-samma-hotbild': 'fifteen-years-same-threat-landscape',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(

@@ -1,15 +1,16 @@
 ---
 title: "Cybersäkerhetslagen och ledningsansvaret. Är spelreglerna verkligen lika för alla?"
-description: "Cybersäkerhetslagen ställer samma krav på offentlig och privat sektor, men konsekvenserna vid brister ser olika ut. Vi granskar vad det innebär för ledningsansvaret."
+description: "Cybersäkerhetslagen kräver samma sak av alla sektorer, men konsekvenserna ser olika ut. Så påverkas ledningsansvaret i offentlig sektor."
 date: 2026-02-23
 author: "Kim Borg"
 category: "Cybersäkerhetslagen"
 draft: false
 image: /images/insights/cybersakerehtslagen-ledningsansvar.webp
+heroImage: /images/insights/hero-cybersakerehtslagen-ledningsansvar.webp
 tags: ["NIS2", "Ledningsansvar", "Offentlig sektor", "Cybersäkerhet"]
 ---
 
-Den 15 januari 2026 trädde cybersäkerhetslagen (SFS 2025:1506) i kraft. Med den följer skärpta krav på systematiskt cybersäkerhetsarbete, incidentrapportering och, inte minst, ett tydligare ansvar för ledningen. Men en närmare granskning av lagens konstruktion visar att konsekvenserna för ledningen ser väsentligt olika ut beroende på om verksamheten är privat eller offentlig.
+Den 15 januari 2026 trädde [cybersäkerhetslagen](/insikter/nis2-cybersakerhetslagen) (SFS 2025:1506) i kraft. Med den följer skärpta krav på [systematiskt cybersäkerhetsarbete](/insikter/femton-ar-samma-hotbild), incidentrapportering och, inte minst, ett tydligare ansvar för ledningen. Men en närmare granskning av lagens konstruktion visar att konsekvenserna för ledningen ser väsentligt olika ut beroende på om verksamheten är privat eller offentlig.
 
 ## Vad säger lagen om ledningsansvar?
 
@@ -27,11 +28,11 @@ Lagen ger också tillsynsmyndigheter ett kraftfullt verktyg: möjligheten att an
 
 Här uppstår en viktig skillnad. Lagen anger uttryckligen att förbud att utöva ledningsroll **inte får riktas mot offentliga verksamhetsutövare**. Det innebär att det stärkaste personliga sanktionsverktyget, att faktiskt kunna avlägsna en ledningsperson från sin roll, är avskuret för kommuner, regioner och statliga myndigheter.
 
-Denna begränsning bekräftas av Myndigheten för civilt försvar (MCF) i deras FAQ om cybersäkerhetslagen, senast uppdaterad den 12 februari 2026.
+Denna begränsning bekräftas av Myndigheten för civilt försvar (MCF) i deras frågor och svar om cybersäkerhetslagen, senast uppdaterad den 12 februari 2026.
 
 ## Vad gäller då för offentlig sektor?
 
-Det är viktigt att understryka att offentlig sektor inte är undantagen från lagen i övrigt. **Sanktionsavgifter gäller fullt ut.** För väsentliga verksamhetsutövare kan avgifterna uppgå till 10 miljoner euro eller 2 procent av den globala årsomsättningen, och för viktiga verksamhetsutövare upp till 7 miljoner euro eller 1,4 procent. Tillsynsmyndigheter kan också utfärda anmärkningar och förelägganden.
+Det är viktigt att understryka att offentlig sektor inte är undantagen från lagen i övrigt. **Sanktionsavgifter gäller fullt ut.** För väsentliga verksamhetsutövare kan avgifterna uppgå till 10 miljoner euro eller 2 procent av den globala årsomsättningen. För viktiga verksamhetsutövare är taket 7 miljoner euro eller 1,4 procent. Tillsynsmyndigheter kan också utfärda anmärkningar och förelägganden.
 
 Skillnaden ligger i **vem som bär konsekvensen**. I ett privat företag kan sanktionen träffa både organisationen ekonomiskt och ledningen personligen. I en kommun träffar den ekonomiska sanktionen kommunens budget, och i förlängningen de medborgare vars välfärdstjänster finansieras därifrån.
 
@@ -79,7 +80,7 @@ Cybersäkerhet bör inte enbart vara en fråga för IT-avdelningen eller en ensk
 
 MCF tillhandahåller fritt tillgängliga verktyg för att bedöma och utveckla det systematiska cybersäkerhetsarbetet. Dessa ger en strukturerad utgångspunkt för organisationer som behöver komma igång eller vidareutveckla sitt arbete.
 
-## Sammanfattning
+## Samma lag, olika konsekvenser
 
 Cybersäkerhetslagen ställer samma krav på offentlig och privat sektor. Samma skyldigheter kring riskhantering, incidentrapportering och ledningens ansvar gäller. Men konsekvenserna vid brister ser olika ut. Förbudet att utöva ledningsroll, lagens stärkaste personliga sanktionsverktyg, är inte tillämpbart i offentlig sektor.
 
@@ -94,4 +95,4 @@ Det gör det ännu viktigare att offentliga verksamheter bygger en intern styrni
 - MCFFS 2026:1, Föreskrifter om anmälan och identifiering av väsentliga och viktiga verksamhetsutövare
 - Proposition 2024/25:45, Cybersäkerhet i Sverige (Regeringens proposition)
 
-Behöver ni stöd med att tolka cybersäkerhetslagen och bygga en fungerande styrmodell? [Kontakta oss](/kontakt) för en kostnadsfri genomgång.
+Behöver du stöd med att tolka cybersäkerhetslagen och bygga en fungerande styrmodell? [Kontakta oss](/kontakt) för en kostnadsfri genomgång.
