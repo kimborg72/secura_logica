@@ -3,7 +3,6 @@ import en from './translations/en';
 import type { Locale } from './types';
 
 export type { Locale };
-export { locales, defaultLocale } from './types';
 
 type TranslationKey = keyof typeof sv;
 

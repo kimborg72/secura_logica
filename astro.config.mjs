@@ -8,7 +8,7 @@ export default defineConfig({
   site: 'https://verit.se',
   adapter: node({ mode: 'standalone' }),
   security: {
-    checkOrigin: false,
+    checkOrigin: true,
   },
   i18n: {
     defaultLocale: 'sv',

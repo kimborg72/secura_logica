@@ -2,6 +2,22 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
+/* --- Rate limiting (in-memory, per IP) --- */
+const RATE_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const RATE_MAX_REQUESTS = 5;
+const ipHits = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = ipHits.get(ip);
+  if (!entry || now > entry.resetAt) {
+    ipHits.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_MAX_REQUESTS;
+}
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^[\d\s\-+().]{7,20}$/;
 const VALID_SERVICES = ['nis2','iso27001','ciso','riskhantering','utbildning','gdpr','securapilot','annat'];
@@ -38,6 +54,17 @@ const messages: Record<Locale, Record<string, string>> = {
 };
 
 export const POST: APIRoute = async ({ request }) => {
+  const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0].trim()
+    || request.headers.get('x-real-ip')
+    || 'unknown';
+
+  if (isRateLimited(clientIp)) {
+    return new Response(
+      JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+      { status: 429, headers: { 'Retry-After': '900' } },
+    );
+  }
+
   const formData = await request.formData();
   const locale: Locale = formData.get('locale')?.toString() === 'en' ? 'en' : 'sv';
   const msg = messages[locale];

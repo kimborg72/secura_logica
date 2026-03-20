@@ -71,5 +71,3 @@ const navData: Record<Locale, NavItem[]> = {
 export function getMainNav(locale: Locale): NavItem[] {
   return navData[locale];
 }
-
-export const mainNav = navData.sv;

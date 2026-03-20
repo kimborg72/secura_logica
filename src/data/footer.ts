@@ -62,5 +62,3 @@ const footerData: Record<Locale, FooterColumn[]> = {
 export function getFooterColumns(locale: Locale): FooterColumn[] {
   return footerData[locale];
 }
-
-export const footerColumns = footerData.sv;

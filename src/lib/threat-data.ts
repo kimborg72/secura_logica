@@ -256,17 +256,18 @@ async function fetchThreatFoxC2(): Promise<AttackSource[]> {
   if (!res.ok) throw new Error(`ThreatFox responded ${res.status}`);
   const data: Record<string, { ioc_value: string; ioc_type: string }[]> = await res.json();
 
-  // Extract IPs from ip:port entries
-  const ips: string[] = [];
+  // Extract unique IPs from ip:port entries
+  const ipSet = new Set<string>();
   for (const entries of Object.values(data)) {
     for (const e of entries) {
       if (e.ioc_type === 'ip:port') {
         const ip = e.ioc_value.split(':')[0];
-        if (ip && !ips.includes(ip)) ips.push(ip);
+        if (ip) ipSet.add(ip);
       }
     }
   }
 
+  const ips = [...ipSet];
   if (ips.length === 0) return [];
   const geoMap = await batchGeolocate(ips);
   return aggregateByCountry(geoMap, 'malware');
@@ -303,15 +304,16 @@ async function fetchUrlhaus(): Promise<AttackSource[]> {
   if (!res.ok) throw new Error(`URLhaus responded ${res.status}`);
   const text = await res.text();
 
-  // Extract IPs from URLs like http://1.2.3.4:1234/path
+  // Extract unique IPs from URLs like http://1.2.3.4:1234/path
   const ipRegex = /https?:\/\/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/;
-  const ips: string[] = [];
+  const ipSet = new Set<string>();
   for (const line of text.split('\n')) {
     if (line.startsWith('#') || line.startsWith('"id"')) continue;
     const match = line.match(ipRegex);
-    if (match && !ips.includes(match[1])) ips.push(match[1]);
+    if (match) ipSet.add(match[1]);
   }
 
+  const ips = [...ipSet];
   if (ips.length === 0) return [];
   const geoMap = await batchGeolocate(ips);
   return aggregateByCountry(geoMap, 'urlhaus');
