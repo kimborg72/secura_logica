@@ -39,6 +39,7 @@ export const insightSlugMap: Record<string, string> = {
   'cybersakerhetslagen-ledningsansvar': 'cybersecurity-act-leadership-accountability',
   'femton-ar-samma-hotbild': 'fifteen-years-same-threat-landscape',
   'sex-regelverk-en-styrmodell': 'six-frameworks-one-governance-model',
+  'lagen-skyddar-inte-din-verksamhet': 'the-law-wont-protect-your-business',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(

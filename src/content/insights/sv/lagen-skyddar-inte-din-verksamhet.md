@@ -10,7 +10,7 @@ heroImage: /images/insights/hero-lagen-skyddar-inte-din-verksamhet.webp
 tags: ["Cybersäkerhetslagen", "NIS2", "Bolagsstyrning", "Riskhantering", "Leverantörskedja", "Cyberförsäkring"]
 ---
 
-Sveriges nya [cybersäkerhetslag](/insikter/nis2-cybersakerhetslagen) genomför NIS2-direktivet i svensk rätt. Den lägger ett tydligt ansvar på ledningen – inte IT-avdelningen – att godkänna riskhanteringsåtgärder, följa upp att de fungerar och ha tillräcklig kunskap för att förstå vad som står på spel.
+Sveriges nya [cybersäkerhetslag](/insikter/nis2-cybersakerhetslagen) genomför NIS2-direktivet i svensk rätt. Den lägger ansvaret på ledningen, inte IT-avdelningen. Det är ledningen som ska godkänna riskhanteringsåtgärder, följa upp att de fungerar och förstå vad som står på spel.
 
 Det är bolagsstyrning. Inte teknikdrift.
 
@@ -18,9 +18,11 @@ Men lagen gäller inte alla. Och det är just där det blir farligt.
 
 ## "Vi omfattas inte" är inte samma sak som "vi är säkra"
 
-Jag har sett det hända. Verksamheter som antog att "vi omfattas inte" också betydde "vi behöver inte bry oss". Efter 25 år i roller med ansvar för just de här frågorna – som IT-direktör i kommun med NIS-ansvar, som Group CIO med verksamhet i åtta länder – vet jag hur det slutar.
+Jag har sett det hända. Verksamheter som antog att "vi omfattas inte" också betydde "vi behöver inte bry oss". Jag har haft ansvar för de här frågorna i 25 år, som IT-direktör i kommun med NIS-ansvar och som CIO med verksamhet i åtta länder. Jag vet hur det slutar.
 
-En underleverantör utan krav. En mindre kommunal aktör med begränsade resurser. Ett bolag som aldrig klassats som kritisk infrastruktur. Alla kan vara den svagaste länken i en kedja som faktiskt *är* reglerad – och som räknar med att hela kedjan håller.
+En underleverantör utan krav. En kommun med begränsade resurser. Ett bolag som aldrig klassats som kritisk infrastruktur.
+
+Alla kan vara den svagaste länken i en kedja som faktiskt *är* reglerad, och som räknar med att hela kedjan håller.
 
 Cyberhot bryr sig inte om juridiska tillämpningsområden.
 
@@ -34,11 +36,13 @@ Allt fler kunder och upphandlande myndigheter ställer krav på informationssäk
 
 ### Produktionsstopp i dagar, inte timmar
 
-Ransomware-attacker slår hårdast mot verksamheter som aldrig övat på återställning. Att ha backup räcker inte. Du behöver veta att backupen fungerar, att planen för återställning är testad, och att rätt personer vet vad de ska göra. Utan det kan ett stopp som borde ta timmar ta veckor.
+Ransomware-attacker slår hårdast mot verksamheter som aldrig övat på återställning. Att ha backup räcker inte. Du behöver veta att backupen fungerar och att planen för återställning är testad.
+
+Utan det kan ett stopp som borde ta timmar ta veckor.
 
 ### Personligt ansvar i styrelsen
 
-[Cybersäkerhetslagen skärper det personliga ansvaret](/insikter/cybersakerhetslagen-ledningsansvar) för ledningsorganet i reglerade verksamheter. Men även utanför lagens tillämpningsområde har styrelseledamöter ett ansvar enligt aktiebolagslagen att agera i bolagets intresse. Om det visar sig att ingen i styrelsen fattade beslut om kända risker – eller ens kände till dem – blir det svårt att hävda att ansvaret är uppfyllt.
+[Cybersäkerhetslagen skärper det personliga ansvaret](/insikter/cybersakerhetslagen-ledningsansvar) för ledningsorganet i reglerade verksamheter. Men även utanför lagens tillämpningsområde har styrelseledamöter ett ansvar enligt aktiebolagslagen att agera i bolagets intresse. Om ingen i styrelsen fattade beslut om kända risker, eller ens kände till dem, blir det svårt att hävda att ansvaret är uppfyllt.
 
 ### Försäkringen som inte betalar
 
@@ -46,7 +50,7 @@ Cyberförsäkringar blir allt vanligare, men villkoren blir också allt stränga
 
 ## Ribban och verkligheten
 
-Cybersäkerhetslagen sätter ribban för reglerade verksamheter. Den definierar vad samhället förväntar sig av organisationer som bär kritiska funktioner. Men lagen definierar ett golv, inte ett tak.
+[Cybersäkerhetslagen](https://www.msb.se/sv/amnesomraden/informationssakerhet-cybersakerhet-och-sakra-kommunikationer/nis-direktivet/) sätter ribban för reglerade verksamheter. Den definierar vad samhället förväntar sig av organisationer som bär kritiska funktioner. Men lagen definierar ett golv, inte ett tak.
 
 Det som skiljer en medveten organisation från en omedveten är inte om den omfattas av lagen. Det är om ledningen förstår vad som faktiskt står på spel: i intäkter, i avtal, i ansvar och i förtroende.
 
