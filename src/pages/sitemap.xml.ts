@@ -44,19 +44,33 @@ export const GET: APIRoute = async () => {
   // 2. Service detail pages — dynamic from collection
   const allServices = await getCollection('services');
   const svServices = allServices.filter((s) => s.id.startsWith('sv/'));
+  const enServiceIds = new Set(
+    allServices.filter((s) => s.id.startsWith('en/')).map((s) => s.data.slug),
+  );
   for (const service of svServices) {
     const svSlug = service.data.slug;
     const enSlug = serviceSlugMap[svSlug] ?? svSlug;
-    blocks.push(buildBilingualBlock(`/tjanster/${svSlug}`, `/en/services/${enSlug}`));
+    if (enServiceIds.has(enSlug)) {
+      blocks.push(buildBilingualBlock(`/tjanster/${svSlug}`, `/en/services/${enSlug}`));
+    } else {
+      blocks.push(buildSvOnlyBlock(`/tjanster/${svSlug}`));
+    }
   }
 
   // 3. Insight detail pages — dynamic from collection
   const allInsights = await getCollection('insights');
+  const enInsightIds = new Set(
+    allInsights.filter((p) => p.id.startsWith('en/')).map((p) => p.id.replace('en/', '')),
+  );
   const svInsights = allInsights.filter((p) => p.id.startsWith('sv/') && !p.data.draft);
   for (const post of svInsights) {
     const svSlug = post.id.replace('sv/', '');
     const enSlug = insightSlugMap[svSlug] ?? svSlug;
-    blocks.push(buildBilingualBlock(`/insikter/${svSlug}`, `/en/insights/${enSlug}`));
+    if (enInsightIds.has(enSlug)) {
+      blocks.push(buildBilingualBlock(`/insikter/${svSlug}`, `/en/insights/${enSlug}`));
+    } else {
+      blocks.push(buildSvOnlyBlock(`/insikter/${svSlug}`));
+    }
   }
 
   // 4. Municipality pages — Swedish-only

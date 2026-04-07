@@ -18,3 +18,22 @@ jobs:
           docker compose build --no-cache
           docker compose up -d
           docker image prune -f
+
+  submit-sitemap:
+    name: Submit sitemap to GSC
+    needs: deploy
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Submit sitemap
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: node scripts/gsc-check.mjs --submit-sitemap

@@ -5,6 +5,8 @@ dist/
 *.local
 .env
 .env.*
+*.json.key
+verit-*.json
 .claude/skills/
 
 # TinaCMS

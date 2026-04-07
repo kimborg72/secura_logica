@@ -1,0 +1,72 @@
+name: SEO Monitor
+
+on:
+  schedule:
+    # Indexing audit — daily at 06:17 (off-peak, avoids :00/:30)
+    - cron: '17 6 * * *'
+    # Keyword report — weekly Monday at 07:43
+    - cron: '43 7 * * 1'
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'Task to run'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - gsc-check
+          - gsc-submit
+          - ads-keywords
+          - ads-report
+
+jobs:
+  gsc-check:
+    name: GSC Indexing Audit
+    runs-on: self-hosted
+    if: >-
+      github.event.schedule == '17 6 * * *' ||
+      github.event.inputs.task == 'gsc-check' ||
+      github.event.inputs.task == 'all'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run GSC indexing audit
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: node scripts/gsc-check.mjs --submit-sitemap
+
+  keyword-report:
+    name: Keyword Opportunities
+    runs-on: self-hosted
+    if: >-
+      github.event.schedule == '43 7 * * 1' ||
+      github.event.inputs.task == 'ads-keywords' ||
+      github.event.inputs.task == 'ads-report' ||
+      github.event.inputs.task == 'all'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run keyword analysis
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_ADS_CLIENT_ID: ${{ secrets.GOOGLE_ADS_CLIENT_ID }}
+          GOOGLE_ADS_CLIENT_SECRET: ${{ secrets.GOOGLE_ADS_CLIENT_SECRET }}
+          GOOGLE_ADS_DEVELOPER_TOKEN: ${{ secrets.GOOGLE_ADS_DEVELOPER_TOKEN }}
+          GOOGLE_ADS_REFRESH_TOKEN: ${{ secrets.GOOGLE_ADS_REFRESH_TOKEN }}
+          GOOGLE_ADS_CUSTOMER_ID: ${{ secrets.GOOGLE_ADS_CUSTOMER_ID }}
+        run: node scripts/ads-optimize.mjs

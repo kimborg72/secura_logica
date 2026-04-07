@@ -6,7 +6,7 @@ import { t, getLocaleFromUrl, getHomePath } from '@i18n/index';
 const locale = getLocaleFromUrl(Astro.url);
 ---
 
-<PageLayout title={t(locale, '404.title')} locale={locale}>
+<PageLayout title={t(locale, '404.title')} locale={locale} noindex>
   <section class="section">
     <div class="container text-center">
       <p class="text-8xl font-bold text-accent-dark/20 mb-4">404</p>

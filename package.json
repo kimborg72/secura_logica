@@ -9,7 +9,14 @@
     "build:cms": "tinacms build && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "gsc:check": "node scripts/gsc-check.mjs",
+    "gsc:submit": "node scripts/gsc-check.mjs --submit-sitemap",
+    "ads:setup": "node scripts/ads-auth-setup.mjs",
+    "ads:report": "node scripts/ads-optimize.mjs",
+    "ads:keywords": "node scripts/ads-optimize.mjs --keywords",
+    "ads:health": "node scripts/ads-optimize.mjs --health",
+    "ads:compare": "node scripts/ads-optimize.mjs --compare"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.0",
@@ -22,6 +29,8 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.0",
+    "google-ads-api": "^23.0.0",
+    "googleapis": "^171.4.0",
     "prettier": "^3.4.0",
     "prettier-plugin-astro": "^0.14.0",
     "tailwindcss": "^4.1.0",
