@@ -50,7 +50,7 @@ Cyber insurance is becoming more common, but policy terms are tightening. Many i
 
 ## The bar and the reality
 
-The [Cybersecurity Act](https://www.msb.se/sv/amnesomraden/informationssakerhet-cybersakerhet-och-sakra-kommunikationer/nis-direktivet/) sets the bar for regulated organisations. It defines what society expects from organisations that carry critical functions. But the law defines a floor, not a ceiling.
+The [Cybersecurity Act](https://www.enisa.europa.eu/topics/cybersecurity-policy/nis-directive-new) sets the bar for regulated organisations. It defines what society expects from organisations that carry critical functions. But the law defines a floor, not a ceiling.
 
 What separates a prepared organisation from an unprepared one isn't whether the law covers it. It's whether leadership understands what's actually at stake: in revenue, in contracts, in liability and in trust.
 
