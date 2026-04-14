@@ -40,6 +40,7 @@ export const insightSlugMap: Record<string, string> = {
   'femton-ar-samma-hotbild': 'fifteen-years-same-threat-landscape',
   'sex-regelverk-en-styrmodell': 'six-frameworks-one-governance-model',
   'lagen-skyddar-inte-din-verksamhet': 'the-law-wont-protect-your-business',
+  'leveranskedjan-din-storsta-risk': 'supply-chain-your-biggest-risk',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(

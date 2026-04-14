@@ -10,7 +10,7 @@ heroImage: /images/insights/hero-femton-ar-samma-hotbild.webp
 tags: ["NIS2", "Mognad", "Offentlig sektor", "Leverantörskedja", "Finansiering"]
 ---
 
-Färsk kartläggning visar att 42 procent av svenska organisationer har låg mognad inom leverantörskedjor. 25 procent saknar kontinuitetsplaner.
+Enligt [OneMore Secures Cybersäkerhet Mognadsrapport 2025](https://www.aktuellsakerhet.se/svenska-foretag-brister-i-cybersakerhet-leveranskedjorna-storsta-svagheten/), baserad på över 750 svenska verksamheter, har 42 procent låg mognad inom leverantörskedjor. 25 procent saknar kontinuitetsplaner.
 
 Nästan 40 procent saknar dataklassificering. 25 procent krypterar inte känsliga uppgifter.
 
