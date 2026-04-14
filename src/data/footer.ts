@@ -10,6 +10,7 @@ const footerData: Record<Locale, FooterColumn[]> = {
     {
       title: 'Tjänster',
       links: [
+        { label: 'AI FastTrack', href: '/tjanster/ai-fasttrack' },
         { label: 'NIS2 / Cybersäkerhetslagen', href: '/tjanster/nis2' },
         { label: 'ISO 27001 / LIS', href: '/tjanster/iso27001' },
         { label: 'CISO-as-a-Service', href: '/tjanster/ciso-as-a-service' },
@@ -36,6 +37,7 @@ const footerData: Record<Locale, FooterColumn[]> = {
     {
       title: 'Services',
       links: [
+        { label: 'AI FastTrack', href: '/en/services/ai-fasttrack' },
         { label: 'NIS2 / Cybersecurity Act', href: '/en/services/nis2' },
         { label: 'ISO 27001 / ISMS', href: '/en/services/iso27001' },
         { label: 'CISO-as-a-Service', href: '/en/services/ciso-as-a-service' },
