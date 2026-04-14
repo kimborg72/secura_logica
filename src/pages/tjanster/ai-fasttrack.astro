@@ -1,0 +1,369 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import ServicePackages from '@components/sections/ServicePackages.astro';
+import ComparisonTable from '@components/sections/ComparisonTable.astro';
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+import { site, organizationSchema } from '@data/site';
+import { getServicesByLocale } from '@i18n/content';
+import { getServicePath, getServicesPath } from '@i18n/routes';
+
+const locale = 'sv' as const;
+const slug = 'ai-fasttrack';
+
+const allServices = await getServicesByLocale(locale);
+const relatedSlugs = ['ciso-as-a-service', 'riskhantering', 'nis2'];
+const relatedServices = allServices.filter((s) => relatedSlugs.includes(s.data.slug));
+
+const metaTitle = 'AI FastTrack — Governance & Security | Verit';
+const metaDescription =
+  'Den kortaste vägen från AI-ambition till styrbar verksamhetsförmåga. AI-governance och cybersäkerhet integrerat i varje steg.';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI FastTrack — Governance & Security',
+  description: metaDescription,
+  provider: {
+    '@type': 'Organization',
+    name: organizationSchema.name,
+    url: organizationSchema.url,
+  },
+  areaServed: { '@type': 'Country', name: 'Sweden' },
+  url: `${site.url}${getServicePath(locale, slug)}`,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Hur skiljer sig AI FastTrack från en vanlig AI-konsult?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'En typisk AI-konsult fokuserar på verktyg och tekniska piloter. AI FastTrack utgår från beslut och verksamhetseffekt — och behandlar säkerhet som en integrerad dimension, inte en fas 2-övning. Vi mappar också kraven från NIS2, EU AI Act och GDPR direkt in i leveransen.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Vi är tidigt ute med AI — är det här för oss?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja. Readiness Assessment (2–3 dagar) är utformad för just den situationen. Ni får en snabb bedömning av AI-mognad och säkerhetsberedskap, plus 3–5 konkreta rekommendationer som ledningen kan agera på direkt.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Vad händer efter leveransen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ni har en konkret roadmap med integrerade säkerhetsåtgärder och en tydlig mognadstrappa. Vi kan stötta implementeringen löpande via CISO-as-a-Service eller Securapilot, eller så tar ni det vidare i egen regi.',
+      },
+    },
+  ],
+};
+
+const challenges = [
+  {
+    title: 'Verktyg utan strategi',
+    description:
+      'AI-verktyg köps in utan koppling till verksamhetsbeslut eller affärsmål. Piloter startas parallellt utan gemensam riktning.',
+  },
+  {
+    title: 'Säkerhet som eftertanke',
+    description:
+      'Kontroll, regelefterlevnad och riskhantering hanteras i "fas 2" — om alls. Policies saknas innan modellerna är i drift.',
+  },
+  {
+    title: 'Inget gemensamt språk',
+    description:
+      'IT, verksamhet, HR och ledning pratar olika språk om AI. Beslut uteblir eller flyttas fram på obestämd tid.',
+  },
+];
+
+const packages = [
+  {
+    name: 'Readiness Assessment',
+    duration: '2–3 dagar',
+    durationLabel: 'Tidsram',
+    description:
+      'Snabbanalys av AI-mognad och säkerhetsberedskap. Nuläge, gap och 3–5 konkreta rekommendationer som ledningen kan agera på direkt.',
+    accent: 'teal' as const,
+    ctaLabel: 'Boka Readiness Assessment',
+    steps: [
+      {
+        number: 1,
+        title: 'Snabbintervjuer',
+        description:
+          'AI-mognad, säkerhetsnivå, datakvalitet och styrning i en och samma intervjurunda med nyckelpersoner.',
+      },
+      {
+        number: 2,
+        title: 'Integrerad gap-analys',
+        description:
+          'Bedömning mot en mognadsskala med både AI-förmåga och säkerhetskrav — på en gemensam karta.',
+      },
+      {
+        number: 3,
+        title: 'Ledningsrapport',
+        description:
+          'Nuläge, risker och 3–5 rekommendationer som adresserar både nytta och säkerhet.',
+      },
+    ],
+  },
+  {
+    name: 'Governance & Security',
+    duration: '5–7 veckor',
+    durationLabel: 'Tidsram',
+    description:
+      'Fullständig leverans — beslutskartläggning, styrmodell, datapipelines, kontrollramverk och roadmap med integrerade säkerhetsåtgärder.',
+    accent: 'lime' as const,
+    ctaLabel: 'Kontakta oss',
+    steps: [
+      {
+        number: 1,
+        title: 'Nuläge, ambition & hotbild',
+        description:
+          'Intervjuer med ledningsgruppen. AI-förväntningar, beslutsprocesser, säkerhetsnivå, skugg-AI och regulatoriska krav.',
+      },
+      {
+        number: 2,
+        title: 'Beslutskartläggning & riskanalys',
+        description:
+          'Beslut med störst AI-hävstång. Dataflöden, hot, skyddsnivå och sårbarhet per beslutspunkt.',
+      },
+      {
+        number: 3,
+        title: 'Prioriteringsworkshop',
+        description:
+          'Värdera AI-initiativ utifrån affärsnytta, genomförbarhet och säkerhetsrisk. Oklara kontroller = stoppkriterie.',
+      },
+      {
+        number: 4,
+        title: 'Styrmodell, roller & kontrollramverk',
+        description:
+          'Beslutsrätt, ansvar, eskaleringsvägar, policies och incidenthantering.',
+      },
+      {
+        number: 5,
+        title: 'Datapipelines & skyddsarkitektur',
+        description:
+          'Data från källa till modell till beslut. Klassificering, åtkomst, spårbarhet och leverantörsgranskning.',
+      },
+      {
+        number: 6,
+        title: 'Uppföljningsramverk',
+        description:
+          'KPI:er för verksamhetseffekt kompletterat med säkerhetsindikatorer — incidenter, avvikelser, policybrott.',
+      },
+      {
+        number: 7,
+        title: 'Roadmap & mognadstrappa',
+        description:
+          'Konkret plan med integrerade säkerhetsåtgärder i varje fas. Vad krävs innan nästa AI-mognadssteg?',
+      },
+    ],
+  },
+];
+
+const comparisonRows = [
+  {
+    dimension: 'Säkerhet',
+    generic: 'Hanteras i fas 2',
+    fasttrack: 'Integrerad i varje steg',
+  },
+  {
+    dimension: 'Fokus',
+    generic: 'Verktyg och teknik',
+    fasttrack: 'Beslut och verksamhetseffekt',
+  },
+  {
+    dimension: 'Regulatorik',
+    generic: 'Nämns vid behov',
+    fasttrack: 'NIS2 + EU AI Act + GDPR mappat',
+  },
+  {
+    dimension: 'Leverans',
+    generic: 'Rapport och rekommendationer',
+    fasttrack: 'Styrmodell, kontrollramverk och roadmap',
+  },
+  {
+    dimension: 'Uppföljning',
+    generic: 'Sällan inkluderad',
+    fasttrack: 'KPI:er + säkerhetsindikatorer',
+  },
+];
+
+const expectations = [
+  'Prioritera rätt AI-initiativ — identifiera var AI skapar verkligt affärsvärde först',
+  'Göra AI till en fråga om beslutsstyrning — förstå vilka beslut som bör stödjas, förstärkas eller ägas av människor',
+  'Skapa ett gemensamt språk mellan funktioner — samla ledning, verksamhet, IT, HR och risk kring en gemensam modell',
+  'Designa om arbetsflöden — kartlägga hur arbetet rör sig före, runt och efter ett beslut',
+  'Designa om datapipelines — synliggöra vilken data som måste finnas och hur den måste flöda',
+  'Bygga in ansvar, kontroll och begränsningar — roller, beslutsrätt, kontrollpunkter, policies och eskaleringsvägar',
+  'Följa upp faktisk effekt — skilja mellan upplevd nytta och verklig verksamhetseffekt',
+  'Bedöma nästa mognadssteg — avgöra när AI ska stödja, förstärka eller delegeras',
+];
+---
+
+<PageLayout
+  title={metaTitle}
+  description={metaDescription}
+  ogImage="/og/tjanster/ai-fasttrack.png"
+  locale={locale}
+>
+  <JsonLd schema={serviceSchema} />
+  <JsonLd schema={faqSchema} />
+
+  <HeroSimple
+    title="AI FastTrack — Governance & Security"
+    description="Den kortaste vägen från AI-ambition till styrbar verksamhetsförmåga."
+    breadcrumbs={[
+      { label: 'Tjänster', href: getServicesPath(locale) },
+      { label: 'AI FastTrack' },
+    ]}
+    locale={locale}
+  />
+
+  <!-- Intro & grundprincip -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-3xl" data-reveal>
+        <p class="overline mb-4">Om tjänsten</p>
+        <p class="lead text-slate mb-6">
+          Alla pratar om att accelerera AI. Vi ser till att ni faktiskt kan — utan att tappa kontrollen.
+          AI FastTrack hjälper ledningsgruppen att gå från AI som aktivitet till AI som styrbar
+          verksamhetsförmåga, med säkerhet integrerad i varje steg.
+        </p>
+        <p class="text-gray leading-relaxed mb-4">
+          Vi kombinerar beslutskartläggning, riskanalys, styrmodell och kontrollramverk i en
+          och samma leverans. Resultatet är en tydlig bild av var AI skapar mest värde — och
+          exakt vilka säkerhetsåtgärder som krävs innan ni tar nästa steg.
+        </p>
+      </div>
+
+      <div class="mt-10 max-w-3xl bg-surface border-l-4 border-teal rounded-xl p-6 lg:p-8" data-reveal>
+        <p class="overline mb-2 text-teal-dark">Grundprincip</p>
+        <p class="text-xl lg:text-2xl font-semibold text-navy leading-snug">
+          Ingen AI-mognad utan motsvarande säkerhetsmognad.
+        </p>
+        <p class="mt-3 text-sm text-gray italic">Metod först. Verktyg sedan. Säkerhet alltid.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Utmaningen -->
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">Utmaningen</p>
+        <h2>Organisationer fastnar</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {challenges.map((c, i) => (
+          <div
+            class="bg-white rounded-xl border border-border p-6 lg:p-8 relative"
+            data-reveal
+            data-delay={String(i + 1)}
+          >
+            <div class="text-4xl font-bold text-navy/10 mb-3 leading-none">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <h3 class="text-lg font-semibold text-navy mb-3">{c.title}</h3>
+            <p class="text-sm text-gray leading-relaxed">{c.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center" data-reveal>
+        <p class="inline-block text-sm font-semibold text-accent-dark bg-accent/25 px-4 py-2 rounded-full italic">
+          Resultat: AI blir en kostnad, inte en förmåga.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Två paket -->
+  <ServicePackages
+    packages={packages}
+    locale={locale}
+    overline="AI FastTrack"
+    heading="Välj startpunkt"
+  />
+
+  <!-- Jämförelsetabell -->
+  <ComparisonTable
+    rows={comparisonRows}
+    dimensionLabel="Dimension"
+    genericLabel="Typisk AI-konsult"
+    fasttrackLabel="AI FastTrack"
+    overline="Jämförelse"
+    heading="Varför AI FastTrack?"
+    locale={locale}
+  />
+
+  <!-- Vad ledningsgruppen får -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">Leverans</p>
+        <h2>Vad ni kan förvänta er</h2>
+      </div>
+
+      <ul class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {expectations.map((item, i) => (
+          <li
+            class="flex items-start gap-4 bg-surface rounded-xl border border-border p-5 lg:p-6"
+            data-reveal
+            data-delay={String((i % 4) + 1)}
+          >
+            <div class="shrink-0 w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-teal-dark"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="text-slate leading-relaxed text-sm lg:text-base pt-1">{item}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Relaterade tjänster -->
+  {relatedServices.length > 0 && (
+    <section class="section-sm bg-surface">
+      <div class="container">
+        <h2 class="mb-10" data-reveal>Relaterade tjänster</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {relatedServices.map((s, i) => (
+            <div data-reveal data-delay={String(i + 1)}>
+              <ServiceCard
+                title={s.data.title}
+                description={s.data.excerpt}
+                href={getServicePath(locale, s.data.slug)}
+                locale={locale}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTABanner
+    title="Redo att börja?"
+    description="Boka en Readiness Assessment — 2–3 dagar som ger ledningsgruppen ett konkret beslutsunderlag."
+    buttonText="Boka Readiness Assessment"
+    locale={locale}
+  />
+</PageLayout>

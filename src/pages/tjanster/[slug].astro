@@ -14,10 +14,12 @@ const locale = 'sv';
 
 export async function getStaticPaths() {
   const services = await getServicesByLocale('sv');
-  return services.map((service) => ({
-    params: { slug: service.data.slug },
-    props: { service },
-  }));
+  return services
+    .filter((service) => service.data.slug !== 'ai-fasttrack')
+    .map((service) => ({
+      params: { slug: service.data.slug },
+      props: { service },
+    }));
 }
 
 const { service } = Astro.props;

@@ -1,0 +1,127 @@
+title: "AI FastTrack — Governance & Security"
+shortTitle: "AI FastTrack"
+slug: "ai-fasttrack"
+metaTitle: "AI FastTrack — Governance & Security | Verit"
+metaDescription: "The shortest path from AI ambition to a governable business capability. AI governance and cybersecurity integrated at every step."
+excerpt: "Turn AI into a governable business capability — with security integrated at every step."
+introLead: >
+  AI FastTrack helps leadership teams move from AI as activity to AI as a
+  governable business capability — with security integrated at every step.
+  No AI maturity without matching security maturity.
+introduction: |
+  Everyone is talking about accelerating AI. We make sure you actually can — without losing control. AI FastTrack is a structured method for leadership teams that want to turn AI ambitions into governable business impact, without leaving security, compliance and accountability for "phase 2".
+
+  We combine decision mapping, risk analysis, governance model and control framework in one coherent delivery. The result is a clear picture of where AI creates the most value — and exactly which security measures are required before you take the next step.
+
+  Method first. Tools second. Security always.
+targetAudience:
+  heading: "Who is it for?"
+  description: >
+    AI FastTrack is designed for organisations where AI is gaining strategic
+    weight, but where decision governance, data quality and security are not
+    yet in place.
+  segments:
+    - "Leadership teams in SMEs and mid-sized organisations"
+    - "IT directors and CISOs"
+    - "Municipal IT leaders"
+    - "Business leaders with AI responsibility"
+    - "Boards that need to understand AI risk"
+    - "Organisations covered by NIS2 or the EU AI Act"
+benefits:
+  - title: "Prioritise the right AI initiatives"
+    description: >
+      Identify where AI creates real business value first, instead of spreading
+      efforts across every possible pilot at once.
+  - title: "Decision governance over tool fixation"
+    description: >
+      Understand which decisions should be supported, augmented or owned by
+      humans — and which should never be automated.
+  - title: "A shared language across functions"
+    description: >
+      Bring leadership, operations, IT, HR and risk together around a common
+      model for AI, decisions and security.
+  - title: "Accountability, control and guardrails"
+    description: >
+      Build in roles, decision rights, control points, policies and escalation
+      paths before AI goes into production.
+process:
+  - step: 1
+    title: "Current state, ambition & threat picture"
+    description: >
+      Interviews with leadership. We map AI expectations, decision processes,
+      existing security posture, shadow AI and regulatory requirements
+      (NIS2, EU AI Act, GDPR).
+    duration: "Week 1"
+  - step: 2
+    title: "Decision mapping & risk analysis"
+    description: >
+      Identify decisions with the greatest AI leverage. Analyse data flows,
+      threats (model manipulation, data integrity, bias), protection level and
+      vulnerability per decision point.
+    duration: "Week 2"
+  - step: 3
+    title: "Prioritisation workshop with risk dimension"
+    description: >
+      Joint session with leadership. Rate AI initiatives by business value,
+      feasibility and security risk. Unclear controls = stop criterion.
+    duration: "Week 3"
+  - step: 4
+    title: "Governance, roles & control framework"
+    description: >
+      Define decision rights, responsibilities and escalation paths. Integrate
+      policies for acceptable use, data classification, supplier requirements,
+      logging and incident handling.
+    duration: "Weeks 3–4"
+  - step: 5
+    title: "Data pipelines & protection architecture"
+    description: >
+      Map data from source to model to decision. Classification, access
+      control, traceability, and review of AI supplier security and compliance.
+    duration: "Weeks 4–5"
+  - step: 6
+    title: "Follow-up framework with security indicators"
+    description: >
+      KPIs for business impact complemented with security indicators:
+      incidents, deviations, policy violations and supplier compliance.
+    duration: "Weeks 5–6"
+  - step: 7
+    title: "Roadmap, maturity ladder & action plan"
+    description: >
+      A concrete plan with integrated security measures in every phase. What
+      does security require before the next AI maturity step?
+    duration: "Weeks 6–7"
+deliverables:
+  - "AI maturity assessment with security dimension"
+  - "Decision map of AI leverage points across the business"
+  - "Governance model, roles and control framework"
+  - "Data pipeline and protection architecture"
+  - "KPI and security indicator framework"
+  - "Roadmap and maturity ladder with integrated security measures"
+  - "Board-level report with 3–5 prioritised recommendations"
+faq:
+  - question: "How does AI FastTrack differ from a typical AI consultancy?"
+    answer: >
+      A typical AI consultancy focuses on tools and technical pilots. AI
+      FastTrack starts from decisions and business impact — and treats
+      security as an integrated dimension, not a phase 2 exercise. We also
+      map requirements from NIS2, the EU AI Act and GDPR directly into the
+      delivery.
+  - question: "We're early with AI — is this for us?"
+    answer: >
+      Yes. The Readiness Assessment (2–3 days) is designed for exactly that
+      situation. You get a rapid evaluation of AI maturity and security
+      readiness, plus 3–5 concrete recommendations that leadership can act
+      on immediately.
+  - question: "What happens after delivery?"
+    answer: >
+      You have a concrete roadmap with integrated security measures and a
+      clear maturity ladder. We can support implementation over time through
+      CISO-as-a-Service or Securapilot — or you can take it forward on
+      your own.
+relatedServices:
+  - "ciso-as-a-service"
+  - "risk-management"
+  - "nis2"
+ctaText: "Ready to start?"
+ctaDescription: "Book a Readiness Assessment — 2–3 days that give leadership a concrete decision foundation. Method first. Tools second. Security always."
+order: 2
