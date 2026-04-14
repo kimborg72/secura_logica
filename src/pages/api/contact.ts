@@ -53,7 +53,17 @@ const messages: Record<Locale, Record<string, string>> = {
   },
 };
 
+const ALLOWED_ORIGINS = new Set([
+  'https://verit.se',
+  'https://www.verit.se',
+]);
+
 export const POST: APIRoute = async ({ request }) => {
+  const origin = request.headers.get('origin');
+  if (!origin || !ALLOWED_ORIGINS.has(origin)) {
+    return new Response('Forbidden', { status: 403 });
+  }
+
   const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0].trim()
     || request.headers.get('x-real-ip')
     || 'unknown';

@@ -7,9 +7,9 @@ import { fileURLToPath } from 'node:url';
 export default defineConfig({
   site: 'https://verit.se',
   adapter: node({ mode: 'standalone' }),
-  security: {
-    checkOrigin: true,
-  },
+  // checkOrigin disabled: @astrojs/node ignores X-Forwarded-Proto, so behind
+  // nginx Astro sees http:// while the browser sends https:// Origin, causing
+  // false 403s. CSRF is enforced explicitly in src/pages/api/contact.ts.
   i18n: {
     defaultLocale: 'sv',
     locales: ['sv', 'en'],
