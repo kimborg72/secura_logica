@@ -41,6 +41,7 @@ export const insightSlugMap: Record<string, string> = {
   'sex-regelverk-en-styrmodell': 'six-frameworks-one-governance-model',
   'lagen-skyddar-inte-din-verksamhet': 'the-law-wont-protect-your-business',
   'leveranskedjan-din-storsta-risk': 'supply-chain-your-biggest-risk',
+  'ensam-om-ansvaret': 'alone-with-the-responsibility',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(
