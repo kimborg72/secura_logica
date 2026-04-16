@@ -52,7 +52,7 @@ Out in the organisation, reality looks different. Staff live in tasks, deadlines
 
 Behavioural research shows that three factors need to be present simultaneously for behaviour to change: capability, opportunity and motivation. A person needs to be able to do the right thing, have the practical conditions to do it, and understand why it's worth doing. If any part is missing, you get information without behaviour change.
 
-Petra Jonsson from Sequrify highlighted this COM-B model in a webinar hosted by Supernorden on cybersecurity communication — a presentation that heavily inspired this perspective.
+Petra Jonsson from Secify highlighted this COM-B model in a [webinar hosted by Cybernoden on communication strategies for cybersecurity](https://cybernode.se/2026/04/kommunikationsstrategier-for-cybersakerhet/) — a presentation that heavily inspired this perspective.
 
 A policy that says "report incidents" won't lead to reporting if the process takes ten minutes, if the culture signals it's a hassle, or if the employee doesn't understand what counts as an incident. We know smoking kills. People still smoke.
 

@@ -52,7 +52,7 @@ Ute i verksamheten ser verkligheten annorlunda ut. Medarbetare lever i uppgifter
 
 Beteendeforskningen visar att tre faktorer behöver finnas samtidigt för att ett beteende ska förändras: förmåga, möjlighet och motivation. En person behöver kunna göra rätt, ha praktiska förutsättningar att göra rätt och förstå varför det är värt att göra rätt. Saknas någon av delarna får man information utan beteendeförändring.
 
-Petra Jonsson från Sequrify lyfte den här COM-B-modellen i ett webbinarium hos Supernorden om cybersäkerhetskommunikation, en genomgång som i hög grad inspirerat det här perspektivet.
+Petra Jonsson från Secify lyfte den här COM-B-modellen i ett [webbinarium hos Cybernoden om kommunikationsstrategier för cybersäkerhet](https://cybernode.se/2026/04/kommunikationsstrategier-for-cybersakerhet/), en genomgång som i hög grad inspirerat det här perspektivet.
 
 Det innebär att en policy som säger "rapportera incidenter" inte leder till rapportering om processen tar tio minuter, om kulturen signalerar att det är besvärligt, eller om medarbetaren inte förstår vad som räknas som en incident. Vi vet att rökning dödar. Ändå röker folk.
 
