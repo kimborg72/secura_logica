@@ -43,6 +43,7 @@ export const insightSlugMap: Record<string, string> = {
   'leveranskedjan-din-storsta-risk': 'supply-chain-your-biggest-risk',
   'ensam-om-ansvaret': 'alone-with-the-responsibility',
   'sakerhet-som-inte-kommuniceras': 'security-that-isnt-communicated',
+  'compliance-kostnaden-styrningsskuld': 'compliance-cost-governance-debt',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(
