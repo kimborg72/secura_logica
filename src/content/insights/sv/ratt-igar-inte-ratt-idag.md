@@ -34,11 +34,11 @@ Den första dimensionen är ekonomisk.
 
 Microsoft genomförde sin första breda kommersiella prishöjning på Microsoft 365 i mars 2022, mellan 8 och 25 procent. Det var den första substantiella höjningen sedan Office 365 lanserades 2011. I april 2023 följde en 15-procentig höjning för svenska kunder, kopplad till en ny halvårsvis valutajusteringsmekanism mot USD. Det var inte längre enskilda beslut. Det var en strukturell mekanism som gjorde att priserna kunde justeras två gånger om året.
 
-I januari 2025 höjdes konsumentpriserna för Microsoft 365 Personal och Family för första gången på tolv år, mellan 30 och 40 procent, samtidigt som Copilot bakades in utan möjlighet att välja bort. I april 2025 höjdes alla årsbundna licenser med månadsbetalning med 5 procent, och Power BI Pro med 40 procent. Den 4 december 2025 meddelade Microsoft ytterligare en global prisjustering från 1 juli 2026, mellan 5 och 33 procent, motiverad med AI- och säkerhetsfunktioner som inte kan väljas bort.
+I januari 2025 höjdes konsumentpriserna för Microsoft 365 Personal och Family för första gången på över ett decennium, mellan 30 och 43 procent, samtidigt som Copilot bakades in i tjänsten. I april 2025 höjdes alla årsbundna licenser med månadsbetalning med 5 procent, och Power BI Pro med upp till 40 procent. Den 4 december 2025 meddelade Microsoft ytterligare en global prisjustering från 1 juli 2026, mellan 5 och 33 procent, motiverad med AI- och säkerhetsfunktioner som inte kan väljas bort.
 
-För en svensk organisation har den ackumulerade licenskostnaden för standardpaket i praktiken fördubblats sedan 2020. För en kommun med 2 000 anställda är det skillnaden mellan ungefär 1,2 miljoner och 2,2 miljoner kronor per år för bara den lägsta licensnivån, innan Copilot, säkerhetstillägg eller Power BI räknas in.
+För en svensk organisation har den ackumulerade licenskostnaden för standardpaket ökat med i storleksordningen 70 till 100 procent sedan 2020, beroende på paket, avtalsform och tillval. Som räkneexempel: för en kommun med 2 000 anställda är det skillnaden mellan ungefär 1,2 miljoner och 2,2 miljoner kronor per år för bara den lägsta licensnivån, innan Copilot, säkerhetstillägg eller Power BI räknas in.
 
-Broadcom har sedan förvärvet av VMware genomfört prisökningar som europeiska molnleverantörers branschorganisation offentligt har protesterat mot. Kunder kan inte migrera bort, eftersom vissa arbetslaster är certifierade endast för VMware och ett byte kräver ombyggnad som tar 18 till 24 månader.
+Broadcom har sedan förvärvet av VMware 2023 genomfört prishöjningar som enligt branschorganisationen CISPE överstiger 1 000 procent, i vissa fall upp till 1 500 procent. I januari 2026 avslutade Broadcom dessutom sitt europeiska VMware Cloud Service Provider-program, vilket fick CISPE att lämna in en formell konkurrensanmälan till EU-kommissionen i mars 2026. För kunder vars arbetslaster är certifierade endast för VMware är ett byte inte en konfigurationsfråga utan en arkitekturövning som tar lång tid och kostar ordentligt.
 
 Det här är inte konkurrens. Det är prissättningsmakt över organisationer som inte längre har en exit.
 
@@ -50,7 +50,9 @@ Det är inte teori. Det är vad varje CISO ser i sin budget just nu. Pengarna so
 
 Den andra säkerhetsdimensionen är systemisk. Själva [koncentrationen är en sårbarhet](/insikter/leveranskedjan-din-storsta-risk). När en stor del av Europas digitala infrastruktur ligger hos två eller tre leverantörer, blir varje störning hos någon av dem en systemisk händelse.
 
-I oktober 2025 inträffade två sådana händelser inom en vecka. Först AWS, sedan Azure. Avbrotten tog ner flygbolag, sjukhus, energileverantörer och offentlig förvaltning över hela kontinenten. Den uppskattade ekonomiska skadan låg på 16 miljarder dollar. Det var inga attacker. Det var konfigurationsfel.
+I oktober 2025 inträffade två sådana händelser med nio dagars mellanrum. Den 20 oktober föll AWS region US-EAST-1 i ungefär 15 timmar efter ett DNS-relaterat konfigurationsfel. Tusentals tjänster slogs ut globalt, från flygbolag och betaltjänster till sjukvårdsplattformar. Den 29 oktober gick Azure Front Door ner efter en oavsiktlig konfigurationsändring. Microsoft 365, Outlook, Xbox, Copilot och tredjepartstjänster hos bland annat Alaska Airlines och Hawaiian Airlines slogs ut. Den uppskattade ekonomiska skadan av enbart Azure-händelsen ligger på upp till 16 miljarder dollar.
+
+Det var inga attacker. Det var konfigurationsfel.
 
 En motiverad angripare som söker maximal effekt har redan kartan. Det är samma karta som varje europeisk regering har när de planerar kontinuitetsövningar och inte hittar några oberoende noder att falla tillbaka på. Koncentration är inte bara en konkurrenspolitisk fråga. Det är en angreppsyta. Och vi har själva designat den, en migration i taget, varje gång vi valde det enklaste alternativet.
 
@@ -58,17 +60,17 @@ En motiverad angripare som söker maximal effekt har redan kartan. Det är samma
 
 Den tredje dimensionen är jurisdiktionell, och även där har det som tidigare beskrevs som teoretiskt blivit dokumenterat.
 
-I maj 2025 stängdes Internationella brottmålsdomstolens chefsåklagare ute från sin e-post efter att USA infört sanktioner mot domstolen. Avbrottet beskrevs av en hög tjänsteman i Haag som en röd flagga på alla nivåer av regeringen. Nederländerna inledde därefter en omfattande granskning av sin digitala infrastruktur.
+Den 6 februari 2025 utfärdade Trumpadministrationen en executive order som placerade ICC:s chefsåklagare Karim Khan under amerikanska sanktioner. I maj 2025 rapporterade Associated Press att Khan hade förlorat åtkomsten till sin Microsoft-e-post och flyttat sin korrespondens till Proton. Microsoft har förnekat att de stängde av kontot och hävdat att ICC själv genomförde flytten. Den exakta tekniska sekvensen är fortfarande omtvistad, men resultatet är inte: en av världens mest betydelsefulla juridiska aktörer förlorade tillgång till sin digitala arbetsplats efter ett amerikanskt myndighetsbeslut. Den 31 oktober 2025 bekräftade ICC att man byter från Microsoft Office till tyska OpenDesk.
 
-I juni 2025 vittnade Microsoft Frankrikes chef för offentliga och juridiska frågor under ed inför franska senaten. På frågan om han kunde garantera att fransk medborgardata aldrig skulle lämnas ut till amerikanska myndigheter svarade han: "Non, je ne peux pas le garantir." Den juridiska sanningen, sade han, är att tekniska och kontraktuella garantier kan minska risken men inte upphäva effekten av en amerikansk domstolsorder mot ett amerikanskt företag.
+Den 10 juni 2025 vittnade Anton Carniaux, Microsoft Frankrikes directeur des affaires publiques et juridiques, under ed inför franska senatens utredningskommission. På frågan om han kunde garantera att fransk medborgardata aldrig skulle lämnas ut till amerikanska myndigheter utan franska myndigheters godkännande svarade han: "Non, je ne peux pas le garantir." Den juridiska sanningen, sade han, är att tekniska och kontraktuella garantier kan minska risken men inte upphäva effekten av en amerikansk domstolsorder mot ett amerikanskt företag.
 
 CLOUD Act är inte längre en abstrakt risk i ett juridiskt seminarium. Det är ett dokumenterat juridiskt faktum med praktiska konsekvenser, bekräftat under ed.
 
 ## Vad lagstiftaren faktiskt gjorde
 
-Tre regelverk träder nu i kraft som har en gemensam underliggande logik. [Cybersäkerhetslagen 2025:1506, NIS2 och DORA accepterar inte längre att leverantörsval är en operativ fråga](/insikter/sex-regelverk-en-styrmodell) som fattas en gång och sedan glöms.
+Tre regelverk har nu trätt i kraft som har en gemensam underliggande logik. [Cybersäkerhetslagen 2025:1506, NIS2 och DORA accepterar inte längre att leverantörsval är en operativ fråga](/insikter/sex-regelverk-en-styrmodell) som fattas en gång och sedan glöms.
 
-NIS2 artikel 20 placerar [ansvaret för cybersäkerhetsåtgärder direkt på styrelsenivå](/insikter/cybersakerhetslagen-ledningsansvar), med personligt ansvar för ledamöter som inte har sett till att riskhantering finns på plats. DORA går längre för finanssektorn och kräver formell hantering av koncentrationsrisk över ICT-leverantörer, med dokumenterade exit-strategier som ska kunna granskas. Cybersäkerhetslagen implementerar detta i svensk rätt med [MSB som tillsynsmyndighet](https://www.msb.se/sv/amnesomraden/informationssakerhet-cybersakerhet-och-sakra-kommunikationer/nis-direktivet/).
+NIS2 artikel 20 placerar [ansvaret för cybersäkerhetsåtgärder direkt på styrelsenivå](/insikter/cybersakerhetslagen-ledningsansvar), med personligt ansvar för ledamöter som inte har sett till att riskhantering finns på plats. DORA går längre för finanssektorn och kräver formell hantering av koncentrationsrisk över ICT-leverantörer, med dokumenterade exit-strategier som ska kunna granskas. Cybersäkerhetslagen implementerar detta i svensk rätt sedan 15 januari 2026, med Myndigheten för civilt försvar (MCF) som samordnande myndighet och sektorsspecifika tillsynsmyndigheter inom 18 sektorer, däribland PTS för digital infrastruktur, Energimyndigheten för energi och Finansinspektionen för finansiella aktörer.
 
 Det här är inte tre olika regelverk som råkar handla om liknande saker. Det är en koordinerad förflyttning av ansvar uppåt i organisationen, kombinerad med ett krav på löpande omprövning. Inte som engångsbeslut. Som en pågående styrningsprocess.
 

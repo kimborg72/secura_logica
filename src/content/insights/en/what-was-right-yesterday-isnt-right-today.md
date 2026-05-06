@@ -34,11 +34,11 @@ The first dimension is financial.
 
 Microsoft made its first broad commercial price increase on Microsoft 365 in March 2022, between 8 and 25 percent. It was the first substantial increase since Office 365 launched in 2011. In April 2023 a 15 percent increase followed for Swedish customers, tied to a new biannual currency adjustment mechanism against the USD. These weren't standalone decisions any more. It was a structural mechanism that allowed prices to be adjusted twice a year.
 
-In January 2025, consumer prices for Microsoft 365 Personal and Family were raised for the first time in twelve years, between 30 and 40 percent, while Copilot was bundled in with no opt-out. In April 2025 all annual licences with monthly billing went up 5 percent, and Power BI Pro by 40 percent. On 4 December 2025 Microsoft announced another global price adjustment effective 1 July 2026, between 5 and 33 percent, justified by AI and security features that can't be opted out of.
+In January 2025, consumer prices for Microsoft 365 Personal and Family were raised for the first time in over a decade, between 30 and 43 percent, while Copilot was bundled into the service. In April 2025 all annual licences with monthly billing went up 5 percent, and Power BI Pro by up to 40 percent. On 4 December 2025 Microsoft announced another global price adjustment effective 1 July 2026, between 5 and 33 percent, justified by AI and security features that can't be opted out of.
 
-For a Swedish organisation, the cumulative licence cost for standard packages has effectively doubled since 2020. For a municipality with 2,000 employees, that's the difference between roughly 1.2 million and 2.2 million SEK per year for the lowest licence tier alone, before Copilot, security add-ons or Power BI are counted.
+For a Swedish organisation, the cumulative licence cost for standard packages has risen on the order of 70 to 100 percent since 2020, depending on package, contract form and add-ons. As a worked example: for a municipality with 2,000 employees, that's the difference between roughly 1.2 million and 2.2 million SEK per year for the lowest licence tier alone, before Copilot, security add-ons or Power BI are counted.
 
-Broadcom has, since acquiring VMware, pushed through price increases that the European cloud providers' trade association has publicly protested against. Customers can't migrate away, because some workloads are certified only for VMware and switching requires a rebuild that takes 18 to 24 months.
+Broadcom has, since acquiring VMware in 2023, pushed through price increases that according to the trade association CISPE exceed 1,000 percent, in some cases up to 1,500 percent. In January 2026 Broadcom also ended its European VMware Cloud Service Provider programme, which prompted CISPE to file a formal competition complaint with the European Commission in March 2026. For customers whose workloads are certified only for VMware, switching isn't a configuration question but an architecture exercise that takes time and costs serious money.
 
 This isn't competition. It's pricing power over organisations that no longer have an exit.
 
@@ -50,7 +50,9 @@ This isn't theory. It's what every CISO sees in their budget right now. The mone
 
 The second security dimension is systemic. [Concentration itself is a vulnerability](/en/insights/supply-chain-your-biggest-risk). When a large share of Europe's digital infrastructure sits with two or three providers, every disruption at any of them becomes a systemic event.
 
-In October 2025 two such events happened within a week. First AWS, then Azure. The outages took down airlines, hospitals, energy providers and public administration across the continent. Estimated economic damage came in at 16 billion USD. Neither was an attack. Both were configuration errors.
+In October 2025 two such events happened nine days apart. On 20 October, AWS region US-EAST-1 went down for around 15 hours after a DNS-related configuration error. Thousands of services were knocked out globally, from airlines and payment systems to healthcare platforms. On 29 October, Azure Front Door went down after an inadvertent configuration change. Microsoft 365, Outlook, Xbox, Copilot and third-party services at Alaska Airlines and Hawaiian Airlines, among others, were all knocked offline. Estimated economic damage from the Azure event alone runs to as much as 16 billion USD.
+
+Neither was an attack. Both were configuration errors.
 
 A motivated attacker looking for maximum impact already has the map. It's the same map that every European government has when they plan continuity exercises and find no independent nodes to fall back on. Concentration isn't only a competition policy question. It's an attack surface. And we designed it ourselves, one migration at a time, every time we picked the easiest option.
 
@@ -58,17 +60,17 @@ A motivated attacker looking for maximum impact already has the map. It's the sa
 
 The third dimension is jurisdictional, and even there what was previously described as theoretical has become documented.
 
-In May 2025, the Chief Prosecutor of the International Criminal Court was locked out of his email after the United States imposed sanctions on the court. The disruption was described by a senior official in The Hague as a red flag at every level of government. The Netherlands subsequently launched a comprehensive review of its digital infrastructure.
+On 6 February 2025, the Trump administration issued an executive order placing the ICC's Chief Prosecutor Karim Khan under American sanctions. In May 2025, Associated Press reported that Khan had lost access to his Microsoft email and had moved his correspondence to Proton. Microsoft has denied that it disabled the account and stated that the ICC made the move itself. The exact technical sequence is still disputed, but the outcome isn't: one of the world's most consequential legal actors lost access to his digital workplace after an American government decision. On 31 October 2025 the ICC confirmed it is moving from Microsoft Office to Germany's OpenDesk.
 
-In June 2025, Microsoft France's head of public and legal affairs testified under oath before the French Senate. Asked whether he could guarantee that French citizen data would never be handed to American authorities, he replied: "Non, je ne peux pas le garantir." The legal truth, he said, is that technical and contractual safeguards can reduce the risk but not negate the effect of an American court order against an American company.
+On 10 June 2025, Anton Carniaux, Microsoft France's directeur des affaires publiques et juridiques, testified under oath before the French Senate's inquiry committee. Asked whether he could guarantee that French citizen data would never be handed to American authorities without French government approval, he replied: "Non, je ne peux pas le garantir." The legal truth, he said, is that technical and contractual safeguards can reduce the risk but not negate the effect of an American court order against an American company.
 
 The CLOUD Act is no longer an abstract risk in a legal seminar. It's a documented legal fact with practical consequences, confirmed under oath.
 
 ## What the legislator actually did
 
-Three regulations are now coming into force with a shared underlying logic. [The Cybersecurity Act 2025:1506, NIS2 and DORA no longer accept that supplier choice is an operational matter](/en/insights/six-frameworks-one-governance-model) decided once and then forgotten.
+Three regulations have now come into force with a shared underlying logic. [The Cybersecurity Act 2025:1506, NIS2 and DORA no longer accept that supplier choice is an operational matter](/en/insights/six-frameworks-one-governance-model) decided once and then forgotten.
 
-NIS2 article 20 places [responsibility for cybersecurity measures directly at board level](/en/insights/cybersecurity-act-leadership-accountability), with personal liability for members who haven't ensured risk management is in place. DORA goes further for the financial sector and requires formal handling of concentration risk across ICT providers, with documented exit strategies that must be auditable. The Cybersecurity Act implements this in Swedish law with [MSB as the supervisory authority](https://www.msb.se/sv/amnesomraden/informationssakerhet-cybersakerhet-och-sakra-kommunikationer/nis-direktivet/).
+NIS2 article 20 places [responsibility for cybersecurity measures directly at board level](/en/insights/cybersecurity-act-leadership-accountability), with personal liability for members who haven't ensured risk management is in place. DORA goes further for the financial sector and requires formal handling of concentration risk across ICT providers, with documented exit strategies that must be auditable. The Cybersecurity Act has been in force in Swedish law since 15 January 2026, with the Swedish Civil Defence Agency (MCF) as the coordinating authority and sector-specific supervisors across 18 sectors, including PTS for digital infrastructure, the Energy Agency for energy and Finansinspektionen for financial actors.
 
 These aren't three different regulations that happen to address similar things. It's a coordinated shift of responsibility upwards in the organisation, combined with a requirement for ongoing reconsideration. Not as a one-time decision. As a continuous governance process.
 
