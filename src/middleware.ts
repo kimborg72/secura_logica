@@ -1,6 +1,13 @@
 import { defineMiddleware } from 'astro:middleware';
+import { randomBytes } from 'node:crypto';
 
 const STATIC_ASSET_RE = /\.(?:js|mjs|css|woff2?|ttf|otf|png|jpe?g|gif|svg|webp|avif|ico|map)$/i;
+
+// base64 (mixed alphanumerics) instead of hex avoids long all-digit runs
+// that ZAP's PII heuristic mistakes for credit card numbers (CWE-359).
+function generateNonce(): string {
+  return randomBytes(16).toString('base64');
+}
 
 function buildCsp(nonce: string): string {
   return [
@@ -21,7 +28,7 @@ function buildCsp(nonce: string): string {
 }
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  const nonce = crypto.randomUUID().replace(/-/g, '');
+  const nonce = generateNonce();
   context.locals.cspNonce = nonce;
 
   const response = await next();
