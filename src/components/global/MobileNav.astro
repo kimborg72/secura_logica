@@ -8,9 +8,10 @@ import { getContactPath } from '@i18n/routes';
 
 interface Props {
   locale?: Locale;
+  svOnly?: boolean;
 }
 
-const { locale = 'sv' } = Astro.props;
+const { locale = 'sv', svOnly = false } = Astro.props;
 const nav = getMainNav(locale);
 ---
 
@@ -60,7 +61,7 @@ const nav = getMainNav(locale);
 
     <!-- Language Switcher -->
     <div class="mt-6 pt-6 border-t border-border">
-      <LanguageSwitcher locale={locale} />
+      <LanguageSwitcher locale={locale} svOnly={svOnly} />
     </div>
 
     <!-- CTA -->

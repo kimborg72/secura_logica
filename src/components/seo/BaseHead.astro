@@ -18,7 +18,7 @@ interface Props {
 const {
   title,
   ogImage = site.defaultOgImage,
-  canonicalUrl = Astro.url.href,
+  canonicalUrl = new URL(Astro.url.pathname, site.url).href,
   locale = 'sv',
   ogType = 'website',
   svOnly = false,
