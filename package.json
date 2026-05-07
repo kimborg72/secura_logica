@@ -12,6 +12,7 @@
     "format": "prettier --write .",
     "gsc:check": "node scripts/gsc-check.mjs",
     "gsc:submit": "node scripts/gsc-check.mjs --submit-sitemap",
+    "gsc:insights": "node scripts/gsc-insights.mjs",
     "ads:setup": "node scripts/ads-auth-setup.mjs",
     "ads:report": "node scripts/ads-optimize.mjs",
     "ads:keywords": "node scripts/ads-optimize.mjs --keywords",

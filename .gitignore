@@ -11,3 +11,4 @@ verit-*.json
 
 # TinaCMS
 tina/__generated__/
+tmp/
