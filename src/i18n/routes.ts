@@ -44,6 +44,8 @@ export const insightSlugMap: Record<string, string> = {
   'ensam-om-ansvaret': 'alone-with-the-responsibility',
   'sakerhet-som-inte-kommuniceras': 'security-that-isnt-communicated',
   'compliance-kostnaden-styrningsskuld': 'compliance-cost-governance-debt',
+  'mognadsrapport-skriven-for-ledningen': 'the-maturity-report-isnt-built-for-the-crisis',
+  'ratt-igar-inte-ratt-idag': 'what-was-right-yesterday-isnt-right-today',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(
