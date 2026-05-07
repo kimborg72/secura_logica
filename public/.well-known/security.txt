@@ -2,4 +2,4 @@ Contact: mailto:security@verit.se
 Expires: 2027-05-07T00:00:00.000Z
 Preferred-Languages: sv, en
 Canonical: https://verit.se/.well-known/security.txt
-Policy: https://verit.se/SECURITY.md
+Policy: https://github.com/kimborg72/secura_logica/blob/master/SECURITY.md
