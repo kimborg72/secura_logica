@@ -58,6 +58,10 @@ const ALLOWED_ORIGINS = new Set([
   'https://www.verit.se',
 ]);
 
+// CSRF: Origin allowlist below is the OWASP-recommended modern equivalent of
+// double-submit tokens for stateless POST endpoints. ZAP's "Absence of
+// Anti-CSRF Tokens" finding on this endpoint is a heuristic false positive;
+// see SECURITY.md.
 export const POST: APIRoute = async ({ request }) => {
   const origin = request.headers.get('origin');
   if (!origin || !ALLOWED_ORIGINS.has(origin)) {

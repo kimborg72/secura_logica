@@ -8,6 +8,7 @@ interface Props {
 const { name, lat, lng } = Astro.props;
 const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 const mapId = import.meta.env.PUBLIC_GOOGLE_MAP_ID;
+const nonce = Astro.locals.cspNonce;
 
 const useJsApi = !!(apiKey && mapId);
 
@@ -46,7 +47,7 @@ const embedSrc = apiKey
   )}
 </div>
 
-<script is:inline define:vars={{ apiKey, useJsApi }}>
+<script is:inline nonce={nonce} define:vars={{ apiKey, useJsApi, nonce }}>
   function __initSwedenMap() {
     if (!useJsApi) return;
     var mapEl = document.querySelector('.sweden-map');
@@ -78,6 +79,7 @@ const embedSrc = apiKey
       s.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&callback=__initSwedenMap&v=weekly';
       s.async = true;
       s.defer = true;
+      if (nonce) s.nonce = nonce;
       document.head.appendChild(s);
     }
   }

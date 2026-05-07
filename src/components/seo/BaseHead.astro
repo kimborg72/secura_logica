@@ -37,6 +37,8 @@ const svPath = locale === 'sv' ? currentPath : getAlternateUrl(currentPath, 'sv'
 const enPath = locale === 'en' ? currentPath : getAlternateUrl(currentPath, 'en');
 const svUrl = new URL(svPath, site.url).href;
 const enUrl = new URL(enPath, site.url).href;
+
+const nonce = Astro.locals.cspNonce;
 ---
 
 <meta charset="utf-8" />
@@ -90,7 +92,7 @@ const enUrl = new URL(enPath, site.url).href;
 <JsonLd schema={organizationSchema} />
 
 <!-- Matomo -->
-<script is:inline>
+<script is:inline nonce={nonce}>
   var _paq = window._paq = window._paq || [];
   _paq.push(['requireCookieConsent']);
   _paq.push(['trackPageView']);
