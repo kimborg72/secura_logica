@@ -43,16 +43,16 @@ const { locale = 'sv' } = Astro.props;
   <!-- Content -->
   <div class="container relative z-10 pt-20 pb-10">
     <div class="max-w-3xl">
-      <p class="overline text-accent mb-6" data-reveal data-delay="1">
+      <p class="overline text-accent mb-6">
         {t(locale, 'hero.overline')}
       </p>
-      <h1 class="text-white mb-6" data-reveal data-delay="2">
+      <h1 class="text-white mb-6">
         {t(locale, 'hero.title')}
       </h1>
-      <p class="lead text-white/70 max-w-2xl mb-10" data-reveal data-delay="3">
+      <p class="lead text-white/70 max-w-2xl mb-10">
         {t(locale, 'hero.description')}
       </p>
-      <div class="flex flex-wrap gap-4" data-reveal data-delay="4">
+      <div class="flex flex-wrap gap-4">
         <Button href={getContactPath(locale)} variant="primary" size="lg">
           {t(locale, 'hero.cta')}
         </Button>

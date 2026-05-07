@@ -26,7 +26,7 @@ export default {
 
   // Cookie consent
   'cookie.message': 'Vi använder anonymiserad statistik (Matomo) för att förbättra webbplatsen. Inga cookies lagras.',
-  'cookie.readMore': 'Läs mer',
+  'cookie.readMore': 'Läs vår cookie-policy',
   'cookie.necessary': 'Endast nödvändiga',
   'cookie.accept': 'Acceptera',
   'cookie.aria': 'Cookie-inställningar',
@@ -39,6 +39,11 @@ export default {
   '404.title': 'Sidan hittades inte',
   '404.description': 'Sidan du letar efter finns inte eller har flyttats.',
   '404.back': 'Tillbaka till startsidan',
+
+  // 500
+  '500.title': 'Något gick fel',
+  '500.description': 'Ett oväntat fel inträffade. Försök igen om en stund eller gå tillbaka till startsidan.',
+  '500.back': 'Tillbaka till startsidan',
 
   // Service card
   'service.readMore': 'Läs mer',

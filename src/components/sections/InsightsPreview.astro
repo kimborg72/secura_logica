@@ -34,7 +34,7 @@ const insights = allInsights.slice(0, 3);
             <a href={getInsightPath(locale, slug)} class="block">
               <div class="aspect-[16/9] rounded-xl bg-surface mb-5 overflow-hidden">
                 {item.data.image ? (
-                  <img src={item.data.image} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <img src={item.data.image} alt="" width="1600" height="900" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 ) : (
                   <div class="w-full h-full bg-gradient-to-br from-navy/5 to-accent/5 group-hover:scale-105 transition-transform duration-500"></div>
                 )}

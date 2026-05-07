@@ -33,6 +33,7 @@ const services = await getServicesByLocale(locale);
               description={service.data.excerpt}
               href={getServicePath(locale, service.data.slug)}
               locale={locale}
+              headingLevel={2}
             />
           </div>
         ))}

@@ -26,7 +26,7 @@ export default {
 
   // Cookie consent
   'cookie.message': 'We use anonymised analytics (Matomo) to improve the website. No cookies are stored.',
-  'cookie.readMore': 'Read more',
+  'cookie.readMore': 'Read our cookie policy',
   'cookie.necessary': 'Necessary only',
   'cookie.accept': 'Accept',
   'cookie.aria': 'Cookie settings',
@@ -39,6 +39,11 @@ export default {
   '404.title': 'Page not found',
   '404.description': 'The page you are looking for does not exist or has been moved.',
   '404.back': 'Back to homepage',
+
+  // 500
+  '500.title': 'Something went wrong',
+  '500.description': 'An unexpected error occurred. Please try again in a moment or return to the homepage.',
+  '500.back': 'Back to homepage',
 
   // Service card
   'service.readMore': 'Read more',

@@ -15,7 +15,7 @@ const { title, description, breadcrumbs, locale = 'sv' } = Astro.props;
 <section class="bg-surface -mt-20 pt-32 pb-16">
   <div class="container">
     {breadcrumbs && <Breadcrumb items={breadcrumbs} locale={locale} />}
-    <div class="max-w-3xl mt-6" data-reveal>
+    <div class="max-w-3xl mt-6">
       <h1>{title}</h1>
       {description && <p class="lead mt-4">{description}</p>}
     </div>
