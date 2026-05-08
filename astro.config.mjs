@@ -7,6 +7,12 @@ import { fileURLToPath } from 'node:url';
 export default defineConfig({
   site: 'https://verit.se',
   adapter: node({ mode: 'middleware' }),
+  build: {
+    // Inline the per-route CSS bundle (~55KB) into <style> in <head>. Removes
+    // the render-blocking external stylesheet round-trip — H1 (LCP element on
+    // /) paints as soon as the HTML response arrives.
+    inlineStylesheets: 'always',
+  },
   // @astrojs/node ignores X-Forwarded-Proto, so behind nginx Astro sees
   // http:// internally while the browser sends https:// Origin, breaking
   // Astro's built-in checkOrigin. CSRF is enforced explicitly in
