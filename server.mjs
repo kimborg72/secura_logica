@@ -13,9 +13,11 @@ const CLIENT_DIR = path.join(__dirname, 'dist', 'client');
 
 const STATIC_ASSET_RE = /\.(?:js|mjs|css|woff2?|ttf|otf|png|jpe?g|gif|svg|webp|avif|ico|map)$/i;
 
+// upgrade-insecure-requests is omitted: browsers ignore it in Report-Only mode
+// and log a console warning. Re-add when CSP graduates to enforcing.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://maps.googleapis.com https://maps.gstatic.com",
+  "script-src 'self' 'unsafe-inline' https://stats.securapilot.com https://maps.googleapis.com https://maps.gstatic.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://*.basemaps.cartocdn.com https://maps.googleapis.com https://maps.gstatic.com",
   "font-src 'self'",
@@ -25,7 +27,6 @@ const CSP = [
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  'upgrade-insecure-requests',
   'report-uri /api/csp-report',
 ].join('; ');
 

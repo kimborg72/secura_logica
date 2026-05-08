@@ -30,6 +30,9 @@ const legend = [
 const legendTarget = locale === 'sv' ? 'Europeiska mål' : 'European targets';
 ---
 
+<link rel="stylesheet" href="/vendor/maplibre-gl@5.1.0/maplibre-gl.css" />
+<link rel="preload" href="/vendor/maplibre-gl@5.1.0/maplibre-gl.js" as="script" />
+
 <section class="section-sm overflow-hidden">
   <div class="container">
     <div class="mb-6" data-reveal>
@@ -61,28 +64,18 @@ const legendTarget = locale === 'sv' ? 'Europeiska mål' : 'European targets';
   </div>
 </section>
 
+<script is:inline nonce={nonce} src="/vendor/maplibre-gl@5.1.0/maplibre-gl.js" defer></script>
 <script is:inline nonce={nonce}>
-  // Track map instance + library promise across view transitions
+  // Track map instance for cleanup on view transitions
   window.__threatMapInstance = window.__threatMapInstance || null;
-  window.__maplibrePromise = window.__maplibrePromise || null;
 
-  function loadMaplibre() {
-    if (window.__maplibrePromise) return window.__maplibrePromise;
-    window.__maplibrePromise = new Promise(function (resolve, reject) {
-      var css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = '/vendor/maplibre-gl@5.1.0/maplibre-gl.css';
-      document.head.appendChild(css);
-      var s = document.createElement('script');
-      s.src = '/vendor/maplibre-gl@5.1.0/maplibre-gl.js';
-      s.onload = function () { resolve(); };
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
-    return window.__maplibrePromise;
-  }
-
-  function initThreatMap() {
+  function initThreatMap(retries) {
+    retries = retries || 0;
+    if (typeof maplibregl === 'undefined') {
+      // Library not loaded yet — retry up to 5 seconds
+      if (retries < 50) setTimeout(function () { initThreatMap(retries + 1); }, 100);
+      return;
+    }
     var container = document.getElementById('threat-map');
     if (!container) return;
 
@@ -423,33 +416,14 @@ const legendTarget = locale === 'sv' ? 'Europeiska mål' : 'European targets';
     });
   }
 
-  function observeAndLoad() {
-    var container = document.getElementById('threat-map');
-    if (!container) return;
-    if (!('IntersectionObserver' in window)) {
-      loadMaplibre().then(initThreatMap);
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      for (var i = 0; i < entries.length; i++) {
-        if (entries[i].isIntersecting) {
-          io.disconnect();
-          loadMaplibre().then(initThreatMap);
-          break;
-        }
-      }
-    }, { rootMargin: '300px' });
-    io.observe(container);
-  }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observeAndLoad);
+    document.addEventListener('DOMContentLoaded', function () { initThreatMap(); });
   } else {
-    observeAndLoad();
+    initThreatMap();
   }
   document.addEventListener('astro:after-swap', function () {
     window.__threatMapInstance = null;
-    observeAndLoad();
+    initThreatMap();
   });
 </script>
 

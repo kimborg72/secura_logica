@@ -9,6 +9,8 @@ function generateNonce(): string {
   return randomBytes(16).toString('base64');
 }
 
+// upgrade-insecure-requests is omitted: browsers ignore it in Report-Only mode
+// and log a console warning. Re-add when CSP graduates to enforcing.
 function buildCsp(nonce: string): string {
   return [
     "default-src 'self'",
@@ -22,7 +24,6 @@ function buildCsp(nonce: string): string {
     "base-uri 'self'",
     "form-action 'self'",
     "object-src 'none'",
-    'upgrade-insecure-requests',
     'report-uri /api/csp-report',
   ].join('; ');
 }
