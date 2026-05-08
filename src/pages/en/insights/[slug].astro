@@ -32,10 +32,22 @@ const readingTimeText = formatReadingTime(readingMinutes, locale);
 const team = await getTeamByLocale(locale);
 const authorData = team.find((member) => member.data.name === post.data.author);
 
-// Related articles (exclude current, max 2)
+// Related articles: prefer topical overlap (shared tags or category), fall
+// back to recency. Up to 3.
+const currentTags = new Set(post.data.tags ?? []);
 const allInsights = (await getInsightsByLocale(locale))
   .filter((p) => p.id !== post.id)
-  .slice(0, 2);
+  .map((p) => {
+    const sharedTags = (p.data.tags ?? []).filter((t) => currentTags.has(t)).length;
+    const sameCategory = p.data.category === post.data.category ? 1 : 0;
+    return { post: p, score: sharedTags * 2 + sameCategory };
+  })
+  .sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return b.post.data.date.getTime() - a.post.data.date.getTime();
+  })
+  .slice(0, 3)
+  .map((x) => x.post);
 
 const wordCount = (post.body || '').trim().split(/\s+/).length;
 
@@ -51,10 +63,14 @@ const articleSchema = {
   dateModified: (post.data.updatedDate ?? post.data.date).toISOString(),
   wordCount,
   articleSection: post.data.category,
-  author: {
-    '@type': 'Person',
-    name: post.data.author,
-  },
+  author: authorData?.data.linkedin
+    ? {
+        '@type': 'Person',
+        name: post.data.author,
+        url: authorData.data.linkedin,
+        sameAs: authorData.data.linkedin,
+      }
+    : { '@type': 'Person', name: post.data.author },
   publisher: {
     '@type': 'Organization',
     name: organizationSchema.name,

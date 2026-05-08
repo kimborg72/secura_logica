@@ -3,12 +3,32 @@ import PageLayout from '@layouts/PageLayout.astro';
 import HeroSimple from '@components/sections/HeroSimple.astro';
 import ServiceCard from '@components/ui/ServiceCard.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+import { site } from '@data/site';
 import { getServicesByLocale } from '@i18n/content';
 import { getServicePath } from '@i18n/routes';
 import { t } from '@i18n/index';
 
 const locale = 'en';
 const services = await getServicesByLocale(locale);
+
+const collectionPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Services — cybersecurity & compliance',
+  description: 'Cybersecurity and compliance services for critical infrastructure organisations. NIS2, ISO 27001, CISO-as-a-Service and more.',
+  url: `${site.url}/en/services`,
+  mainEntity: {
+    '@type': 'ItemList',
+    name: 'Services',
+    itemListElement: services.map((service, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${site.url}${getServicePath(locale, service.data.slug)}`,
+      name: service.data.title,
+    })),
+  },
+};
 ---
 
 <PageLayout
@@ -17,6 +37,7 @@ const services = await getServicesByLocale(locale);
   ogImage="/og/en/services.png"
   locale={locale}
 >
+  <JsonLd schema={collectionPageSchema} />
   <HeroSimple
     title="Our services"
     description="We cover the entire chain, from regulatory interpretation and gap analysis to implementation and ongoing monitoring."

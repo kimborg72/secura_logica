@@ -17,6 +17,7 @@
     "psi:desktop": "node scripts/psi-check.mjs --desktop",
     "psi:deep": "node scripts/psi-deep.mjs",
     "psi:deep:desktop": "node scripts/psi-deep.mjs --desktop",
+    "psi:variance": "node scripts/psi-variance.mjs",
     "ads:setup": "node scripts/ads-auth-setup.mjs",
     "ads:report": "node scripts/ads-optimize.mjs",
     "ads:keywords": "node scripts/ads-optimize.mjs --keywords",
