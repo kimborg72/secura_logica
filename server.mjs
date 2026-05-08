@@ -23,6 +23,7 @@ const CSP = [
   "font-src 'self'",
   "connect-src 'self' https://stats.securapilot.com https://maps.googleapis.com https://*.basemaps.cartocdn.com",
   "worker-src 'self' blob:",
+  "frame-src 'self' https://www.google.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

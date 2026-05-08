@@ -21,7 +21,7 @@ const { locale = 'sv' } = Astro.props;
     <div class="container py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <p class="text-sm text-white/70 flex-1">
         {t(locale, 'cookie.message')}
-        <a href={`${getPrivacyPath(locale)}#cookies`} class="text-accent hover:underline underline-offset-2 ml-1">{t(locale, 'cookie.readMore')}</a>
+        <a href={`${getPrivacyPath(locale)}#cookies`} class="text-accent underline underline-offset-2 hover:opacity-80 ml-1">{t(locale, 'cookie.readMore')}</a>
       </p>
       <div class="flex gap-3 shrink-0">
         <button
