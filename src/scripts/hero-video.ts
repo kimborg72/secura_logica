@@ -1,4 +1,4 @@
-function initHeroVideo() {
+function setupHeroVideo() {
   const video = document.querySelector('[data-hero-video]') as HTMLVideoElement | null;
   if (!video) return;
 
@@ -12,12 +12,18 @@ function initHeroVideo() {
   // Already initialized (has <source> children)
   if (video.querySelector('source')) return;
 
+  // Skip the 1.3 MB video on save-data or sub-4g connections — the poster
+  // image is already visible and adequate.
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  if (conn?.saveData || (conn?.effectiveType && conn.effectiveType !== '4g')) {
+    return;
+  }
+
   const isMobile = window.innerWidth < 768;
   const desktopSrc = video.dataset.srcDesktop;
   const mobileSrc = video.dataset.srcMobile;
   const webmSrc = video.dataset.srcWebm;
 
-  // Add WebM source first (preferred on desktop)
   if (!isMobile && webmSrc) {
     const sourceWebm = document.createElement('source');
     sourceWebm.src = webmSrc;
@@ -25,7 +31,6 @@ function initHeroVideo() {
     video.appendChild(sourceWebm);
   }
 
-  // Add MP4 source (desktop or mobile variant)
   const mp4Src = isMobile ? (mobileSrc || desktopSrc) : desktopSrc;
   if (mp4Src) {
     const sourceMp4 = document.createElement('source');
@@ -34,7 +39,6 @@ function initHeroVideo() {
     video.appendChild(sourceMp4);
   }
 
-  // Play/pause based on visibility
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -55,5 +59,16 @@ function initHeroVideo() {
   video.load();
 }
 
-initHeroVideo();
-document.addEventListener('astro:after-swap', initHeroVideo);
+// Defer video setup until the main thread is idle so LCP isn't held up by
+// the 1.3 MB video competing with font/CSS for bandwidth.
+function deferredInit() {
+  const ric = (window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void }).requestIdleCallback;
+  if (ric) {
+    ric(setupHeroVideo, { timeout: 3000 });
+  } else {
+    setTimeout(setupHeroVideo, 1500);
+  }
+}
+
+deferredInit();
+document.addEventListener('astro:after-swap', deferredInit);
