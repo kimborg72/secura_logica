@@ -46,6 +46,7 @@ export const insightSlugMap: Record<string, string> = {
   'compliance-kostnaden-styrningsskuld': 'compliance-cost-governance-debt',
   'mognadsrapport-skriven-for-ledningen': 'the-maturity-report-isnt-built-for-the-crisis',
   'ratt-igar-inte-ratt-idag': 'what-was-right-yesterday-isnt-right-today',
+  'leverantorsregister-ar-inte-en-krisplan': 'your-vendor-register-isnt-a-crisis-plan',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(
