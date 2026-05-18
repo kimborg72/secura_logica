@@ -32,7 +32,7 @@ That means civil cyber resilience isn't an IT project off to the side. It's part
 
 ## The gap is almost never in the technology
 
-I've worked with this from the inside for many years. As IT and digitalisation director in municipal government. With NIS responsibility. As an on-call duty officer. Before that, as group CIO for a corporation operating in eight countries.
+I've worked with this from the inside for many years. As IT and digitalisation manager in municipal government. With NIS responsibility. As an on-call duty officer. Before that, as group CIO for a corporation operating in eight countries.
 
 And something I've noticed again and again is that the gap rarely lies in the technology.
 

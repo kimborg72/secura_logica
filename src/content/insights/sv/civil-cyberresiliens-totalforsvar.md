@@ -32,7 +32,7 @@ Det betyder att civil cyberresiliens inte är ett IT-projekt vid sidan om. Det �
 
 ## Gapet ligger nästan aldrig i tekniken
 
-Jag har arbetat med det här från insidan i många år. Som IT- och digitaliseringsdirektör i kommunal verksamhet. Med NIS-ansvar. Som TIB i beredskap. Innan dess som Group CIO för en koncern i åtta länder.
+Jag har arbetat med det här från insidan i många år. Som IT- och digitaliseringschef i kommunal verksamhet. Med NIS-ansvar. Som TIB i beredskap. Innan dess som Group CIO för en koncern i åtta länder.
 
 Och något jag märkt om och om igen är att gapet sällan ligger i tekniken.
 
