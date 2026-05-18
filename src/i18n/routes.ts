@@ -47,6 +47,7 @@ export const insightSlugMap: Record<string, string> = {
   'mognadsrapport-skriven-for-ledningen': 'the-maturity-report-isnt-built-for-the-crisis',
   'ratt-igar-inte-ratt-idag': 'what-was-right-yesterday-isnt-right-today',
   'leverantorsregister-ar-inte-en-krisplan': 'your-vendor-register-isnt-a-crisis-plan',
+  'civil-cyberresiliens-totalforsvar': 'civil-cyber-resilience-total-defence',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(
