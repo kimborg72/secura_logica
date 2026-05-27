@@ -8,7 +8,7 @@ import ServiceCard from '@components/ui/ServiceCard.astro';
 import JsonLd from '@components/seo/JsonLd.astro';
 import { site, organizationSchema } from '@data/site';
 import { getServicesByLocale } from '@i18n/content';
-import { getServicePath, getServicesPath } from '@i18n/routes';
+import { getServicePath, getServicesPath, getInsightPath } from '@i18n/routes';
 
 const locale = 'en' as const;
 const slug = 'ai-fasttrack';
@@ -17,22 +17,29 @@ const allServices = await getServicesByLocale(locale);
 const relatedSlugs = ['ciso-as-a-service', 'risk-management', 'nis2'];
 const relatedServices = allServices.filter((s) => relatedSlugs.includes(s.data.slug));
 
-const metaTitle = 'AI FastTrack — Governance & Security | Verit';
+const metaTitle = 'AI Security & Governance: AI FastTrack | Verit';
 const metaDescription =
-  'The shortest path from AI ambition to a governable business capability. AI governance and cybersecurity integrated at every step.';
+  'AI security and governance integrated at every step. AI FastTrack removes the stop-and-go so each AI initiative builds on the last — NIS2 and EU AI Act mapped in.';
+
+const pageUrl = `${site.url}${getServicePath(locale, slug)}`;
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'AI FastTrack — Governance & Security',
+  name: 'AI FastTrack — AI Security & Governance',
   description: metaDescription,
+  serviceType: 'AI Governance Consulting',
   provider: {
     '@type': 'Organization',
     name: organizationSchema.name,
     url: organizationSchema.url,
   },
   areaServed: { '@type': 'Country', name: 'Sweden' },
-  url: `${site.url}${getServicePath(locale, slug)}`,
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Executive leadership, CISOs, IT directors, boards',
+  },
+  url: pageUrl,
 };
 
 const faqSchema = {
@@ -44,15 +51,15 @@ const faqSchema = {
       name: 'How does AI FastTrack differ from a typical AI consultancy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A typical AI consultancy focuses on tools and technical pilots. AI FastTrack starts from decisions and business impact — and treats security as an integrated dimension, not a phase 2 exercise. We also map requirements from NIS2, the EU AI Act and GDPR directly into the delivery.',
+        text: 'A typical AI consultancy focuses on tools and technical pilots. AI FastTrack starts from decisions and business impact, and treats AI security as an integrated dimension rather than a phase 2 exercise. We also map requirements from NIS2, the EU AI Act and GDPR directly into the delivery.',
       },
     },
     {
       '@type': 'Question',
-      name: "We're early with AI — is this for us?",
+      name: "We're early with AI. Is this for us?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. The Readiness Assessment (2–3 days) is designed for exactly that situation. You get a rapid evaluation of AI maturity and security readiness, plus 3–5 concrete recommendations that leadership can act on immediately.',
+        text: 'Yes. The Readiness Assessment (2–3 days) is built for exactly that situation. You get a rapid evaluation of AI maturity and security readiness, plus three to five recommendations leadership can act on immediately.',
       },
     },
     {
@@ -60,7 +67,15 @@ const faqSchema = {
       name: 'What happens after delivery?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'You have a concrete roadmap with integrated security measures and a clear maturity ladder. We can support implementation over time through CISO-as-a-Service or Securapilot — or you can take it forward on your own.',
+        text: 'You have a roadmap with integrated security measures and a clear maturity ladder. We can support implementation over time through CISO-as-a-Service, or you can take it forward on your own.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does AI FastTrack cover EU AI Act and NIS2 requirements?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We map requirements from the EU AI Act, NIS2 directive, GDPR and ISO/IEC 42001 to your delivery. You get documentation showing where you stand, what remains, and which controls to prioritise first.',
       },
     },
   ],
@@ -70,12 +85,12 @@ const challenges = [
   {
     title: 'Tools without strategy',
     description:
-      'AI tools are purchased without a link to business decisions or strategic objectives. Pilots run in parallel without a shared direction.',
+      'AI tools are bought without a link to business decisions. Pilots run in parallel with no shared direction, and no one knows which one to scale.',
   },
   {
     title: 'Security as an afterthought',
     description:
-      'Control, compliance and risk management are pushed to "phase 2" — if at all. Policies are missing before the models go live.',
+      'Control, compliance and risk management get pushed to "phase 2", if they get there at all. Models go into production before policies exist.',
   },
   {
     title: 'No shared language',
@@ -90,7 +105,7 @@ const packages = [
     duration: '2–3 days',
     durationLabel: 'Timeframe',
     description:
-      'Rapid assessment of AI maturity and security readiness. Current state, gaps and 3–5 concrete recommendations leadership can act on immediately.',
+      'Rapid assessment of AI maturity and security readiness. You get current state, gaps and three to five recommendations leadership can act on immediately.',
     accent: 'teal' as const,
     ctaLabel: 'Book Readiness Assessment',
     steps: [
@@ -98,19 +113,19 @@ const packages = [
         number: 1,
         title: 'Rapid interviews',
         description:
-          'AI maturity, security posture, data quality and governance in a single interview round with key stakeholders.',
+          'AI maturity, security posture, data quality and governance in a single interview round with key stakeholders, instead of five separate workshops.',
       },
       {
         number: 2,
         title: 'Integrated gap analysis',
         description:
-          'Assessment against a maturity scale covering both AI capability and security requirements — on a shared map.',
+          'Assessment against a maturity scale where AI capability and security requirements sit on the same map.',
       },
       {
         number: 3,
         title: 'Leadership report',
         description:
-          'Current state, risks and 3–5 recommendations that address both value and security.',
+          'Current state, risks and three to five recommendations that address both value and security.',
       },
     ],
   },
@@ -119,19 +134,19 @@ const packages = [
     duration: '5–7 weeks',
     durationLabel: 'Timeframe',
     description:
-      'Full engagement — decision mapping, governance model, data pipelines, control framework and a roadmap with integrated security measures.',
+      'Full engagement. Decision mapping, governance model, data pipelines, control framework and a roadmap with security measures integrated in every phase. NIS2, the EU AI Act, GDPR and ISO/IEC 42001 are mapped in from the start.',
     accent: 'lime' as const,
     ctaLabel: 'Get in touch',
     steps: [
       {
         number: 1,
-        title: 'Current state, ambition & threat picture',
+        title: 'Current state, ambition and threat picture',
         description:
-          'Interviews with leadership. AI expectations, decision processes, security posture, shadow AI and regulatory requirements.',
+          'Interviews with leadership about AI expectations, decision processes, security posture, shadow AI and regulatory requirements.',
       },
       {
         number: 2,
-        title: 'Decision mapping & risk analysis',
+        title: 'Decision mapping and risk analysis',
         description:
           'Decisions with the greatest AI leverage. Data flows, threats, protection level and vulnerability per decision point.',
       },
@@ -139,17 +154,17 @@ const packages = [
         number: 3,
         title: 'Prioritisation workshop',
         description:
-          'Rate AI initiatives by business value, feasibility and security risk. Unclear controls = stop criterion.',
+          'Rate AI initiatives by business value, feasibility and security risk. Unclear controls become a stop criterion.',
       },
       {
         number: 4,
-        title: 'Governance, roles & control framework',
+        title: 'Governance, roles and control framework',
         description:
           'Decision rights, responsibilities, escalation paths, policies and incident handling.',
       },
       {
         number: 5,
-        title: 'Data pipelines & protection architecture',
+        title: 'Data pipelines and protection architecture',
         description:
           'Data from source to model to decision. Classification, access, traceability and supplier review.',
       },
@@ -157,21 +172,37 @@ const packages = [
         number: 6,
         title: 'Follow-up framework',
         description:
-          'KPIs for business impact complemented with security indicators — incidents, deviations, policy violations.',
+          'KPIs for business impact complemented with security indicators: incidents, deviations and policy violations.',
       },
       {
         number: 7,
-        title: 'Roadmap & maturity ladder',
+        title: 'Roadmap and maturity ladder',
         description:
-          'A concrete plan with integrated security measures in every phase. What does security require before the next AI maturity step?',
+          'A plan with security measures in every phase. What does security require before the next AI maturity step?',
       },
     ],
   },
 ];
 
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'AI FastTrack packages',
+  itemListElement: packages.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: `AI FastTrack — ${p.name}`,
+      description: p.description,
+      provider: { '@type': 'Organization', name: organizationSchema.name },
+    },
+  })),
+};
+
 const comparisonRows = [
   {
-    dimension: 'Security',
+    dimension: 'AI security',
     generic: 'Handled in phase 2',
     fasttrack: 'Integrated in every step',
   },
@@ -183,7 +214,7 @@ const comparisonRows = [
   {
     dimension: 'Regulation',
     generic: 'Mentioned when needed',
-    fasttrack: 'NIS2 + EU AI Act + GDPR mapped',
+    fasttrack: 'NIS2, EU AI Act, GDPR and ISO 42001 mapped',
   },
   {
     dimension: 'Delivery',
@@ -193,19 +224,52 @@ const comparisonRows = [
   {
     dimension: 'Follow-up',
     generic: 'Rarely included',
-    fasttrack: 'KPIs + security indicators',
+    fasttrack: 'KPIs plus security indicators',
+  },
+  {
+    dimension: 'Pace over time',
+    generic: 'Fast pilot, then it stalls',
+    fasttrack: 'Each initiative faster than the last',
   },
 ];
 
 const expectations = [
-  'Prioritise the right AI initiatives — identify where AI creates real business value first',
-  'Turn AI into a question of decision governance — understand which decisions should be supported, augmented or owned by humans',
-  'Create a shared language across functions — bring leadership, operations, IT, HR and risk around a common model',
-  'Redesign workflows — map how work moves before, around and after a decision',
-  'Redesign data pipelines — surface which data must exist and how it must flow',
-  'Build in accountability, control and guardrails — roles, decision rights, control points, policies and escalation paths',
-  'Track real impact — separate perceived value from actual business outcomes',
-  'Assess the next maturity step — decide when AI should support, augment or be delegated',
+  'Clear prioritisation. You see where AI actually creates business value first, instead of spreading effort across every possible pilot.',
+  'AI as decision governance. Which decisions should be supported, which augmented, and which should never be automated.',
+  'A shared language. Leadership, operations, IT, HR and risk align on one model for AI, decisions and security.',
+  'Redesigned workflows. We map how work moves before, around and after a decision.',
+  'Redesigned data pipelines. What data must exist, and how must it flow for the model to be reliable?',
+  'Built-in accountability. Roles, decision rights, control points, policies and escalation paths.',
+  'Tracking real impact. We separate perceived value from actual business outcomes.',
+  'Assessing the next maturity step. When should AI support, augment or be delegated?',
+];
+
+const faqItems = faqSchema.mainEntity.map((q) => ({
+  question: q.name,
+  answer: q.acceptedAnswer.text,
+}));
+
+const lastReviewed = 'May 2026';
+
+const caseSteps = [
+  {
+    label: 'Starting point',
+    title: 'High activity, no overview',
+    description:
+      'An industrial manufacturer had several AI initiatives running across different parts of the business, both in production and administration, each in isolation and without coordination. Leadership had no basis for judging which initiatives were worth backing. Security and data questions were handled differently in every corner, or not at all.',
+  },
+  {
+    label: 'What we did',
+    title: 'One shared map',
+    description:
+      'Every initiative was inventoried and made visible on one shared map. Security and data questions were assessed as an integrated part of the work, not a separate track. Initiatives were evaluated by business value, feasibility and risk in the same motion.',
+  },
+  {
+    label: 'Outcome',
+    title: 'From spectator to active governance',
+    description:
+      'For the first time, leadership had a single decision foundation and moved from passive observer to active steward. They prioritised the right initiatives and put resources behind them. The result was more coordinated activity and visible delivery that lifted quality across several parts of the business, in both production and administration. Security was built in from the start, which gave leadership the confidence to commit rather than hesitate.',
+  },
 ];
 ---
 
@@ -214,17 +278,21 @@ const expectations = [
   description={metaDescription}
   ogImage="/og/en/services/ai-fasttrack.png"
   locale={locale}
+  headerTheme="dark"
 >
   <JsonLd schema={serviceSchema} />
   <JsonLd schema={faqSchema} />
+  <JsonLd schema={itemListSchema} />
 
   <HeroSimple
-    title="AI FastTrack — Governance & Security"
-    description="The shortest path from AI ambition to a governable business capability."
+    title="AI FastTrack — AI Security & Governance"
+    description="AI security and governance integrated from decision to model, without losing momentum."
     breadcrumbs={[
       { label: 'Services', href: getServicesPath(locale) },
       { label: 'AI FastTrack' },
     ]}
+    bgImage="/images/heroes/services/ai-fasttrack.webp"
+    bgImageAlt=""
     locale={locale}
   />
 
@@ -234,21 +302,36 @@ const expectations = [
       <div class="max-w-3xl" data-reveal>
         <p class="overline mb-4">About the service</p>
         <p class="lead text-slate mb-6">
-          Everyone is talking about accelerating AI. We make sure you actually can — without losing control.
-          AI FastTrack helps leadership teams move from AI as activity to AI as a governable business
-          capability, with security integrated at every step.
+          Everyone is talking about accelerating AI. We make sure you actually can, without losing control.
+          AI FastTrack ties AI security and governance to every decision in the AI lifecycle, so
+          leadership ends up with a governable capability instead of a collection of pilots.
         </p>
         <p class="text-gray leading-relaxed mb-4">
           We combine decision mapping, risk analysis, governance model and control framework in one
-          coherent delivery. The result is a clear picture of where AI creates the most value —
-          and exactly which security measures are required before you take the next step.
+          coherent delivery. The result is a clear picture of where AI creates the most value, and
+          which security measures you need before taking the next step. Requirements from <a href={getServicePath(locale, 'nis2')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">NIS2</a>,
+          the EU AI Act and GDPR are mapped in from the start, with ISO/IEC 42001 referenced where relevant.
+        </p>
+        <p class="text-gray leading-relaxed mb-4">
+          Built on CISO engagements and <a href={getServicePath(locale, 'risk-management')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">risk management</a> work
+          with Swedish public-sector organisations and private companies that want AI to pass both the auditor and the workday.
+        </p>
+        <p class="text-gray leading-relaxed">
+          Most organisations run AI linearly: pilot, pause, worry, restart. Every new initiative starts
+          from zero with a new risk assessment and new questions for leadership. That's stop-and-go
+          driving, and it's why AI feels slow and expensive even though the technology is fast. It's also
+          what we call <a href={getInsightPath(locale, 'compliance-cost-governance-debt')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">governance debt</a>.
+          AI FastTrack removes the stop-and-go. Once initiatives sit on one shared map, prioritised and
+          security-assessed, leadership can steer with confidence and each new initiative builds on the
+          last. That's where acceleration becomes real — not in one faster step, but in never having to
+          back up again.
         </p>
       </div>
 
-      <div class="mt-10 max-w-3xl bg-surface border-l-4 border-teal rounded-xl p-6 lg:p-8" data-reveal>
+      <div class="mt-10 max-w-3xl bg-surface border-l-4 border-teal p-6 lg:p-8" data-reveal>
         <p class="overline mb-2 text-teal-dark">Core principle</p>
         <p class="text-xl lg:text-2xl font-semibold text-navy leading-snug">
-          No AI maturity without matching security maturity.
+          Governance isn't the brake. It's what lets you move fastest — with security on board.
         </p>
         <p class="mt-3 text-sm text-gray italic">Method first. Tools second. Security always.</p>
       </div>
@@ -260,7 +343,7 @@ const expectations = [
     <div class="container">
       <div class="max-w-2xl mb-12" data-reveal>
         <p class="overline mb-3">The challenge</p>
-        <h2>Organisations get stuck</h2>
+        <h2>Why AI security and governance belong together</h2>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
@@ -281,7 +364,7 @@ const expectations = [
 
       <div class="mt-10 text-center" data-reveal>
         <p class="inline-block text-sm font-semibold text-accent-dark bg-accent/25 px-4 py-2 rounded-full italic">
-          Result: AI becomes a cost, not a capability.
+          AI ends up as a cost instead of a capability.
         </p>
       </div>
     </div>
@@ -292,7 +375,7 @@ const expectations = [
     packages={packages}
     locale={locale}
     overline="AI FastTrack"
-    heading="Choose your starting point"
+    heading="Two ways into AI governance"
   />
 
   <!-- Comparison table -->
@@ -302,16 +385,60 @@ const expectations = [
     genericLabel="Typical AI consultancy"
     fasttrackLabel="AI FastTrack"
     overline="Comparison"
-    heading="Why AI FastTrack?"
+    heading="AI FastTrack compared with a typical AI consultancy"
     locale={locale}
   />
+
+  <!-- Customer case -->
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">Customer case</p>
+        <h2>From scattered AI pilots to a coordinated capability</h2>
+        <p class="text-gray leading-relaxed mt-4">
+          Anonymised industrial customer case. This is what acceleration looks like in practice.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {caseSteps.map((c, i) => (
+          <div
+            class="bg-white rounded-xl border border-border p-6 lg:p-8 relative"
+            data-reveal
+            data-delay={String(i + 1)}
+          >
+            <div class="text-4xl font-bold text-navy/10 mb-3 leading-none">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <p class="overline mb-2 text-teal-dark">{c.label}</p>
+            <h3 class="text-lg font-semibold text-navy mb-3">{c.title}</h3>
+            <p class="text-sm text-gray leading-relaxed">{c.description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/*
+        TODO: Activate the customer-quote block below when an attributable quote is available.
+        Remove this wrapping comment and fill in quote + role/industry.
+
+        <figure class="mt-10 max-w-3xl mx-auto bg-white border-l-4 border-teal p-6 lg:p-8" data-reveal>
+          <blockquote class="text-lg lg:text-xl text-navy leading-snug font-medium">
+            "Customer's own words."
+          </blockquote>
+          <figcaption class="mt-3 text-sm text-gray">
+            CIO, Nordic industrial manufacturer
+          </figcaption>
+        </figure>
+      */}
+    </div>
+  </section>
 
   <!-- What leadership gets -->
   <section class="section">
     <div class="container">
       <div class="max-w-2xl mb-12" data-reveal>
         <p class="overline mb-3">What you get</p>
-        <h2>What leadership can expect</h2>
+        <h2>What leadership gets out of AI FastTrack</h2>
       </div>
 
       <ul class="grid md:grid-cols-2 gap-6 lg:gap-8">
@@ -336,6 +463,10 @@ const expectations = [
           </li>
         ))}
       </ul>
+
+      <p class="mt-10 max-w-3xl text-sm text-gray" data-reveal>
+        After delivery we can support implementation through <a href={getServicePath(locale, 'ciso-as-a-service')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">CISO-as-a-Service</a> or hand over the roadmap so you can drive the work yourselves.
+      </p>
     </div>
   </section>
 
@@ -360,9 +491,39 @@ const expectations = [
     </section>
   )}
 
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl mb-10" data-reveal>
+        <p class="overline mb-3">FAQ</p>
+        <h2>Questions leadership teams ask us</h2>
+      </div>
+
+      <div class="max-w-3xl space-y-3">
+        {faqItems.map((item, i) => (
+          <details
+            class="group bg-surface border border-border p-5 lg:p-6"
+            data-reveal
+            data-delay={String((i % 3) + 1)}
+          >
+            <summary class="flex items-start justify-between gap-4 cursor-pointer list-none font-semibold text-navy">
+              <span>{item.question}</span>
+              <span class="shrink-0 text-teal-dark text-xl leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-4 text-gray leading-relaxed text-sm lg:text-base">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-12 text-xs text-gray" data-reveal>
+        Last reviewed: {lastReviewed}.
+      </p>
+    </div>
+  </section>
+
   <CTABanner
-    title="Ready to start?"
-    description="Book a Readiness Assessment — 2–3 days that give leadership a concrete decision foundation."
+    title="Ready for the next step?"
+    description="Book a Readiness Assessment. Two to three days that give leadership a decision foundation with both value and security on the map."
     buttonText="Book Readiness Assessment"
     locale={locale}
   />

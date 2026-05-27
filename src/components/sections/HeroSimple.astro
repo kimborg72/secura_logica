@@ -6,18 +6,48 @@ interface Props {
   title: string;
   description?: string;
   breadcrumbs?: Array<{ label: string; href?: string }>;
+  bgImage?: string;
+  bgImageAlt?: string;
   locale?: Locale;
 }
 
-const { title, description, breadcrumbs, locale = 'sv' } = Astro.props;
+const { title, description, breadcrumbs, bgImage, bgImageAlt = '', locale = 'sv' } = Astro.props;
+const hasBg = !!bgImage;
 ---
 
-<section class="bg-surface -mt-20 pt-32 pb-16">
-  <div class="container">
+<section
+  class:list={[
+    'relative -mt-20 pt-32 pb-20 overflow-hidden',
+    hasBg ? '' : 'bg-surface pb-16',
+  ]}
+>
+  {hasBg && (
+    <>
+      <img
+        src={bgImage}
+        alt={bgImageAlt}
+        width="1920"
+        height="1072"
+        class="absolute inset-0 w-full h-full object-cover"
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-navy-dark/75"></div>
+    </>
+  )}
+  <div
+    class:list={[
+      'container relative z-10',
+      hasBg && '[&_nav_a]:text-white/70 [&_nav_a:hover]:text-white [&_nav_li]:text-white/70 [&_nav_svg]:text-white/40',
+    ]}
+  >
     {breadcrumbs && <Breadcrumb items={breadcrumbs} locale={locale} />}
     <div class="max-w-3xl mt-6">
-      <h1>{title}</h1>
-      {description && <p class="lead mt-4">{description}</p>}
+      <h1 class:list={[hasBg && 'text-white']}>{title}</h1>
+      {description && (
+        <p class:list={['lead mt-4', hasBg && 'text-white/70']}>{description}</p>
+      )}
     </div>
   </div>
 </section>

@@ -1,27 +1,27 @@
-title: "AI FastTrack — Governance & Security"
+title: "AI FastTrack — AI-säkerhet och governance"
 shortTitle: "AI FastTrack"
 slug: "ai-fasttrack"
-metaTitle: "AI FastTrack — Governance & Security | Verit"
-metaDescription: "Den kortaste vägen från AI-ambition till styrbar verksamhetsförmåga. AI-governance och cybersäkerhet integrerat i varje steg."
-excerpt: "Gör AI till en styrbar verksamhetsförmåga — med säkerhet integrerad i varje steg."
+metaTitle: "AI-säkerhet & governance: AI FastTrack | Verit"
+metaDescription: "AI-säkerhet och governance integrerat i varje steg. AI FastTrack tar bort start-stoppet — varje AI-initiativ bygger på det förra, med NIS2 och EU AI Act mappade."
+excerpt: "AI-säkerhet och governance integrerat i varje steg, så AI blir en styrbar förmåga i stället för en samling piloter."
 introLead: >
-  AI FastTrack hjälper ledningsgruppen att gå från AI som aktivitet till AI som
-  styrbar verksamhetsförmåga — med säkerhet integrerad i varje steg. Ingen
-  AI-mognad utan motsvarande säkerhetsmognad.
+  AI FastTrack kopplar AI-säkerhet och governance till varje beslut i AI-livscykeln,
+  så ledningen får en styrbar förmåga i stället för en samling piloter. Styrning är
+  inte bromsen — det är det som låter er köra fortast, med säkerheten ombord.
 introduction: |
-  Alla pratar om att accelerera AI. Vi ser till att ni faktiskt kan — utan att tappa kontrollen. AI FastTrack är en strukturerad metod för ledningsgrupper som vill omsätta AI-ambitioner till styrbar verksamhetseffekt, utan att lämna säkerhet, regelefterlevnad och ansvar åt fas 2.
+  Alla pratar om att accelerera AI. Vi ser till att ni faktiskt kan, utan att tappa kontrollen. AI FastTrack är en strukturerad metod för ledningsgrupper som vill omsätta AI-ambitioner till styrbar verksamhetseffekt, utan att lämna säkerhet, regelefterlevnad och ansvar åt fas 2.
 
-  Vi kombinerar beslutskartläggning, riskanalys, styrmodell och kontrollramverk i en och samma leverans. Resultatet är en tydlig bild av var AI skapar mest värde — och exakt vilka säkerhetsåtgärder som krävs innan ni tar nästa steg.
+  Vi kombinerar beslutskartläggning, riskanalys, styrmodell och kontrollramverk i samma leverans. Resultatet är en tydlig bild av var AI skapar mest värde och vilka säkerhetsåtgärder som krävs innan ni tar nästa steg. Kraven från NIS2, EU AI Act och GDPR mappas in från start, och kopplingen till ISO/IEC 42001 finns med där den är relevant.
 
   Metod först. Verktyg sedan. Säkerhet alltid.
 targetAudience:
   heading: "För vem?"
   description: >
-    AI FastTrack är utformad för organisationer där AI börjar få strategisk tyngd
+    AI FastTrack är gjord för organisationer där AI börjar få strategisk tyngd
     men där beslutsstyrning, datakvalitet och säkerhet ännu inte är på plats.
   segments:
     - "Ledningsgrupper i SME:er och medelstora bolag"
-    - "IT-chefer och CISOs"
+    - "IT-chefer och CISO:er"
     - "Kommunala IT-direktörer"
     - "Verksamhetschefer med AI-ansvar"
     - "Styrelser som vill förstå AI-risk"
@@ -29,30 +29,30 @@ targetAudience:
 benefits:
   - title: "Prioritera rätt AI-initiativ"
     description: >
-      Identifiera var AI skapar verkligt affärsvärde först, snarare än att sprida
+      Ni ser var AI faktiskt skapar affärsvärde först, i stället för att sprida
       insatser över alla möjliga pilotprojekt samtidigt.
-  - title: "Beslutsstyrning istället för verktygsfokus"
+  - title: "Beslutsstyrning i stället för verktygsfokus"
     description: >
-      Förstå vilka beslut som bör stödjas, förstärkas eller ägas av människor —
-      och vilka som aldrig ska automatiseras.
+      Vilka beslut ska stödjas, vilka ska förstärkas, och vilka ska aldrig
+      automatiseras.
   - title: "Gemensamt språk mellan funktioner"
     description: >
-      Samla ledning, verksamhet, IT, HR och risk kring en gemensam modell för
-      AI, beslut och säkerhet.
-  - title: "Ansvar, kontroll och begränsningar"
+      Ledning, verksamhet, IT, HR och risk samlas runt en modell för AI, beslut
+      och säkerhet.
+  - title: "Inbyggd ansvarsfördelning och kontroll"
     description: >
-      Bygg in roller, beslutsrätt, kontrollpunkter, policies och eskaleringsvägar
+      Roller, beslutsrätt, kontrollpunkter, policies och eskaleringsvägar
       innan AI tas i skarp drift.
 process:
   - step: 1
-    title: "Nuläge, ambition & hotbild"
+    title: "Nuläge, ambition och hotbild"
     description: >
       Intervjuer med ledningsgruppen. Vi kartlägger AI-förväntningar,
       beslutsprocesser, befintlig säkerhetsnivå, skugg-AI och regulatoriska krav
       (NIS2, EU AI Act, GDPR).
     duration: "Vecka 1"
   - step: 2
-    title: "Beslutskartläggning & riskanalys"
+    title: "Beslutskartläggning och riskanalys"
     description: >
       Identifiera beslut med störst AI-hävstång. Analys av dataflöden, hot
       (modellmanipulation, dataintegritet, bias), skyddsnivå och sårbarhet per
@@ -62,21 +62,21 @@ process:
     title: "Prioriteringsworkshop med riskdimension"
     description: >
       Gemensam session med ledningen. Värdera AI-initiativ utifrån affärsnytta,
-      genomförbarhet och säkerhetsrisk. Oklara kontroller = stoppkriterie.
+      genomförbarhet och säkerhetsrisk. Oklara kontroller blir stoppkriterium.
     duration: "Vecka 3"
   - step: 4
-    title: "Styrmodell, roller & kontrollramverk"
+    title: "Styrmodell, roller och kontrollramverk"
     description: >
       Definiera beslutsrätt, ansvar och eskaleringsvägar. Integrera policies för
-      acceptable use, dataklassificering, leverantörskrav, loggning och
+      acceptabel användning, dataklassificering, leverantörskrav, loggning och
       incidenthantering.
     duration: "Vecka 3–4"
   - step: 5
-    title: "Datapipelines & skyddsarkitektur"
+    title: "Datapipelines och skyddsarkitektur"
     description: >
       Kartlägg data från källa till modell till beslut. Klassificering,
       åtkomstkontroll, spårbarhet och granskning av AI-leverantörers säkerhet
-      och compliance.
+      och regelefterlevnad.
     duration: "Vecka 4–5"
   - step: 6
     title: "Uppföljningsramverk med säkerhetsindikatorer"
@@ -85,10 +85,10 @@ process:
       incidenter, avvikelser, policybrott och leverantörsefterlevnad.
     duration: "Vecka 5–6"
   - step: 7
-    title: "Roadmap, mognadstrappa & åtgärdsplan"
+    title: "Roadmap, mognadstrappa och åtgärdsplan"
     description: >
-      Konkret plan med integrerade säkerhetsåtgärder i varje fas. Vad krävs
-      säkerhetsmässigt innan nästa AI-mognadssteg?
+      Plan med säkerhetsåtgärder i varje fas. Vad krävs säkerhetsmässigt
+      innan nästa AI-mognadssteg tas?
     duration: "Vecka 6–7"
 deliverables:
   - "AI-mognadsbedömning med säkerhetsdimension"
@@ -98,28 +98,33 @@ deliverables:
   - "KPI- och säkerhetsindikatorramverk"
   - "Roadmap och mognadstrappa med integrerade säkerhetsåtgärder"
   - "Ledningsrapport med 3–5 prioriterade rekommendationer"
+  - "Mappning mot NIS2, EU AI Act, GDPR och ISO/IEC 42001"
 faq:
   - question: "Hur skiljer sig AI FastTrack från en vanlig AI-konsult?"
     answer: >
       En typisk AI-konsult fokuserar på verktyg och tekniska piloter. AI FastTrack
-      utgår från beslut och verksamhetseffekt — och behandlar säkerhet som en
-      integrerad dimension, inte en fas 2-övning. Vi mappar också kraven från
-      NIS2, EU AI Act och GDPR direkt in i leveransen.
-  - question: "Vi är tidigt ute med AI — är det här för oss?"
+      utgår från beslut och verksamhetseffekt, och behandlar AI-säkerhet som en
+      integrerad dimension i stället för en fas 2-övning. Vi mappar också kraven
+      från NIS2, EU AI Act och GDPR direkt in i leveransen.
+  - question: "Vi är tidigt ute med AI. Är det här för oss?"
     answer: >
-      Ja. Readiness Assessment (2–3 dagar) är utformad för just den situationen.
-      Ni får en snabb bedömning av AI-mognad och säkerhetsberedskap, plus 3–5
-      konkreta rekommendationer som ledningen kan agera på direkt.
+      Ja. Readiness Assessment (2–3 dagar) är gjord för just den situationen.
+      Ni får en snabb bedömning av AI-mognad och säkerhetsberedskap, plus tre
+      till fem rekommendationer som ledningen kan agera på direkt.
   - question: "Vad händer efter leveransen?"
     answer: >
-      Ni har en konkret roadmap med integrerade säkerhetsåtgärder och en
-      tydlig mognadstrappa. Vi kan stötta implementeringen löpande via
-      CISO-as-a-Service eller Securapilot, eller så tar ni det vidare i
-      egen regi.
+      Ni har en roadmap med integrerade säkerhetsåtgärder och en tydlig
+      mognadstrappa. Vi kan stötta implementeringen löpande via CISO-as-a-Service,
+      eller så tar ni den vidare i egen regi.
+  - question: "Täcker AI FastTrack kraven i EU AI Act och NIS2?"
+    answer: >
+      Ja. Vi mappar kraven från EU AI Act, NIS2-direktivet, GDPR och ISO/IEC
+      42001 mot er leverans. Ni får dokumentation som visar var ni står, vad
+      som återstår och vilka kontroller som bör prioriteras först.
 relatedServices:
   - "ciso-as-a-service"
   - "riskhantering"
   - "nis2"
-ctaText: "Redo att börja?"
-ctaDescription: "Boka en Readiness Assessment — 2–3 dagar som ger ledningsgruppen ett konkret beslutsunderlag. Metod först. Verktyg sedan. Säkerhet alltid."
+ctaText: "Redo att ta nästa steg?"
+ctaDescription: "Boka en Readiness Assessment. Två till tre dagar som ger ledningsgruppen ett beslutsunderlag med både värde och säkerhet på kartan."
 order: 2

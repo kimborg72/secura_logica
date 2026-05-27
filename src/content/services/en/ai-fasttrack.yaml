@@ -1,23 +1,24 @@
-title: "AI FastTrack — Governance & Security"
+title: "AI FastTrack — AI Security & Governance"
 shortTitle: "AI FastTrack"
 slug: "ai-fasttrack"
-metaTitle: "AI FastTrack — Governance & Security | Verit"
-metaDescription: "The shortest path from AI ambition to a governable business capability. AI governance and cybersecurity integrated at every step."
-excerpt: "Turn AI into a governable business capability — with security integrated at every step."
+metaTitle: "AI Security & Governance: AI FastTrack | Verit"
+metaDescription: "AI security and governance integrated at every step. AI FastTrack removes the stop-and-go so each AI initiative builds on the last — NIS2 and EU AI Act mapped in."
+excerpt: "AI security and governance integrated at every step, so AI becomes a governable capability instead of a collection of pilots."
 introLead: >
-  AI FastTrack helps leadership teams move from AI as activity to AI as a
-  governable business capability — with security integrated at every step.
-  No AI maturity without matching security maturity.
+  AI FastTrack ties AI security and governance to every decision in the AI
+  lifecycle, so leadership ends up with a governable capability instead of a
+  collection of pilots. Governance isn't the brake — it's what lets you move
+  fastest, with security on board.
 introduction: |
-  Everyone is talking about accelerating AI. We make sure you actually can — without losing control. AI FastTrack is a structured method for leadership teams that want to turn AI ambitions into governable business impact, without leaving security, compliance and accountability for "phase 2".
+  Everyone is talking about accelerating AI. We make sure you actually can, without losing control. AI FastTrack is a structured method for leadership teams that want to turn AI ambitions into governable business impact, without leaving security, compliance and accountability for "phase 2".
 
-  We combine decision mapping, risk analysis, governance model and control framework in one coherent delivery. The result is a clear picture of where AI creates the most value — and exactly which security measures are required before you take the next step.
+  We combine decision mapping, risk analysis, governance model and control framework in one coherent delivery. The result is a clear picture of where AI creates the most value, and which security measures you need before taking the next step. Requirements from NIS2, the EU AI Act and GDPR are mapped in from the start, with ISO/IEC 42001 referenced where relevant.
 
   Method first. Tools second. Security always.
 targetAudience:
   heading: "Who is it for?"
   description: >
-    AI FastTrack is designed for organisations where AI is gaining strategic
+    AI FastTrack is built for organisations where AI is gaining strategic
     weight, but where decision governance, data quality and security are not
     yet in place.
   segments:
@@ -30,53 +31,54 @@ targetAudience:
 benefits:
   - title: "Prioritise the right AI initiatives"
     description: >
-      Identify where AI creates real business value first, instead of spreading
-      efforts across every possible pilot at once.
+      You see where AI actually creates business value first, instead of
+      spreading effort across every possible pilot.
   - title: "Decision governance over tool fixation"
     description: >
-      Understand which decisions should be supported, augmented or owned by
-      humans — and which should never be automated.
+      Which decisions should be supported, which augmented, and which should
+      never be automated.
   - title: "A shared language across functions"
     description: >
-      Bring leadership, operations, IT, HR and risk together around a common
-      model for AI, decisions and security.
-  - title: "Accountability, control and guardrails"
+      Leadership, operations, IT, HR and risk align on one model for AI,
+      decisions and security.
+  - title: "Built-in accountability and control"
     description: >
-      Build in roles, decision rights, control points, policies and escalation
-      paths before AI goes into production.
+      Roles, decision rights, control points, policies and escalation paths
+      before AI goes into production.
 process:
   - step: 1
-    title: "Current state, ambition & threat picture"
+    title: "Current state, ambition and threat picture"
     description: >
       Interviews with leadership. We map AI expectations, decision processes,
       existing security posture, shadow AI and regulatory requirements
       (NIS2, EU AI Act, GDPR).
     duration: "Week 1"
   - step: 2
-    title: "Decision mapping & risk analysis"
+    title: "Decision mapping and risk analysis"
     description: >
       Identify decisions with the greatest AI leverage. Analyse data flows,
-      threats (model manipulation, data integrity, bias), protection level and
-      vulnerability per decision point.
+      threats (model manipulation, data integrity, bias), protection level
+      and vulnerability per decision point.
     duration: "Week 2"
   - step: 3
     title: "Prioritisation workshop with risk dimension"
     description: >
       Joint session with leadership. Rate AI initiatives by business value,
-      feasibility and security risk. Unclear controls = stop criterion.
+      feasibility and security risk. Unclear controls become a stop criterion.
     duration: "Week 3"
   - step: 4
-    title: "Governance, roles & control framework"
+    title: "Governance, roles and control framework"
     description: >
       Define decision rights, responsibilities and escalation paths. Integrate
       policies for acceptable use, data classification, supplier requirements,
       logging and incident handling.
     duration: "Weeks 3–4"
   - step: 5
-    title: "Data pipelines & protection architecture"
+    title: "Data pipelines and protection architecture"
     description: >
       Map data from source to model to decision. Classification, access
-      control, traceability, and review of AI supplier security and compliance.
+      control, traceability, and review of AI supplier security and
+      compliance.
     duration: "Weeks 4–5"
   - step: 6
     title: "Follow-up framework with security indicators"
@@ -85,10 +87,10 @@ process:
       incidents, deviations, policy violations and supplier compliance.
     duration: "Weeks 5–6"
   - step: 7
-    title: "Roadmap, maturity ladder & action plan"
+    title: "Roadmap, maturity ladder and action plan"
     description: >
-      A concrete plan with integrated security measures in every phase. What
-      does security require before the next AI maturity step?
+      A plan with security measures in every phase. What does security
+      require before the next AI maturity step?
     duration: "Weeks 6–7"
 deliverables:
   - "AI maturity assessment with security dimension"
@@ -98,30 +100,35 @@ deliverables:
   - "KPI and security indicator framework"
   - "Roadmap and maturity ladder with integrated security measures"
   - "Board-level report with 3–5 prioritised recommendations"
+  - "Mapping against NIS2, EU AI Act, GDPR and ISO/IEC 42001"
 faq:
   - question: "How does AI FastTrack differ from a typical AI consultancy?"
     answer: >
       A typical AI consultancy focuses on tools and technical pilots. AI
-      FastTrack starts from decisions and business impact — and treats
-      security as an integrated dimension, not a phase 2 exercise. We also
-      map requirements from NIS2, the EU AI Act and GDPR directly into the
-      delivery.
-  - question: "We're early with AI — is this for us?"
+      FastTrack starts from decisions and business impact, and treats AI
+      security as an integrated dimension rather than a phase 2 exercise. We
+      also map requirements from NIS2, the EU AI Act and GDPR directly into
+      the delivery.
+  - question: "We're early with AI. Is this for us?"
     answer: >
-      Yes. The Readiness Assessment (2–3 days) is designed for exactly that
+      Yes. The Readiness Assessment (2–3 days) is built for exactly that
       situation. You get a rapid evaluation of AI maturity and security
-      readiness, plus 3–5 concrete recommendations that leadership can act
-      on immediately.
+      readiness, plus three to five recommendations leadership can act on
+      immediately.
   - question: "What happens after delivery?"
     answer: >
-      You have a concrete roadmap with integrated security measures and a
-      clear maturity ladder. We can support implementation over time through
-      CISO-as-a-Service or Securapilot — or you can take it forward on
-      your own.
+      You have a roadmap with integrated security measures and a clear
+      maturity ladder. We can support implementation over time through
+      CISO-as-a-Service, or you can take it forward on your own.
+  - question: "Does AI FastTrack cover EU AI Act and NIS2 requirements?"
+    answer: >
+      Yes. We map requirements from the EU AI Act, NIS2 directive, GDPR and
+      ISO/IEC 42001 to your delivery. You get documentation showing where
+      you stand, what remains, and which controls to prioritise first.
 relatedServices:
   - "ciso-as-a-service"
   - "risk-management"
   - "nis2"
-ctaText: "Ready to start?"
-ctaDescription: "Book a Readiness Assessment — 2–3 days that give leadership a concrete decision foundation. Method first. Tools second. Security always."
+ctaText: "Ready for the next step?"
+ctaDescription: "Book a Readiness Assessment. Two to three days that give leadership a decision foundation with both value and security on the map."
 order: 2
