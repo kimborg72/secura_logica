@@ -27,6 +27,8 @@ PROMPTS[hero-cybersakerhetslagen-ledningsansvar]="A Nordic city hall or governme
 
 PROMPTS[hero-femton-ar-samma-hotbild]="An aging industrial area in a Scandinavian city at dawn. Old brick factory buildings alongside modern glass offices. Morning mist rising from the ground. Muted teal and amber tones. Power lines and chimneys silhouetted against a pale sky. A sense of stagnation contrasting with modernity. ${STYLE_SUFFIX}"
 
+PROMPTS[hero-vart-program-loser-inte-ert-problem]="Interior of a modern Scandinavian corporate office at dusk, viewed from inside a quiet, empty meeting room. Floor-to-ceiling windows fill the entire frame with a sweeping view of Stockholm at blue hour: the silhouettes of Riddarholmen church spires, Gamla Stan rooftops, and city lights reflecting on the dark water of Riddarfjärden. Foreground: edge of a long polished wooden conference table with a closed laptop, a single empty chair pulled slightly back. Warm amber pendant light reflected faintly on the glass. The city outside dominates the composition. Quiet, contemplative, professional atmosphere. ${STYLE_SUFFIX}"
+
 echo "=== Freepik Article Hero Image Generator ==="
 echo "Output: ${OUTPUT_DIR}"
 echo ""
