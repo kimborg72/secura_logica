@@ -54,4 +54,4 @@ Verits CISO-as-a-Service-modell bygger på tre pelare:
 
 CISO-as-a-Service är inte en kompromiss. Det är ett strategiskt val som ger medelstora organisationer tillgång till samma säkerhetskompetens som stora företag, till en bråkdel av kostnaden. Med ökande regulatoriska krav genom cybersäkerhetslagen har behovet aldrig varit större.
 
-Vill du veta mer om hur en delad CISO kan stärka din organisation? [Kontakta oss](/kontakt) för en kostnadsfri genomgång.
+Vill du veta mer om vår [CISO-as-a-Service](/tjanster/ciso-as-a-service)? [Kontakta oss](/kontakt) för en kostnadsfri genomgång.

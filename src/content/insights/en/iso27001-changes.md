@@ -37,4 +37,4 @@ If you are already certified, you need to update your Statement of Applicability
 
 If you are planning a new certification, you should base it directly on the 2022 version.
 
-Need support with the transition? [Contact us](/kontakt) and we will help you.
+Need support with the transition to [ISO 27001:2022](/en/services/iso27001)? [Contact us](/kontakt) and we will help you.

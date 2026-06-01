@@ -53,4 +53,4 @@ Verit's CISO-as-a-Service model is built on three pillars:
 
 CISO-as-a-Service is not a compromise. It is a strategic choice that gives mid-sized organisations access to the same security expertise as large enterprises, at a fraction of the cost. With increasing regulatory requirements through NIS2 and the Cybersecurity Act, the need has never been greater.
 
-Want to learn more about how a shared CISO can strengthen your organisation? [Contact us](/kontakt) for a complimentary review.
+Want to learn more about our [CISO-as-a-Service](/en/services/ciso-as-a-service)? [Contact us](/kontakt) for a complimentary review.

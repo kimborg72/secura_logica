@@ -38,4 +38,4 @@ Om du redan är certifierad behöver du uppdatera ditt uttalande om tillämpligh
 
 Om du planerar en ny certifiering bör du utgå direkt från 2022-versionen. Många av de nya kontrollerna överlappar med kraven i [cybersäkerhetslagen](/insikter/nis2-cybersakerhetslagen).
 
-Behöver du stöd med övergången? [Kontakta oss](/kontakt) så hjälper vi dig.
+Behöver du stöd med övergången till [ISO 27001:2022](/tjanster/iso27001)? [Kontakta oss](/kontakt) så hjälper vi dig.
