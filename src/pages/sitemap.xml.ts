@@ -6,9 +6,14 @@ import { kommuner } from '@data/kommuner';
 
 const SITE_URL = site.url;
 
+// Percent-encode non-ASCII path characters so <loc> stays a valid, canonical
+// URL. Without this, slugs containing å/ä/ö emit raw bytes that Googlebot
+// re-encodes on fetch, producing a canonical mismatch → "Redirect error".
+const encodeUrl = (url: string): string => encodeURI(url);
+
 function buildBilingualBlock(sv: string, en: string): string {
-  const svUrl = `${SITE_URL}${sv}`;
-  const enUrl = `${SITE_URL}${en}`;
+  const svUrl = encodeUrl(`${SITE_URL}${sv}`);
+  const enUrl = encodeUrl(`${SITE_URL}${en}`);
 
   return `  <url>
     <loc>${svUrl}</loc>
@@ -25,7 +30,7 @@ function buildBilingualBlock(sv: string, en: string): string {
 }
 
 function buildSvOnlyBlock(svPath: string): string {
-  const svUrl = `${SITE_URL}${svPath}`;
+  const svUrl = encodeUrl(`${SITE_URL}${svPath}`);
   return `  <url>
     <loc>${svUrl}</loc>
     <xhtml:link rel="alternate" hreflang="sv-SE" href="${svUrl}"/>

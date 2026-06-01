@@ -394,7 +394,7 @@ export const kommuner: Kommun[] = [
     lat: 58.53, lng: 13.49,
   },
   {
-    slug: 'ockerö',
+    slug: 'ockero',
     name: 'Öckerö',
     county: 'Västra Götaland',
     population: 13000,
@@ -571,7 +571,7 @@ export const kommuner: Kommun[] = [
     lat: 59.33, lng: 18.07,
   },
   {
-    slug: 'sodertälje',
+    slug: 'sodertalje',
     name: 'Södertälje',
     county: 'Stockholm',
     population: 100000,
@@ -670,7 +670,7 @@ export const kommuner: Kommun[] = [
     lat: 59.44, lng: 18.07,
   },
   {
-    slug: 'norrtälje',
+    slug: 'norrtalje',
     name: 'Norrtälje',
     county: 'Stockholm',
     population: 65000,
@@ -1079,7 +1079,7 @@ export const kommuner: Kommun[] = [
     lat: 59.93, lng: 16.85,
   },
   {
-    slug: 'håbo',
+    slug: 'habo-uppsala',
     name: 'Håbo',
     county: 'Uppsala',
     population: 23000,
