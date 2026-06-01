@@ -13,6 +13,12 @@ export interface Kommun {
   lng: number;
   metaTitle?: string;
   metaDescription?: string;
+  /** 2–4 faktiska större arbetsgivare/verksamheter i kommunen. Optional —
+   *  fylls i där det går att verifiera; mallen hanterar frånvaro. */
+  namedEmployers?: string[];
+  /** En mening om en konkret lokal omständighet med cybersäkerhetsbäring
+   *  (hamn, sjukhus, datacenter, kraftverk, försvarsindustri). Optional. */
+  localAngle?: string;
 }
 
 export const kommuner: Kommun[] = [
@@ -3265,14 +3271,256 @@ export function getSectorLabel(sector: string): string {
   return sectorLabels[sector] ?? sector;
 }
 
+// ── Prose helpers ───────────────────────────────────────────────────
+// All visible prose is built from real per-kommun data (population, sectors,
+// tillsynsmyndigheter, neighbours, optional named employers). Sentence
+// skeletons are chosen deterministically per kommun so two municipalities of
+// the same type no longer render near-identical text — this is what lifts the
+// pages out of Google's "thin/duplicate → not indexed" bucket.
+
+/**
+ * Verified local enrichment — named employers and a local angle for kommuner
+ * where these facts are well-established. Kept separate from the main data
+ * array so the bulk dataset stays untouched. Only add entries you can verify;
+ * absent kommuner fall back to sector-grounded prose (no fabrication).
+ */
+const kommunEnrichment: Record<string, { namedEmployers?: string[]; localAngle?: string }> = {
+  stockholm: {
+    namedEmployers: ['Ericsson', 'storbankerna', 'en stor offentlig sektor'],
+    localAngle:
+      'Som huvudstad rymmer Stockholm en stor del av landets finansiella infrastruktur, statliga myndigheter och datacenter. I sådana verksamheter får driftstörningar snabbt nationell räckvidd, vilket är just det NIS2 är till för att förebygga.',
+  },
+  goteborg: {
+    namedEmployers: ['Volvo Cars', 'Volvo Group', 'SKF', 'AstraZeneca'],
+    localAngle:
+      'Göteborgs hamn är Skandinaviens största hamn och en samhällsviktig nod för svensk import och export. Hamnens och fordonsindustrins långa leverantörskedjor gör att NIS2-kraven kaskaderar ut till hundratals underleverantörer i regionen.',
+  },
+  malmo: {
+    namedEmployers: ['en stor logistik- och handelssektor', 'life science-kluster i Öresundsregionen'],
+    localAngle:
+      'Malmö är en knutpunkt i Öresundsregionen med tung logistik, hamn och digital infrastruktur, sektorer som alla berörs direkt av cybersäkerhetslagen.',
+  },
+  trollhattan: {
+    namedEmployers: ['GKN Aerospace', 'Saab'],
+    localAngle:
+      'Med flyg- och fordonsindustri som GKN Aerospace ställs höga krav på säkerheten i både IT och industriella styrsystem (OT). Som underleverantör till försvars- och flygsektorn möter många företag i Trollhättan dessutom stränga säkerhetskrav uppströms.',
+  },
+  skovde: {
+    namedEmployers: ['Volvo (motorfabriken)', 'Försvarsmakten (Skaraborgs regemente)'],
+    localAngle:
+      'Skövde är både en industri- och garnisonsstad. Närheten till försvarsverksamhet och tillverkning med industriella styrsystem gör cybersäkerhet och OT-säkerhet till en konkret fråga för många lokala arbetsgivare.',
+  },
+  linkoping: {
+    namedEmployers: ['Saab', 'Ericsson'],
+    localAngle:
+      'Linköping är ett centrum för flyg- och försvarsindustri. Företag i Saabs leverantörskedja möter ofta höga säkerhetskrav, och cybersäkerhetslagen formaliserar mycket av det arbete som branschen redan känner till.',
+  },
+  vasteras: {
+    namedEmployers: ['ABB', 'Westinghouse'],
+    localAngle:
+      'Västerås är ett nav för elkraft- och energiteknik. Verksamheter kopplade till energisektorn hör till de mest reglerade under NIS2, med uttryckliga krav på driftsäkerhet och incidentrapportering.',
+  },
+  eskilstuna: {
+    namedEmployers: ['Volvo Construction Equipment'],
+    localAngle:
+      'Eskilstunas tillverkningsindustri bygger på industriella styrsystem och automation, där OT-säkerhet blir lika viktig som traditionell IT-säkerhet.',
+  },
+  sodertalje: {
+    namedEmployers: ['Scania', 'AstraZeneca'],
+    localAngle:
+      'Med stora arbetsgivare som Scania och AstraZeneca har Södertälje långa, internationella leverantörskedjor — och NIS2:s krav på leverantörssäkerhet träffar därför många underleverantörer i kommunen.',
+  },
+  lulea: {
+    namedEmployers: ['SSAB', 'datacenter (bl.a. Meta)'],
+    localAngle:
+      'Luleå kombinerar tung stålindustri med stora datacenter. Både samhällsviktig industri och digital infrastruktur omfattas av cybersäkerhetslagen, vilket gör staden särskilt berörd.',
+  },
+  kiruna: {
+    namedEmployers: ['LKAB'],
+    localAngle:
+      'Gruvnäringen i Kiruna är samhällsviktig och starkt beroende av industriella styrsystem. Avbrott genom cyberincidenter kan få konsekvenser långt utanför kommunen.',
+  },
+  gallivare: {
+    namedEmployers: ['LKAB', 'Boliden (Aitik)'],
+    localAngle:
+      'Gällivares gruvindustri vilar på automation och fjärrstyrda processer — en miljö där OT-säkerhet är direkt verksamhetskritisk.',
+  },
+  sandviken: {
+    namedEmployers: ['Sandvik'],
+    localAngle:
+      'Med materialteknik och avancerad tillverkning som bas är Sandviken beroende av säkra industriella system och en trygg leverantörskedja.',
+  },
+  karlskrona: {
+    namedEmployers: ['Saab Kockums', 'Marinbasen'],
+    localAngle:
+      'Karlskrona är en marin- och örlogsstad. Närvaron av försvars- och varvsindustri innebär att många lokala verksamheter möter höga säkerhetskrav, både genom lag och genom kundkrav.',
+  },
+  lund: {
+    namedEmployers: ['Tetra Pak', 'Axis Communications', 'Ericsson'],
+    localAngle:
+      'Lund är ett tech- och forskningskluster med stora forskningsanläggningar och teknikbolag, kunskapsintensiva verksamheter som hanterar stora mängder skyddsvärd information.',
+  },
+  oxelosund: {
+    namedEmployers: ['SSAB'],
+    localAngle:
+      'Oxelösund präglas av stålverket och hamnen, samhällsviktig infrastruktur där driftsäkerhet och cyberskydd hänger tätt ihop.',
+  },
+  koping: {
+    namedEmployers: ['Volvo'],
+    localAngle:
+      'Köpings tillverkningsindustri och hamn vid Mälaren gör kommunen beroende av både säkra styrsystem och en robust leverantörskedja.',
+  },
+  olofstrom: {
+    namedEmployers: ['Volvo Cars (pressverket)'],
+    localAngle:
+      'Olofström domineras av fordonsindustrins pressverk. Som djupt integrerad leverantör till fordonssektorn påverkas företagen direkt av storkundernas NIS2-krav.',
+  },
+  helsingborg: {
+    localAngle:
+      'Helsingborgs hamn är en av Sveriges största för gods och färjetrafik, en samhällsviktig logistiknod som omfattas av cybersäkerhetslagens krav på driftsäkerhet.',
+  },
+  jonkoping: {
+    localAngle:
+      'Jönköping är ett av landets största logistiknav. Transport- och logistiksektorn är utpekad under NIS2, vilket gör cybersäkerhet till en konkret fråga för många företag i kommunen.',
+  },
+  sundsvall: {
+    localAngle:
+      'Sundsvall förenar skogsindustri med flera statliga myndigheter och stora IT-verksamheter, en blandning av samhällsviktiga sektorer som alla berörs av cybersäkerhetslagen.',
+  },
+};
+
+/** Stable 0..n-1 selector derived from the slug (same output every build). */
+function variantIndex(k: Kommun, n: number): number {
+  let h = 0;
+  for (let i = 0; i < k.slug.length; i++) h = (h * 31 + k.slug.charCodeAt(i)) >>> 0;
+  return h % n;
+}
+
+/** Swedish list join: "a", "a och b", "a, b och c". */
+function svList(items: string[]): string {
+  if (items.length === 0) return '';
+  if (items.length === 1) return items[0];
+  return `${items.slice(0, -1).join(', ')} och ${items[items.length - 1]}`;
+}
+
+function sectorList(k: Kommun, limit?: number): string {
+  const labels = k.dominantSectors.map(getSectorLabel).map((l) => l.toLowerCase());
+  return svList(limit ? labels.slice(0, limit) : labels);
+}
+
+/** Resolve named employers from the kommun object or the enrichment map. */
+function resolveEmployers(k: Kommun): string[] | undefined {
+  return k.namedEmployers ?? kommunEnrichment[k.slug]?.namedEmployers;
+}
+
+/** Resolve the local angle from the kommun object or the enrichment map. */
+function resolveLocalAngle(k: Kommun): string | undefined {
+  return k.localAngle ?? kommunEnrichment[k.slug]?.localAngle;
+}
+
+/** Clause naming real local employers, or '' when none are recorded. */
+function employerClause(k: Kommun): string {
+  const employers = resolveEmployers(k);
+  if (!employers || employers.length === 0) return '';
+  const v = variantIndex(k, 3);
+  const list = svList(employers);
+  return [
+    ` Verksamheter som ${list} sätter prägel på det lokala näringslivet.`,
+    ` Bland de större arbetsgivarna finns ${list}.`,
+    ` Lokalt märks aktörer som ${list} tydligt.`,
+  ][v];
+}
+
+/** Intro paragraph — varies by population band, sectors, employers, variant. */
+export function getKommunIntro(k: Kommun): string {
+  const band = getPopulationBand(k);
+  const sectors = sectorList(k);
+  const top3 = sectorList(k, 3);
+  const pop = k.population.toLocaleString('sv-SE');
+  const v = variantIndex(k, 3);
+  const emp = employerClause(k);
+
+  const openers: Record<PopulationBand, string[]> = {
+    major: [
+      `${k.name} hör till Sveriges större kommuner, med ett brett näringsliv inom ${sectors}.`,
+      `Med ${pop} invånare är ${k.name} en av landets folkrikaste kommuner, där ${top3} väger tungt i näringslivet.`,
+      `${k.name} är en storstadskommun där ${sectors} samsas i ett diversifierat näringsliv.`,
+    ],
+    large: [
+      `${k.name} är en regional tyngdpunkt i ${k.county} med starka inslag av ${top3}.`,
+      `Med omkring ${pop} invånare är ${k.name} en av de större kommunerna i ${k.county}, präglad av ${top3}.`,
+      `${k.name} kombinerar ett etablerat näringsliv inom ${top3} med rollen som regionalt centrum.`,
+    ],
+    mid: [
+      `${k.name} är en mellanstor kommun i ${k.county} där ${top3} dominerar näringslivet.`,
+      `Med ${pop} invånare har ${k.name} ett näringsliv som vilar tungt på ${top3}.`,
+      `I ${k.name} präglas det lokala näringslivet av ${top3}.`,
+    ],
+    small: [
+      `${k.name} är en mindre kommun i ${k.county} med ${pop} invånare, där ${top3} betyder mycket lokalt.`,
+      `Trots sin storlek har ${k.name} ett näringsliv med tydliga inslag av ${top3}.`,
+      `${k.name} är en liten kommun där ${top3} utgör ryggraden i det lokala näringslivet.`,
+    ],
+  };
+
+  const bridges = [
+    `Både kommunens egna verksamheter och privata företag berörs av NIS2-direktivet och cybersäkerhetslagen.`,
+    `Det gör att cybersäkerhetslagen träffar ${k.name} brett, från kommunal förvaltning till privata aktörer och deras leverantörer.`,
+    `Flera av dessa sektorer omfattas direkt av NIS2, och leverantörskraven kaskaderar vidare ner i kedjan.`,
+  ];
+
+  return `${openers[band][v]}${emp} ${bridges[v]} Uppskattningsvis ${k.nis2Estimate} organisationer i ${k.name} berörs direkt.`;
+}
+
+/** Callout {title, text} — varies by population band + variant. */
+export function getKommunCallout(k: Kommun): { title: string; text: string } {
+  const band = getPopulationBand(k);
+  const v = variantIndex(k, 2);
+
+  if (band === 'major' || band === 'large') {
+    return {
+      title: ['Samordning över flera sektorer', 'Skala och tillsyn på bred front'][v],
+      text: `I en kommun av ${k.name}s storlek möter verksamheter ofta flera tillsynsmyndigheter parallellt, här ${svList(k.tillsynsmyndigheter)}. Kommunala bolag kan omfattas i olika sektorer samtidigt, vilket ställer höga krav på samordning. Vår plattform Securapilot ger realtidsöverblick över hela compliance-arbetet.`,
+    };
+  }
+  if (k.type === 'industrial') {
+    return {
+      title: ['Leverantörskedjor och OT-säkerhet', 'Industrins säkerhet bortom IT'][v],
+      text: `${k.name} är en utpräglad industrikommun, och då blir OT-säkerhet (styrsystem, SCADA, industriella nät) lika viktig som IT-säkerheten. NIS2 ställer uttryckliga krav på leverantörskedjan, så era storkunders efterlevnad påverkar direkt kraven på er. Vi hjälper er täcka både IT och OT i samma arbete.`,
+    };
+  }
+  return {
+    title: ['Proportionellt och anpassat efter er verklighet', 'Lagom åtgärder för er storlek'][v],
+    text: `Cybersäkerhetslagen talar om "lämpliga och proportionella åtgärder". Vi hjälper er tolka vad det betyder konkret för en verksamhet i ${k.name}. Med CISO-as-a-Service får ni strategisk säkerhetsstyrning utan att rekrytera specialister, och med Securapilot löpande koll utan dyra årliga revisioner.`,
+  };
+}
+
+/** Short genuinely-local section — uses localAngle when present. */
+export function getKommunLocalSection(k: Kommun): string | null {
+  const angle = resolveLocalAngle(k);
+  if (angle) return angle;
+  // Fall back to a sector-grounded sentence rather than inventing specifics.
+  const v = variantIndex(k, 2);
+  const top = getSectorLabel(k.dominantSectors[0]).toLowerCase();
+  return [
+    `Med ${top} som en bärande sektor är ${k.name} extra känsligt för störningar i digitala system och leverantörskedjor, just de risker NIS2 är skapat för att hantera.`,
+    `Eftersom ${top} väger tungt lokalt får avbrott och cyberincidenter snabbt konsekvenser för både sysselsättning och samhällsviktig verksamhet i ${k.name}.`,
+  ][v];
+}
+
 export function getKommunMetaTitle(k: Kommun): string {
   return k.metaTitle ?? `Cybersäkerhet & NIS2 i ${k.name}, för företag och kommun | Verit`;
 }
 
 export function getKommunMetaDescription(k: Kommun): string {
   if (k.metaDescription) return k.metaDescription;
-  const topSectors = k.dominantSectors.slice(0, 3).map(getSectorLabel).join(', ');
-  return `${k.name}s näringsliv inom ${topSectors.toLowerCase()} berörs av cybersäkerhetslagen. Verit hjälper företag och kommun med NIS2, ISO 27001 och cybersäkerhet.`;
+  const top = sectorList(k, 3);
+  const v = variantIndex(k, 3);
+  return [
+    `${k.name}s näringsliv inom ${top} berörs av cybersäkerhetslagen. Verit hjälper företag och kommun med NIS2, ISO 27001 och praktisk cybersäkerhet.`,
+    `Cybersäkerhetslagen träffar ${k.name} brett — ${k.nis2Estimate} organisationer berörs. Verit hjälper er med NIS2, ISO 27001 och CISO-as-a-Service.`,
+    `NIS2 och cybersäkerhetslagen i ${k.name}: vad som gäller för ${top}, och hur Verit hjälper företag och kommun att komma igång pragmatiskt.`,
+  ][v];
 }
 
 interface FaqItem {
@@ -3284,7 +3532,7 @@ export function getKommunFaq(k: Kommun): FaqItem[] {
   const faq: FaqItem[] = [
     {
       question: `Vilka verksamheter i ${k.name} berörs av cybersäkerhetslagen?`,
-      answer: `Uppskattningsvis ${k.nis2Estimate} medelstora och stora organisationer i ${k.name} berörs direkt av NIS2-direktivet och cybersäkerhetslagen. Det inkluderar verksamheter inom ${k.dominantSectors.map(getSectorLabel).join(', ').toLowerCase()}. Kommunen själv omfattas som offentlig förvaltning, och kommunala bolag inom energi och VA berörs i sina respektive sektorer.`,
+      answer: `Uppskattningsvis ${k.nis2Estimate} medelstora och stora organisationer i ${k.name} berörs direkt av NIS2-direktivet och cybersäkerhetslagen. Det inkluderar verksamheter inom ${sectorList(k)}.${employerClause(k)} Kommunen själv omfattas som offentlig förvaltning, och kommunala bolag inom energi och VA berörs i sina respektive sektorer.`,
     },
     {
       question: `Vilka tillsynsmyndigheter ansvarar för NIS2 i ${k.name}?`,
@@ -3325,6 +3573,58 @@ export function getKommunFaq(k: Kommun): FaqItem[] {
   }
 
   return faq;
+}
+
+/** Great-circle distance in km between two lat/lng points (haversine). */
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+/**
+ * Nearest municipalities by great-circle distance — computed deterministically
+ * from lat/lng, so every kommun gets neighbour links without manual data entry.
+ * Prefers same-county neighbours, then fills from the rest within `maxKm`.
+ */
+export function getNeighbours(k: Kommun, count = 4, maxKm = 90): Kommun[] {
+  const ranked = kommuner
+    .filter((o) => o.slug !== k.slug)
+    .map((o) => ({ k: o, dist: haversineKm(k.lat, k.lng, o.lat, o.lng) }))
+    .sort((a, b) => a.dist - b.dist);
+
+  const sameCounty = ranked.filter((r) => r.k.county === k.county && r.dist <= maxKm);
+  const result = sameCounty.slice(0, count).map((r) => r.k);
+  if (result.length < count) {
+    for (const r of ranked) {
+      if (result.length >= count) break;
+      if (r.dist > maxKm) break;
+      if (!result.includes(r.k)) result.push(r.k);
+    }
+  }
+  // Guarantee at least the two nearest, even beyond maxKm (sparse north).
+  if (result.length < 2) {
+    for (const r of ranked) {
+      if (result.length >= 2) break;
+      if (!result.includes(r.k)) result.push(r.k);
+    }
+  }
+  return result;
+}
+
+export type PopulationBand = 'small' | 'mid' | 'large' | 'major';
+
+/** Coarse size band — drives sentence selection so prose varies by scale. */
+export function getPopulationBand(k: Kommun): PopulationBand {
+  if (k.population >= 150000) return 'major';
+  if (k.population >= 50000) return 'large';
+  if (k.population >= 15000) return 'mid';
+  return 'small';
 }
 
 /** Group municipalities by county, sorted alphabetically */
