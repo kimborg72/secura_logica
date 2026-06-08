@@ -1,0 +1,110 @@
+title: "CRA — Cyber Resilience Act med löpande stöd"
+shortTitle: "CRA"
+slug: "cra"
+metaTitle: "CRA Cyber Resilience Act — löpande stöd för utvecklingsteam | Verit"
+metaDescription: "CRA är redan i kraft, med stora skyldigheter fram till 2027. Vi hjälper utvecklingsteam bygga säkert med OWASP som grund — kickstart med ASVS-baseline plus löpande stöd som följer er hela vägen."
+excerpt: "Bygg säkert utan att bromsa. Vi möter Cyber Resilience Act med en kickstart i ASVS plus löpande stöd som följer ert utvecklingsteam hela vägen till 2027."
+introLead: >
+  Cyber Resilience Act är redan i kraft. De stora skyldigheterna fasas in stegvis fram till 2027.
+  Vi hjälper utvecklingsteam möta CRA som en biprodukt av god ingenjörskonst — inte som ett
+  separat efterlevnadsprojekt.
+introduction: |
+  Vi börjar inte i regelverket. Vi börjar i produkten. Med OWASP (ASVS, Cheat Sheets, SAMM) som arbetsverktyg bygger vi säkerheten in i hur teamet jobbar varje vecka. När säkerheten finns inbyggd blir efterlevnaden enklare att visa senare.
+
+  CRA-stödet kommer i två delar. En kickstart där vi sätter ASVS-baseline, kartlägger nuläget och tar fram en konkret backlog. Och ett löpande stöd där vi följer teamet månad för månad — med ASVS-genomgångar, regulatorisk bevakning och sparring i konkreta beslut.
+
+  Arbetssätt först. Dokumentation som biprodukt. Säkerhet hela vägen.
+targetAudience:
+  heading: "För vem?"
+  description: >
+    CRA-stödet är gjort för produktteam som vet att förordningen kommer men inte vill bygga upp
+    en separat efterlevnadsorganisation runt den.
+  segments:
+    - "CTO:er och tech leads"
+    - "Produktägare med säkerhetsansvar"
+    - "Security champions i utvecklingsteam"
+    - "CISO:er som stöttar ett eller flera produktteam"
+    - "Hårdvarutillverkare med inbäddad mjukvara"
+    - "SaaS-bolag med produkter på EU-marknaden"
+benefits:
+  - title: "ASVS-baseline anpassad till er produkt"
+    description: >
+      Vi väljer rätt ASVS-nivå utifrån er produkt och risk, och kartlägger vad ni redan
+      gör. Många upptäcker att grunden redan finns på plats.
+  - title: "Löpande regulatorisk bevakning"
+    description: >
+      Ändringar i CRA-tekniska standarder, ENISA-vägledning och relevanta CSIRT-publikationer
+      sammanfattas och översätts till handlingsbara förslag för ert team.
+  - title: "Spårbar dokumentation som biprodukt"
+    description: >
+      När säkerheten finns i hur ni arbetar produceras dokumentationen automatiskt.
+      Granskaren ser hur kontroller faktiskt byggdes in — inte bara att de finns på papper.
+  - title: "Förutsägbar månadskostnad"
+    description: >
+      Istället för ett stort projekt vart annat år får ni en löpande sparringpartner till
+      en kostnad ni kan planera kring.
+process:
+  - step: 1
+    title: "Kickstart-intervjuer"
+    description: >
+      Snabbintervjuer med tech lead, säkerhetsansvarig och produktägare. Vi lär känna
+      produkten, arkitekturen och hur teamet faktiskt fattar beslut idag.
+    duration: "Vecka 1"
+  - step: 2
+    title: "ASVS-baseline och gap-analys"
+    description: >
+      Välj ASVS-nivå. Markera vad ni redan gör. Identifiera gap och prioritera dem.
+    duration: "Vecka 2–3"
+  - step: 3
+    title: "SAMM-mognadsbedömning"
+    description: >
+      Lätt SAMM-bedömning som ger en bild av var ni står över tid — inte bara en
+      ögonblicksbild.
+    duration: "Vecka 3"
+  - step: 4
+    title: "Backlog och ledningsrapport"
+    description: >
+      Konkret backlog med prioriterade kontroller och arbetssätt. Ledningsrapport med
+      nuläge mot CRA, riskbild och plan framåt.
+    duration: "Vecka 4–6"
+  - step: 5
+    title: "Övergång till löpande stöd"
+    description: >
+      Månadsvis touch point, kvartalsvis ASVS-genomgång, regulatorisk bevakning och
+      sparring i konkreta beslut.
+    duration: "Löpande"
+deliverables:
+  - "ASVS-nivå anpassad till er produkt och risk"
+  - "Konkret backlog med prioriterade kontroller — inte en lista med ord"
+  - "SAMM-mognadsbedömning som följs över tid"
+  - "Cheat Sheets integrerade i teamets vardagliga beslut"
+  - "Regulatorisk bevakning utan att teamet behöver läsa förordningstexten"
+  - "Spårbar dokumentation byggd som biprodukt av utvecklingen"
+  - "En extern part som kan svara granskaren tillsammans med er"
+  - "Förutsägbar månadskostnad"
+faq:
+  - question: "Måste vi vara certifierade enligt något för CRA?"
+    answer: >
+      Nej. Men ASVS- och SAMM-arbetet ger evidens som granskaren kan utgå från —
+      konkreta kontroller och spårbar mognad istället för en pärm med ord.
+  - question: "Vi har redan en konsult som gör vår NIS2. Krockar det?"
+    answer: >
+      Nej. NIS2/cybersäkerhetslagen handlar om organisation och drift. CRA handlar om
+      produkten ni säljer. De kompletterar varandra och vi koordinerar gärna med er
+      befintliga NIS2-rådgivare.
+  - question: "Behöver hela utvecklingsteamet vara involverat löpande?"
+    answer: >
+      Nej. Ofta räcker tech lead plus en security champion på månadsmötet. Större
+      genomgångar görs kvartalsvis med fler i teamet inbjudna.
+  - question: "Vad händer 2027 om vi inte är redo?"
+    answer: >
+      Sanktioner kan utdömas och produkter kan dras tillbaka från EU-marknaden. Hela
+      poängen med löpande stöd är att ni inte ska hamna där — ni bygger mognaden över
+      tid istället för i en panikinsats sista året.
+relatedServices:
+  - "nis2"
+  - "iso27001"
+  - "ai-fasttrack"
+ctaText: "Boka 30 min CRA-check"
+ctaDescription: "Ett kort kvalificeringssamtal där vi tillsammans ser var ni står idag och om CRA-stödet är rätt för er produkt."
+order: 3

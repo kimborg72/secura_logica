@@ -1,0 +1,110 @@
+title: "CRA — Cyber Resilience Act with ongoing support"
+shortTitle: "CRA"
+slug: "cra"
+metaTitle: "CRA Cyber Resilience Act — ongoing support for product teams | Verit"
+metaDescription: "The Cyber Resilience Act is already in force, with major obligations through 2027. We help product teams build securely with OWASP as foundation — an ASVS kickstart plus ongoing support all the way."
+excerpt: "Build securely without slowing down. We meet the Cyber Resilience Act with an ASVS kickstart and ongoing support that walks alongside your product team all the way to 2027."
+introLead: >
+  The Cyber Resilience Act is already in force. The major obligations phase in step by step
+  through 2027. We help product teams meet CRA as a by-product of good engineering — not as
+  a separate compliance project.
+introduction: |
+  We don't start in the regulation. We start in the product. With OWASP (ASVS, Cheat Sheets, SAMM) as the working reference, we build security into how the team works every week. Once security lives in how you work, compliance becomes much easier to demonstrate later.
+
+  CRA support comes in two parts. A kickstart where we set an ASVS baseline, map the current state, and produce a concrete backlog. And ongoing support where we walk alongside the team month by month — with ASVS reviews, regulatory tracking, and sparring on concrete decisions.
+
+  Ways of working first. Documentation as a by-product. Security all the way through.
+targetAudience:
+  heading: "Who is it for?"
+  description: >
+    CRA support is built for product teams who know the regulation is coming but don't want
+    to build a separate compliance organisation around it.
+  segments:
+    - "CTOs and tech leads"
+    - "Product owners with security responsibility"
+    - "Security champions in development teams"
+    - "CISOs supporting one or more product teams"
+    - "Hardware manufacturers with embedded software"
+    - "SaaS companies with products on the EU market"
+benefits:
+  - title: "ASVS baseline tailored to your product"
+    description: >
+      We choose the right ASVS level for your product and risk, and map what you already
+      do. Many discover that the foundation is already in place.
+  - title: "Ongoing regulatory tracking"
+    description: >
+      Changes in CRA technical standards, ENISA guidance and relevant CSIRT publications
+      are summarised and translated into actionable suggestions for your team.
+  - title: "Traceable documentation as a by-product"
+    description: >
+      When security lives in how you work, the documentation is produced automatically.
+      Auditors see how controls were actually built in — not just that they exist on paper.
+  - title: "Predictable monthly cost"
+    description: >
+      Instead of a large project every other year, you get a continuous sparring partner
+      at a cost you can plan around.
+process:
+  - step: 1
+    title: "Kickstart interviews"
+    description: >
+      Rapid interviews with the tech lead, security lead and product owner. We get to know
+      the product, the architecture and how the team actually makes decisions today.
+    duration: "Week 1"
+  - step: 2
+    title: "ASVS baseline and gap analysis"
+    description: >
+      Choose the ASVS level. Mark what you already do. Identify gaps and prioritise them.
+    duration: "Week 2–3"
+  - step: 3
+    title: "SAMM maturity assessment"
+    description: >
+      A lightweight SAMM assessment that gives a picture of where you stand over time —
+      not just a snapshot.
+    duration: "Week 3"
+  - step: 4
+    title: "Backlog and leadership report"
+    description: >
+      Concrete backlog with prioritised controls and ways of working. Leadership report
+      with current state against CRA, risk picture and plan forward.
+    duration: "Week 4–6"
+  - step: 5
+    title: "Transition to ongoing support"
+    description: >
+      Monthly touch point, quarterly ASVS review, regulatory tracking and sparring on
+      concrete decisions.
+    duration: "Ongoing"
+deliverables:
+  - "ASVS level tailored to your product and risk"
+  - "Concrete backlog of prioritised controls — not a list of words"
+  - "SAMM maturity assessment tracked over time"
+  - "Cheat Sheets embedded in the team's everyday decisions"
+  - "Regulatory tracking without your team having to read the regulation"
+  - "Traceable documentation built as a by-product of development"
+  - "An external party who can answer the auditor alongside you"
+  - "Predictable monthly cost"
+faq:
+  - question: "Do we need to be certified to anything for CRA?"
+    answer: >
+      No. But ASVS and SAMM work gives auditors evidence they can work from — concrete
+      controls and traceable maturity rather than a binder of words.
+  - question: "We already have a consultant doing our NIS2. Does this clash?"
+    answer: >
+      No. NIS2 / the Cybersecurity Act is about organisation and operations. CRA is about
+      the product you sell. They complement each other and we're happy to coordinate with
+      your existing NIS2 advisor.
+  - question: "Does the whole development team need to be involved ongoing?"
+    answer: >
+      No. Often the tech lead plus one security champion at the monthly meeting is enough.
+      Larger reviews happen quarterly with more of the team invited.
+  - question: "What happens in 2027 if we aren't ready?"
+    answer: >
+      Sanctions can be imposed and products can be withdrawn from the EU market. The whole
+      point of ongoing support is that you don't end up there — you build maturity over
+      time rather than in a panic push the final year.
+relatedServices:
+  - "nis2"
+  - "iso27001"
+  - "ai-fasttrack"
+ctaText: "Book a 30-minute CRA check"
+ctaDescription: "A short qualifying conversation where we look at where you stand today and whether ongoing CRA support is right for your product."
+order: 3

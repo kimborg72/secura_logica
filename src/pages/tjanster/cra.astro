@@ -1,0 +1,511 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import ServicePackages from '@components/sections/ServicePackages.astro';
+import ComparisonTable from '@components/sections/ComparisonTable.astro';
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+import { site, organizationSchema } from '@data/site';
+import { getServicesByLocale } from '@i18n/content';
+import { getServicePath, getServicesPath, getInsightPath } from '@i18n/routes';
+
+const locale = 'sv' as const;
+const slug = 'cra';
+
+const allServices = await getServicesByLocale(locale);
+const relatedSlugs = ['nis2', 'iso27001', 'ai-fasttrack'];
+const relatedServices = allServices.filter((s) => relatedSlugs.includes(s.data.slug));
+
+const metaTitle = 'CRA Cyber Resilience Act — löpande stöd för utvecklingsteam | Verit';
+const metaDescription =
+  'CRA är redan i kraft, med stora skyldigheter fram till 2027. Vi hjälper utvecklingsteam bygga säkert med OWASP som grund — kickstart med ASVS-baseline plus löpande stöd som följer er hela vägen.';
+
+const pageUrl = `${site.url}${getServicePath(locale, slug)}`;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'CRA — Cyber Resilience Act med löpande stöd',
+  description: metaDescription,
+  serviceType: 'CRA Compliance Consulting',
+  provider: {
+    '@type': 'Organization',
+    name: organizationSchema.name,
+    url: organizationSchema.url,
+  },
+  areaServed: { '@type': 'Country', name: 'Sweden' },
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'CTO, tech lead, produktägare, security champion, CISO',
+  },
+  url: pageUrl,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Måste vi vara certifierade enligt något för CRA?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nej. Men ASVS- och SAMM-arbetet ger evidens som granskaren kan utgå från — konkreta kontroller och spårbar mognad istället för en pärm med ord.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Vi har redan en konsult som gör vår NIS2. Krockar det?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nej. NIS2/cybersäkerhetslagen handlar om organisation och drift. CRA handlar om produkten ni säljer. De kompletterar varandra och vi koordinerar gärna med er befintliga NIS2-rådgivare.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Behöver hela utvecklingsteamet vara involverat löpande?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nej. Ofta räcker tech lead plus en security champion på månadsmötet. Större genomgångar görs kvartalsvis med fler i teamet inbjudna.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Vad händer 2027 om vi inte är redo?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sanktioner kan utdömas och produkter kan dras tillbaka från EU-marknaden. Hela poängen med löpande stöd är att ni inte ska hamna där — ni bygger mognaden över tid istället för i en panikinsats sista året.',
+      },
+    },
+  ],
+};
+
+const challenges = [
+  {
+    title: 'Förordningen som checklista',
+    description:
+      'Team stressas att börja i lagtexten istället för i produkten. Säkerhet blir ett dokumentationsprojekt vid sidan av utvecklingen, inte en egenskap hos produkten.',
+  },
+  {
+    title: 'OWASP utan styrning',
+    description:
+      'ASVS, Cheat Sheets och SAMM finns gratis på internet. Men utan löpande styrning används de osystematiskt, av enstaka utvecklare, och försvinner när någon byter team.',
+  },
+  {
+    title: 'Granskning utan spårbarhet',
+    description:
+      'När granskaren frågar hur säkerhet byggdes in finns svaret muntligt eller i någons huvud. Underlaget för faktiska beslut saknas, även om dokumenten ser snygga ut.',
+  },
+];
+
+const packages = [
+  {
+    name: 'CRA Kickstart',
+    duration: '4–6 veckor',
+    durationLabel: 'Tidsram',
+    description:
+      'Engångsinsats för att etablera en ASVS-baseline och konkret backlog. Ni får en bild av var ni står mot CRA och vilka kontroller som ska prioriteras först. Bra startpunkt även om ni inte planerar löpande stöd direkt.',
+    accent: 'teal' as const,
+    ctaLabel: 'Boka CRA Kickstart',
+    steps: [
+      {
+        number: 1,
+        title: 'Snabbintervjuer',
+        description:
+          'Tech lead, säkerhetsansvarig och produktägare. Vi lär känna produkten, arkitekturen och hur teamet faktiskt fattar beslut idag.',
+      },
+      {
+        number: 2,
+        title: 'ASVS-baseline',
+        description:
+          'Välj ASVS-nivå utifrån produkt och risk. Kartlägg vad ni redan gör. Identifiera och prioritera gap.',
+      },
+      {
+        number: 3,
+        title: 'SAMM-mognadsbedömning',
+        description:
+          'Lätt SAMM-bedömning som ger en bild av var ni står över tid — inte bara en ögonblicksbild.',
+      },
+      {
+        number: 4,
+        title: 'Backlog och ledningsrapport',
+        description:
+          'Konkret backlog med prioriterade kontroller och arbetssätt. Ledningsrapport med nuläge mot CRA, riskbild och plan framåt.',
+      },
+    ],
+  },
+  {
+    name: 'CRA Sustain',
+    duration: 'Löpande, 3/6/12 mån',
+    durationLabel: 'Tidsram',
+    description:
+      'Löpande stöd som följer ert team månad för månad. ASVS-genomgångar, regulatorisk bevakning och sparring i konkreta beslut. Bygger upp efterlevnaden över tid istället för i en panikinsats inför granskning.',
+    accent: 'lime' as const,
+    ctaLabel: 'Kontakta oss',
+    steps: [
+      {
+        number: 1,
+        title: 'Månadsvis touch point',
+        description:
+          'Tech lead och security champion möts med oss varje månad. Vi går igenom vad som händt, vad som väntar och vilka beslut som behöver tas.',
+      },
+      {
+        number: 2,
+        title: 'Kvartalsvis ASVS-genomgång',
+        description:
+          'Större genomgång där vi uppdaterar gap-status, justerar prioritering och bjuder in fler från teamet. SAMM-mognaden mäts på nytt.',
+      },
+      {
+        number: 3,
+        title: 'Regulatorisk bevakning',
+        description:
+          'Ändringar i CRA-tekniska standarder (ETSI/CEN-CENELEC), ENISA-vägledning och relevanta CSIRT-publikationer sammanfattas och översätts till handlingsbara förslag.',
+      },
+      {
+        number: 4,
+        title: 'Beslut i vardagen',
+        description:
+          'När teamet står inför ett konkret val — hur ska vi hantera detta? — finns vi som sparringpartner via Cheat Sheets och ASVS.',
+      },
+      {
+        number: 5,
+        title: 'Beredskap inför granskning',
+        description:
+          'När det blir aktuellt finns dokumentationsstödet redan på plats. Vi svarar granskaren tillsammans med er, inte istället för er.',
+      },
+    ],
+  },
+];
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'CRA-paket',
+  itemListElement: packages.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: `Verit ${p.name}`,
+      description: p.description,
+      provider: { '@type': 'Organization', name: organizationSchema.name },
+    },
+  })),
+};
+
+const comparisonRows = [
+  {
+    dimension: 'Tempo',
+    generic: 'Stort projekt, sedan tyst',
+    fasttrack: 'Löpande, lågt tempo, hög närvaro',
+  },
+  {
+    dimension: 'Fokus',
+    generic: 'Producera dokument',
+    fasttrack: 'Arbetssätt som producerar dokument som biprodukt',
+  },
+  {
+    dimension: 'Standard',
+    generic: 'Bygger eget ramverk',
+    fasttrack: 'OWASP (ASVS, Cheat Sheets, SAMM)',
+  },
+  {
+    dimension: 'Regulatorik',
+    generic: 'Färsk vid leverans, åldras sedan',
+    fasttrack: 'Bevakad löpande, ni får uppdateringar',
+  },
+  {
+    dimension: 'Granskningsberedskap',
+    generic: 'Snabbinsats inför audit',
+    fasttrack: 'Spårbar dokumentation byggd över tid',
+  },
+  {
+    dimension: 'Värdet över tid',
+    generic: 'Sjunker när rapporten åldras',
+    fasttrack: 'Stiger när teamets mognad växer',
+  },
+];
+
+const expectations = [
+  'En ASVS-nivå anpassad till er produkt och risk — inte en generisk checklista.',
+  'En konkret backlog av prioriterade kontroller, inte en lista med ord.',
+  'Cheat Sheets integrerade i teamets vardagliga beslut, så säkra val blir det enkla valet.',
+  'SAMM-mognad uppmätt och spårad över tid — så att förbättringen är synlig, inte påstådd.',
+  'Regulatorisk bevakning utan att teamet behöver läsa förordningstexten.',
+  'Spårbar dokumentation byggd som biprodukt av utvecklingen, inte som ett separat spår.',
+  'En extern part som kan svara granskaren tillsammans med er — inte en konsult som försvunnit.',
+  'Förutsägbar månadskostnad istället för stort projekt vart annat år.',
+];
+
+const faqItems = faqSchema.mainEntity.map((q) => ({
+  question: q.name,
+  answer: q.acceptedAnswer.text,
+}));
+
+const lastReviewed = 'juni 2026';
+
+const caseSteps = [
+  {
+    label: 'Utgångsläge',
+    title: 'Vet att CRA kommer, vet inte var de står',
+    description:
+      'Ett produktteam med en SaaS-produkt på EU-marknaden visste att Cyber Resilience Act fasas in fram till 2027. De hade läst förordningen, blivit oroliga, och försökt börja i dokumentationsänden — utan att veta vilka kontroller produkten faktiskt uppfyllde.',
+  },
+  {
+    label: 'Insats',
+    title: 'ASVS-baseline plus löpande sparring',
+    description:
+      'Vi satte en ASVS-baseline anpassad till produktens risk och kartlade vad teamet redan gjorde. Cheat Sheets blev en naturlig referens i kodgranskningar. Månadsvis touch point med tech lead och security champion höll mognaden synlig — istället för att ligga och samla damm i ett dokument.',
+  },
+  {
+    label: 'Resultat',
+    title: 'Efterlevnad byggd över tid, ingen panik',
+    description:
+      'Efter sex månader hade teamet en konkret backlog där tre fjärdedelar av ASVS-kontrollerna var avbockade. Dokumentationen producerades automatiskt som biprodukt av kodgranskningarna. När granskningsfrågan kom ett halvår senare fanns underlaget redan — inte i en pärm, utan i hur teamet faktiskt arbetade.',
+  },
+];
+---
+
+<PageLayout
+  title={metaTitle}
+  description={metaDescription}
+  ogImage="/og/tjanster/cra.png"
+  locale={locale}
+  headerTheme="dark"
+>
+  <JsonLd schema={serviceSchema} />
+  <JsonLd schema={faqSchema} />
+  <JsonLd schema={itemListSchema} />
+
+  <HeroSimple
+    title="CRA-stöd — bygg säkert utan att bromsa"
+    description="Vi hjälper utvecklingsteam möta Cyber Resilience Act som en biprodukt av god ingenjörskonst. Kickstart med ASVS-baseline och löpande stöd som följer er hela vägen till 2027."
+    breadcrumbs={[
+      { label: 'Tjänster', href: getServicesPath(locale) },
+      { label: 'CRA' },
+    ]}
+    bgImage="/images/heroes/services/cra.webp"
+    bgImageAlt=""
+    locale={locale}
+  />
+
+  <!-- Intro & grundprincip -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-3xl" data-reveal>
+        <p class="overline mb-4">Om tjänsten</p>
+        <p class="lead text-slate mb-6">
+          Cyber Resilience Act har redan trätt i kraft. De stora skyldigheterna fasas in stegvis fram till 2027. Det betyder att rätt tidpunkt att förbättra arbetssättet är nu, medan ni fortfarande kan göra det i lugn takt.
+        </p>
+        <p class="text-gray leading-relaxed mb-4">
+          Vi börjar inte i regelverket. Vi börjar i produkten. Med OWASP som arbetsverktyg bygger vi säkerheten in i hur teamet jobbar varje vecka. När säkerheten finns inbyggd blir <a href={getInsightPath(locale, 'sluta-jaga-cra-borja-bygga-sakert')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">efterlevnaden en biprodukt av god ingenjörskonst</a> — inte ett separat projekt vid sidan av utvecklingen.
+        </p>
+        <p class="text-gray leading-relaxed mb-4">
+          CRA-stödet kommer i två delar. En kickstart där vi sätter ASVS-baseline, kartlägger nuläget och tar fram en konkret backlog. Och ett löpande stöd där vi följer teamet månad för månad — med ASVS-genomgångar, regulatorisk bevakning och sparring i konkreta beslut.
+        </p>
+        <p class="text-gray leading-relaxed">
+          Det här är inte ett dokumentationsprojekt som ska bockas av. <a href={getInsightPath(locale, 'vart-program-loser-inte-ert-problem')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">Program och pärmar löser inte problemet</a> — det krävs en process som ser till att säkerhet faktiskt byggs in i produkten över tid. Det är där löpande stöd skiljer sig från ett engångsprojekt.
+        </p>
+      </div>
+
+      <div class="mt-10 max-w-3xl bg-surface border-l-4 border-teal p-6 lg:p-8" data-reveal>
+        <p class="overline mb-2 text-teal-dark">Grundprincip</p>
+        <p class="text-xl lg:text-2xl font-semibold text-navy leading-snug">
+          Bygg säkert. Dokumentationen kommer som biprodukt.
+        </p>
+        <p class="mt-3 text-sm text-gray italic">Arbetssätt först. Dokumentation som biprodukt. Säkerhet hela vägen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Utmaningen -->
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">Utmaningen</p>
+        <h2>Varför CRA-projekt går snett</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {challenges.map((c, i) => (
+          <div
+            class="bg-white rounded-xl border border-border p-6 lg:p-8 relative"
+            data-reveal
+            data-delay={String(i + 1)}
+          >
+            <div class="text-4xl font-bold text-navy/10 mb-3 leading-none">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <h3 class="text-lg font-semibold text-navy mb-3">{c.title}</h3>
+            <p class="text-sm text-gray leading-relaxed">{c.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center" data-reveal>
+        <p class="inline-block text-sm font-semibold text-accent-dark bg-accent/25 px-4 py-2 rounded-full italic">
+          Resultatet blir compliance på papper — inte i produkten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Två paket -->
+  <ServicePackages
+    packages={packages}
+    locale={locale}
+    overline="CRA-stöd"
+    heading="Två vägar in i CRA-arbetet"
+  />
+
+  <!-- Jämförelsetabell -->
+  <ComparisonTable
+    rows={comparisonRows}
+    dimensionLabel="Dimension"
+    genericLabel="Typiskt engångsprojekt"
+    fasttrackLabel="Verit CRA Sustain"
+    overline="Jämförelse"
+    heading="CRA Sustain jämfört med ett typiskt engångsprojekt"
+    locale={locale}
+  />
+
+  <!-- Kundcase / metod -->
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">Så ser det ut i praktiken</p>
+        <h2>Från CRA-oro till spårbar mognad</h2>
+        <p class="text-gray leading-relaxed mt-4">
+          Anonymiserat produktteamscase. Så här ser löpande CRA-stöd ut i vardagen.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {caseSteps.map((c, i) => (
+          <div
+            class="bg-white rounded-xl border border-border p-6 lg:p-8 relative"
+            data-reveal
+            data-delay={String(i + 1)}
+          >
+            <div class="text-4xl font-bold text-navy/10 mb-3 leading-none">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <p class="overline mb-2 text-teal-dark">{c.label}</p>
+            <h3 class="text-lg font-semibold text-navy mb-3">{c.title}</h3>
+            <p class="text-sm text-gray leading-relaxed">{c.description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/*
+        TODO: Aktivera kundröst-blocket nedan när Kim har en attribuerbar quote.
+        Ta bort omslagskommentaren och fyll i quote + roll/bransch.
+
+        <figure class="mt-10 max-w-3xl mx-auto bg-white border-l-4 border-teal p-6 lg:p-8" data-reveal>
+          <blockquote class="text-lg lg:text-xl text-navy leading-snug font-medium">
+            "Kundens egna ord."
+          </blockquote>
+          <figcaption class="mt-3 text-sm text-gray">
+            CTO, nordiskt SaaS-bolag
+          </figcaption>
+        </figure>
+      */}
+    </div>
+  </section>
+
+  <!-- Vad teamet och ledningen får -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">Leverans</p>
+        <h2>Vad teamet och ledningen får ut av CRA-stödet</h2>
+      </div>
+
+      <ul class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {expectations.map((item, i) => (
+          <li
+            class="flex items-start gap-4 bg-surface rounded-xl border border-border p-5 lg:p-6"
+            data-reveal
+            data-delay={String((i % 4) + 1)}
+          >
+            <div class="shrink-0 w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-teal-dark"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="text-slate leading-relaxed text-sm lg:text-base pt-1">{item}</p>
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-10 max-w-3xl text-sm text-gray" data-reveal>
+        Behöver ni även stöd på organisations- och driftnivå kompletterar vi med <a href={getServicePath(locale, 'nis2')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">NIS2-arbete</a> eller <a href={getServicePath(locale, 'ciso-as-a-service')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">CISO-as-a-Service</a>. CRA-stödet är fokuserat på produkten.
+      </p>
+    </div>
+  </section>
+
+  <!-- Relaterade tjänster -->
+  {relatedServices.length > 0 && (
+    <section class="section-sm bg-surface">
+      <div class="container">
+        <h2 class="mb-10" data-reveal>Relaterade tjänster</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {relatedServices.map((s, i) => (
+            <div data-reveal data-delay={String(i + 1)}>
+              <ServiceCard
+                title={s.data.title}
+                description={s.data.excerpt}
+                href={getServicePath(locale, s.data.slug)}
+                locale={locale}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl mb-10" data-reveal>
+        <p class="overline mb-3">Vanliga frågor</p>
+        <h2>Frågor vi får från produktteam och ledning</h2>
+      </div>
+
+      <div class="max-w-3xl space-y-3">
+        {faqItems.map((item, i) => (
+          <details
+            class="group bg-surface border border-border p-5 lg:p-6"
+            data-reveal
+            data-delay={String((i % 3) + 1)}
+          >
+            <summary class="flex items-start justify-between gap-4 cursor-pointer list-none font-semibold text-navy">
+              <span>{item.question}</span>
+              <span class="shrink-0 text-teal-dark text-xl leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-4 text-gray leading-relaxed text-sm lg:text-base">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-12 text-xs text-gray" data-reveal>
+        Senast uppdaterad: {lastReviewed}.
+      </p>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Redo att börja?"
+    description="Boka 30 min CRA-check. Ett kort kvalificeringssamtal där vi tillsammans ser var ni står idag och om CRA-stödet är rätt för er produkt."
+    buttonText="Boka 30 min CRA-check"
+    locale={locale}
+  />
+</PageLayout>

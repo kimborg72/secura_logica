@@ -1,0 +1,511 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import ServicePackages from '@components/sections/ServicePackages.astro';
+import ComparisonTable from '@components/sections/ComparisonTable.astro';
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+import { site, organizationSchema } from '@data/site';
+import { getServicesByLocale } from '@i18n/content';
+import { getServicePath, getServicesPath, getInsightPath } from '@i18n/routes';
+
+const locale = 'en' as const;
+const slug = 'cra';
+
+const allServices = await getServicesByLocale(locale);
+const relatedSlugs = ['nis2', 'iso27001', 'ai-fasttrack'];
+const relatedServices = allServices.filter((s) => relatedSlugs.includes(s.data.slug));
+
+const metaTitle = 'CRA Cyber Resilience Act — ongoing support for product teams | Verit';
+const metaDescription =
+  'The Cyber Resilience Act is already in force, with major obligations through 2027. We help product teams build securely with OWASP as foundation — an ASVS kickstart plus ongoing support all the way.';
+
+const pageUrl = `${site.url}${getServicePath(locale, slug)}`;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'CRA — Cyber Resilience Act with ongoing support',
+  description: metaDescription,
+  serviceType: 'CRA Compliance Consulting',
+  provider: {
+    '@type': 'Organization',
+    name: organizationSchema.name,
+    url: organizationSchema.url,
+  },
+  areaServed: { '@type': 'Country', name: 'Sweden' },
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'CTOs, tech leads, product owners, security champions, CISOs',
+  },
+  url: pageUrl,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do we need to be certified to anything for CRA?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. But ASVS and SAMM work gives auditors evidence they can work from — concrete controls and traceable maturity rather than a binder of words.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'We already have a consultant doing our NIS2. Does this clash?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "No. NIS2 / the Cybersecurity Act is about organisation and operations. CRA is about the product you sell. They complement each other and we're happy to coordinate with your existing NIS2 advisor.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the whole development team need to be involved ongoing?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Often the tech lead plus one security champion at the monthly meeting is enough. Larger reviews happen quarterly with more of the team invited.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: "What happens in 2027 if we aren't ready?",
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Sanctions can be imposed and products can be withdrawn from the EU market. The whole point of ongoing support is that you don't end up there — you build maturity over time rather than in a panic push the final year.",
+      },
+    },
+  ],
+};
+
+const challenges = [
+  {
+    title: 'The regulation as a checklist',
+    description:
+      'Teams get pushed to start in the legal text instead of in the product. Security becomes a documentation project running alongside development, not a property of the product itself.',
+  },
+  {
+    title: 'OWASP without governance',
+    description:
+      'ASVS, Cheat Sheets and SAMM are free on the internet. But without ongoing governance, they get used unsystematically, by individual developers, and disappear when someone changes team.',
+  },
+  {
+    title: 'Audits without traceability',
+    description:
+      "When the auditor asks how security was built in, the answer is verbal or in someone's head. The basis for actual decisions is missing — even if the documents look polished.",
+  },
+];
+
+const packages = [
+  {
+    name: 'CRA Kickstart',
+    duration: '4–6 weeks',
+    durationLabel: 'Timeframe',
+    description:
+      "A one-off engagement to establish an ASVS baseline and a concrete backlog. You get a picture of where you stand against CRA and which controls to prioritise first. A good starting point even if you aren't planning ongoing support right away.",
+    accent: 'teal' as const,
+    ctaLabel: 'Book CRA Kickstart',
+    steps: [
+      {
+        number: 1,
+        title: 'Rapid interviews',
+        description:
+          'Tech lead, security lead and product owner. We get to know the product, the architecture and how the team actually makes decisions today.',
+      },
+      {
+        number: 2,
+        title: 'ASVS baseline',
+        description:
+          'Choose the ASVS level based on product and risk. Map what you already do. Identify and prioritise gaps.',
+      },
+      {
+        number: 3,
+        title: 'SAMM maturity assessment',
+        description:
+          'A lightweight SAMM assessment that gives a picture of where you stand over time — not just a snapshot.',
+      },
+      {
+        number: 4,
+        title: 'Backlog and leadership report',
+        description:
+          'Concrete backlog with prioritised controls and ways of working. Leadership report with current state against CRA, risk picture and plan forward.',
+      },
+    ],
+  },
+  {
+    name: 'CRA Sustain',
+    duration: 'Ongoing, 3/6/12 mo',
+    durationLabel: 'Timeframe',
+    description:
+      'Ongoing support that walks alongside your team month by month. ASVS reviews, regulatory tracking and sparring on concrete decisions. Builds compliance over time instead of in a panic push before audit.',
+    accent: 'lime' as const,
+    ctaLabel: 'Get in touch',
+    steps: [
+      {
+        number: 1,
+        title: 'Monthly touch point',
+        description:
+          'Tech lead and security champion meet with us every month. We go through what has happened, what is coming, and which decisions need to be made.',
+      },
+      {
+        number: 2,
+        title: 'Quarterly ASVS review',
+        description:
+          'A larger review where we update gap status, adjust prioritisation and invite more of the team. SAMM maturity is measured anew.',
+      },
+      {
+        number: 3,
+        title: 'Regulatory tracking',
+        description:
+          'Changes in CRA technical standards (ETSI/CEN-CENELEC), ENISA guidance and relevant CSIRT publications are summarised and translated into actionable suggestions.',
+      },
+      {
+        number: 4,
+        title: 'Everyday decisions',
+        description:
+          'When the team faces a concrete choice — how should we handle this? — we are there as a sparring partner via Cheat Sheets and ASVS.',
+      },
+      {
+        number: 5,
+        title: 'Audit readiness',
+        description:
+          'When the time comes, the documentation support is already in place. We answer the auditor alongside you — not instead of you.',
+      },
+    ],
+  },
+];
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'CRA packages',
+  itemListElement: packages.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: `Verit ${p.name}`,
+      description: p.description,
+      provider: { '@type': 'Organization', name: organizationSchema.name },
+    },
+  })),
+};
+
+const comparisonRows = [
+  {
+    dimension: 'Pace',
+    generic: 'Big project, then silence',
+    fasttrack: 'Ongoing, low tempo, high presence',
+  },
+  {
+    dimension: 'Focus',
+    generic: 'Produce documents',
+    fasttrack: 'Ways of working that produce documents as by-product',
+  },
+  {
+    dimension: 'Standard',
+    generic: 'Builds its own framework',
+    fasttrack: 'OWASP (ASVS, Cheat Sheets, SAMM)',
+  },
+  {
+    dimension: 'Regulation',
+    generic: 'Fresh at delivery, ages from there',
+    fasttrack: 'Tracked continuously, you get updates',
+  },
+  {
+    dimension: 'Audit readiness',
+    generic: 'Rush effort before audit',
+    fasttrack: 'Traceable documentation built over time',
+  },
+  {
+    dimension: 'Value over time',
+    generic: 'Drops as the report ages',
+    fasttrack: "Rises as the team's maturity grows",
+  },
+];
+
+const expectations = [
+  'An ASVS level tailored to your product and risk — not a generic checklist.',
+  'A concrete backlog of prioritised controls, not a list of words.',
+  "Cheat Sheets embedded in the team's everyday decisions, so secure choices become the easy choice.",
+  'SAMM maturity measured and tracked over time — so improvement is visible, not claimed.',
+  "Regulatory tracking without your team having to read the regulation.",
+  'Traceable documentation built as a by-product of development, not as a separate track.',
+  'An external party who can answer the auditor alongside you — not a consultant who has disappeared.',
+  'Predictable monthly cost instead of a large project every other year.',
+];
+
+const faqItems = faqSchema.mainEntity.map((q) => ({
+  question: q.name,
+  answer: q.acceptedAnswer.text,
+}));
+
+const lastReviewed = 'June 2026';
+
+const caseSteps = [
+  {
+    label: 'Starting point',
+    title: 'Knew CRA was coming, not where they stood',
+    description:
+      'A product team with a SaaS product on the EU market knew the Cyber Resilience Act was phasing in through 2027. They had read the regulation, become worried, and tried to start from the documentation end — without knowing which controls the product actually met.',
+  },
+  {
+    label: 'What we did',
+    title: 'ASVS baseline plus ongoing sparring',
+    description:
+      "We set an ASVS baseline tailored to the product's risk and mapped what the team already did. Cheat Sheets became a natural reference in code reviews. A monthly touch point with the tech lead and security champion kept maturity visible — instead of letting it gather dust in a document.",
+  },
+  {
+    label: 'Outcome',
+    title: 'Compliance built over time, no panic',
+    description:
+      "After six months the team had a concrete backlog with three quarters of the ASVS controls ticked off. Documentation was produced automatically as a by-product of code reviews. When the audit question came half a year later, the basis was already there — not in a binder, but in how the team actually worked.",
+  },
+];
+---
+
+<PageLayout
+  title={metaTitle}
+  description={metaDescription}
+  ogImage="/og/en/services/cra.png"
+  locale={locale}
+  headerTheme="dark"
+>
+  <JsonLd schema={serviceSchema} />
+  <JsonLd schema={faqSchema} />
+  <JsonLd schema={itemListSchema} />
+
+  <HeroSimple
+    title="CRA support — build securely without slowing down"
+    description="We help product teams meet the Cyber Resilience Act as a by-product of good engineering. An ASVS kickstart and ongoing support that walk alongside you all the way to 2027."
+    breadcrumbs={[
+      { label: 'Services', href: getServicesPath(locale) },
+      { label: 'CRA' },
+    ]}
+    bgImage="/images/heroes/services/cra.webp"
+    bgImageAlt=""
+    locale={locale}
+  />
+
+  <!-- Intro & core principle -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-3xl" data-reveal>
+        <p class="overline mb-4">About the service</p>
+        <p class="lead text-slate mb-6">
+          The Cyber Resilience Act has already entered into force. The major obligations phase in step by step through 2027. That means the right moment to improve how you work is now, while you can still do it at a calm pace.
+        </p>
+        <p class="text-gray leading-relaxed mb-4">
+          We don't start in the regulation. We start in the product. With OWASP as the working reference we build security into how the team works every week. Once security is in place, <a href={getInsightPath(locale, 'stop-chasing-cra-start-building-securely')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">compliance becomes a by-product of good engineering</a> — not a separate project alongside development.
+        </p>
+        <p class="text-gray leading-relaxed mb-4">
+          CRA support comes in two parts. A kickstart where we set an ASVS baseline, map the current state and produce a concrete backlog. And ongoing support where we walk alongside the team month by month — with ASVS reviews, regulatory tracking and sparring on concrete decisions.
+        </p>
+        <p class="text-gray leading-relaxed">
+          This isn't a documentation project to tick off. <a href={getInsightPath(locale, 'our-software-wont-solve-your-problem')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">Software and binders don't solve the problem</a> — what's needed is a process that ensures security is actually built into the product over time. That's where ongoing support differs from a one-off engagement.
+        </p>
+      </div>
+
+      <div class="mt-10 max-w-3xl bg-surface border-l-4 border-teal p-6 lg:p-8" data-reveal>
+        <p class="overline mb-2 text-teal-dark">Core principle</p>
+        <p class="text-xl lg:text-2xl font-semibold text-navy leading-snug">
+          Build securely. Documentation arrives as a by-product.
+        </p>
+        <p class="mt-3 text-sm text-gray italic">Ways of working first. Documentation as by-product. Security all the way through.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The challenge -->
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">The challenge</p>
+        <h2>Why CRA projects go wrong</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {challenges.map((c, i) => (
+          <div
+            class="bg-white rounded-xl border border-border p-6 lg:p-8 relative"
+            data-reveal
+            data-delay={String(i + 1)}
+          >
+            <div class="text-4xl font-bold text-navy/10 mb-3 leading-none">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <h3 class="text-lg font-semibold text-navy mb-3">{c.title}</h3>
+            <p class="text-sm text-gray leading-relaxed">{c.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center" data-reveal>
+        <p class="inline-block text-sm font-semibold text-accent-dark bg-accent/25 px-4 py-2 rounded-full italic">
+          The result is compliance on paper — not in the product.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two packages -->
+  <ServicePackages
+    packages={packages}
+    locale={locale}
+    overline="CRA support"
+    heading="Two ways into CRA work"
+  />
+
+  <!-- Comparison table -->
+  <ComparisonTable
+    rows={comparisonRows}
+    dimensionLabel="Dimension"
+    genericLabel="Typical one-off project"
+    fasttrackLabel="Verit CRA Sustain"
+    overline="Comparison"
+    heading="CRA Sustain compared with a typical one-off project"
+    locale={locale}
+  />
+
+  <!-- Customer case -->
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">What it looks like in practice</p>
+        <h2>From CRA worry to traceable maturity</h2>
+        <p class="text-gray leading-relaxed mt-4">
+          Anonymised product-team case. This is what ongoing CRA support looks like in everyday work.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {caseSteps.map((c, i) => (
+          <div
+            class="bg-white rounded-xl border border-border p-6 lg:p-8 relative"
+            data-reveal
+            data-delay={String(i + 1)}
+          >
+            <div class="text-4xl font-bold text-navy/10 mb-3 leading-none">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <p class="overline mb-2 text-teal-dark">{c.label}</p>
+            <h3 class="text-lg font-semibold text-navy mb-3">{c.title}</h3>
+            <p class="text-sm text-gray leading-relaxed">{c.description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/*
+        TODO: Activate the customer-quote block below when an attributable quote is available.
+        Remove this wrapping comment and fill in quote + role/industry.
+
+        <figure class="mt-10 max-w-3xl mx-auto bg-white border-l-4 border-teal p-6 lg:p-8" data-reveal>
+          <blockquote class="text-lg lg:text-xl text-navy leading-snug font-medium">
+            "Customer's own words."
+          </blockquote>
+          <figcaption class="mt-3 text-sm text-gray">
+            CTO, Nordic SaaS company
+          </figcaption>
+        </figure>
+      */}
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">What you get</p>
+        <h2>What the team and leadership get from CRA support</h2>
+      </div>
+
+      <ul class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {expectations.map((item, i) => (
+          <li
+            class="flex items-start gap-4 bg-surface rounded-xl border border-border p-5 lg:p-6"
+            data-reveal
+            data-delay={String((i % 4) + 1)}
+          >
+            <div class="shrink-0 w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-teal-dark"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="text-slate leading-relaxed text-sm lg:text-base pt-1">{item}</p>
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-10 max-w-3xl text-sm text-gray" data-reveal>
+        If you also need support at the organisation and operations level we complement with <a href={getServicePath(locale, 'nis2')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">NIS2 work</a> or <a href={getServicePath(locale, 'ciso-as-a-service')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">CISO-as-a-Service</a>. CRA support is focused on the product.
+      </p>
+    </div>
+  </section>
+
+  <!-- Related services -->
+  {relatedServices.length > 0 && (
+    <section class="section-sm bg-surface">
+      <div class="container">
+        <h2 class="mb-10" data-reveal>Related services</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {relatedServices.map((s, i) => (
+            <div data-reveal data-delay={String(i + 1)}>
+              <ServiceCard
+                title={s.data.title}
+                description={s.data.excerpt}
+                href={getServicePath(locale, s.data.slug)}
+                locale={locale}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl mb-10" data-reveal>
+        <p class="overline mb-3">FAQ</p>
+        <h2>Questions product teams and leadership ask us</h2>
+      </div>
+
+      <div class="max-w-3xl space-y-3">
+        {faqItems.map((item, i) => (
+          <details
+            class="group bg-surface border border-border p-5 lg:p-6"
+            data-reveal
+            data-delay={String((i % 3) + 1)}
+          >
+            <summary class="flex items-start justify-between gap-4 cursor-pointer list-none font-semibold text-navy">
+              <span>{item.question}</span>
+              <span class="shrink-0 text-teal-dark text-xl leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-4 text-gray leading-relaxed text-sm lg:text-base">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-12 text-xs text-gray" data-reveal>
+        Last reviewed: {lastReviewed}.
+      </p>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Ready to start?"
+    description="Book a 30-minute CRA check. A short qualifying conversation where we look at where you stand today and whether ongoing CRA support is right for your product."
+    buttonText="Book a 30-minute CRA check"
+    locale={locale}
+  />
+</PageLayout>

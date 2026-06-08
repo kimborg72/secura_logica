@@ -25,6 +25,7 @@ export const serviceSlugMap: Record<string, string> = {
   riskhantering: 'risk-management',
   utbildning: 'training',
   gdpr: 'gdpr',
+  cra: 'cra',
 };
 
 const reverseServiceSlugMap: Record<string, string> = Object.fromEntries(
