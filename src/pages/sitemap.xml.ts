@@ -46,6 +46,9 @@ export const GET: APIRoute = async () => {
     blocks.push(buildBilingualBlock(sv, en));
   }
 
+  // 1b. Swedish-only static pages
+  blocks.push(buildSvOnlyBlock('/isms'));
+
   // 2. Service detail pages — dynamic from collection
   const allServices = await getCollection('services');
   const svServices = allServices.filter((s) => s.id.startsWith('sv/'));

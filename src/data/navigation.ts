@@ -21,6 +21,7 @@ const navData: Record<Locale, NavItem[]> = {
         { label: 'CRA — Cyber Resilience Act', href: '/tjanster/cra' },
         { label: 'NIS2 / Cybersäkerhetslagen', href: '/tjanster/nis2' },
         { label: 'ISO 27001 / LIS', href: '/tjanster/iso27001' },
+        { label: 'ISMS — Securapilot som ISMS-plattform', href: '/isms' },
         { label: 'CISO-as-a-Service', href: '/tjanster/ciso-as-a-service' },
         {
           label: 'Riskhantering & Informationsklassificering',
