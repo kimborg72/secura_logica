@@ -1,0 +1,124 @@
+title: "AI-strategi — onlinekurs för beslutsfattare"
+shortTitle: "AI-strategi"
+slug: "ai-strategi"
+metaTitle: "AI-strategi: onlinekurs för beslutsfattare — säker och exekverbar | Verit"
+metaDescription: "Sex timmars onlinekurs i AI-strategi för beslutsfattare. Säkerhet och regelverk (NIS2, EU AI Act, GDPR) som röd tråd — inte en eftertanke. Öppen kurs 4 900 kr eller in-house."
+excerpt: "Sex timmars onlinekurs för beslutsfattare som vill omsätta AI till en säker och exekverbar strategi. Öppen kurs 4 900 kr eller in-house från 12 000 kr."
+introLead: >
+  AI-strategi är inte tekniska val — det är affärsval. Vår onlinekurs ger
+  beslutsfattare verktygen att översätta AI-möjligheter till en exekverbar
+  strategi där säkerhet och regelverk är inbyggda från första timmen.
+introduction: |
+  Sex timmar online för beslutsfattare som vill formulera en AI-strategi som faktiskt går att exekvera. Kursen är byggd för strategiledare, portföljansvariga, AI-sponsorer och ledningsgrupper — inte för teknisk personal.
+
+  Det som skiljer Verits kurs från generiska AI-strategiutbildningar är att säkerhet och regelefterlevnad inte är ett ämne av många. Det är den röda tråden. NIS2, EU AI Act, GDPR och ISO 42001 mappas direkt in i strategin, så ni inte hamnar i en fas-2-situation där modellerna går i drift innan kontrollerna finns på plats.
+
+  Två format: öppen kurs (4 900 kr per deltagare, fasta datum, max 15 deltagare) eller in-house anpassad efter er bransch och er nuvarande strategi (från 12 000 kr per kurs).
+targetAudience:
+  heading: "Vem är kursen för?"
+  description: >
+    Kursen är gjord för beslutsfattare som behöver formulera AI-strategi i
+    organisationer där säkerhet, regelverk och styrning spelar roll.
+  segments:
+    - "Strategiledare och portföljansvariga"
+    - "AI-sponsorer och transformationsledare"
+    - "Ledningsgrupper i medelstora bolag"
+    - "Styrelseledamöter med AI-ansvar"
+    - "Kommunala IT-direktörer"
+    - "Organisationer som omfattas av NIS2 eller EU AI Act"
+benefits:
+  - title: "Exekverbar strategi, inte vision"
+    description: >
+      Ni går från kursen med konkreta beslutsmallar och en prioriterad
+      use case-lista, inte ett vackert dokument utan handlingsplan.
+  - title: "Säkerhet och regelverk inbyggt"
+    description: >
+      NIS2, EU AI Act, GDPR och ISO 42001 mappas in i strategin från start.
+      Ni undviker den klassiska fas-2-fällan där säkerheten kommer för sent.
+  - title: "Svensk regulatorisk verklighet"
+    description: >
+      Kursen bygger på CISO-erfarenhet från svensk offentlig sektor och
+      privata bolag. Exemplen är hämtade från svenska sammanhang ni känner igen.
+  - title: "Naturlig brygga till exekvering"
+    description: >
+      Vill ni gå djupare efter kursen finns AI FastTrack — Verits
+      5–7 veckors konsultleverans där strategin omsätts till styrmodell,
+      kontrollramverk och roadmap.
+process:
+  - step: 1
+    title: "AI som val: värdeströmmar och prioritering"
+    description: >
+      Vad ska AI göra för er affär? Värdeströms-analys där AI-möjligheterna
+      kopplas till verksamhetens kärnflöden, inte till tekniken.
+    duration: "Timme 1"
+  - step: 2
+    title: "Use case-typer och bedömning"
+    description: >
+      Klassificerare, generativ AI, agentisk AI. Hur man bedömer affärsnytta,
+      genomförbarhet och risk i ett enda värderingsmoment.
+    duration: "Timme 2"
+  - step: 3
+    title: "Säkerhet och regelverk"
+    description: >
+      NIS2, EU AI Act, GDPR och ISO 42001. Vad de kräver, vilka beslut de
+      påverkar och hur kraven blir konkreta kontroller i er strategi.
+    duration: "Timme 3"
+  - step: 4
+    title: "Data och datakvalitet"
+    description: >
+      Vad ska finnas, var ska det komma ifrån, och hur ska det skyddas?
+      Dataklassificering och åtkomst från ett strategiperspektiv.
+    duration: "Timme 4"
+  - step: 5
+    title: "Governance: roller och beslutsmandat"
+    description: >
+      Vem äger vad, vem beslutar vad, vem eskalerar till vem? Ansvarsfördelning
+      som håller när AI går i drift.
+    duration: "Timme 5"
+  - step: 6
+    title: "Roadmap och mognadstrappa"
+    description: >
+      Plan med säkerhetsåtgärder i varje fas. Mognadstrappa som visar
+      vad som krävs innan nästa steg.
+    duration: "Timme 6"
+deliverables:
+  - "Värdeströms-analys med AI-perspektiv"
+  - "Use case-bedömning och prioriteringsmall"
+  - "Säkerhetskrav mappade mot kontroller"
+  - "Regulatorisk översikt: NIS2, EU AI Act, GDPR, ISO 42001"
+  - "Roller och ansvarsfördelning för AI"
+  - "Beslutskartläggning: vad ska AI stödja, förstärka, automatisera"
+  - "Roadmap-mall med inbyggd säkerhet"
+  - "Mognadstrappa för AI-mognad"
+faq:
+  - question: "Är detta en teknisk kurs?"
+    answer: >
+      Nej. Kursen är gjord för beslutsfattare, inte för utvecklare eller
+      datavetare. Vi går igenom strategiska val och regulatoriska krav, inte
+      hur man tränar modeller.
+  - question: "Vad skiljer er kurs från andra AI-strategikurser?"
+    answer: >
+      Säkerhet och svensk regulatorik är den röda tråden, inte ett av många
+      ämnen. NIS2, EU AI Act, GDPR och ISO 42001 mappas direkt in i strategin,
+      så ni inte hamnar i en fas-2-situation där säkerheten kommer för sent.
+  - question: "Behöver vi gå AI FastTrack efter kursen?"
+    answer: >
+      Nej, kursen står på egna ben. Men om ni vill omsätta strategin till
+      en faktisk styrmodell och roadmap är AI FastTrack det naturliga nästa
+      steget — och kursen ger en mjukstart in i det arbetet.
+  - question: "Kan vi få in-house-versionen anpassad efter vår strategi?"
+    answer: >
+      Ja. Förförberedande intervju med beställaren och anpassning av exempel
+      mot er bransch och er nuvarande strategi ingår. Kursen avslutas med en
+      prioriteringsworkshop där ni får 3–5 konkreta nästa steg.
+  - question: "Hur många deltagare per öppen kurs?"
+    answer: >
+      Max 15 deltagare per tillfälle för att hålla utrymme för dialog och
+      konkreta frågor. För större grupper rekommenderar vi in-house-versionen.
+relatedServices:
+  - "ai-fasttrack"
+  - "nis2"
+  - "ciso-as-a-service"
+ctaText: "Boka kursen"
+ctaDescription: "Kontakta oss för aktuella kursdatum eller för att boka in-house-version anpassad efter er strategi."
+order: 4

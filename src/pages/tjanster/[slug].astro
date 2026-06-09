@@ -15,7 +15,7 @@ const locale = 'sv';
 export async function getStaticPaths() {
   const services = await getServicesByLocale('sv');
   return services
-    .filter((service) => service.data.slug !== 'ai-fasttrack' && service.data.slug !== 'cra')
+    .filter((service) => service.data.slug !== 'ai-fasttrack' && service.data.slug !== 'cra' && service.data.slug !== 'ai-strategi')
     .map((service) => ({
       params: { slug: service.data.slug },
       props: { service },

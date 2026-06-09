@@ -1,0 +1,522 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HeroSimple from '@components/sections/HeroSimple.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import ServicePackages from '@components/sections/ServicePackages.astro';
+import ComparisonTable from '@components/sections/ComparisonTable.astro';
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+import { site, organizationSchema } from '@data/site';
+import { getServicesByLocale } from '@i18n/content';
+import { getServicePath, getServicesPath, getInsightPath } from '@i18n/routes';
+
+const locale = 'en' as const;
+const slug = 'ai-strategy';
+
+const allServices = await getServicesByLocale(locale);
+const relatedSlugs = ['ai-fasttrack', 'nis2', 'ciso-as-a-service'];
+const relatedServices = allServices.filter((s) => relatedSlugs.includes(s.data.slug));
+
+const metaTitle = 'AI strategy: online course for decision-makers — secure and executable | Verit';
+const metaDescription =
+  'Six-hour online course in AI strategy for decision-makers. Security and regulation (NIS2, EU AI Act, GDPR) as a red thread — not an afterthought. Open course SEK 4,900 or in-house.';
+
+const pageUrl = `${site.url}${getServicePath(locale, slug)}`;
+
+const courseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'AI strategy — online course for decision-makers',
+  description: metaDescription,
+  provider: {
+    '@type': 'Organization',
+    name: organizationSchema.name,
+    url: organizationSchema.url,
+    sameAs: organizationSchema.url,
+  },
+  inLanguage: 'en',
+  educationalLevel: 'Professional',
+  audience: {
+    '@type': 'EducationalAudience',
+    educationalRole: 'Executive, decision-maker, board member',
+  },
+  hasCourseInstance: [
+    {
+      '@type': 'CourseInstance',
+      courseMode: 'Online',
+      courseWorkload: 'PT6H',
+      offers: {
+        '@type': 'Offer',
+        price: '4900',
+        priceCurrency: 'SEK',
+        category: 'Open course per participant',
+        url: pageUrl,
+        availability: 'https://schema.org/InStock',
+      },
+    },
+    {
+      '@type': 'CourseInstance',
+      courseMode: 'Online',
+      courseWorkload: 'PT6H',
+      offers: {
+        '@type': 'Offer',
+        price: '12000',
+        priceCurrency: 'SEK',
+        category: 'In-house course (from)',
+        url: pageUrl,
+        availability: 'https://schema.org/InStock',
+      },
+    },
+  ],
+  url: pageUrl,
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI strategy — online course for decision-makers',
+  description: metaDescription,
+  serviceType: 'AI Strategy Training',
+  provider: {
+    '@type': 'Organization',
+    name: organizationSchema.name,
+    url: organizationSchema.url,
+  },
+  areaServed: { '@type': 'Country', name: 'Sweden' },
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Strategy leads, AI sponsors, leadership teams, boards',
+  },
+  url: pageUrl,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is this a technical course?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "No. The course is built for decision-makers, not developers or data scientists. We go through strategic choices and regulatory requirements, not how to train models.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What separates your course from other AI strategy courses?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Security and Swedish regulation are the red thread, not one of many topics. NIS2, EU AI Act, GDPR and ISO 42001 are mapped directly into the strategy, so you don't end up in a phase-2 situation where security arrives too late.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do we need to take AI FastTrack after the course?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "No, the course stands on its own. But if you want to turn the strategy into an actual governance model and roadmap, AI FastTrack is the natural next step — and the course gives a soft start into that work.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can the in-house version be adapted to our strategy?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Yes. A preparatory interview with the client and adaptation of examples to your industry and your current strategy are included. The course ends with a prioritisation workshop where you get 3–5 concrete next steps.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How many participants per open course?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Max 15 participants per session to leave room for dialogue and concrete questions. For larger groups we recommend the in-house version.',
+      },
+    },
+  ],
+};
+
+const challenges = [
+  {
+    title: 'Vision documents without decisions',
+    description:
+      'The strategy looks great on paper, but no one knows what to do on Monday morning. No concrete decision templates, no prioritisation, no accountability.',
+  },
+  {
+    title: 'Security in phase 2',
+    description:
+      'Models go into production before controls are in place. Policies are written after the fact. The auditor asks questions no one can answer.',
+  },
+  {
+    title: 'Generic AI training',
+    description:
+      "Courses that teach the technology but not how regulation (NIS2, EU AI Act, GDPR, ISO 42001) affects the decisions. Swedish regulatory reality is missing.",
+  },
+];
+
+const packages = [
+  {
+    name: 'Open online course · SEK 4,900 / participant',
+    duration: '6 hours online',
+    durationLabel: 'Length',
+    description:
+      'Online course on fixed dates for individual decision-makers. Max 15 participants per session to leave room for dialogue and concrete questions. Materials and prioritisation templates included. Price: SEK 4,900 per participant.',
+    accent: 'teal' as const,
+    ctaLabel: 'Contact us for dates',
+    steps: [
+      {
+        number: 1,
+        title: 'AI as choice: value streams',
+        description:
+          'What should AI do for your business? A value stream analysis where AI possibilities are tied to the core flows of the business, not to the technology.',
+      },
+      {
+        number: 2,
+        title: 'Use case types and assessment',
+        description:
+          'Classifiers, generative AI, agentic AI. How to assess business value, feasibility and risk in a single valuation step.',
+      },
+      {
+        number: 3,
+        title: 'Security and regulation',
+        description:
+          'NIS2, EU AI Act, GDPR and ISO 42001. What they require, which decisions they affect, and how requirements become concrete controls.',
+      },
+      {
+        number: 4,
+        title: 'Data and data quality',
+        description:
+          'What needs to exist, where does it come from, and how should it be protected? Data classification and access from a strategy perspective.',
+      },
+      {
+        number: 5,
+        title: 'Governance: roles and decision rights',
+        description:
+          'Who owns what, who decides what, who escalates to whom? Accountability that holds when AI goes into production.',
+      },
+      {
+        number: 6,
+        title: 'Roadmap and maturity ladder',
+        description:
+          "A plan with security measures in every phase. A maturity ladder that shows what's required before the next step.",
+      },
+    ],
+  },
+  {
+    name: 'In-house adapted course · from SEK 12,000',
+    duration: '6 hours (1 day or 2 × 3h)',
+    durationLabel: 'Length',
+    description:
+      'Adapted version for your leadership team, board or AI steering group. Online or on site. Examples and exercises built on your industry and current strategy. Ends with concrete prioritisation. Price: from SEK 12,000 per course.',
+    accent: 'lime' as const,
+    ctaLabel: 'Book in-house',
+    steps: [
+      {
+        number: 1,
+        title: 'Preparatory interview',
+        description:
+          'We talk with the client about your current AI maturity, strategic ambitions and regulatory situation. The course is then adapted to your reality.',
+      },
+      {
+        number: 2,
+        title: 'Adaptation of examples',
+        description:
+          'We replace generic examples with your industry and your value streams, so the course feels relevant from the first minute.',
+      },
+      {
+        number: 3,
+        title: 'Delivery of the 6-hour course',
+        description:
+          'The same six modules as the open course, but with your strategy as the thread through the whole work.',
+      },
+      {
+        number: 4,
+        title: 'Prioritisation workshop',
+        description:
+          'The course ends with a shared workshop where you prioritise 3–5 concrete next steps that leadership can act on directly.',
+      },
+      {
+        number: 5,
+        title: '(Optional) Transition to AI FastTrack',
+        description:
+          'Want to turn priorities into an actual governance model, control framework and roadmap? AI FastTrack is the natural next step.',
+      },
+    ],
+  },
+];
+
+const packagePrices = ['4900', '12000'];
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'AI strategy packages',
+  itemListElement: packages.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: `Verit AI strategy — ${p.name}`,
+      description: p.description,
+      provider: { '@type': 'Organization', name: organizationSchema.name },
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'SEK',
+        price: packagePrices[i],
+        availability: 'https://schema.org/InStock',
+      },
+    },
+  })),
+};
+
+const comparisonRows = [
+  {
+    dimension: 'Security & regulation',
+    generic: 'One topic among many',
+    fasttrack: 'Red thread through the whole course',
+  },
+  {
+    dimension: 'Regulation',
+    generic: 'Mentioned briefly',
+    fasttrack: 'NIS2, EU AI Act, GDPR, ISO 42001 mapped in',
+  },
+  {
+    dimension: 'Decision basis',
+    generic: 'Generic frameworks',
+    fasttrack: 'Concrete decision templates',
+  },
+  {
+    dimension: 'Follow-up',
+    generic: 'Ends when the course ends',
+    fasttrack: 'Natural bridge to AI FastTrack',
+  },
+  {
+    dimension: 'Adaptation',
+    generic: 'Standard content',
+    fasttrack: 'Adaptable for in-house',
+  },
+  {
+    dimension: 'Experience base',
+    generic: 'Consultant with AI focus',
+    fasttrack: 'CISO experience + Swedish regulatory reality',
+  },
+];
+
+const expectations = [
+  'A value stream analysis with an AI perspective. You see where AI actually creates business value in your core flows.',
+  'A use case assessment and prioritisation template you can use directly on Monday morning.',
+  'Security requirements mapped to controls — not vague ambitions.',
+  'A regulatory overview: NIS2, EU AI Act, GDPR, ISO 42001 in a coherent map.',
+  'Roles and accountability for AI that hold when the models go into production.',
+  'Decision mapping: what should AI support, augment, automate — and what should never be automated.',
+  'A roadmap template with security built into every phase.',
+  "A maturity ladder for AI maturity showing what's required before the next step.",
+];
+
+const faqItems = faqSchema.mainEntity.map((q) => ({
+  question: q.name,
+  answer: q.acceptedAnswer.text,
+}));
+
+const lastReviewed = 'June 2026';
+---
+
+<PageLayout
+  title={metaTitle}
+  description={metaDescription}
+  ogImage="/og/en/services/ai-strategy.png"
+  locale={locale}
+  headerTheme="dark"
+>
+  <JsonLd schema={courseSchema} />
+  <JsonLd schema={serviceSchema} />
+  <JsonLd schema={faqSchema} />
+  <JsonLd schema={itemListSchema} />
+
+  <HeroSimple
+    title="AI strategy — the course where security is built in from hour one"
+    description="Six hours online for decision-makers who want to turn AI possibilities into an executable and secure strategy. NIS2, EU AI Act and ISO 42001 mapped in from the start."
+    breadcrumbs={[
+      { label: 'Services', href: getServicesPath(locale) },
+      { label: 'AI strategy' },
+    ]}
+    bgImage="/images/heroes/services/ai-strategi.webp"
+    bgImageAlt=""
+    locale={locale}
+  />
+
+  <!-- Intro & core principle -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-3xl" data-reveal>
+        <p class="overline mb-4">About the course</p>
+        <p class="lead text-slate mb-6">
+          AI strategy isn't a technical choice — it's a business choice. Our online course gives decision-makers the tools to turn AI possibilities into an executable strategy where security and regulation are built in from hour one.
+        </p>
+        <p class="text-gray leading-relaxed mb-4">
+          Six hours online for decision-makers who want to formulate an AI strategy that can actually be executed. The course is built for strategy leads, portfolio owners, AI sponsors and leadership teams — not for technical staff.
+        </p>
+        <p class="text-gray leading-relaxed mb-4">
+          What separates Verit's course from generic AI strategy training is that security and regulatory compliance aren't one topic among many. They are the red thread. <a href={getServicePath(locale, 'nis2')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">NIS2</a>, EU AI Act, GDPR and ISO 42001 are mapped directly into the strategy, so you don't end up in a phase-2 situation where the models go into production before the controls are in place.
+        </p>
+        <p class="text-gray leading-relaxed">
+          Want to go deeper after the course? <a href={getServicePath(locale, 'ai-fasttrack')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">AI FastTrack</a> — our 5–7 week consulting engagement — turns the strategy into a governance model, control framework and roadmap. The course is a soft start into that work, but it stands on its own.
+        </p>
+      </div>
+
+      <div class="mt-10 max-w-3xl bg-surface border-l-4 border-teal p-6 lg:p-8" data-reveal>
+        <p class="overline mb-2 text-teal-dark">Core principle</p>
+        <p class="text-xl lg:text-2xl font-semibold text-navy leading-snug">
+          AI strategy that is secure and executable — not just visionary.
+        </p>
+        <p class="mt-3 text-sm text-gray italic">Business first. Security always. Technology last.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The challenge -->
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">The challenge</p>
+        <h2>Three typical failures in AI strategy work</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {challenges.map((c, i) => (
+          <div
+            class="bg-white rounded-xl border border-border p-6 lg:p-8 relative"
+            data-reveal
+            data-delay={String(i + 1)}
+          >
+            <div class="text-4xl font-bold text-navy/10 mb-3 leading-none">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <h3 class="text-lg font-semibold text-navy mb-3">{c.title}</h3>
+            <p class="text-sm text-gray leading-relaxed">{c.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center" data-reveal>
+        <p class="inline-block text-sm font-semibold text-accent-dark bg-accent/25 px-4 py-2 rounded-full italic">
+          AI ends up as a cost instead of a capability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two packages -->
+  <ServicePackages
+    packages={packages}
+    locale={locale}
+    overline="AI strategy"
+    heading="Two formats — open course or in-house"
+  />
+
+  <!-- Comparison table -->
+  <ComparisonTable
+    rows={comparisonRows}
+    dimensionLabel="Dimension"
+    genericLabel="Typical AI strategy course"
+    fasttrackLabel="Verit's AI strategy course"
+    overline="Comparison"
+    heading="Verit's course compared with a typical AI strategy course"
+    locale={locale}
+  />
+
+  <!-- What you take away -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="overline mb-3">What you take away</p>
+        <h2>What you'll learn during the course</h2>
+      </div>
+
+      <ul class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {expectations.map((item, i) => (
+          <li
+            class="flex items-start gap-4 bg-surface rounded-xl border border-border p-5 lg:p-6"
+            data-reveal
+            data-delay={String((i % 4) + 1)}
+          >
+            <div class="shrink-0 w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-teal-dark"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="text-slate leading-relaxed text-sm lg:text-base pt-1">{item}</p>
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-10 max-w-3xl text-sm text-gray" data-reveal>
+        Want to turn the strategy into execution? We complement with <a href={getServicePath(locale, 'ai-fasttrack')} class="text-teal-dark underline decoration-teal/30 hover:decoration-teal">AI FastTrack</a> — where the course's priorities become a governance model, control framework and roadmap.
+      </p>
+    </div>
+  </section>
+
+  <!-- Related services -->
+  {relatedServices.length > 0 && (
+    <section class="section-sm bg-surface">
+      <div class="container">
+        <h2 class="mb-10" data-reveal>Related services</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {relatedServices.map((s, i) => (
+            <div data-reveal data-delay={String(i + 1)}>
+              <ServiceCard
+                title={s.data.title}
+                description={s.data.excerpt}
+                href={getServicePath(locale, s.data.slug)}
+                locale={locale}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl mb-10" data-reveal>
+        <p class="overline mb-3">FAQ</p>
+        <h2>Questions we get about the course</h2>
+      </div>
+
+      <div class="max-w-3xl space-y-3">
+        {faqItems.map((item, i) => (
+          <details
+            class="group bg-surface border border-border p-5 lg:p-6"
+            data-reveal
+            data-delay={String((i % 3) + 1)}
+          >
+            <summary class="flex items-start justify-between gap-4 cursor-pointer list-none font-semibold text-navy">
+              <span>{item.question}</span>
+              <span class="shrink-0 text-teal-dark text-xl leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-4 text-gray leading-relaxed text-sm lg:text-base">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-12 text-xs text-gray" data-reveal>
+        Last reviewed: {lastReviewed}.
+      </p>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Ready to book?"
+    description="Contact us for current course dates or to book the in-house version adapted to your strategy. SEK 4,900 per participant for the open course, from SEK 12,000 for in-house."
+    buttonText="Get in touch"
+    locale={locale}
+  />
+</PageLayout>

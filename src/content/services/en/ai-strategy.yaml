@@ -1,0 +1,127 @@
+title: "AI strategy — online course for decision-makers"
+shortTitle: "AI strategy"
+slug: "ai-strategy"
+metaTitle: "AI strategy: online course for decision-makers — secure and executable | Verit"
+metaDescription: "Six-hour online course in AI strategy for decision-makers. Security and regulation (NIS2, EU AI Act, GDPR) as a red thread — not an afterthought. Open course or in-house."
+excerpt: "A six-hour online course for decision-makers who want to turn AI into a secure and executable strategy. Open course or in-house adapted to your strategy."
+introLead: >
+  AI strategy isn't a technical choice — it's a business choice. Our online
+  course gives decision-makers the tools to turn AI possibilities into an
+  executable strategy where security and regulation are built in from hour one.
+introduction: |
+  Six hours online for decision-makers who want to formulate an AI strategy that can actually be executed. The course is built for strategy leads, portfolio owners, AI sponsors and leadership teams — not for technical staff.
+
+  What separates Verit's course from generic AI strategy training is that security and regulatory compliance aren't one topic among many. They are the red thread. NIS2, EU AI Act, GDPR and ISO 42001 are mapped directly into the strategy, so you don't end up in a phase-2 situation where the models go live before the controls are in place.
+
+  Two formats: an open course (SEK 4,900 per participant, fixed dates, max 15 participants) or an in-house version adapted to your industry and your current strategy (from SEK 12,000 per course).
+targetAudience:
+  heading: "Who is the course for?"
+  description: >
+    The course is built for decision-makers who need to formulate AI strategy
+    in organisations where security, regulation and governance matter.
+  segments:
+    - "Strategy leads and portfolio owners"
+    - "AI sponsors and transformation leads"
+    - "Leadership teams in mid-sized companies"
+    - "Board members with AI responsibility"
+    - "Municipal IT directors"
+    - "Organisations covered by NIS2 or the EU AI Act"
+benefits:
+  - title: "Executable strategy, not vision"
+    description: >
+      You leave the course with concrete decision templates and a prioritised
+      use case list — not a beautiful document without an action plan.
+  - title: "Security and regulation built in"
+    description: >
+      NIS2, EU AI Act, GDPR and ISO 42001 are mapped into the strategy from
+      the start. You avoid the classic phase-2 trap where security arrives
+      too late.
+  - title: "Swedish regulatory reality"
+    description: >
+      The course is built on CISO experience from Swedish public sector and
+      private companies. The examples come from Swedish contexts you'll
+      recognise.
+  - title: "A natural bridge to execution"
+    description: >
+      Want to go deeper after the course? AI FastTrack — Verit's 5–7 week
+      consulting engagement — turns the strategy into a governance model,
+      control framework and roadmap.
+process:
+  - step: 1
+    title: "AI as choice: value streams and prioritisation"
+    description: >
+      What should AI do for your business? A value stream analysis where AI
+      possibilities are tied to the business's core flows, not to technology.
+    duration: "Hour 1"
+  - step: 2
+    title: "Use case types and assessment"
+    description: >
+      Classifiers, generative AI, agentic AI. How to assess business value,
+      feasibility and risk in a single valuation step.
+    duration: "Hour 2"
+  - step: 3
+    title: "Security and regulation"
+    description: >
+      NIS2, EU AI Act, GDPR and ISO 42001. What they require, which decisions
+      they affect, and how requirements become concrete controls in your strategy.
+    duration: "Hour 3"
+  - step: 4
+    title: "Data and data quality"
+    description: >
+      What needs to exist, where does it come from, and how should it be
+      protected? Data classification and access from a strategy perspective.
+    duration: "Hour 4"
+  - step: 5
+    title: "Governance: roles and decision rights"
+    description: >
+      Who owns what, who decides what, who escalates to whom? Accountability
+      that holds when AI goes into production.
+    duration: "Hour 5"
+  - step: 6
+    title: "Roadmap and maturity ladder"
+    description: >
+      A plan with security measures in every phase. A maturity ladder that
+      shows what's required before the next step.
+    duration: "Hour 6"
+deliverables:
+  - "Value stream analysis with an AI perspective"
+  - "Use case assessment and prioritisation template"
+  - "Security requirements mapped to controls"
+  - "Regulatory overview: NIS2, EU AI Act, GDPR, ISO 42001"
+  - "Roles and accountability for AI"
+  - "Decision mapping: what should AI support, augment, automate"
+  - "Roadmap template with built-in security"
+  - "Maturity ladder for AI maturity"
+faq:
+  - question: "Is this a technical course?"
+    answer: >
+      No. The course is built for decision-makers, not developers or data
+      scientists. We go through strategic choices and regulatory requirements,
+      not how to train models.
+  - question: "What separates your course from other AI strategy courses?"
+    answer: >
+      Security and Swedish regulation are the red thread, not one of many
+      topics. NIS2, EU AI Act, GDPR and ISO 42001 are mapped directly into
+      the strategy, so you don't end up in a phase-2 situation where security
+      arrives too late.
+  - question: "Do we need to take AI FastTrack after the course?"
+    answer: >
+      No, the course stands on its own. But if you want to turn the strategy
+      into an actual governance model and roadmap, AI FastTrack is the natural
+      next step — and the course gives you a soft start into that work.
+  - question: "Can the in-house version be adapted to our strategy?"
+    answer: >
+      Yes. A preparatory interview with the client and adaptation of examples
+      to your industry and your current strategy are included. The course
+      ends with a prioritisation workshop where you get 3–5 concrete next steps.
+  - question: "How many participants per open course?"
+    answer: >
+      Max 15 participants per session to leave room for dialogue and concrete
+      questions. For larger groups we recommend the in-house version.
+relatedServices:
+  - "ai-fasttrack"
+  - "nis2"
+  - "ciso-as-a-service"
+ctaText: "Book the course"
+ctaDescription: "Contact us for current course dates or to book the in-house version adapted to your strategy."
+order: 4
