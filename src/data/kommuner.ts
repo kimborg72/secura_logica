@@ -3328,7 +3328,7 @@ const kommunEnrichment: Record<string, { namedEmployers?: string[]; localAngle?:
   sodertalje: {
     namedEmployers: ['Scania', 'AstraZeneca'],
     localAngle:
-      'Med stora arbetsgivare som Scania och AstraZeneca har Södertälje långa, internationella leverantörskedjor — och NIS2:s krav på leverantörssäkerhet träffar därför många underleverantörer i kommunen.',
+      'Med stora arbetsgivare som Scania och AstraZeneca har Södertälje långa, internationella leverantörskedjor, och NIS2:s krav på leverantörssäkerhet träffar därför många underleverantörer i kommunen.',
   },
   lulea: {
     namedEmployers: ['SSAB', 'datacenter (bl.a. Meta)'],
@@ -3343,7 +3343,7 @@ const kommunEnrichment: Record<string, { namedEmployers?: string[]; localAngle?:
   gallivare: {
     namedEmployers: ['LKAB', 'Boliden (Aitik)'],
     localAngle:
-      'Gällivares gruvindustri vilar på automation och fjärrstyrda processer — en miljö där OT-säkerhet är direkt verksamhetskritisk.',
+      'Gällivares gruvindustri vilar på automation och fjärrstyrda processer, en miljö där OT-säkerhet är direkt verksamhetskritisk.',
   },
   sandviken: {
     namedEmployers: ['Sandvik'],
@@ -3396,6 +3396,21 @@ function variantIndex(k: Kommun, n: number): number {
   return h % n;
 }
 
+/**
+ * Salted variant picker. Hashes slug + salt + dominant sectors, so each prose
+ * slot ("intro-opener", "intro-bridge", "callout", …) varies INDEPENDENTLY
+ * rather than every slot keying off the same slug hash. Two municipalities of
+ * the same band/type but different counties/sectors therefore render a
+ * different *combination* of skeletons — multiplying real text variety and
+ * pulling the pages out of Google's near-duplicate cluster.
+ */
+function pick<T>(k: Kommun, salt: string, arr: T[]): T {
+  const seed = `${k.slug}|${salt}|${k.county}|${k.dominantSectors.join(',')}`;
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  return arr[h % arr.length];
+}
+
 /** Swedish list join: "a", "a och b", "a, b och c". */
 function svList(items: string[]): string {
   if (items.length === 0) return '';
@@ -3436,8 +3451,8 @@ export function getKommunIntro(k: Kommun): string {
   const band = getPopulationBand(k);
   const sectors = sectorList(k);
   const top3 = sectorList(k, 3);
+  const top1 = getSectorLabel(k.dominantSectors[0]).toLowerCase();
   const pop = k.population.toLocaleString('sv-SE');
-  const v = variantIndex(k, 3);
   const emp = employerClause(k);
 
   const openers: Record<PopulationBand, string[]> = {
@@ -3445,21 +3460,29 @@ export function getKommunIntro(k: Kommun): string {
       `${k.name} hör till Sveriges större kommuner, med ett brett näringsliv inom ${sectors}.`,
       `Med ${pop} invånare är ${k.name} en av landets folkrikaste kommuner, där ${top3} väger tungt i näringslivet.`,
       `${k.name} är en storstadskommun där ${sectors} samsas i ett diversifierat näringsliv.`,
+      `Som en av ${k.county}s största kommuner har ${k.name} ett näringsliv med tyngdpunkt i ${top3}.`,
+      `${k.name} är ett ekonomiskt nav i ${k.county}, med ${pop} invånare och stark närvaro inom ${top3}.`,
     ],
     large: [
       `${k.name} är en regional tyngdpunkt i ${k.county} med starka inslag av ${top3}.`,
       `Med omkring ${pop} invånare är ${k.name} en av de större kommunerna i ${k.county}, präglad av ${top3}.`,
       `${k.name} kombinerar ett etablerat näringsliv inom ${top3} med rollen som regionalt centrum.`,
+      `${k.name} är en av de folkrikare kommunerna i ${k.county}, där ${top1} sätter tydlig prägel på näringslivet.`,
+      `Med ${pop} invånare fungerar ${k.name} som ett regionalt centrum i ${k.county}, med bas i ${top3}.`,
     ],
     mid: [
       `${k.name} är en mellanstor kommun i ${k.county} där ${top3} dominerar näringslivet.`,
       `Med ${pop} invånare har ${k.name} ett näringsliv som vilar tungt på ${top3}.`,
       `I ${k.name} präglas det lokala näringslivet av ${top3}.`,
+      `${k.name} är en mellanstor kommun i ${k.county} med ${top1} som en bärande näring.`,
+      `Näringslivet i ${k.name} bygger i hög grad på ${top3}, med ${pop} invånare i kommunen.`,
     ],
     small: [
       `${k.name} är en mindre kommun i ${k.county} med ${pop} invånare, där ${top3} betyder mycket lokalt.`,
       `Trots sin storlek har ${k.name} ett näringsliv med tydliga inslag av ${top3}.`,
       `${k.name} är en liten kommun där ${top3} utgör ryggraden i det lokala näringslivet.`,
+      `I ${k.name}, en mindre kommun i ${k.county}, är ${top1} en av de viktigaste näringarna.`,
+      `Med ${pop} invånare är ${k.name} en liten men företagstät kommun där ${top3} dominerar.`,
     ],
   };
 
@@ -3467,31 +3490,53 @@ export function getKommunIntro(k: Kommun): string {
     `Både kommunens egna verksamheter och privata företag berörs av NIS2-direktivet och cybersäkerhetslagen.`,
     `Det gör att cybersäkerhetslagen träffar ${k.name} brett, från kommunal förvaltning till privata aktörer och deras leverantörer.`,
     `Flera av dessa sektorer omfattas direkt av NIS2, och leverantörskraven kaskaderar vidare ner i kedjan.`,
+    `Därmed berörs verksamheter i ${k.name} av cybersäkerhetslagen både direkt och indirekt, via krav från större kunder.`,
+    `Eftersom ${top1} är utpekat under NIS2 påverkas många lokala företag i ${k.name}, inte minst som underleverantörer.`,
   ];
 
-  return `${openers[band][v]}${emp} ${bridges[v]} Uppskattningsvis ${k.nis2Estimate} organisationer i ${k.name} berörs direkt.`;
+  return `${pick(k, 'intro-opener', openers[band])}${emp} ${pick(k, 'intro-bridge', bridges)} Uppskattningsvis ${k.nis2Estimate} organisationer i ${k.name} berörs direkt.`;
 }
 
 /** Callout {title, text} — varies by population band + variant. */
 export function getKommunCallout(k: Kommun): { title: string; text: string } {
   const band = getPopulationBand(k);
-  const v = variantIndex(k, 2);
 
   if (band === 'major' || band === 'large') {
     return {
-      title: ['Samordning över flera sektorer', 'Skala och tillsyn på bred front'][v],
-      text: `I en kommun av ${k.name}s storlek möter verksamheter ofta flera tillsynsmyndigheter parallellt, här ${svList(k.tillsynsmyndigheter)}. Kommunala bolag kan omfattas i olika sektorer samtidigt, vilket ställer höga krav på samordning. Vår plattform Securapilot ger realtidsöverblick över hela compliance-arbetet.`,
+      title: pick(k, 'callout-title', [
+        'Samordning över flera sektorer',
+        'Skala och tillsyn på bred front',
+        `Flera regelverk samtidigt i ${k.name}`,
+      ]),
+      text: pick(k, 'callout-text', [
+        `I en kommun av ${k.name}s storlek möter verksamheter ofta flera tillsynsmyndigheter parallellt, här ${svList(k.tillsynsmyndigheter)}. Kommunala bolag kan omfattas i olika sektorer samtidigt, vilket ställer höga krav på samordning. Vår plattform Securapilot ger realtidsöverblick över hela compliance-arbetet.`,
+        `Större kommuner som ${k.name} har ett näringsliv som spänner över många NIS2-sektorer, och därmed flera tillsynsmyndigheter att förhålla sig till (${svList(k.tillsynsmyndigheter)}). Det gör samordning till en nyckelfråga. Med Securapilot samlar ni hela efterlevnadsarbetet på ett ställe.`,
+      ]),
     };
   }
   if (k.type === 'industrial') {
     return {
-      title: ['Leverantörskedjor och OT-säkerhet', 'Industrins säkerhet bortom IT'][v],
-      text: `${k.name} är en utpräglad industrikommun, och då blir OT-säkerhet (styrsystem, SCADA, industriella nät) lika viktig som IT-säkerheten. NIS2 ställer uttryckliga krav på leverantörskedjan, så era storkunders efterlevnad påverkar direkt kraven på er. Vi hjälper er täcka både IT och OT i samma arbete.`,
+      title: pick(k, 'callout-title', [
+        'Leverantörskedjor och OT-säkerhet',
+        'Industrins säkerhet bortom IT',
+        `OT-säkerhet i ${k.name}s industri`,
+      ]),
+      text: pick(k, 'callout-text', [
+        `${k.name} är en utpräglad industrikommun, och då blir OT-säkerhet (styrsystem, SCADA, industriella nät) lika viktig som IT-säkerheten. NIS2 ställer uttryckliga krav på leverantörskedjan, så era storkunders efterlevnad påverkar direkt kraven på er. Vi hjälper er täcka både IT och OT i samma arbete.`,
+        `I industrikommuner som ${k.name} sitter mycket av risken i produktionen, alltså i styrsystem och industriella nät snarare än bara i kontorets IT. NIS2 sätter dessutom press uppåt och nedåt i leverantörskedjan. Vi hjälper er säkra både IT och OT utan att produktionen står still.`,
+      ]),
     };
   }
   return {
-    title: ['Proportionellt och anpassat efter er verklighet', 'Lagom åtgärder för er storlek'][v],
-    text: `Cybersäkerhetslagen talar om "lämpliga och proportionella åtgärder". Vi hjälper er tolka vad det betyder konkret för en verksamhet i ${k.name}. Med CISO-as-a-Service får ni strategisk säkerhetsstyrning utan att rekrytera specialister, och med Securapilot löpande koll utan dyra årliga revisioner.`,
+    title: pick(k, 'callout-title', [
+      'Proportionellt och anpassat efter er verklighet',
+      'Lagom åtgärder för er storlek',
+      `Rätt nivå för verksamheter i ${k.name}`,
+    ]),
+    text: pick(k, 'callout-text', [
+      `Cybersäkerhetslagen talar om "lämpliga och proportionella åtgärder". Vi hjälper er tolka vad det betyder konkret för en verksamhet i ${k.name}. Med CISO-as-a-Service får ni strategisk säkerhetsstyrning utan att rekrytera specialister, och med Securapilot löpande koll utan dyra årliga revisioner.`,
+      `Alla verksamheter i ${k.name} behöver inte samma åtgärder, lagen kräver det som är proportionellt för just er. Vi hjälper er hitta den nivån, utan överarbete. CISO-as-a-Service ger styrning utan egen rekrytering, och Securapilot håller koll löpande i stället för en dyr årlig revision.`,
+    ]),
   };
 }
 
@@ -3515,12 +3560,13 @@ export function getKommunMetaTitle(k: Kommun): string {
 export function getKommunMetaDescription(k: Kommun): string {
   if (k.metaDescription) return k.metaDescription;
   const top = sectorList(k, 3);
-  const v = variantIndex(k, 3);
-  return [
+  return pick(k, 'meta-desc', [
     `${k.name}s näringsliv inom ${top} berörs av cybersäkerhetslagen. Verit hjälper företag och kommun med NIS2, ISO 27001 och praktisk cybersäkerhet.`,
-    `Cybersäkerhetslagen träffar ${k.name} brett — ${k.nis2Estimate} organisationer berörs. Verit hjälper er med NIS2, ISO 27001 och CISO-as-a-Service.`,
+    `Cybersäkerhetslagen träffar ${k.name} brett, ${k.nis2Estimate} organisationer berörs. Verit hjälper er med NIS2, ISO 27001 och CISO-as-a-Service.`,
     `NIS2 och cybersäkerhetslagen i ${k.name}: vad som gäller för ${top}, och hur Verit hjälper företag och kommun att komma igång pragmatiskt.`,
-  ][v];
+    `Berörs ert företag i ${k.name} av NIS2? Verit hjälper verksamheter inom ${top} med gap-analys, ISO 27001 och CISO-as-a-Service. Boka ett kostnadsfritt möte.`,
+    `Praktisk cybersäkerhet för ${k.name}: Verit guidar företag och kommun genom cybersäkerhetslagen, NIS2 och ISO 27001, anpassat efter er storlek.`,
+  ]);
 }
 
 interface FaqItem {
@@ -3573,6 +3619,81 @@ export function getKommunFaq(k: Kommun): FaqItem[] {
   }
 
   return faq;
+}
+
+/**
+ * Prominent, genuinely-local lead block rendered near the top of each page.
+ * Combines the local angle (verified specifics where available, otherwise a
+ * sector-grounded sentence) with a sentence naming real employers when
+ * recorded. This is the single most page-specific block — the strongest signal
+ * that the page is distinct rather than a templated duplicate.
+ */
+export function getKommunLocalLead(k: Kommun): { angle: string; employers?: string } {
+  const angle = getKommunLocalSection(k) as string; // never null
+  const employers = resolveEmployers(k);
+  const employerSentence =
+    employers && employers.length
+      ? pick(k, 'lead-emp', [
+          `Bland de större arbetsgivarna i ${k.name} finns ${svList(employers)}, verksamheter med leverantörskedjor och digitala beroenden som cybersäkerhetslagen tar sikte på.`,
+          `Lokalt präglas ${k.name} av aktörer som ${svList(employers)}, där driftsäkerhet och informationssäkerhet är affärskritiskt.`,
+        ])
+      : undefined;
+  return { angle, employers: employerSentence };
+}
+
+/** Varied intro line for the "Så kan vi hjälpa" section. */
+export function getKommunHelpIntro(k: Kommun): string {
+  const top1 = getSectorLabel(k.dominantSectors[0]).toLowerCase();
+  return pick(k, 'help-intro', [
+    `Vi arbetar med både kommunala verksamheter och privata företag i ${k.name}, och utgår alltid från er storlek och era resurser.`,
+    `För verksamheter inom ${top1} i ${k.name} börjar vi med att kartlägga nuläget och prioriterar sedan det som ger mest säkerhet per insats.`,
+    `Oavsett om ni är en stor arbetsgivare eller ett mindre bolag i ${k.name} möter vi er där ni står idag.`,
+  ]);
+}
+
+/** Three "så hjälper vi"-steps, with the build step varied by kommun type. */
+export function getKommunSteps(k: Kommun): { num: string; title: string; text: string }[] {
+  const buildNote =
+    k.type === 'industrial'
+      ? 'Från riskanalyser och policyer till incidenthantering, och vid behov säkerhet i industriella styrsystem (OT).'
+      : k.type === 'rural'
+        ? 'Vi håller det proportionellt: riskanalys, policyer och incidenthantering i en omfattning som passar en mindre organisation.'
+        : 'Från riskanalyser och policyer till incidenthanteringsprocesser, anpassat efter er verksamhet.';
+  return [
+    {
+      num: '1',
+      title: 'Kolla läget',
+      text: `Vi gör en gap-analys som visar var ni står i förhållande till cybersäkerhetslagens krav. Ingen pärm som samlar damm, utan en tydlig bild av vad som faktiskt behöver göras i ${k.name}.`,
+    },
+    {
+      num: '2',
+      title: 'Bygg det som saknas',
+      text: `Vi hjälper er implementera åtgärder anpassade efter er storlek och resurser. ${buildNote}`,
+    },
+    {
+      num: '3',
+      title: 'Håll koll löpande',
+      text: 'Med vår plattform Securapilot får ni realtidsöverblick över ert compliance-arbete. Istället för en årlig revision har ni alltid koll på statusen.',
+    },
+  ];
+}
+
+/** Varied lead sentence for the "Berörda sektorer"-section. */
+export function getKommunSectorIntro(k: Kommun): string {
+  const n = k.dominantSectors.length;
+  return pick(k, 'sector-intro', [
+    `${k.name}s kommun omfattas av cybersäkerhetslagen som offentlig förvaltning. Kommunala bolag inom energi, vatten och digital infrastruktur berörs dessutom i sina respektive sektorer. Privata medelstora och stora företag inom följande sektorer omfattas:`,
+    `Förutom kommunen själv, som offentlig förvaltning, berörs privata verksamheter i ${k.name} inom ${n} utpekade sektorer. Kommunala bolag inom energi och VA omfattas i sina respektive roller. De dominerande sektorerna lokalt:`,
+  ]);
+}
+
+/** Varied description for the closing CTA banner. */
+export function getKommunCtaText(k: Kommun): string {
+  return pick(k, 'cta', [
+    `Vi berättar gärna mer om hur vi kan hjälpa er organisation i ${k.name} med NIS2, ISO 27001 och cybersäkerhetslagen.`,
+    `Boka ett kostnadsfritt möte så går vi igenom vad cybersäkerhetslagen innebär för just er verksamhet i ${k.name}.`,
+    `Hör av er så tittar vi tillsammans på hur långt ni har kvar till efterlevnad, och vad nästa steg blir för er i ${k.name}.`,
+  ]);
 }
 
 /** Great-circle distance in km between two lat/lng points (haversine). */
