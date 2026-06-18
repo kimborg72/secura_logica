@@ -52,4 +52,4 @@ In parallel, you can make Cheat Sheets a natural reference in development work, 
 
 The point is to flip the question. Don't aim only at passing CRA. Aim at building securely with OWASP as your support. Then you've already laid the foundation for a large part of compliance, and the rest becomes considerably less daunting.
 
-If you want to get going but aren't sure where to start, [get in touch](/en/contact) and I'll help you find the right first step.
+If you want support the whole way, we offer [ongoing CRA support for development teams](/en/services/cra), from an ASVS baseline to continuous follow-up. If you want to get going but aren't sure where to start, [get in touch](/en/contact) and I'll help you find the right first step.

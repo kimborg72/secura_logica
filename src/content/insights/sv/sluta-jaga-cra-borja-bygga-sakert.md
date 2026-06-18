@@ -52,4 +52,4 @@ Parallellt kan ni göra Cheat Sheets till en naturlig referens i utvecklingsarbe
 
 Poängen är att vända på frågan. Sikta inte enbart på att klara CRA. Sikta på att bygga säkert med OWASP som stöd. Då har ni redan lagt grunden för en stor del av efterlevnaden, och resten blir betydligt mindre skrämmande.
 
-Vill ni komma igång men inte vet var ni ska börja, [hör av er](/kontakt) så hjälper jag er hitta rätt första steg.
+Vill ni ha stöd hela vägen erbjuder vi [löpande CRA-stöd för utvecklingsteam](/tjanster/cra), från ASVS-baseline till kontinuerlig uppföljning. Vill ni komma igång men inte vet var ni ska börja, [hör av er](/kontakt) så hjälper jag er hitta rätt första steg.

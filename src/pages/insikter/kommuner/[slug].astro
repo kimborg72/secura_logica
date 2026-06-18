@@ -13,6 +13,7 @@ import {
   getKommunFaq,
   getSectorLabel,
   getKommunIntro,
+  getKommunItSecurity,
   getKommunCallout,
   getKommunLocalLead,
   getKommunHelpIntro,
@@ -89,6 +90,7 @@ const faqSchema = {
 };
 
 const typeIntro = getKommunIntro(kommun);
+const itSecurity = getKommunItSecurity(kommun);
 const typeCallout = getKommunCallout(kommun);
 const localLead = getKommunLocalLead(kommun);
 const helpIntro = getKommunHelpIntro(kommun);
@@ -106,6 +108,7 @@ const relatedServices = [
   { slug: 'iso27001', label: 'ISO 27001' },
   { slug: 'ciso-as-a-service', label: 'CISO-as-a-Service' },
   { slug: 'riskhantering', label: 'Riskhantering' },
+  { slug: 'gdpr', label: 'GDPR & dataskydd' },
   { slug: 'utbildning', label: 'Utbildning & awareness' },
 ];
 ---
@@ -165,6 +168,17 @@ const relatedServices = [
             <SwedenMap name={kommun.name} lat={kommun.lat} lng={kommun.lng} />
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IT- och datasäkerhet (broadens coverage for IT-/data-/nätverkssäkerhet {stad} queries) -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="max-w-3xl" data-reveal>
+        <p class="overline mb-3">IT- & datasäkerhet</p>
+        <h2 class="mb-4">{itSecurity.heading}</h2>
+        <p class="text-gray leading-relaxed">{itSecurity.body}</p>
       </div>
     </div>
   </section>

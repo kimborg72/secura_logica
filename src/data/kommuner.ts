@@ -4871,19 +4871,46 @@ export function getKommunLocalSection(k: Kommun): string | null {
 }
 
 export function getKommunMetaTitle(k: Kommun): string {
-  return k.metaTitle ?? `Cybersäkerhet & NIS2 i ${k.name}, för företag och kommun | Verit`;
+  if (k.metaTitle) return k.metaTitle;
+  return pick(k, 'meta-title', [
+    `Cybersäkerhet & NIS2 i ${k.name}, för företag och kommun | Verit`,
+    `IT-säkerhet & NIS2 i ${k.name} — för företag och kommun | Verit`,
+    `Cybersäkerhet i ${k.name}: NIS2, ISO 27001 & dataskydd | Verit`,
+    `IT- och datasäkerhet i ${k.name} för företag och kommun | Verit`,
+  ]);
 }
 
 export function getKommunMetaDescription(k: Kommun): string {
   if (k.metaDescription) return k.metaDescription;
   const top = sectorList(k, 3);
   return pick(k, 'meta-desc', [
-    `${k.name}s näringsliv inom ${top} berörs av cybersäkerhetslagen. Verit hjälper företag och kommun med NIS2, ISO 27001 och praktisk cybersäkerhet.`,
+    `${k.name}s näringsliv inom ${top} berörs av cybersäkerhetslagen. Verit hjälper företag och kommun med NIS2, ISO 27001 och praktisk IT-säkerhet.`,
     `Cybersäkerhetslagen träffar ${k.name} brett, ${k.nis2Estimate} organisationer berörs. Verit hjälper er med NIS2, ISO 27001 och CISO-as-a-Service.`,
     `NIS2 och cybersäkerhetslagen i ${k.name}: vad som gäller för ${top}, och hur Verit hjälper företag och kommun att komma igång pragmatiskt.`,
-    `Berörs ert företag i ${k.name} av NIS2? Verit hjälper verksamheter inom ${top} med gap-analys, ISO 27001 och CISO-as-a-Service. Boka ett kostnadsfritt möte.`,
-    `Praktisk cybersäkerhet för ${k.name}: Verit guidar företag och kommun genom cybersäkerhetslagen, NIS2 och ISO 27001, anpassat efter er storlek.`,
+    `Berörs ert företag i ${k.name} av NIS2? Verit hjälper verksamheter inom ${top} med IT-säkerhet, datasäkerhet och gap-analys. Boka ett kostnadsfritt möte.`,
+    `IT- och datasäkerhet för ${k.name}: Verit guidar företag och kommun genom cybersäkerhetslagen, NIS2 och nätverkssäkerhet, anpassat efter er storlek.`,
   ]);
+}
+
+/**
+ * Varied IT-/data-/nätverkssäkerhet block. Broadens keyword coverage for the
+ * striking-distance "IT-säkerhet / datasäkerhet / nätverkssäkerhet {stad}"
+ * queries (pos 5–15, 0 clicks) without appending a constant sentence to all
+ * pages — every string runs through pick() to preserve text variety.
+ */
+export function getKommunItSecurity(k: Kommun): { heading: string; body: string } {
+  const top1 = getSectorLabel(k.dominantSectors[0]).toLowerCase();
+  const heading = pick(k, 'it-heading', [
+    `IT- och datasäkerhet för verksamheter i ${k.name}`,
+    `IT-säkerhet och nätverkssäkerhet i ${k.name}`,
+    `Data- och nätverkssäkerhet för företag i ${k.name}`,
+  ]);
+  const body = pick(k, 'it-body', [
+    `För många verksamheter i ${k.name} börjar cybersäkerhetslagen i det praktiska: IT-säkerhet, datasäkerhet och nätverkssäkerhet i vardagen. Vi hjälper företag och kommun inom ${top1} att gå från enskilda tekniska åtgärder till ett sammanhållet säkerhetsarbete som håller för NIS2 och ISO 27001.`,
+    `IT-säkerhet och datasäkerhet är ofta första steget för företag i ${k.name} som vill möta NIS2. Vi ser till att nätverkssäkerhet, åtkomststyrning och incidenthantering hänger ihop i stället för att lösas var för sig, så att ${top1} och övriga sektorer får ett skydd som faktiskt fungerar.`,
+    `Bakom kraven i cybersäkerhetslagen ligger konkret IT-säkerhet: skydd av data, härdade nätverk och kontroll på leverantörer. Vi hjälper verksamheter i ${k.name} att stärka data- och nätverkssäkerheten på en nivå som är rimlig för en organisation inom ${top1}.`,
+  ]);
+  return { heading, body };
 }
 
 interface FaqItem {
