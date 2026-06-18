@@ -42,6 +42,8 @@ const GITHUB_STEP_SUMMARY = process.env.GITHUB_STEP_SUMMARY;
 const SITE_URL = 'sc-domain:verit.se';
 const ORIGIN = 'https://verit.se';
 const CUSTOMER_ID = env.GOOGLE_ADS_CUSTOMER_ID || '6821977588';
+// Manager (MCC) account ID, required when querying a client account via a manager account.
+const LOGIN_CUSTOMER_ID = (env.GOOGLE_ADS_LOGIN_CUSTOMER_ID || '').replace(/-/g, '');
 
 // ── Validate credentials ───────────────────────────────────────────
 const missingAds = [];
@@ -85,6 +87,7 @@ function getAdsClient() {
   return client.Customer({
     customer_id: CUSTOMER_ID,
     refresh_token: env.GOOGLE_ADS_REFRESH_TOKEN,
+    ...(LOGIN_CUSTOMER_ID ? { login_customer_id: LOGIN_CUSTOMER_ID } : {}),
   });
 }
 
