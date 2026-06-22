@@ -50,6 +50,7 @@ export const insightSlugMap: Record<string, string> = {
   'ratt-igar-inte-ratt-idag': 'what-was-right-yesterday-isnt-right-today',
   'leverantorsregister-ar-inte-en-krisplan': 'your-vendor-register-isnt-a-crisis-plan',
   'civil-cyberresiliens-totalforsvar': 'civil-cyber-resilience-total-defence',
+  'kvanthotet-ledningsfraga': 'quantum-threat-leadership-question',
 };
 
 const reverseInsightSlugMap: Record<string, string> = Object.fromEntries(

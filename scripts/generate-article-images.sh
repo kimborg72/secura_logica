@@ -33,6 +33,8 @@ PROMPTS[hero-proportionalitet-ar-farskvara]="Interior of a quiet Scandinavian of
 
 PROMPTS[hero-vart-program-loser-inte-ert-problem]="Interior of a modern Scandinavian corporate office at dusk, viewed from inside a quiet, empty meeting room. Floor-to-ceiling windows fill the entire frame with a sweeping view of Stockholm at blue hour: the silhouettes of Riddarholmen church spires, Gamla Stan rooftops, and city lights reflecting on the dark water of Riddarfjärden. Foreground: edge of a long polished wooden conference table with a closed laptop, a single empty chair pulled slightly back. Warm amber pendant light reflected faintly on the glass. The city outside dominates the composition. Quiet, contemplative, professional atmosphere. ${STYLE_SUFFIX}"
 
+PROMPTS[hero-kvanthotet-ledningsfraga]="Interior of a quiet Scandinavian office at blue hour, viewed from a desk overlooking Stockholm. Foreground: a single sealed archive box with a closed lid and a small wax seal, resting on the desk, and beside it a brass hourglass catching the last warm light, its sand only partway through. The box is shut and waiting, something stored now to be opened later. Floor-to-ceiling windows reveal Stockholm at dusk: Riddarholmen church spires, Gamla Stan rooftops, the calm surface of Riddarfjärden reflecting deep teal and amber tones. A sense of time passing quietly while a record sits sealed. Calm, contemplative, professional atmosphere. ${STYLE_SUFFIX}"
+
 echo "=== Freepik Article Hero Image Generator ==="
 echo "Output: ${OUTPUT_DIR}"
 echo ""
@@ -105,7 +107,8 @@ for name in ${(k)TASK_IDS}; do
 
     echo "  Downloading ${name}..."
     tmp_file="/tmp/freepik_${name}.png"
-    curl -s -o "$tmp_file" "$image_url"
+    # -L: the Freepik CDN now 301-redirects to ai-statics.magnific.com
+    curl -sL -o "$tmp_file" "$image_url"
 
     out_path="${OUTPUT_DIR}/${name}.webp"
     if command -v cwebp &> /dev/null; then
