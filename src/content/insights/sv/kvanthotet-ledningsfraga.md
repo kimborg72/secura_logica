@@ -12,7 +12,7 @@ tags: ["Postkvantkryptografi", "Kryptografi", "Kvanthot", "NIS2", "Kryptoagilite
 
 Er krypterade information kan redan vara kopierad. Den är bara inte dekrypterad än.
 
-Det låter dramatiskt, men mekanismen är enkel och väl dokumenterad. Den har till och med ett eget namn. *Harvest now, decrypt later.* En motståndare samlar in krypterad trafik idag och lägger den på hög. Sedan väntar de på den dag då en kvantdator kan dekryptera alltihop.
+Det låter dramatiskt, men mekanismen är enkel och väl dokumenterad. Den har till och med ett eget namn. <em lang="en">Harvest now, decrypt later.</em> En motståndare samlar in krypterad trafik idag och lägger den på hög. Sedan väntar de på den dag då en kvantdator kan dekryptera alltihop.
 
 ## Fel fråga och rätt fråga
 
